@@ -24,14 +24,10 @@ import javax.persistence.ManyToOne;
 @Setter
 @ToString
 public class User extends BaseEntity{
-    String position;
     String department;
+    String position;
     String name;
     String userId;
-
-    @ManyToMany
-    @JoinTable(name="conference")
-    private List<Conference> conference = new ArrayList<>();
     
     @ToString.Exclude
     @JsonIgnore
