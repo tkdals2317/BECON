@@ -2,6 +2,7 @@ package com.ssafy.api.response;
 
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.User;
+import com.ssafy.db.entity.UserProfile;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,18 +18,21 @@ import lombok.Setter;
 public class UserRes{
 	@ApiModelProperty(name="User ID")
 	String userId;
+	@ApiModelProperty(name="User Email")
+	String userEmail;
 	@ApiModelProperty(name="User Name")
 	String userName;
-	@ApiModelProperty(name="User Department")
-	String userDepartment;
-	@ApiModelProperty(name="User Position")
-	String userPosition;
+	@ApiModelProperty(name="User Phone")
+	String userPhone;
+	@ApiModelProperty(name="User Profile")
+	UserProfile userProfile;
 	public static UserRes of(User user) {
 		UserRes res = new UserRes();
 		res.setUserId(user.getUserId());
 		res.setUserName(user.getName());
-//		res.setUserDepartment(user.getDepartment());
-//		res.setUserPosition(user.getPosition());
+		res.setUserEmail(user.getEmail());
+		res.setUserPhone(user.getPhone());
+		res.setUserProfile(user.getUserProfile());
 		return res;
 	}
 }

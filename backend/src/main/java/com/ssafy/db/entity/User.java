@@ -38,4 +38,5 @@ public class User extends BaseEntity {
     private String phone;
     private String userId;
     private String email;
+
 }

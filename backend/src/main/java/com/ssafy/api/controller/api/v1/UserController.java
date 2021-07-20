@@ -1,5 +1,7 @@
 package com.ssafy.api.controller.api.v1;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -10,19 +12,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.UserModifyPostReq;
+import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.api.response.UserModifyPostRes;
 import com.ssafy.api.response.UserRes;
+import com.ssafy.api.service.UserProfileService;
 import com.ssafy.api.service.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
+import com.ssafy.common.util.MD5Generator;
 import com.ssafy.db.entity.User;
 
 import io.swagger.annotations.Api;
@@ -41,25 +49,52 @@ import springfox.documentation.annotations.ApiIgnore;
 public class UserController {
 	@Autowired
 	UserService userService;
+	@Autowired
+	UserProfileService userProfileService;
 	
 	@PostMapping("/regist")
-	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와  패스워드</strong>를 통해 회원가입 한다.") 
+	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와  패스워드</strong>를 통해 회원가입 한다." ) 
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
     })
 	public ResponseEntity<? extends BaseResponseBody> register(
-			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo) {
-		//임의로 리턴된 User 인스턴스. 현재 코드는 회원 가입 성공 여부만 판단하기 때문에 굳이 Insert 된 유저 정보를 응답하지 않음.
+			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo, 
+			@RequestPart(value="profile img") @ApiParam(value="imgUrlBase", required = true) MultipartFile files){
+		
 		User user;
 		try{
-			user = userService.createUser(registerInfo);
+			String origFilename = files.getOriginalFilename();
+	        String filename = new MD5Generator(origFilename).toString();
+	        /* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+	        String savePath = System.getProperty("user.dir") + "\\files";
+	        if (!new File(savePath).exists()) {
+                try{
+                    new File(savePath).mkdir();
+                }
+                catch(Exception e){
+                    e.getStackTrace();
+                }
+            }
+	        String filePath = savePath + "\\" + filename;
+            files.transferTo(new File(filePath));
+            
+            UserProfilePostReq userProfileInfo=new UserProfilePostReq();
+            userProfileInfo.setOriginName(origFilename);
+            userProfileInfo.setName(filename);
+            userProfileInfo.setPath(filePath);
+            
+            Long fileId = userProfileService.saveFile(userProfileInfo);
+            
+			user = userService.createUser(registerInfo, fileId);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
 		}catch(TokenExpiredException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 만료되었습니다."));
 		}catch (Forbidden e) {
 			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "접근권한이 없습니다."));
-		}
+		}catch(Exception e) {
+            e.printStackTrace();
+        }
 		return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
 	}
 	@GetMapping("/{userid}")
