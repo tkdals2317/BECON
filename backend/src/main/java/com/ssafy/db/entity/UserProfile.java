@@ -8,6 +8,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class ConferenceCategory extends BaseEntity{
+public class UserProfile extends BaseEntity {
 	String name;
+	String origin_name;
+	String path;
 }

@@ -12,9 +12,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * 유저 모델 정의.
@@ -23,14 +25,17 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @ToString
-public class User extends BaseEntity{
-    String department;
-    String position;
-    String name;
-    String userId;
+public class User extends BaseEntity {
+	@OneToOne(fetch =FetchType.LAZY)
+    private UserProfile userProfile;
     
     @ToString.Exclude
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    String password;
+    private String password;
+    
+	private String name;
+    private String phone;
+    private String userId;
+    private String email;
 }

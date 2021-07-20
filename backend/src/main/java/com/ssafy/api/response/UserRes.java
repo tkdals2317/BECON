@@ -27,8 +27,8 @@ public class UserRes{
 		UserRes res = new UserRes();
 		res.setUserId(user.getUserId());
 		res.setUserName(user.getName());
-		res.setUserDepartment(user.getDepartment());
-		res.setUserPosition(user.getPosition());
+//		res.setUserDepartment(user.getDepartment());
+//		res.setUserPosition(user.getPosition());
 		return res;
 	}
 }
