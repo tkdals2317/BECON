@@ -16,8 +16,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Transactional
 	@Override
-	public Long saveFile(UserProfilePostReq request) {
-		return userProfileRepository.save(request.toEntity()).getId();
+	public UserProfile saveFile(UserProfilePostReq request) {
+		return userProfileRepository.save(request.toEntity());
 	}
 
 	@Transactional

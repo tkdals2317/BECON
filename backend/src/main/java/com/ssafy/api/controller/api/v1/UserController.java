@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +30,7 @@ import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.common.util.MD5Generator;
 import com.ssafy.db.entity.User;
+import com.ssafy.db.entity.UserProfile;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -53,19 +52,17 @@ public class UserController {
 	UserProfileService userProfileService;
 	
 	@PostMapping("/regist")
-	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와  패스워드</strong>를 통해 회원가입 한다." ) 
+	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와  패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
     })
 	public ResponseEntity<? extends BaseResponseBody> register(
-			@RequestBody @ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo, 
-			@RequestPart(value="profile img") @ApiParam(value="imgUrlBase", required = true) MultipartFile files){
-		
+			@ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo, 
+			@ApiParam(value="imgUrlBase", required = true) MultipartFile files){
 		User user;
 		try{
 			String origFilename = files.getOriginalFilename();
 	        String filename = new MD5Generator(origFilename).toString();
-	        /* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
 	        String savePath = System.getProperty("user.dir") + "\\files";
 	        if (!new File(savePath).exists()) {
                 try{
@@ -75,6 +72,8 @@ public class UserController {
                     e.getStackTrace();
                 }
             }
+			System.out.println(origFilename);
+			System.out.println(registerInfo.getName());
 	        String filePath = savePath + "\\" + filename;
             files.transferTo(new File(filePath));
             
@@ -83,8 +82,7 @@ public class UserController {
             userProfileInfo.setName(filename);
             userProfileInfo.setPath(filePath);
             
-            Long fileId = userProfileService.saveFile(userProfileInfo);
-            
+            UserProfile fileId = userProfileService.saveFile(userProfileInfo);
 			user = userService.createUser(registerInfo, fileId);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));

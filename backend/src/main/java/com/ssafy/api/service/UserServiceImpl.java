@@ -31,15 +31,15 @@ public class UserServiceImpl implements UserService {
 	PasswordEncoder passwordEncoder;
 	
 	@Override
-	public User createUser(UserRegisterPostReq userRegisterInfo, Long fileId) {
+	public User createUser(UserRegisterPostReq request, UserProfile fileId) {
 		User user = new User();
-		user.setUserId(userRegisterInfo.getId());
+		user.setUserId(request.getId());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
-		user.setPassword(passwordEncoder.encode(userRegisterInfo.getPassword()));
-		user.setName(userRegisterInfo.getName());
-		user.setEmail(userRegisterInfo.getEmail());
-		user.setPhone(userRegisterInfo.getPhone());
-		//user.setUserProfileId(fileId);
+		user.setPassword(passwordEncoder.encode(request.getPassword()));
+		user.setName(request.getName());
+		user.setEmail(request.getEmail());
+		user.setPhone(request.getPhone());
+		user.setUserProfile(fileId);
 		return userRepository.save(user);
 	}
 
@@ -60,11 +60,12 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
-	@Transactional
-	@Override
-	public Long modifyUser(String userId, UserModifyPostReq request) {
-		return userRepositorySupport.modifyUserByUserId(userId, request);
-	}
+	/*
+	 * @Transactional
+	 * 
+	 * @Override public Long modifyUser(String userId, UserModifyPostReq request) {
+	 * //return userRepositorySupport.modifyUserByUserId(userId, request); }
+	 */
 	
 	@Transactional
 	@Override
@@ -73,5 +74,11 @@ public class UserServiceImpl implements UserService {
 		// 해당 유저의 지난 회의 이력을 모두 삭제한다.
 		// 해당 유저 정보를 삭제한다.
 		return userRepositorySupport.deleteUserByUserId(userId);
+	}
+
+	@Override
+	public Long modifyUser(String userId, UserModifyPostReq request) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

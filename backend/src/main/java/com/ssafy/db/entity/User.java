@@ -29,14 +29,14 @@ public class User extends BaseEntity {
 	@OneToOne(fetch =FetchType.LAZY)
     private UserProfile userProfile;
     
-    @ToString.Exclude
-    @JsonIgnore
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
-    
 	private String name;
     private String phone;
     private String userId;
     private String email;
+    //private Long userProfileId;
 
+    @ToString.Exclude
+    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
 }

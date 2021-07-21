@@ -1,7 +1,5 @@
 package com.ssafy.api.request;
 
-import com.ssafy.db.entity.UserProfile;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -23,5 +21,5 @@ public class UserRegisterPostReq {
 	@ApiModelProperty(name="유저 phone", example="your_phone")
 	String phone;
 	@ApiModelProperty(name="유저 Name", example="your_name")
-	String name;	
+	String name;
 }
