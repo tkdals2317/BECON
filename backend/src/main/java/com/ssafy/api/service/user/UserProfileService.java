@@ -13,6 +13,4 @@ public interface UserProfileService {
 	UserProfile saveFile(UserProfilePostReq request);
 	void changeFile(Long userPID, MultipartFile files) throws UnsupportedEncodingException, NoSuchAlgorithmException, IllegalStateException, IOException;
 	UserProfilePostReq getFile(Long id);
-	//long deleteFile(Long id);
-	void modifyFile(Long id, UserProfilePostReq userProfileInfo);
 }

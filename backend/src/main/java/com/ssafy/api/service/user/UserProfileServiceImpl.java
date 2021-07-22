@@ -74,13 +74,5 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 
 
-	@Override
-	public void modifyFile(Long id, UserProfilePostReq userProfileInfo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	
 
 }
