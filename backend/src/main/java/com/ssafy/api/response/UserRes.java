@@ -18,10 +18,10 @@ import lombok.Setter;
 public class UserRes{
 	@ApiModelProperty(name="User ID")
 	String userId;
-	@ApiModelProperty(name="User Email")
-	String userEmail;
 	@ApiModelProperty(name="User Name")
 	String userName;
+	@ApiModelProperty(name="User Email")
+	String userEmail;
 	@ApiModelProperty(name="User Phone")
 	String userPhone;
 	@ApiModelProperty(name="User Profile")

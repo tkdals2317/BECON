@@ -10,6 +10,7 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -26,14 +27,13 @@ import javax.persistence.OneToOne;
 @Setter
 @ToString
 public class User extends BaseEntity {
-	@OneToOne(fetch =FetchType.LAZY)
+	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.REMOVE, orphanRemoval=true)
     private UserProfile userProfile;
     
 	private String name;
     private String phone;
     private String userId;
     private String email;
-    //private Long userProfileId;
 
     @ToString.Exclude
     @JsonIgnore
