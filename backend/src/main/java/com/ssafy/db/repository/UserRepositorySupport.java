@@ -16,29 +16,29 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class UserRepositorySupport {
-    @Autowired
-    private JPAQueryFactory jpaQueryFactory;
-    QUser qUser = QUser.user;
-    public Optional<User> findUserByUserId(String userId) {
-        User user = jpaQueryFactory.select(qUser).from(qUser)
-                .where(qUser.userId.eq(userId)).fetchOne();
-        if(user == null) return Optional.empty();
-        return Optional.ofNullable(user);
-    }
-    
-    public long modifyUserByUserId(String userId, UserModifyPostReq request) {
-    	long result = jpaQueryFactory.update(qUser)
-                .where(qUser.userId.eq(userId))
-                .set(qUser.name, request.getName())
-                .set(qUser.department, request.getDepartment())
-                .set(qUser.position, request.getPosition())
-                .execute();
-    	return result;
-    }
-    
-    public long deleteUserByUserId(String userId) {
-    	long result = jpaQueryFactory.delete(qUser)
-                .where(qUser.userId.eq(userId)).execute();
-    	return result;
-    }
+	@Autowired
+	private JPAQueryFactory jpaQueryFactory;
+	QUser qUser = QUser.user;
+
+	public Optional<User> findUserByUserId(String userId) {
+		User user = jpaQueryFactory.select(qUser).from(qUser).where(qUser.userId.eq(userId)).fetchOne();
+		if (user == null)
+			return Optional.empty();
+		return Optional.ofNullable(user);
+	}
+
+	/*
+	 * public long modifyUserByUserId(String userId, UserModifyPostReq request) {
+	 * 
+	 * long result = jpaQueryFactory.update(qUser) .where(qUser.userId.eq(userId))
+	 * .set(qUser.name, request.getName()) .set(qUser.mail, request.getMail())
+	 * .set(qUser.phone, request.getPhone()) .execute(); return result;
+	 * 
+	 * }
+	 */
+
+	public long deleteUserByUserId(String userId) {
+		long result = jpaQueryFactory.delete(qUser).where(qUser.userId.eq(userId)).execute();
+		return result;
+	}
 }

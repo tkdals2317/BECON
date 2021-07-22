@@ -33,8 +33,14 @@ public class User extends BaseEntity{
     //@JoinTable(name="conference")
     //private List<Conference> conference = new ArrayList<>();
     
+	private String name;
+    private String phone;
+    private String userId;
+    private String email;
+    //private Long userProfileId;
+
     @ToString.Exclude
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    String password;
+    private String password;
 }
