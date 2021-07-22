@@ -1,4 +1,4 @@
-package com.ssafy.api.service;
+package com.ssafy.api.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

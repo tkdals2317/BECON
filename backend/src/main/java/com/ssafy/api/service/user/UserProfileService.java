@@ -1,4 +1,4 @@
-package com.ssafy.api.service;
+package com.ssafy.api.service.user;
 
 import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.db.entity.UserProfile;
