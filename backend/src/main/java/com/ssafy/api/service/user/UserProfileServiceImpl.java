@@ -27,7 +27,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		UserProfile userProfile = userProfileRepository.findById(id).get();
 
 		UserProfilePostReq request = UserProfilePostReq.builder()
-				.originName(userProfile.getOrigin_name())
+				.originName(userProfile.getOriginName())
 				.name(userProfile.getName()).path(userProfile.getPath()).build();
 		return request;
 	}

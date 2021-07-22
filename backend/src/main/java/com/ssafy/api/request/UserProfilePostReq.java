@@ -20,7 +20,7 @@ public class UserProfilePostReq {
 
     public UserProfile toEntity() {
     	UserProfile build = UserProfile.builder()
-                .origin_name(originName)
+                .originName(originName)
                 .name(name)
                 .path(path)
                 .build();

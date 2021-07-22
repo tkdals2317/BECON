@@ -1,10 +1,14 @@
 package com.ssafy.api.controller.api.v2;
 
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +36,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Api(value = "공연 API", tags = {"Concert"})
 @RestController
@@ -95,5 +100,16 @@ public class ConcertController {
 		return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
 	}
 	
+	@GetMapping("/findByCategory")
+	@ApiOperation(value = "조건에 맞게 콘서트 리스트를 반환한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+        @ApiResponse(code = 410, message = "공연 정보 없음")
+    })
+	public ResponseEntity<List<Concert>> listConcert(@ApiIgnore String category){
+		List<Concert> list = null;
+		
+		return ResponseEntity.status(201).body(list);
+	}
 	
 }

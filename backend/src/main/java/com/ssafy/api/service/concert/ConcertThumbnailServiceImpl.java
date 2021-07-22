@@ -29,7 +29,7 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService{
 		ConcertThumbnail concertThumbnail = concertThumbnailRepository.findById(id).get();
 
 		ConcertThumbnailPostReq request = ConcertThumbnailPostReq.builder()
-				.originName(concertThumbnail.getOrigin_name())
+				.originName(concertThumbnail.getOriginName())
 				.name(concertThumbnail.getName()).path(concertThumbnail.getPath()).build();
 		return request;
 	}
