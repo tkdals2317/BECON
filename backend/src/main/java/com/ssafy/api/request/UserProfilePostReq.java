@@ -13,14 +13,13 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class UserProfilePostReq {
-    private Long id;
-    private String originName;
-    private String name;
-    private String path;
+    String originName;
+    String name;
+    String path;
 
     public UserProfile toEntity() {
     	UserProfile build = UserProfile.builder()
-                .origin_name(originName)
+                .originName(originName)
                 .name(name)
                 .path(path)
                 .build();

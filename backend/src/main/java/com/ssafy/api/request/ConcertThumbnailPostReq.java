@@ -21,7 +21,7 @@ public class ConcertThumbnailPostReq {
 
     public ConcertThumbnail toEntity() {
     	ConcertThumbnail build = ConcertThumbnail.builder()
-                .origin_name(originName)
+                .originName(originName)
                 .name(name)
                 .path(path)
                 .build();

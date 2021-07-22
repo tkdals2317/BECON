@@ -2,6 +2,7 @@ package com.ssafy.db.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Concert extends BaseEntity {
-	@OneToOne(fetch =FetchType.LAZY)
+	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.REMOVE, orphanRemoval=true)
 	private ConcertThumbnail thumbnail;
 	@ManyToOne(fetch =FetchType.LAZY)
 	private ConcertCategory category;
