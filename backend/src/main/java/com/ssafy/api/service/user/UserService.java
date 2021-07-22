@@ -1,4 +1,4 @@
-package com.ssafy.api.service;
+package com.ssafy.api.service.user;
 
 import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
