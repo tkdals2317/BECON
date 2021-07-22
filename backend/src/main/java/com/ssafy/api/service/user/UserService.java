@@ -1,5 +1,7 @@
 package com.ssafy.api.service.user;
 
+import java.util.Optional;
+
 import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.db.entity.User;
@@ -11,7 +13,7 @@ import com.ssafy.db.entity.UserProfile;
 public interface UserService {
 	User createUser(UserRegisterPostReq request, UserProfile fileId);
 	Boolean duplicateUserId(String userId);
-	User getUserByUserId(String userId);
-	Long modifyUser(String userId, UserModifyPostReq request);	
-	Long deleteUser(String userId);
+	User getUserByUserId(String userId);	
+	Optional<User> deleteUser(String userId);
+	Long modifyUser(String userId, UserModifyPostReq request);
 }

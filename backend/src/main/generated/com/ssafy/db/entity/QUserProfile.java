@@ -15,29 +15,26 @@ import com.querydsl.core.types.dsl.StringPath;
  * QUser is a Querydsl query type for User
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QUser extends EntityPathBase<User> {
+public class QUserProfile extends EntityPathBase<UserProfile> {
     private static final long serialVersionUID = 846542477L;
-    public static final QUser user = new QUser("user");
+    public static final QUserProfile userProfile = new QUserProfile("userProfile");
     public final QBaseEntity _super = new QBaseEntity(this);
     //inherited
     public final NumberPath<Long> id = _super.id;
-    public final StringPath userId = createString("userId");
-    public final StringPath password = createString("password");
     public final StringPath name = createString("name");
-    public final StringPath phone = createString("phone");
-    public final StringPath email = createString("email");
-    public final NumberPath<Long> userProfileId = createNumber("userProfileId", Long.class);
-
-    public QUser(String variable) {
-        super(User.class, forVariable(variable));
+    public final StringPath originName = createString("originName");
+    public final StringPath path = createString("path");
+    
+    public QUserProfile(String variable) {
+        super(UserProfile.class, forVariable(variable));
     }
 
-    public QUser(Path<? extends User> path) {
+    public QUserProfile(Path<? extends UserProfile> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QUser(PathMetadata metadata) {
-        super(User.class, metadata);
+    public QUserProfile(PathMetadata metadata) {
+        super(UserProfile.class, metadata);
     }
 
 }
