@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/home/home'
-import ConferencesDetail from '@/views/conferences/conference-detail'
+// import ConcertDetail from '@/views/conferences/concert-detail'
+import ConcertDetail from '@/views/blog-single'
 import History from '@/views/history/history'
 
 const fullMenu = require('@/views/main/menu.json')
@@ -18,9 +19,9 @@ function makeRoutesFromMenu () {
   routes = routes.filter(item => item)
   // menu 자체에는 나오지 않는 페이지 라우터에 추가(방 상세보기)
   routes.push({
-    path: '/conferences/:conferenceId',
-    name: 'conference-detail',
-    component: ConferencesDetail
+    path: '/concert/:concertId',
+    name: 'concert-detail',
+    component: ConcertDetail
   })
   return routes
 }
@@ -29,6 +30,7 @@ const routes = makeRoutesFromMenu()
 
 const router = createRouter({
   history: createWebHistory(),
+  base: '',
   routes
 })
 
