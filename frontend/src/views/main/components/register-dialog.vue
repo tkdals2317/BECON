@@ -151,9 +151,9 @@ export default {
       formLabelWidth: '120px'
     })
 
-    onMounted(() => {
-       console.log(registerForm.value)
-    })
+    // onMounted(() => {
+    //    console.log(registerForm.value)
+    // })
 
     const clickDuplicate = function() {
       console.log("클릭")
