@@ -27,18 +27,28 @@ public class UserRepositorySupport {
 		return Optional.ofNullable(user);
 	}
 
-	/*
-	 * public long modifyUserByUserId(String userId, UserModifyPostReq request) {
-	 * 
-	 * long result = jpaQueryFactory.update(qUser) .where(qUser.userId.eq(userId))
-	 * .set(qUser.name, request.getName()) .set(qUser.mail, request.getMail())
-	 * .set(qUser.phone, request.getPhone()) .execute(); return result;
-	 * 
-	 * }
-	 */
-
-	public long deleteUserByUserId(String userId) {
-		long result = jpaQueryFactory.delete(qUser).where(qUser.userId.eq(userId)).execute();
+	
+	public long modifyUserByUserId(String userId, UserModifyPostReq request) {
+	
+		long result = jpaQueryFactory.update(qUser) 
+			.where(qUser.userId.eq(userId))
+			.set(qUser.name, request.getName()) 
+			.set(qUser.email, request.getEmail())
+			.set(qUser.phone, request.getPhone())
+			.execute(); 
 		return result;
+	}
+	
+	public long deleteUserByUserId(String userId) {
+		long result = jpaQueryFactory.delete(qUser)
+				.where(qUser.userId.eq(userId))
+				.execute();
+		return result;
+	}
+
+
+	public void deleteUserProfileByProfileId(String userId) {
+		jpaQueryFactory.delete(qUser).where(qUser.userId.eq(userId)).execute();
+		
 	}
 }

@@ -19,13 +19,13 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class UserProfile extends BaseEntity{
 	String name;
-	String origin_name;
+	String originName;
 	String path;
 	
 	@Builder
-    public UserProfile(String name, String origin_name, String path){
+    public UserProfile(String name, String originName, String path){
         this.name = name;
-        this.origin_name = origin_name;
+        this.originName = originName;
         this.path = path;
     }
 }

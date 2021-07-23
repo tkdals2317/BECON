@@ -10,6 +10,7 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
@@ -23,21 +24,15 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @ToString
-public class User extends BaseEntity{
-    String position;
-    String department;
-    String name;
-    String userId;
 
-    //@ManyToMany
-    //@JoinTable(name="conference")
-    //private List<Conference> conference = new ArrayList<>();
-    
-	private String name;
+public class User extends BaseEntity {
+	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.REMOVE, orphanRemoval=true)
+    private UserProfile userProfile;  
+	
+    private String name;
     private String phone;
     private String userId;
     private String email;
-    //private Long userProfileId;
 
     @ToString.Exclude
     @JsonIgnore

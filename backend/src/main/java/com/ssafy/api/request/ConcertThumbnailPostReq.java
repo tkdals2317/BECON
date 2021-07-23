@@ -1,5 +1,6 @@
 package com.ssafy.api.request;
 
+import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.UserProfile;
 
 import lombok.Builder;
@@ -12,13 +13,14 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class UserProfilePostReq {
-    String originName;
-    String name;
-    String path;
+public class ConcertThumbnailPostReq {
+    private Long id;
+    private String originName;
+    private String name;
+    private String path;
 
-    public UserProfile toEntity() {
-    	UserProfile build = UserProfile.builder()
+    public ConcertThumbnail toEntity() {
+    	ConcertThumbnail build = ConcertThumbnail.builder()
                 .originName(originName)
                 .name(name)
                 .path(path)
@@ -27,7 +29,7 @@ public class UserProfilePostReq {
     }
 
     @Builder
-    public UserProfilePostReq(String originName, String name, String path) {
+    public ConcertThumbnailPostReq(String originName, String name, String path) {
         this.originName = originName;
         this.name = name;
         this.path = path;
