@@ -12,8 +12,10 @@ import lombok.Setter;
 public class UserModifyPostReq {
 	@ApiModelProperty(name="유저 Name", example="your_name")
 	String name;
-	@ApiModelProperty(name="유저 Department", example="your_department")
-	String department;
-	@ApiModelProperty(name="유저 Position", example="your_position")
-	String position;
+	@ApiModelProperty(name="유저 password", example="your_mail")
+	String password;
+	@ApiModelProperty(name="유저 email", example="your_email")
+	String email;
+	@ApiModelProperty(name="유저 phone", example="your_phone")
+	String phone;
 }
