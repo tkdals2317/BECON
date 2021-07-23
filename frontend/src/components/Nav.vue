@@ -8,8 +8,8 @@
         <!--Logo-->
         <div class="logo-box">
           <div class="logo">
-            <a href="/" title="Linoor - Digital Agency Template"
-              ><img
+            <a href="/" title="Linoor - Digital Agency Template">
+            <img
                 src="@/common/images/logo.png"
                 id="thm-logo"
                 alt="Linoor - DIgital Agency HTML Template"
@@ -133,12 +133,18 @@
         </div>
 
         <div class="other-links clearfix">
-          <div class="link-box">
+          <div class="fun-box">
             <div class="call-us">
-              <a class="link" href="tel:6668880000">
+              <a class="link">
                 <span class="icon"></span>
-                <span class="sub-text">Call Anytime</span>
-                <span class="number">666 888 0000</span>
+                <div v-if="!accessToken">
+                  <span class="number">SignUp</span>
+                  <span class="funBtn"><router-link to="/login">Login</router-link></span>
+                </div>
+                <div v-if="accessToken">
+                  <span class="number">MyPage</span>
+                  <span class="funBtn">Logout</span>
+                </div>
               </a>
             </div>
           </div>
@@ -185,11 +191,11 @@
             </ul>
           </li>
           <li class="dropdown">
-            <router-link to="#"
-              >Services
+            <router-link to="#">Services
               <div class="dropdown-btn">
-                <span class="fa fa-angle-right"></span></div
-            ></router-link>
+                <span class="fa fa-angle-right"></span>
+              </div>
+            </router-link>
             <ul class="sub-menu">
               <li><router-link to="/services">All Services</router-link></li>
               <li>
@@ -258,6 +264,7 @@
 </template>
 
 <script>
+import {mapState, mapGetters} from 'vuex';
 export default {
   name: "Nav",
   data() {
@@ -279,6 +286,10 @@ export default {
       });
     }
   },
+  computed:{
+    ...mapGetters('user',["getAccessToken"]),
+    ...mapState('user',["accessToken"])
+  },
   methods: {
     handleScroll() {
       if (window.scrollY > 70) {
@@ -291,4 +302,54 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.main-header .other-links .fun-box {
+  position: relative;
+  float: left;
+  padding: 26px 0px;
+}
+
+.main-header .other-links .fun-box .link {
+  position: relative;
+  display: block;
+  padding-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-left: 60px;
+  color: #ffffff;
+}
+
+.header-style-two.fixed-header .other-links .fun-box .link {
+  color: #ffffff;
+}
+
+.main-header .other-links .fun-box .link .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 42px;
+  background: url(../common/images/icons/chat-icon.png) left center no-repeat;
+}
+
+.main-header .other-links .fun-box .sub-text {
+  position: relative;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.main-header .other-links .fun-box .funBtn {
+  position: relative;
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.main-header .other-links .fun-box .funBtn:hover {
+  text-decoration: underline;
+}
+
+</style>
