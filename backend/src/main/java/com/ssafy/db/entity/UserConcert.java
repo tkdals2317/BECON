@@ -12,9 +12,9 @@ import lombok.Setter;
 @Setter
 public class UserConcert extends BaseEntity {
 	@ManyToOne(fetch =FetchType.LAZY)
-	Concert concert;
+	private Concert concert;
 	@ManyToOne(fetch =FetchType.LAZY)
-	User user;
+	private User user;
 	
 	public static UserConcert of (Concert concert, User user) {
 		UserConcert userConcert = new UserConcert();

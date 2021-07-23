@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -87,7 +89,7 @@ public class ConcertController {
             ConcertThumbnail fileId = concertThumbnailService.saveFile(concertTumbnailInfo);
             User user = userService.getUserByUserId(userId);
             ConcertCategory categoryId=concertCategoryService.getCategoryByCategoryId(category);
-            concert = concertService.createUser(registerInfo, fileId, user, categoryId);
+            concert = concertService.createConcert(registerInfo, fileId, user, categoryId);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
 		}catch(TokenExpiredException e) {
@@ -100,16 +102,27 @@ public class ConcertController {
 		return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
 	}
 	
-	@GetMapping("/findByCategory")
+	@GetMapping("/findByCategory/{category}")
 	@ApiOperation(value = "조건에 맞게 콘서트 리스트를 반환한다")
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
         @ApiResponse(code = 410, message = "공연 정보 없음")
     })
-	public ResponseEntity<List<Concert>> listConcert(@ApiIgnore String category){
-		List<Concert> list = null;
+	public ResponseEntity<List<Concert>> listConcert(@ApiIgnore @PathVariable String category){
+		Optional<List<Concert>> oList = null;
+		//List<Concert> list = null;
+		try {
+			ConcertCategory categoryId = concertCategoryService.getCategoryByCategoryId(category);
+			System.out.println(category + " " +categoryId.getId());
+			oList = concertService.findByCategory(categoryId.getId());
+			//list.addAll(oList.get());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return ResponseEntity.status(201).body(list);
+		System.out.println(oList.get().size());
+		
+		return ResponseEntity.status(201).body(oList.get());
 	}
 	
 }

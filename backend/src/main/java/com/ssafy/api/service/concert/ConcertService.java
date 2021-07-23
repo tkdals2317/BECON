@@ -1,5 +1,6 @@
 package com.ssafy.api.service.concert;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.ssafy.api.request.ConcertRegisterPostReq;
@@ -9,7 +10,6 @@ import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.User;
 
 public interface ConcertService {
-
-	Concert createUser(ConcertRegisterPostReq registerInfo, ConcertThumbnail fileId, User userId, ConcertCategory categoryId);
-
+	Concert createConcert(ConcertRegisterPostReq registerInfo, ConcertThumbnail fileId, User userId, ConcertCategory categoryId);
+	Optional<List<Concert>> findByCategory(Long category);
 }

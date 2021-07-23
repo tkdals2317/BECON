@@ -1,5 +1,8 @@
 package com.ssafy.api.service.concert;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +23,7 @@ public class ConcertServiceImpl implements ConcertService{
 	
 	
 	@Override
-	public Concert createUser(ConcertRegisterPostReq request, ConcertThumbnail fileId, User userId, ConcertCategory categoryId) {
+	public Concert createConcert(ConcertRegisterPostReq request, ConcertThumbnail fileId, User userId, ConcertCategory categoryId) {
 		Concert concert = new Concert();
 		concert.setTitle(request.getTitle());
 		concert.setDescription(request.getDescription());
@@ -34,5 +37,13 @@ public class ConcertServiceImpl implements ConcertService{
 		concert.setCategory(categoryId);
 		return concertRepository.save(concert);
 	}
+
+
+	@Override
+	public Optional<List<Concert>> findByCategory(Long category) {
+		return concertRepository.findByCategoryId(category);
+	}
+	
+
 
 }
