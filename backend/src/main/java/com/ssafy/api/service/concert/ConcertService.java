@@ -11,5 +11,7 @@ import com.ssafy.db.entity.User;
 
 public interface ConcertService {
 	Concert createConcert(ConcertRegisterPostReq registerInfo, ConcertThumbnail fileId, User userId, ConcertCategory categoryId);
-	Optional<List<Concert>> findByCategory(Long category);
+	List<Concert> findByCategory(Long category);
+	List<Concert> findConcerts();
+	List<Concert> findByOwnerId(Long id);
 }

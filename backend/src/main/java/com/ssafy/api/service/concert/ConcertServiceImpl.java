@@ -40,8 +40,20 @@ public class ConcertServiceImpl implements ConcertService{
 
 
 	@Override
-	public Optional<List<Concert>> findByCategory(Long category) {
+	public List<Concert> findByCategory(Long category) {
 		return concertRepository.findByCategoryId(category);
+	}
+
+
+	@Override
+	public List<Concert> findConcerts() {
+		return concertRepository.findAll();
+	}
+
+
+	@Override
+	public List<Concert> findByOwnerId(Long id) {
+		return concertRepository.findByUserId(id);
 	}
 	
 

@@ -11,5 +11,9 @@ import com.ssafy.db.entity.User;
 
 @Repository
 public interface ConcertRepository extends JpaRepository<Concert, Long> {
-	Optional<List<Concert>> findByCategoryId(Long category);
+	List<Concert> findByCategoryId(Long category);
+
+	List<Concert> findAll();
+	
+	List<Concert> findByUserId(Long id);
 }

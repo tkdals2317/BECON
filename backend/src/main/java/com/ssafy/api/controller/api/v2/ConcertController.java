@@ -106,23 +106,47 @@ public class ConcertController {
 	@ApiOperation(value = "조건에 맞게 콘서트 리스트를 반환한다")
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
-        @ApiResponse(code = 410, message = "공연 정보 없음")
+        @ApiResponse(code = 210, message = "공연 정보 없음")
     })
-	public ResponseEntity<List<Concert>> listConcert(@ApiIgnore @PathVariable String category){
-		Optional<List<Concert>> oList = null;
-		//List<Concert> list = null;
+	public ResponseEntity<?> findByCategory(@ApiIgnore @PathVariable String category){
+		System.out.println(category);
+		List<Concert> concertList = null;
 		try {
-			ConcertCategory categoryId = concertCategoryService.getCategoryByCategoryId(category);
-			System.out.println(category + " " +categoryId.getId());
-			oList = concertService.findByCategory(categoryId.getId());
-			//list.addAll(oList.get());
+			if(category.equals("전체")) {
+				System.out.println("category");
+				concertList = concertService.findConcerts();
+			}else {
+				ConcertCategory categoryId = concertCategoryService.getCategoryByCategoryId(category);
+				System.out.println(category + " " +categoryId.getId());
+				concertList = concertService.findByCategory(categoryId.getId());
+			}
+			if(concertList.size()==0) {
+				return ResponseEntity.status(210).body(BaseResponseBody.of(210, "컨텐츠가 없습니다"));
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
 		}
-		
-		System.out.println(oList.get().size());
-		
-		return ResponseEntity.status(201).body(oList.get());
+
+		return ResponseEntity.status(201).body(concertList);	
 	}
-	
+	@GetMapping("/findByOwnerId/{OwnerId}")
+	@ApiOperation(value = "조건에 맞게 콘서트 리스트를 반환한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+        @ApiResponse(code = 210, message = "공연 정보 없음")
+    })
+	public ResponseEntity<?> findByOwnerId(@ApiIgnore @PathVariable String OwnerId){
+		
+		List<Concert> concertList = null;
+		System.out.println(OwnerId);
+		try {
+			User user = userService.getUserByUserId(OwnerId);
+			System.out.println(user.getId());
+			concertList = concertService.findByOwnerId(user.getId());
+		} catch (Exception e) {
+			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
+		}
+
+		return ResponseEntity.status(201).body(concertList);	
+	}
 }

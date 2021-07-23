@@ -29,7 +29,6 @@ import javax.persistence.OneToOne;
 public class User extends BaseEntity {
 	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.REMOVE, orphanRemoval=true)
     private UserProfile userProfile;
-    
 	private String name;
     private String phone;
     private String userId;
