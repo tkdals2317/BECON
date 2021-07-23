@@ -111,9 +111,9 @@ export default {
       formLabelWidth: '120px'
     })
 
-    onMounted(() => {
-       console.log(loginForm.value)
-    })
+    // onMounted(() => {
+    //    console.log(loginForm.value)
+    // })
 
     const clickLogin =  function () {
       loginForm.value.validate((valid) => {
@@ -121,7 +121,6 @@ export default {
           state.loading=true
           store.dispatch('root/requestLogin', { id: state.form.id, password: state.form.password })
           .then( function (result) {
-            console.log()
             localStorage.setItem('token', result.data.accessToken)
             window.dispatchEvent(new CustomEvent('set-token',{
               detail:{

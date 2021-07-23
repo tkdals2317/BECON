@@ -13,11 +13,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  * 유저 모델 정의.
@@ -26,11 +24,12 @@ import javax.persistence.OneToOne;
 @Getter
 @Setter
 @ToString
+
 public class User extends BaseEntity {
 	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.REMOVE, orphanRemoval=true)
-    private UserProfile userProfile;
-    
-	private String name;
+    private UserProfile userProfile;  
+	
+    private String name;
     private String phone;
     private String userId;
     private String email;
