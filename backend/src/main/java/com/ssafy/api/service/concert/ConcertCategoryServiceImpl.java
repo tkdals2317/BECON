@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.db.entity.ConcertCategory;
-import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.ConcertCategoryRepository;
 import com.ssafy.db.repository.ConcertCategoryRepositorySupport;
 

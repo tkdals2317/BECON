@@ -1,45 +1,74 @@
 package com.ssafy.db.entity;
 
-import static com.querydsl.core.types.PathMetadataFactory.forVariable;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.querydsl.core.types.dsl.*;
+
+import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.PathMetadata;
-import com.querydsl.core.types.dsl.EntityPathBase;
-import com.querydsl.core.types.dsl.NumberPath;
-import com.querydsl.core.types.dsl.StringPath;
+import com.querydsl.core.types.dsl.PathInits;
 
+
+/**
+ * QConcert is a Querydsl query type for Concert
+ */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QConcert extends EntityPathBase<Concert>{
+public class QConcert extends EntityPathBase<Concert> {
 
-	private static final long serialVersionUID = -3266627394207968342L;
+    private static final long serialVersionUID = 397222052L;
+
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QConcert concert = new QConcert("concert");
+
     public final QBaseEntity _super = new QBaseEntity(this);
-    
-    public final NumberPath<Long> thumbnailId = createNumber("thumbnailId", Long.class);
-    public final NumberPath<Long> categoryId = createNumber("categoryId", Long.class);
-    public final NumberPath<Long> ownerId = createNumber("ownerId", Long.class);
-    
+
+    public final QConcertCategory category;
+
+    public final StringPath description = createString("description");
+
+    public final StringPath endTime = createString("endTime");
+
     //inherited
     public final NumberPath<Long> id = _super.id;
-    public final StringPath startTime = createString("startTime");
-    public final StringPath endTime = createString("endTime");
-    public final StringPath title = createString("title");
-    public final StringPath description = createString("description");
-    public final NumberPath<Integer> priceVip = createNumber("priceVip", Integer.class);
+
+    public final BooleanPath isActive = createBoolean("isActive");
+
     public final NumberPath<Integer> priceStand = createNumber("priceStand", Integer.class);
-    public final StringPath isActive = createString("isActive");
-	
-	public QConcert(String variable) {
-        super(Concert.class, forVariable(variable));
+
+    public final NumberPath<Integer> priceVip = createNumber("priceVip", Integer.class);
+
+    public final StringPath startTime = createString("startTime");
+
+    public final QConcertThumbnail thumbnail;
+
+    public final StringPath title = createString("title");
+
+    public final QUser user;
+
+    public QConcert(String variable) {
+        this(Concert.class, forVariable(variable), INITS);
     }
 
     public QConcert(Path<? extends Concert> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QConcert(PathMetadata metadata) {
-        super(Concert.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QConcert(PathMetadata metadata, PathInits inits) {
+        this(Concert.class, metadata, inits);
+    }
+
+    public QConcert(Class<? extends Concert> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.category = inits.isInitialized("category") ? new QConcertCategory(forProperty("category")) : null;
+        this.thumbnail = inits.isInitialized("thumbnail") ? new QConcertThumbnail(forProperty("thumbnail")) : null;
+        this.user = inits.isInitialized("user") ? new QUser(forProperty("user"), inits.get("user")) : null;
     }
 
 }
+

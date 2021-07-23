@@ -1,40 +1,45 @@
 package com.ssafy.db.entity;
 
-import static com.querydsl.core.types.PathMetadataFactory.forVariable;
+import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import javax.annotation.Generated;
+import com.querydsl.core.types.dsl.*;
 
-import com.querydsl.core.types.Path;
 import com.querydsl.core.types.PathMetadata;
-import com.querydsl.core.types.dsl.EntityPathBase;
-import com.querydsl.core.types.dsl.NumberPath;
-import com.querydsl.core.types.dsl.StringPath;
+import javax.annotation.Generated;
+import com.querydsl.core.types.Path;
 
 
 /**
- * QUser is a Querydsl query type for User
+ * QConcertThumbnail is a Querydsl query type for ConcertThumbnail
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QConcertThumbnail extends EntityPathBase<UserProfile> {
-    private static final long serialVersionUID = 846542477L;
-    public static final QConcertThumbnail userProfile = new QConcertThumbnail("userProfile");
+public class QConcertThumbnail extends EntityPathBase<ConcertThumbnail> {
+
+    private static final long serialVersionUID = -1360803672L;
+
+    public static final QConcertThumbnail concertThumbnail = new QConcertThumbnail("concertThumbnail");
+
     public final QBaseEntity _super = new QBaseEntity(this);
+
     //inherited
     public final NumberPath<Long> id = _super.id;
+
     public final StringPath name = createString("name");
+
     public final StringPath originName = createString("originName");
+
     public final StringPath path = createString("path");
-    
+
     public QConcertThumbnail(String variable) {
-        super(UserProfile.class, forVariable(variable));
+        super(ConcertThumbnail.class, forVariable(variable));
     }
 
-    public QConcertThumbnail(Path<? extends UserProfile> path) {
+    public QConcertThumbnail(Path<? extends ConcertThumbnail> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QConcertThumbnail(PathMetadata metadata) {
-        super(UserProfile.class, metadata);
+        super(ConcertThumbnail.class, metadata);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.ssafy.api.service.concert;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.User;
+import com.ssafy.db.entity.UserConcert;
 import com.ssafy.db.repository.ConcertRepository;
 import com.ssafy.db.repository.ConcertRepositorySupport;
 
@@ -38,12 +40,10 @@ public class ConcertServiceImpl implements ConcertService{
 		return concertRepository.save(concert);
 	}
 
-
 	@Override
 	public List<Concert> findByCategory(Long category) {
 		return concertRepository.findByCategoryId(category);
 	}
-
 
 	@Override
 	public List<Concert> findConcerts() {
@@ -52,10 +52,22 @@ public class ConcertServiceImpl implements ConcertService{
 
 
 	@Override
-	public List<Concert> findByOwnerId(Long id) {
-		return concertRepository.findByUserId(id);
+	public Optional<Concert> getConcertByConcertId(Long concertId) {
+		return concertRepository.findById(concertId);
 	}
-	
+
+
+	@Override
+	public Optional<List<UserConcert>> getUserConcertByConcerId(Long concertId) {
+		return concertRepositorySupport.findUserConcertByConcertId(concertId);
+	}
+
+
+	@Override
+	public Optional<List<Concert>> getConcertByOwnerId(String ownerId) {
+		return concertRepositorySupport.getConcertByOwnerId(ownerId);
+	}
+
 
 
 }

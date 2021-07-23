@@ -22,6 +22,7 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.ConcertRegisterPostReq;
 import com.ssafy.api.request.ConcertThumbnailPostReq;
+import com.ssafy.api.response.ConcertDetailRes;
 import com.ssafy.api.service.concert.ConcertCategoryService;
 import com.ssafy.api.service.concert.ConcertService;
 import com.ssafy.api.service.concert.ConcertThumbnailService;
@@ -32,6 +33,7 @@ import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.User;
+import com.ssafy.db.entity.UserConcert;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -58,12 +60,13 @@ public class ConcertController {
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
     })
-	public ResponseEntity<? extends BaseResponseBody> register(
+	public ResponseEntity<? extends BaseResponseBody> regist(
 			@ApiParam(value="공연 신청 정보", required = true) ConcertRegisterPostReq registerInfo, 
 			@ApiParam(value="공연 포스터", required = true) MultipartFile files,
 			@ApiParam(value="공연 신청자 아이디", required = true) String userId,
 			@ApiParam(value="공연 카테고리", required = true) String category){
-		Concert concert;
+		System.out.println(userId);
+		Concert concert = null;
 		try{
 			String origFilename = files.getOriginalFilename();
 	        String filename = new MD5Generator(origFilename).toString();
@@ -135,18 +138,36 @@ public class ConcertController {
         @ApiResponse(code = 201, message = "성공"),
         @ApiResponse(code = 210, message = "공연 정보 없음")
     })
-	public ResponseEntity<?> findByOwnerId(@ApiIgnore @PathVariable String OwnerId){
-		
-		List<Concert> concertList = null;
+	public ResponseEntity<?> findByOwnerId(@ApiIgnore @PathVariable String OwnerId){	
+		Optional<List<Concert>> concertList = null;
 		System.out.println(OwnerId);
 		try {
-			User user = userService.getUserByUserId(OwnerId);
-			System.out.println(user.getId());
-			concertList = concertService.findByOwnerId(user.getId());
+			concertList = concertService.getConcertByOwnerId(OwnerId);
+			System.out.println();
+			
 		} catch (Exception e) {
 			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
 		}
+		return ResponseEntity.status(201).body(concertList);
 
-		return ResponseEntity.status(201).body(concertList);	
+	}
+	
+	@GetMapping("/{concertId}")
+	@ApiOperation(value = "concertId에 해당하는 콘서트 상세정보를 반환한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+        @ApiResponse(code = 403, message = "잘못된 접근입니다.")
+    })
+	public ResponseEntity<?> getConcertByConcertId(@ApiIgnore @PathVariable Long concertId){	
+		Optional<Concert> concert = null;
+		Optional<List<UserConcert>> userConcert = null;
+		try {
+			concert = concertService.getConcertByConcertId(concertId);
+			userConcert= concertService.getUserConcertByConcerId(concertId);
+		} catch (Exception e) {
+			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
+		}
+	
+		return ResponseEntity.status(201).body(ConcertDetailRes.of(concert, userConcert));
 	}
 }
