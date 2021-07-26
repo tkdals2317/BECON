@@ -1,10 +1,11 @@
 package com.ssafy.api.service.concert;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.db.entity.ConcertCategory;
-import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.ConcertCategoryRepository;
 import com.ssafy.db.repository.ConcertCategoryRepositorySupport;
 
@@ -17,8 +18,8 @@ public class ConcertCategoryServiceImpl implements ConcertCategoryService{
 	
 	@Override
 	public ConcertCategory getCategoryByCategoryId(String name) {
-		ConcertCategory category= concertCategoryRepositorySupport.findCategoryByCategoryId(name).get();
-		return category;
+		Optional<ConcertCategory> category= concertCategoryRepositorySupport.findCategoryByCategoryId(name);
+		return category.get();
 	}
 
 }
