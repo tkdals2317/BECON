@@ -14,8 +14,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
-
-
 /**
  * 유저 모델 정의.
  */
