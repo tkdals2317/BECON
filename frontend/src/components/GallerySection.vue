@@ -5,7 +5,7 @@
       <div class="mixitup-gallery">
         <div class="upper-row clearfix">
           <div class="sec-title">
-            <h2>work showcase <span class="dot">.</span></h2>
+            <h2>공연 목록 <span class="dot">.</span></h2>
           </div>
           <!--Filter-->
           <div class="filters clearfix">
@@ -18,16 +18,16 @@
                 All<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".branding">
-                Branding<sup></sup>
+                힙합<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".illustration">
-                illustration<sup></sup>
+                발라드<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".photography">
-                Photography<sup></sup>
+                장르확인못함<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".web-design">
-                Web Design<sup></sup>
+                락<sup></sup>
               </li>
             </ul>
           </div>
@@ -48,11 +48,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -83,11 +83,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -118,11 +118,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -153,11 +153,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -190,11 +190,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -225,11 +225,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>

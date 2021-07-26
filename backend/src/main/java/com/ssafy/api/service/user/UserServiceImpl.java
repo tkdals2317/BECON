@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(UserRegisterPostReq request, UserProfile fileId) {
 		User user = new User();
-		user.setUserId(request.getId());
+		user.setUserId(request.getUserId());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
 		user.setPassword(passwordEncoder.encode(request.getPassword()));
 		user.setName(request.getName());

@@ -2,7 +2,7 @@
   <section class="news-section">
     <div class="auto-container">
       <div class="sec-title centered">
-        <h2>Latest news & articles<span class="dot">.</span></h2>
+        <h2>Coming Up<span class="dot">.</span></h2>
       </div>
 
       <div class="row clearfix">
@@ -21,7 +21,7 @@
             <div class="lower-box">
               <div class="post-meta">
                 <ul class="clearfix">
-                  <li><span class="far fa-clock"></span> 20 Mar</li>
+                  <li><span class="far fa-clock"></span> 20 Mar</li>f
                   <li><span class="far fa-user-circle"></span> Admin</li>
                   <li><span class="far fa-comments"></span> 2 Comments</li>
                 </ul>
