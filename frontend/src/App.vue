@@ -1,20 +1,17 @@
 <template>
-  <!-- main 으로 시작 -->
-  <Main/>
+  <div id="app">
+    <router-view />
+  </div>
 </template>
-
-<script>
-import Main from './views/main/main.vue'
-
-export default {
-  name: 'App',
-
-  components: {
-    Main,
-  },
-
-  data: () => ({
-    //
-  }),
-}
-</script>
+<style>
+@import "https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap";
+@import "./common/css/animate.css";
+@import "./common/css/bootstrap.css";
+@import "./common/css/custom-animate.css";
+@import "./common/css/flaticon.css";
+@import "./common/css/fontawesome-all.css";
+@import "./common/css/hover.css";
+@import "./common/css/responsive.css";
+@import "./common/css/rtl.css";
+@import "./common/css/style.css";
+</style>
