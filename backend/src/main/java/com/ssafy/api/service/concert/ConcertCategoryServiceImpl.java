@@ -1,5 +1,6 @@
 package com.ssafy.api.service.concert;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class ConcertCategoryServiceImpl implements ConcertCategoryService{
 	public ConcertCategory getCategoryByCategoryId(String name) {
 		Optional<ConcertCategory> category= concertCategoryRepositorySupport.findCategoryByCategoryId(name);
 		return category.get();
+	}
+
+	@Override
+	public Optional<List<ConcertCategory>> getConcertCategory() {
+		return Optional.ofNullable(concertCategoryRepository.findAll());
 	}
 
 }

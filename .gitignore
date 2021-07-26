@@ -58,3 +58,4 @@ build
 # Tracked gradle-wrapper
 !/backend/gradle/wrapper/gradle-wrapper.jar
 /backend/*.gz
+/backend/src/main/resources/application.properties
