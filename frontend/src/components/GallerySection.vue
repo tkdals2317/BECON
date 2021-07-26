@@ -5,7 +5,7 @@
       <div class="mixitup-gallery">
         <div class="upper-row clearfix">
           <div class="sec-title">
-            <h2>work showcase <span class="dot">.</span></h2>
+            <h2>Concert<span class="dot"> & </span>Showcase</h2>
           </div>
           <!--Filter-->
           <div class="filters clearfix">
@@ -18,16 +18,16 @@
                 All<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".branding">
-                Branding<sup></sup>
+                Hip<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".illustration">
-                illustration<sup></sup>
+                Ballad<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".photography">
-                Photography<sup></sup>
+                Zazz<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".web-design">
-                Web Design<sup></sup>
+                Indi<sup></sup>
               </li>
             </ul>
           </div>
@@ -48,11 +48,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >10cm</router-link
                       >
                     </h5>
                   </div>
@@ -83,11 +83,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >유재석</router-link
                       >
                     </h5>
                   </div>
@@ -253,6 +253,9 @@ export default {
     return {
       mixer: null,
     };
+  },
+  computed:{
+    
   },
   mounted() {
     const containerEl = document.querySelector(".filter-list");

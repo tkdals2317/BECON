@@ -35,98 +35,27 @@
                   <a href="/">Home</a>
                   <ul>
                     <li><router-link to="/">Home</router-link></li>
-                    <li>
-                      <router-link to="/contact">Page1</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/faqs">Page2</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/notfound">Page3</router-link>
-                    </li>
+                    <li><router-link to="/contact">Page1</router-link></li>
+                    <li><router-link to="/faqs">Page2</router-link></li>
+                    <li><router-link to="/notfound">Page3</router-link></li>
                   </ul>
                 </li>
-                <li><router-link to="/about">About Us</router-link></li>
                 <li class="dropdown">
-                  <a href="/team">Pages</a>
+                  <a href="/team">Concert</a>
                   <ul>
-                    <li><router-link to="/team">Our Team</router-link></li>
-                    <li>
-                      <router-link to="/testimonials">Testimonials</router-link>
-                    </li>
-                    <li><router-link to="/faqs">FAQs</router-link></li>
-                    <li><router-link to="/not-found">404 Page</router-link></li>
+                    <li><router-link to="/concertRegist">Concert Regist</router-link></li>
+                    <li><router-link to="/testimonials">Concert Schedule</router-link></li>
+                    <li><router-link to="/not-found">Concert Search</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <router-link to="/services">Services</router-link>
                   <ul>
-                    <li>
-                      <router-link to="/services">All Services</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/web-development"
-                        >Website Development</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/graphic-designing"
-                        >Graphic Designing</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/digital-marketing"
-                        >Digital Marketing</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/seo"
-                        >SEO & Content Writting</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/app-development"
-                        >App Development</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/ui-designing"
-                        >UI/UX Designing</router-link
-                      >
-                    </li>
+                    <li><router-link to="/services">FAQs</router-link></li>
+                    <li><router-link to="/web-development">Q&A</router-link>
+                  </li>
                   </ul>
                 </li>
-                <li class="dropdown">
-                  <router-link to="/portfolio">Portfolio</router-link>
-                  <ul>
-                    <li>
-                      <router-link to="/portfolio">Portfolio</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/portfolio-single"
-                        >Portfolio Single 01</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/portfolio-single-2"
-                        >Portfolio Single 02</router-link
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <router-link to="/blog-grid">Blog</router-link>
-                  <ul>
-                    <li><router-link to="/blog">Blog Sidebar</router-link></li>
-                    <li>
-                      <router-link to="/blog-grid">Blog Grid View</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/blog-single">Blog Single</router-link>
-                    </li>
-                  </ul>
-                </li>
-                <li><router-link to="/contact">Contact</router-link></li>
               </ul>
             </div>
           </nav>
@@ -137,11 +66,11 @@
             <div class="call-us">
               <a class="link">
                 <span class="icon"></span>
-                <div v-if="!accessToken">
+                <div v-if="!isLogin">
                   <span class="number">SignUp</span>
                   <span class="funBtn"><router-link to="/login">Login</router-link></span>
                 </div>
-                <div v-if="accessToken">
+                <div v-if="isLogin">
                   <span class="number">MyPage</span>
                   <span class="funBtn">Logout</span>
                 </div>
@@ -174,89 +103,26 @@
               <li><router-link to="/index-3">Home Style 03</router-link></li>
             </ul>
           </li>
-          <li><router-link to="/about">About Us</router-link></li>
           <li class="dropdown">
             <a href="#"
-              >Pages
+              >Concert
               <div class="dropdown-btn">
                 <span class="fa fa-angle-right"></span></div
             ></a>
             <ul class="sub-menu">
-              <li><router-link to="/team">Our Team</router-link></li>
-              <li>
-                <router-link to="/testimonials">Testimonials</router-link>
-              </li>
+              <li><router-link to="/team">Concert Regist</router-link></li>
+              <li><router-link to="/testimonials">Concert Schedule</router-link></li>
+              <li><router-link to="/faqs">Concert Search</router-link></li>
+              <!-- <li><router-link to="/not-found">404 Page</router-link></li> -->
+            </ul>
+          </li>
+          <li class="dropdown">
+            <router-link to="#">Services<div class="dropdown-btn"><span class="fa fa-angle-right"></span></div></router-link>
+            <ul class="sub-menu">
               <li><router-link to="/faqs">FAQs</router-link></li>
-              <li><router-link to="/not-found">404 Page</router-link></li>
+              <li><router-link to="/web-development">Q&A</router-link></li>
             </ul>
           </li>
-          <li class="dropdown">
-            <router-link to="#">Services
-              <div class="dropdown-btn">
-                <span class="fa fa-angle-right"></span>
-              </div>
-            </router-link>
-            <ul class="sub-menu">
-              <li><router-link to="/services">All Services</router-link></li>
-              <li>
-                <router-link to="/web-development"
-                  >Website Development</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/graphic-designing"
-                  >Graphic Designing</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/digital-marketing"
-                  >Digital Marketing</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/seo">SEO & Content Writting</router-link>
-              </li>
-              <li>
-                <router-link to="/app-development">App Development</router-link>
-              </li>
-              <li>
-                <router-link to="/ui-designing">UI/UX Designing</router-link>
-              </li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <router-link to="#"
-              >Portfolio
-              <div class="dropdown-btn">
-                <span class="fa fa-angle-right"></span></div
-            ></router-link>
-            <ul class="sub-menu">
-              <li><router-link to="/portfolio">Portfolio</router-link></li>
-              <li>
-                <router-link to="/portfolio-single"
-                  >Portfolio Single 01</router-link
-                >
-              </li>
-              <li>
-                <router-link to="/portfolio-single-2"
-                  >Portfolio Single 02</router-link
-                >
-              </li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <router-link to="#"
-              >Blog
-              <div class="dropdown-btn">
-                <span class="fa fa-angle-right"></span></div
-            ></router-link>
-            <ul class="sub-menu">
-              <li><router-link to="/blog">Blog Sidebar</router-link></li>
-              <li><router-link to="/blog-grid">Blog Grid View</router-link></li>
-              <li><router-link to="/blog-single">Blog Single</router-link></li>
-            </ul>
-          </li>
-          <li><router-link to="/contact">Contact</router-link></li>
         </ul>
       </div>
     </nav>
@@ -269,9 +135,15 @@ export default {
   name: "Nav",
   data() {
     return {
+      isLogin:false,
       sticky: false,
       mobileToggle: false,
     };
+  },
+  created(){
+    if(localStorage.getItem("accessToken")!=null){
+        this.isLogin=true;
+    }
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
