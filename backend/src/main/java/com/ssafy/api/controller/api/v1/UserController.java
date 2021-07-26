@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,13 +60,16 @@ public class UserController {
         @ApiResponse(code = 201, message = "성공"),
     })
 	public ResponseEntity<? extends BaseResponseBody> register(
-			@ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo, 
-			@ApiParam(value="imgUrlBase", required = true) MultipartFile files){
+			@ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo,
+			MultipartFile profile){
+		System.out.println(registerInfo);
+		System.out.println(profile.getOriginalFilename());
 		User user;
 		try{
-			String origFilename = files.getOriginalFilename();
+			String origFilename = profile.getOriginalFilename();
 	        String filename = new MD5Generator(origFilename).toString();
 	        String savePath = System.getProperty("user.dir") + "\\files";
+	        System.out.println(savePath);
 	        if (!new File(savePath).exists()) {
                 try{
                     new File(savePath).mkdir();
@@ -74,7 +79,7 @@ public class UserController {
                 }
             }
 	        String filePath = savePath + "\\" + filename;
-            files.transferTo(new File(filePath));
+	        profile.transferTo(new File(filePath));
             
             UserProfilePostReq userProfileInfo=new UserProfilePostReq();
             userProfileInfo.setOriginName(origFilename);
