@@ -71,8 +71,8 @@
                   <span class="funBtn"><router-link to="/login" class="nav1">Login</router-link></span>
                 </div>
                 <div v-if="isLogin">
-                  <span class="number">MyPage</span>
-                  <span class="funBtn">Logout</span>
+                  <span class="number"><router-link to="/myPage" class="nav1">MyPage</router-link></span>
+                  <span class="funBtn" @click="clickLogout">Logout</span>
                 </div>
               </a>
             </div>
@@ -169,6 +169,10 @@ export default {
       } else if (window.scrollY < 70) {
         this.sticky = false;
       }
+    },
+    clickLogout() {
+      localStorage.removeItem('accessToken');
+      location.href = "/";
     },
   },
 };
