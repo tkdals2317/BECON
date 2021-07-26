@@ -9,5 +9,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ConcertCategory extends BaseEntity {
-	String name;
+	private String name;
 }

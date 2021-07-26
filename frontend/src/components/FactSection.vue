@@ -22,7 +22,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Projects Completed</div>
+                  <div class="counter-title">Artists With So Far</div>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Active clients</div>
+                  <div class="counter-title">Fans With Us</div>
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">cups of coffee</div>
+                  <div class="counter-title">Current Room</div>
                 </div>
               </div>
             </div>
@@ -76,7 +76,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">happy clients</div>
+                  <div class="counter-title">Donation</div>
                 </div>
               </div>
             </div>

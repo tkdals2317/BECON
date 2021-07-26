@@ -1,4 +1,4 @@
-package com.ssafy.api.service;
+package com.ssafy.api.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
+	
 	@Override
 	public Boolean duplicateUserId(String userId) {
 		boolean check=true;
@@ -60,25 +61,19 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
-	/*
-	 * @Transactional
-	 * 
-	 * @Override public Long modifyUser(String userId, UserModifyPostReq request) {
-	 * //return userRepositorySupport.modifyUserByUserId(userId, request); }
-	 */
-	
 	@Transactional
 	@Override
-	public Long deleteUser(String userId) {
+	public Optional<User> deleteUser(String userId) {
 		// 해당 유저가 생성한 방을 모두 삭제한다.
 		// 해당 유저의 지난 회의 이력을 모두 삭제한다.
 		// 해당 유저 정보를 삭제한다.
-		return userRepositorySupport.deleteUserByUserId(userId);
+		return userRepository.deleteByUserId(userId);
 	}
 
+	@Transactional
 	@Override
 	public Long modifyUser(String userId, UserModifyPostReq request) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepositorySupport.modifyUserByUserId(userId, request);
 	}
+
 }
