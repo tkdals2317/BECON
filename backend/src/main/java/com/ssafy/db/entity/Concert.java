@@ -1,14 +1,11 @@
 package com.ssafy.db.entity;
 
-import java.sql.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import lombok.Getter;
 import lombok.Setter;

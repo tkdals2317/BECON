@@ -2,17 +2,17 @@ package com.ssafy.db.entity;
 
 import javax.persistence.Entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class ConcertThumbnail extends BaseEntity {
-	String name;
-	String originName;
-	String path;
+	private String name;
+	private String originName;
+	private String path;
 	
 	@Builder
     public ConcertThumbnail(String name, String originName, String path){

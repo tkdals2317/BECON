@@ -2,7 +2,6 @@ package com.ssafy.db.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.api.request.UserModifyPostReq;
-import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.db.entity.QUser;
 import com.ssafy.db.entity.User;
 
@@ -29,7 +28,6 @@ public class UserRepositorySupport {
 
 	
 	public long modifyUserByUserId(String userId, UserModifyPostReq request) {
-	
 		long result = jpaQueryFactory.update(qUser) 
 			.where(qUser.userId.eq(userId))
 			.set(qUser.name, request.getName()) 

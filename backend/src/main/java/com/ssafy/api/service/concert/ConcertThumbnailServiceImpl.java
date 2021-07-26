@@ -3,13 +3,10 @@ package com.ssafy.api.service.concert;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.ConcertThumbnailPostReq;
-import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.db.entity.ConcertThumbnail;
-import com.ssafy.db.entity.UserProfile;
 import com.ssafy.db.repository.ConcertThumbnailRepository;
 
 @Service("concertThumbnailService")
