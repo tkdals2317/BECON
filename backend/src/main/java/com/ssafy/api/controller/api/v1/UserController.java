@@ -77,7 +77,7 @@ public class UserController {
             files.transferTo(new File(filePath));
             
             UserProfilePostReq userProfileInfo=new UserProfilePostReq();
-            userProfileInfo.setOriginName(origFilename);
+            userProfileInfo.setOriginName("default");
             userProfileInfo.setName(filename);
             userProfileInfo.setPath(filePath);
             

@@ -58,6 +58,19 @@ public class ConcertController {
 	@Autowired
 	ConcertCategoryService concertCategoryService;
 	
+	
+	
+	@GetMapping("/concert-categories")
+	@ApiOperation(value="공연 카테고리", notes = "DB에 등록된 공연 카테고리들을 조회한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+    })
+	public ResponseEntity<?> getConcertCategory(){
+		Optional<List<ConcertCategory>> categories = concertCategoryService.getConcertCategory();
+		System.out.println(categories);
+		return ResponseEntity.status(201).body(categories.get());
+	}
+	
 	@PostMapping("/regist")
 	@ApiOperation(value = "공연 신청", notes = "공연을 신청을 한다.") 
     @ApiResponses({
