@@ -59,27 +59,36 @@ public class UserController {
     })
 	public ResponseEntity<? extends BaseResponseBody> register(
 			@ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo, 
-			@ApiParam(value="imgUrlBase", required = true) MultipartFile files){
+			@ApiParam(value="imgUrlBase", required = false) MultipartFile files){
 		User user;
+		UserProfilePostReq userProfileInfo = null;
 		try{
-			String origFilename = files.getOriginalFilename();
-	        String filename = new MD5Generator(origFilename).toString();
-	        String savePath = System.getProperty("user.dir") + "\\files";
-	        if (!new File(savePath).exists()) {
-                try{
-                    new File(savePath).mkdir();
-                }
-                catch(Exception e){
-                    e.getStackTrace();
-                }
-            }
-	        String filePath = savePath + "\\" + filename;
-            files.transferTo(new File(filePath));
-            
-            UserProfilePostReq userProfileInfo=new UserProfilePostReq();
-            userProfileInfo.setOriginName(origFilename);
-            userProfileInfo.setName(filename);
-            userProfileInfo.setPath(filePath);
+			if(files!= null) {
+				String origFilename = files.getOriginalFilename();
+		        String filename = new MD5Generator(origFilename).toString();
+		        String savePath = System.getProperty("user.dir") + "\\files";
+		        if (!new File(savePath).exists()) {
+	                try{
+	                    new File(savePath).mkdir();
+	                }
+	                catch(Exception e){
+	                    e.getStackTrace();
+	                }
+	            }
+		        String filePath = savePath + "\\" + filename;
+	            files.transferTo(new File(filePath));
+	            
+	            userProfileInfo=new UserProfilePostReq();
+	            userProfileInfo.setOriginName(origFilename);
+	            userProfileInfo.setName(filename);
+	            userProfileInfo.setPath(filePath);
+			}else {
+				userProfileInfo=new UserProfilePostReq();
+	            userProfileInfo.setOriginName("BeCon.jfif");
+	            userProfileInfo.setName("5887b47695b084b04d2e575438d5a794");
+	            userProfileInfo.setPath("C:\\Users\\multicampus\\git\\S05P12D102\\backend\\files\\5887b47695b084b04d2e575438d5a794");
+			}
+			
             
             UserProfile fileId = userProfileService.saveFile(userProfileInfo);
 			user = userService.createUser(registerInfo, fileId);
