@@ -1,4 +1,5 @@
 import http from "@/util/http-common";
+import router from "@/router/index.js";
 
 export default {
   namespaced: true,
@@ -34,8 +35,8 @@ export default {
         .post(`/api/v1/auth/login`, params)
         .then(({ data }) => {
           commit("LOGIN", data);
-          console.log('로그인되었습니다.')
-          this.$router.push('/');
+          alert('로그인되었습니다.');
+          router.push('/');
         })
         .catch(() => {
           console.error();
@@ -52,7 +53,7 @@ export default {
         })
         .then(() => {
           alert('회원가입되었습니다.')
-          this.$router.push('/');
+          router.push('/');
         })
         .catch(() => {
           console.error();
