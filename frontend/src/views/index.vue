@@ -4,12 +4,12 @@
     <Banner />
     <Services />
     <LiveSection />
-    <WedoSection />
+    <!-- <WedoSection /> -->
     <GallerySection />
     <FactSection />
-    <TrustedSection />
-    <TeamSection />
-    <ParallaxSection />
+    <!-- <TrustedSection /> -->
+    <!-- <TeamSection /> -->
+    <!-- <ParallaxSection /> -->
     <BlogSection />
     <CallToAction />
     <Footer />
@@ -21,12 +21,12 @@ import Nav from "../components/Nav";
 import Banner from "../components/Banner";
 import Services from "../components/Services";
 import LiveSection from "../components/LiveSection";
-import WedoSection from "../components/WedoSection";
+// import WedoSection from "../components/WedoSection";
 import GallerySection from "../components/GallerySection";
 import FactSection from "../components/FactSection";
-import TrustedSection from "../components/TrustedSection";
-import TeamSection from "../components/TeamSection";
-import ParallaxSection from "../components/ParallaxSection";
+// import TrustedSection from "../components/TrustedSection";
+// import TeamSection from "../components/TeamSection";
+// import ParallaxSection from "../components/ParallaxSection";
 import BlogSection from "../components/BlogSection";
 import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
@@ -36,12 +36,12 @@ export default {
     Footer,
     CallToAction,
     BlogSection,
-    ParallaxSection,
-    TeamSection,
-    TrustedSection,
+    // ParallaxSection,
+    // TeamSection,
+    // TrustedSection,
     FactSection,
     GallerySection,
-    WedoSection,
+    // WedoSection,
     LiveSection,
     Services,
     Banner,
