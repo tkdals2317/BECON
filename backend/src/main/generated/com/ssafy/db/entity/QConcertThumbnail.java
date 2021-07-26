@@ -10,14 +10,14 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QUserProfile is a Querydsl query type for UserProfile
+ * QConcertThumbnail is a Querydsl query type for ConcertThumbnail
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QUserProfile extends EntityPathBase<UserProfile> {
+public class QConcertThumbnail extends EntityPathBase<ConcertThumbnail> {
 
-    private static final long serialVersionUID = 388948572L;
+    private static final long serialVersionUID = -1360803672L;
 
-    public static final QUserProfile userProfile = new QUserProfile("userProfile");
+    public static final QConcertThumbnail concertThumbnail = new QConcertThumbnail("concertThumbnail");
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
@@ -30,16 +30,16 @@ public class QUserProfile extends EntityPathBase<UserProfile> {
 
     public final StringPath path = createString("path");
 
-    public QUserProfile(String variable) {
-        super(UserProfile.class, forVariable(variable));
+    public QConcertThumbnail(String variable) {
+        super(ConcertThumbnail.class, forVariable(variable));
     }
 
-    public QUserProfile(Path<? extends UserProfile> path) {
+    public QConcertThumbnail(Path<? extends ConcertThumbnail> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QUserProfile(PathMetadata metadata) {
-        super(UserProfile.class, metadata);
+    public QConcertThumbnail(PathMetadata metadata) {
+        super(ConcertThumbnail.class, metadata);
     }
 
 }
