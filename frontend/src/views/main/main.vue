@@ -1,5 +1,5 @@
 <template>
-  <el-container class="main-wrapper">
+  <!-- <el-container class="main-wrapper">
     <main-header
       :height="`70px`"
       @openRegisterDialog="onOpenRegisterDialog"
@@ -10,9 +10,9 @@
         <main-sidebar
           :width="`240px`"/>
       </el-aside>
-      <el-main>
+      <el-main> -->
         <router-view></router-view>
-      </el-main>
+      <!-- </el-main>
     </el-container>
     <main-footer :height="`110px`"/>
   </el-container>
@@ -24,59 +24,23 @@
     @closeRegisterDialog="onCloseRegisterDialog"/>
   <profile-dialog
     :open="profileDialogOpen"
-    @closeProfileDialog="onCloseProfileDialog"/>
+    @closeProfileDialog="onCloseProfileDialog"/> -->
 </template>
 <style>
-  @import "https://unpkg.com/element-plus/lib/theme-chalk/index.css";
+  @import 'https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap';
+  @import 'https://unpkg.com/element-plus/lib/theme-chalk/index.css';
   @import './main.css';
   @import '../../common/css/common.css';
   @import '../../common/css/element-plus.css';
-
+  @import '../../common/css/animate.css';
+  @import '../../common/css/bootstrap.css';
+  @import '../../common/css/custom-animate.css';
+  @import '../../common/css/flaticon.css';
+  @import '../../common/css/fontawesome-all.css';
+  @import '../../common/css/hover.css';
+  @import '../../common/css/responsive.css';
+  @import '../../common/css/rtl.css';
+  @import '../../common/css/style.css';
+  @import '../../common/css/colors/color-default.css';
+  @import '../../common/plugins/glightbox/glightbox.min.css';
 </style>
-<script>
-import LoginDialog from './components/login-dialog'
-import MainHeader from './components/main-header'
-import MainSidebar from './components/main-sidebar'
-import MainFooter from './components/main-footer'
-import RegisterDialog from './components/register-dialog'
-import ProfileDialog from './components/profile-dialog'
-export default {
-  name: 'Main',
-  components: {
-    MainHeader,
-    MainSidebar,
-    MainFooter,
-    LoginDialog,
-    RegisterDialog,
-    ProfileDialog,
-  },
-  data () {
-    return {
-      loginDialogOpen: false,
-      registerDialogOpen: false,
-      profileDialogOpen: false,
-      isLogin: false,
-    }
-  },
-  methods: {
-    onOpenLoginDialog () {
-      this.loginDialogOpen = true
-    },
-    onCloseLoginDialog () {
-      this.loginDialogOpen = false
-    },
-    onOpenRegisterDialog () {
-      this.registerDialogOpen = true
-    },
-    onCloseRegisterDialog () {
-      this.registerDialogOpen = false
-    },
-    onOpenProfileDialog () {
-      this.profileDialogOpen = true
-    },
-    onCloseProfileDialog () {
-      this.profileDialogOpen = false
-    },
-  }
-}
-</script>

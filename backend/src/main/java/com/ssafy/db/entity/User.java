@@ -17,14 +17,14 @@ import javax.persistence.OneToOne;
 @Getter
 @Setter
 @ToString
+
 public class User extends BaseEntity {
 	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.REMOVE, orphanRemoval=true)
-    private UserProfile userProfile;
-	private String name;
+    private UserProfile userProfile;  	
+    private String name;
     private String phone;
     private String userId;
     private String email;
-    
 
     @ToString.Exclude
     @JsonIgnore
