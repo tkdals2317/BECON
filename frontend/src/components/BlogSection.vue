@@ -21,7 +21,7 @@
             <div class="lower-box">
               <div class="post-meta">
                 <ul class="clearfix">
-                  <li><span class="far fa-clock"></span> 20 Mar</li>f
+                  <li><span class="far fa-clock"></span> 20 Mar</li>
                   <li><span class="far fa-user-circle"></span> Admin</li>
                   <li><span class="far fa-comments"></span> 2 Comments</li>
                 </ul>
