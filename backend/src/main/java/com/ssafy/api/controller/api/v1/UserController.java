@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -88,7 +90,25 @@ public class UserController {
 	            userProfileInfo.setName("5887b47695b084b04d2e575438d5a794");
 	            userProfileInfo.setPath("C:\\Users\\multicampus\\git\\S05P12D102\\backend\\files\\5887b47695b084b04d2e575438d5a794");
 			}
-			
+			String origFilename = profile.getOriginalFilename();
+	        String filename = new MD5Generator(origFilename).toString();
+	        String savePath = System.getProperty("user.dir") + "\\files";
+	        System.out.println(savePath);
+	        if (!new File(savePath).exists()) {
+                try{
+                    new File(savePath).mkdir();
+                }
+                catch(Exception e){
+                    e.getStackTrace();
+                }
+            }
+	        String filePath = savePath + "\\" + filename;
+	        profile.transferTo(new File(filePath));
+            
+            UserProfilePostReq userProfileInfo=new UserProfilePostReq();
+            userProfileInfo.setOriginName(origFilename);
+            userProfileInfo.setName(filename);
+            userProfileInfo.setPath(filePath);
             
             UserProfile fileId = userProfileService.saveFile(userProfileInfo);
 			user = userService.createUser(registerInfo, fileId);
