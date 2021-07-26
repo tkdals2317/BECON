@@ -22,7 +22,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Projects Completed</div>
+                  <div class="counter-title">Concerts Completed</div>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Active clients</div>
+                  <div class="counter-title">Active Artists</div>
                 </div>
               </div>
             </div>
@@ -53,12 +53,12 @@
                     <span class="count-text"
                       ><countTo
                         :startVal="0"
-                        :endVal="startCounter ? 626 : 0"
+                        :endVal="startCounter ? 151432 : 0"
                         :duration="3000"
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">cups of coffee</div>
+                  <div class="counter-title">Satisfied audience</div>
                 </div>
               </div>
             </div>
@@ -71,7 +71,7 @@
                     <span class="count-text"
                       ><countTo
                         :startVal="0"
-                        :endVal="startCounter ? 9704 : 0"
+                        :endVal="startCounter ? 154 : 0"
                         :duration="3000"
                       ></countTo
                     ></span>
@@ -112,4 +112,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+.facts-section {
+padding: 0px 0px 0px !important;
+}
+</style>

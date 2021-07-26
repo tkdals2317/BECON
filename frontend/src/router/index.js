@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import Home from "../views/index.vue";
 import Contact from "../views/contact.vue";
 import Faqs from "../views/faqs.vue";
+import Register from "../views/register.vue";
 import NotFound from "../views/not-found.vue";
 
 Vue.use(VueRouter);
@@ -23,6 +24,11 @@ const routes = [
     path: "/faqs",
     name: "Faqs",
     component: Faqs,
+  },
+  {
+    path: "/regist",
+    name: "Register",
+    component: Register,
   },
   {
     path: "/notfound",

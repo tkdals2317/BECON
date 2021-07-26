@@ -134,13 +134,9 @@
 
         <div class="other-links clearfix">
           <div class="link-box">
-            <div class="call-us">
-              <a class="link" href="tel:6668880000">
-                <span class="icon"></span>
-                <span class="sub-text">Call Anytime</span>
-                <span class="number">666 888 0000</span>
-              </a>
-            </div>
+            <a class="link" href="/"><span class="icon"></span></a>
+            <router-link to="/login" class="link"><span class="sub-text">로그인</span></router-link>
+            <router-link to="/regist" class="link"><span class="number">회원가입</span></router-link>
           </div>
         </div>
       </div>
