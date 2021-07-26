@@ -18,16 +18,16 @@
                 All<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".branding">
-                힙합<sup></sup>
+                Hip<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".illustration">
-                발라드<sup></sup>
+                Ballad<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".photography">
-                장르확인못함<sup></sup>
+                Zazz<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".web-design">
-                락<sup></sup>
+                Indi<sup></sup>
               </li>
             </ul>
           </div>
@@ -48,11 +48,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Artist 명?</span></div>
+                  <div class="cat"><span>Artist</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >공연제목?</router-link
+                        >10cm</router-link
                       >
                     </h5>
                   </div>
@@ -83,11 +83,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Artist 명?</span></div>
+                  <div class="cat"><span>Artist</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >공연제목?</router-link
+                        >유재석</router-link
                       >
                     </h5>
                   </div>
@@ -253,6 +253,9 @@ export default {
     return {
       mixer: null,
     };
+  },
+  computed:{
+    
   },
   mounted() {
     const containerEl = document.querySelector(".filter-list");

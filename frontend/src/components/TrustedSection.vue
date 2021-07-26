@@ -8,19 +8,19 @@
               <div class="col-header">
                 <div class="header-inner">
                   <span
-                    >We’re Committed To Deliver High Quality Projects .</span
+                    >We provide performance venues in a quality non-face-to-face environment.</span
                   >
                 </div>
               </div>
               <div class="features">
                 <div class="feature">
                   <div class="count"><span>01</span></div>
-                  <h5>TOTAL DESIGN FREEDOM FOR EVERYONE</h5>
+                  <h5>비대면 상황에서도 팬과의 소통을 중요시하는 Be-Con</h5>
                   <div class="sub-text">core features</div>
                 </div>
                 <div class="feature">
                   <div class="count"><span>02</span></div>
-                  <h5>BASIC RULES OF RUNNING WEB AGENCY</h5>
+                  <h5>비대면 환경에서 설 자리를 잃은 아티스트들에게 환경을 제공하는 Be-Con</h5>
                   <div class="sub-text">core features</div>
                 </div>
               </div>

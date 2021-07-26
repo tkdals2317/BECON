@@ -22,7 +22,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Concerts Completed</div>
+                  <div class="counter-title">Artists With So Far</div>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Active Artists</div>
+                  <div class="counter-title">Fans With Us</div>
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Satisfied audience</div>
+                  <div class="counter-title">Current Room</div>
                 </div>
               </div>
             </div>
@@ -76,7 +76,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">happy clients</div>
+                  <div class="counter-title">Donation</div>
                 </div>
               </div>
             </div>
@@ -111,10 +111,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-.facts-section {
-padding: 0px 0px 0px !important;
-}
-</style>
