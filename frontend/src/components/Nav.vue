@@ -10,7 +10,7 @@
           <div class="logo">
             <a href="/" title="Linoor - Digital Agency Template"
               ><img
-                src="@/common/images/logo.png"
+                src="@/common/images/be-con.jpg"
                 id="thm-logo"
                 alt="Linoor - DIgital Agency HTML Template"
                 title="Linoor - DIgital Agency Template"
@@ -36,7 +36,7 @@
                   <ul>
                     <li><router-link to="/">Home</router-link></li>
                     <li>
-                      <router-link to="/contact">Page1</router-link>
+                      <router-link to="/contact">contact</router-link>
                     </li>
                     <li>
                       <router-link to="/faqs">Page2</router-link>
@@ -46,99 +46,18 @@
                     </li>
                   </ul>
                 </li>
-                <li><router-link to="/about">About Us</router-link></li>
-                <li class="dropdown">
-                  <a href="/team">Pages</a>
-                  <ul>
-                    <li><router-link to="/team">Our Team</router-link></li>
-                    <li>
-                      <router-link to="/testimonials">Testimonials</router-link>
-                    </li>
-                    <li><router-link to="/faqs">FAQs</router-link></li>
-                    <li><router-link to="/not-found">404 Page</router-link></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <router-link to="/services">Services</router-link>
-                  <ul>
-                    <li>
-                      <router-link to="/services">All Services</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/web-development"
-                        >Website Development</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/graphic-designing"
-                        >Graphic Designing</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/digital-marketing"
-                        >Digital Marketing</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/seo"
-                        >SEO & Content Writting</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/app-development"
-                        >App Development</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/ui-designing"
-                        >UI/UX Designing</router-link
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <router-link to="/portfolio">Portfolio</router-link>
-                  <ul>
-                    <li>
-                      <router-link to="/portfolio">Portfolio</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/portfolio-single"
-                        >Portfolio Single 01</router-link
-                      >
-                    </li>
-                    <li>
-                      <router-link to="/portfolio-single-2"
-                        >Portfolio Single 02</router-link
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <router-link to="/blog-grid">Blog</router-link>
-                  <ul>
-                    <li><router-link to="/blog">Blog Sidebar</router-link></li>
-                    <li>
-                      <router-link to="/blog-grid">Blog Grid View</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/blog-single">Blog Single</router-link>
-                    </li>
-                  </ul>
-                </li>
                 <li><router-link to="/contact">Contact</router-link></li>
               </ul>
             </div>
           </nav>
         </div>
-
         <div class="other-links clearfix">
           <div class="link-box">
             <div class="call-us">
               <a class="link" href="tel:6668880000">
                 <span class="icon"></span>
-                <span class="sub-text">Call Anytime</span>
-                <span class="number">666 888 0000</span>
+                <span class="sub-text">Be-con</span>
+                <span class="number">로그인</span>
               </a>
             </div>
           </div>
