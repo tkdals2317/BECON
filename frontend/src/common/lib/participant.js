@@ -29,7 +29,7 @@ const PARTICIPANT_CLASS = 'participant';
  * @return
  */
 
-function Participant(name) {
+function Participant(name, sendMessage) {
 	this.name = name;
 	var container = document.createElement('div');
 	container.className = isPresentMainParticipant() ? PARTICIPANT_CLASS : PARTICIPANT_MAIN_CLASS;
@@ -82,7 +82,6 @@ function Participant(name) {
 				sender : name,
 				sdpOffer : offerSdp
 			};
-		// eslint-disable-next-line no-undef
 		sendMessage(msg);
 	}
 
@@ -105,4 +104,8 @@ function Participant(name) {
 		this.rtcPeer.dispose();
 		container.parentNode.removeChild(container);
 	};
+}
+
+export {
+	Participant
 }
