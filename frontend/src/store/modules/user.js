@@ -63,9 +63,8 @@ export default {
           console.error();
         });
     },
-    requestUserInfo(commit){
+    requestUserInfo({commit}){
       const CSRF_TOKEN=localStorage.getItem("accessToken");
-      console.log(CSRF_TOKEN);
       http
         .get(`/api/v1/users/me`, {
           headers: { "Authorization": 'Bearer '+ CSRF_TOKEN }

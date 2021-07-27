@@ -39,7 +39,7 @@
               </div>
               <div class="form-group col-lg-6 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <select v-model="concert.categoryName" name="CategoryId" value="" placeholder="CategoryId" required="">
+                  <select v-model="concert.categoryName" name="CategoryName" value="" placeholder="CategoryName" required="">
                     <!-- 이부분 수정 필요 -->
                     <option value="">공연 카테고리</option>
                     <option value="HIPHOP">HipHop</option>
