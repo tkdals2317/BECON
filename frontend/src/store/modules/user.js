@@ -7,6 +7,7 @@ export default {
     userId: "",
     userName: "",
     accessToken: null,
+    userInfo: {},
   },
   getters: {
     getAccessToken(state) {
@@ -18,27 +19,30 @@ export default {
     getUserName(state) {
       return state.userName;
     },
+    getUserInfo(state) {
+      return state.userInfo;
+    }
   },
   mutations: {
     LOGIN(state, payload) {
       state.accessToken = payload.accessToken;
       localStorage.setItem("accessToken", state.accessToken);
     },
+    USERINFO(state, payload){
+      state.userInfo = payload;
+    }
   },
   actions: {
     requestLogin({ commit }, user) {
-      const params = JSON.stringify({
-        userId: user.userid,
-        password: user.userpwd,
-      });
       http
-        .post(`/api/v1/auth/login`, params)
+        .post(`/api/v1/auth/login`, user)
         .then(({ data }) => {
           commit("LOGIN", data);
           alert('로그인되었습니다.');
           router.push('/');
         })
-        .catch(() => {
+        .catch((err) => {
+          alert(err.response.data.message);
           console.error();
         });
     },
@@ -57,6 +61,54 @@ export default {
         })
         .catch(() => {
           console.error();
+        });
+    },
+    requestUserInfo(commit){
+      const CSRF_TOKEN=localStorage.getItem("accessToken");
+      console.log(CSRF_TOKEN);
+      http
+        .get(`/api/v1/users/me`, {
+          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN }
+        })
+        .then(({ data })=>{
+          console.log(data);
+          commit("USERINFO", data);
+        })
+        .catch(() => {
+          //alert(err.response.message);
+            console.error();
+        });
+    },
+    requestModify(commit, user){
+      const CSRF_TOKEN=localStorage.getItem("accessToken");
+      var formData = new FormData();
+      for (var variable in user) {
+        formData.append(variable, user[variable]);
+      }
+      http
+        .patch(`/api/v1/users/`+user.userId, formData,{
+          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN , "Content-Type": "multipart/form-data" },
+        })
+        .then(({ data })=>{
+          commit("USERINFO", data.user);
+          alert('회원정보가 수정 되었습니다.')
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+            console.error();
+        });
+    },
+    requestDelete(commit, data){
+      const CSRF_TOKEN=localStorage.getItem("accessToken");
+      http
+        .delete(`/api/v1/users/`+ data.userId ,{headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
+        })
+        .then(()=>{
+          alert('회원탈퇴가 완료 되었습니다.')
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+            console.error();
         });
     },
   },
