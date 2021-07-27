@@ -12,7 +12,7 @@
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="checkID">
-                  <span v-if="!errors.requireID">Require Feild!</span>
+                  <span v-if="errors.requireID">Require Feild!</span>
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
@@ -111,15 +111,12 @@ export default {
       this.requestRegister(this.user);
     },
     checkID(){
+      console.log("실행");
       if(!this.user.userId){
         this.errors.requireID=false;
         return;
       }else {
 		    this.errors.requireID=true;
-	    }
-
-      if(this.user.userId.length>17){
-        this.errors.requireID=false;
       }
     },
   }

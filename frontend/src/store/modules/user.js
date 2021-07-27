@@ -78,7 +78,7 @@ export default {
             console.error();
         });
     },
-    requestModify(commit, user){
+    requestModify({commit}, user){
       const CSRF_TOKEN=localStorage.getItem("accessToken");
       var formData = new FormData();
       for (var variable in user) {
@@ -89,24 +89,23 @@ export default {
           headers: { "Authorization": 'Bearer '+ CSRF_TOKEN , "Content-Type": "multipart/form-data" },
         })
         .then(({ data })=>{
-          commit("USERINFO", data.user);
+          commit("USERINFO", data);
           alert('회원정보가 수정 되었습니다.')
         })
-        .catch((err) => {
-          alert(err.response.data.message);
-            console.error();
+        .catch(() => { 
+         console.error();
         });
     },
     requestDelete(commit, data){
       const CSRF_TOKEN=localStorage.getItem("accessToken");
       http
-        .delete(`/api/v1/users/`+ data.userId ,{headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
+        .delete(`/api/v1/users/`+ data ,{headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
         })
         .then(()=>{
           alert('회원탈퇴가 완료 되었습니다.')
         })
-        .catch((err) => {
-          alert(err.response.data.message);
+        .catch(() => {
+          alert();
             console.error();
         });
     },
