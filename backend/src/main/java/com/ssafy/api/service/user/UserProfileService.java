@@ -10,7 +10,8 @@ import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.db.entity.UserProfile;
 
 public interface UserProfileService {
+	UserProfilePostReq setFile(MultipartFile files) throws UnsupportedEncodingException, NoSuchAlgorithmException, IllegalStateException, IOException;
 	UserProfile saveFile(UserProfilePostReq request);
 	void changeFile(Long userPID, MultipartFile files) throws UnsupportedEncodingException, NoSuchAlgorithmException, IllegalStateException, IOException;
-	UserProfilePostReq getFile(Long id);
+	
 }
