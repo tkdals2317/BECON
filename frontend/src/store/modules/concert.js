@@ -1,27 +1,27 @@
-import http from "@/util/http-common";
-//import router from "@/router/index.js";
+import http from '@/util/http-common';
 export default {
     namespaced: true,
     state: {
-        concertCategory:[
-            {category:"HipHop"},
-            {category:"Ballad"},
-            {category:"Zazz"},
-            {category:"Indi"}
-        ],
-        concertList:[],
+        categories: [],
     },
+
     getters: {
         getConcertCategory(state) {
             return state.concertCategory;
         },
-        getConcertList(state) {
-            return state.concertList;
-        }
+        getCategories(state) {
+          console.log('getters확인' + state.categories)
+          return state.categories;
+        },
     },
+
     mutations: {
-        
-  },
+      CATEGORY(state, payload) {
+        state.categories = payload
+        console.log(this.categories + '여기는 mutations')
+      },
+    },
+
     actions: {
         requestRegister(commit, concert) {
             var formData = new FormData();
@@ -45,6 +45,30 @@ export default {
                   console.error();
               });
           },
+      requestCategory({ commit }) {
+        http
+          .get(`/api/v2/concert/concert-categories`)
+          .then(({ data }) => {
+            this.categories = data
+            // console.log("state categories : "+this.data)
+            console.log(data)
+            commit('CATEGORY', data)
+            // router.push('/');
+          })
+          .catch(() => {
+            console.error();
+          });
+      },
+      requestConcert() {
+        http
+          .get(`/api/v2/concert/findByCategory/전체`)
+          .then(({ data }) => {
+            console.log(data)
+            // router.push('/');
+          })
+          .catch(() => {
+            console.error();
+          });
+      },
     },
   };
-  

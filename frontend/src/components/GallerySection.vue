@@ -17,7 +17,13 @@
               >
                 All<sup></sup>
               </li>
-              <li class="filter" data-role="button" data-filter=".branding">
+              <span v-for="category in getCategories" :key="category.id">
+                <li class="filter" data-role="button" data-filter=".branding">
+                  {{ category.name }}
+                </li>
+              </span>
+                
+              <!-- <li class="filter" data-role="button" data-filter=".branding">
                 Hip<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".illustration">
@@ -28,7 +34,7 @@
               </li>
               <li class="filter" data-role="button" data-filter=".web-design">
                 Indi<sup></sup>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -246,6 +252,7 @@
 <script>
 import GLightbox from "glightbox";
 import mixitup from "mixitup";
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: "GallerySection",
@@ -255,12 +262,14 @@ export default {
     };
   },
   computed:{
-    
+    ...mapGetters('concert', ["getCategories"])
+  },
+  methods: {
+    ...mapActions('concert', ["requestCategory", "requestConcert"]),
   },
   mounted() {
     const containerEl = document.querySelector(".filter-list");
     this.mixer = new mixitup(containerEl, {});
-
     new GLightbox({
       selector: ".lightbox-image",
       touchNavigation: true,
@@ -268,6 +277,10 @@ export default {
       autoplayVideos: true,
     });
   },
+  created: function () {
+    this.requestCategory('categories')
+  }
+
 };
 </script>
 

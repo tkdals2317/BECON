@@ -80,7 +80,8 @@ public class ConcertController {
 			@ApiIgnore Authentication authentication,
 			@ApiParam(value="공연 신청 정보", required = true) ConcertRegisterPostReq registerInfo, 
 			@ApiParam(value="공연 포스터", required = true) MultipartFile files){
-		System.out.println(registerInfo.getOwnerId());
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		String userId = userDetails.getUsername();
 		Concert concert = new Concert();
 		try{
 			String origFilename = files.getOriginalFilename();
@@ -94,8 +95,6 @@ public class ConcertController {
                     e.getStackTrace();
                 }
             }
-			System.out.println(origFilename);
-			System.out.println(registerInfo.getDescription());
 	        String filePath = savePath + "\\" + filename;
             files.transferTo(new File(filePath));
             
@@ -105,7 +104,7 @@ public class ConcertController {
             concertTumbnailInfo.setPath(filePath);
             
             ConcertThumbnail fileId = concertThumbnailService.saveFile(concertTumbnailInfo);
-            User user = userService.getUserByUserId(registerInfo.getOwnerId());
+            User user = userService.getUserByUserId(userId);
             ConcertCategory category = concertCategoryService.getCategoryByCategoryId(registerInfo.getCategoryName());
             concert = concertService.createConcert(registerInfo, fileId, user, category);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
