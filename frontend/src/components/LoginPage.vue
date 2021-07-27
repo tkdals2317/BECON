@@ -11,7 +11,7 @@
                 <div class="field-inner">
                   <input
                     type="text"
-                    v-model="user.userid"
+                    v-model="user.userId"
                     name="UserId"
                     value=""
                     placeholder="Id"
@@ -23,7 +23,7 @@
                 <div class="field-inner">
                   <input
                     type="password"
-                    v-model="user.userpwd"
+                    v-model="user.password"
                     name="Password"
                     value=""
                     placeholder="Password"
@@ -51,8 +51,8 @@ export default {
   data:function(){
     return{
       user: {
-        userid: "",
-        userpwd: ""
+        userId: "",
+        password: ""
       },
       message: ""
     }
