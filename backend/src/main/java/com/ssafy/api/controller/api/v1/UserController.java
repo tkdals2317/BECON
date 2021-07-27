@@ -65,25 +65,6 @@ public class UserController {
 		User user;
 		UserProfilePostReq userProfileInfo = null;
 		try{
-			String origFilename = profile.getOriginalFilename();
-	        String filename = new MD5Generator(origFilename).toString();
-	        String savePath = System.getProperty("user.dir") + "\\files";
-	        System.out.println(savePath);
-	        if (!new File(savePath).exists()) {
-                try{
-                    new File(savePath).mkdir();
-                }
-                catch(Exception e){
-                    e.getStackTrace();
-                }
-            }
-	        String filePath = savePath + "\\" + filename;
-	        profile.transferTo(new File(filePath));
-            
-            UserProfilePostReq userProfileInfo=new UserProfilePostReq();
-            userProfileInfo.setOriginName(origFilename);
-            userProfileInfo.setName(filename);
-            userProfileInfo.setPath(filePath);
 			if(files!= null) {
 				String origFilename = files.getOriginalFilename();
 		        String filename = new MD5Generator(origFilename).toString();
