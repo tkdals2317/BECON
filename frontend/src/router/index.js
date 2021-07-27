@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import Home from "../views/index.vue";
 import Contact from "../views/contact.vue";
 import Login from "../views/login.vue";
+import MyPage from "../views/mypage.vue";
 import ConcertRegist from "../views/concertRegist.vue";
 import Faqs from "../views/faqs.vue";
 import Register from "../views/register.vue";
@@ -31,6 +32,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/mypage",
+    name: "MyPage",
+    component: MyPage,
   },
   {
     path: "/faqs",
