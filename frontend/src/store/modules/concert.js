@@ -2,7 +2,12 @@
 export default {
     namespaced: true,
     state: {
-        concertCategory:[{category:"HipHop"},{category:"Ballad"},{category:"Zazz"},{category:"Indi"}]
+        concertCategory:[
+            {category:"HipHop"},
+            {category:"Ballad"},
+            {category:"Zazz"},
+            {category:"Indi"}
+        ]
     },
     getters: {
         getConcertCategory(state) {
