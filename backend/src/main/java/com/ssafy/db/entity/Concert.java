@@ -1,14 +1,11 @@
 package com.ssafy.db.entity;
 
-import java.sql.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,11 +14,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Concert extends BaseEntity {
-	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.REMOVE, orphanRemoval=true)
+	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	private ConcertThumbnail thumbnail;
-	@ManyToOne(fetch =FetchType.LAZY)
+	@ManyToOne(fetch =FetchType.LAZY, cascade=CascadeType.ALL)
 	private ConcertCategory category;
-	@ManyToOne(fetch =FetchType.LAZY)
+	@ManyToOne(fetch =FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name="owner_id")
     private User user;
 	

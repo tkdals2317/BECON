@@ -7,10 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,16 +23,20 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.ConcertRegisterPostReq;
 import com.ssafy.api.request.ConcertThumbnailPostReq;
+import com.ssafy.api.request.UserModifyPostReq;
+import com.ssafy.api.response.ConcertDetailRes;
 import com.ssafy.api.service.concert.ConcertCategoryService;
 import com.ssafy.api.service.concert.ConcertService;
 import com.ssafy.api.service.concert.ConcertThumbnailService;
 import com.ssafy.api.service.user.UserService;
+import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.common.util.MD5Generator;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.User;
+import com.ssafy.db.entity.UserConcert;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -51,43 +58,34 @@ public class ConcertController {
 	@Autowired
 	ConcertCategoryService concertCategoryService;
 	
+	@GetMapping("/concert-categories")
+	@ApiOperation(value="공연 카테고리", notes = "DB에 등록된 공연 카테고리들을 조회한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+    })
+	public ResponseEntity<?> getConcertCategory(){
+		Optional<List<ConcertCategory>> categories = concertCategoryService.getConcertCategory();
+		System.out.println(categories);
+		return ResponseEntity.status(201).body(categories.get());
+	}
+	
 	@PostMapping("/regist")
 	@ApiOperation(value = "공연 신청", notes = "공연을 신청을 한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
     })
-	public ResponseEntity<? extends BaseResponseBody> register(
+	public ResponseEntity<? extends BaseResponseBody> regist(
+			@ApiIgnore Authentication authentication,
 			@ApiParam(value="공연 신청 정보", required = true) ConcertRegisterPostReq registerInfo, 
-			@ApiParam(value="공연 포스터", required = true) MultipartFile files,
-			@ApiParam(value="공연 신청자 아이디", required = true) String userId,
-			@ApiParam(value="공연 카테고리", required = true) String category){
-		Concert concert;
+			@ApiParam(value="공연 포스터", required = true) MultipartFile files){
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		String userId = userDetails.getUsername();
+		Concert concert = new Concert();
 		try{
-			String origFilename = files.getOriginalFilename();
-	        String filename = new MD5Generator(origFilename).toString();
-	        String savePath = System.getProperty("user.dir") + "\\files";
-	        if (!new File(savePath).exists()) {
-                try{
-                    new File(savePath).mkdir();
-                }
-                catch(Exception e){
-                    e.getStackTrace();
-                }
-            }
-			System.out.println(origFilename);
-			System.out.println(registerInfo.getDescription());
-	        String filePath = savePath + "\\" + filename;
-            files.transferTo(new File(filePath));
-            
-            ConcertThumbnailPostReq concertTumbnailInfo=new ConcertThumbnailPostReq();
-            concertTumbnailInfo.setOriginName(origFilename);
-            concertTumbnailInfo.setName(filename);
-            concertTumbnailInfo.setPath(filePath);
-            
-            ConcertThumbnail fileId = concertThumbnailService.saveFile(concertTumbnailInfo);
+            ConcertThumbnail fileId = concertThumbnailService.saveFile(concertThumbnailService.setFile(files));
             User user = userService.getUserByUserId(userId);
-            ConcertCategory categoryId=concertCategoryService.getCategoryByCategoryId(category);
-            concert = concertService.createUser(registerInfo, fileId, user, categoryId);
+            ConcertCategory category = concertCategoryService.getCategoryByCategoryId(registerInfo.getCategoryName());
+            concert = concertService.createConcert(registerInfo, fileId, user, category);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
 		}catch(TokenExpiredException e) {
@@ -100,16 +98,105 @@ public class ConcertController {
 		return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
 	}
 	
-	@GetMapping("/findByCategory")
+	@GetMapping("/findByCategory/{category}")
 	@ApiOperation(value = "조건에 맞게 콘서트 리스트를 반환한다")
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
-        @ApiResponse(code = 410, message = "공연 정보 없음")
+        @ApiResponse(code = 210, message = "공연 정보 없음")
     })
-	public ResponseEntity<List<Concert>> listConcert(@ApiIgnore String category){
-		List<Concert> list = null;
-		
-		return ResponseEntity.status(201).body(list);
+	public ResponseEntity<?> findByCategory(
+			/* @ApiIgnore Authentication authentication, */
+			@PathVariable String category){
+		System.out.println(category);
+		List<Concert> concertList = null;
+		try {
+			if(category.equals("전체")) {
+				System.out.println("category");
+				concertList = concertService.findConcerts();
+			}else {
+				ConcertCategory categoryId = concertCategoryService.getCategoryByCategoryId(category);
+				System.out.println(category + " " +categoryId.getId());
+				concertList = concertService.findByCategory(categoryId.getId());
+			}
+			if(concertList.size()==0) {
+				return ResponseEntity.status(210).body(BaseResponseBody.of(210, "컨텐츠가 없습니다"));
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
+		}
+
+		return ResponseEntity.status(201).body(concertList);	
 	}
 	
+	@GetMapping("/findByOwnerId/{OwnerId}")
+	@ApiOperation(value = "조건에 맞게 콘서트 리스트를 반환한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+        @ApiResponse(code = 210, message = "공연 정보 없음")
+    })
+	public ResponseEntity<?> findByOwnerId(
+			/* @ApiIgnore Authentication authentication, */ 
+			@PathVariable String OwnerId){	
+		Optional<List<Concert>> concertList = null;
+		System.out.println(OwnerId);
+		try {
+			concertList = concertService.getConcertByOwnerId(OwnerId);
+			System.out.println();
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
+		}
+		return ResponseEntity.status(201).body(concertList);
+
+	}
+	
+	@GetMapping("/{concertId}")
+	@ApiOperation(value = "concertId에 해당하는 콘서트 상세정보를 조회한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+        @ApiResponse(code = 403, message = "잘못된 접근입니다.")
+    })
+	public ResponseEntity<?> getConcertByConcertId(
+			/* @ApiIgnore Authentication authentication, */  
+			@PathVariable Long concertId){	
+		Optional<Concert> concert = null;
+		Optional<List<UserConcert>> userConcert = null;
+		try {
+			concert = concertService.getConcertByConcertId(concertId);
+			userConcert= concertService.getUserConcertByConcerId(concertId);
+		} catch (Exception e) {
+			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
+		}
+	
+		return ResponseEntity.status(201).body(ConcertDetailRes.of(concert, userConcert));
+	}
+	
+	@PatchMapping("/{concertId}")
+	@ApiOperation(value = "공연 정보 수정", notes = "concertId에 해당하는 콘서트의 정보를 수정한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+        @ApiResponse(code = 403, message = "잘못된 접근입니다.")
+    })
+	public ResponseEntity<? extends BaseResponseBody> modify(
+			@ApiIgnore Authentication authentication,
+			@ApiParam(value="concertId") @PathVariable Long concertId,
+			@ApiParam(value="imgUrlBase", required = true) MultipartFile files,
+			@ApiParam(value="콘서트 정보 수정 내용", required = true) Concert request
+			){	
+				
+		
+		return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+	}
+	
+	@DeleteMapping("/{concertId}")
+	@ApiOperation(value = "공연 정보 삭제", notes = "{concertId}에 해당하는 공연 정보를 삭제한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 204, message = "성공"),
+    })
+	public ResponseEntity<? extends BaseResponseBody> delete(
+			/*@ApiIgnore Authentication authentication,*/
+			@PathVariable("concertId") @ApiParam(value="공연 아이디", required = true) Long concertId) {
+
+		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Fail"));
+	}
 }

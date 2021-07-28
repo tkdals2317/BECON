@@ -3,14 +3,11 @@
     <Nav />
     <Banner />
     <Services />
-    <LiveSection />
-    <WedoSection />
     <GallerySection />
-    <FactSection />
-    <TrustedSection />
-    <TeamSection />
     <ParallaxSection />
     <BlogSection />
+    <FactSection />
+    <TrustedSection />
     <CallToAction />
     <Footer />
   </div>
@@ -20,12 +17,9 @@
 import Nav from "../components/Nav";
 import Banner from "../components/Banner";
 import Services from "../components/Services";
-import LiveSection from "../components/LiveSection";
-import WedoSection from "../components/WedoSection";
 import GallerySection from "../components/GallerySection";
 import FactSection from "../components/FactSection";
 import TrustedSection from "../components/TrustedSection";
-import TeamSection from "../components/TeamSection";
 import ParallaxSection from "../components/ParallaxSection";
 import BlogSection from "../components/BlogSection";
 import CallToAction from "../components/CallToAction";
@@ -35,14 +29,11 @@ export default {
   components: {
     Footer,
     CallToAction,
-    BlogSection,
-    ParallaxSection,
-    TeamSection,
     TrustedSection,
+    ParallaxSection,
+    BlogSection,
     FactSection,
     GallerySection,
-    WedoSection,
-    LiveSection,
     Services,
     Banner,
     Nav,

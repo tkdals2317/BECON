@@ -5,7 +5,7 @@
       <div class="mixitup-gallery">
         <div class="upper-row clearfix">
           <div class="sec-title">
-            <h2>work showcase <span class="dot">.</span></h2>
+            <h2>공연 목록 <span class="dot">.</span></h2>
           </div>
           <!--Filter-->
           <div class="filters clearfix">
@@ -17,18 +17,24 @@
               >
                 All<sup></sup>
               </li>
-              <li class="filter" data-role="button" data-filter=".branding">
-                Branding<sup></sup>
+              <span v-for="category in getCategories" :key="category.id">
+                <li class="filter" data-role="button" data-filter=".branding">
+                  {{ category.name }}
+                </li>
+              </span>
+                
+              <!-- <li class="filter" data-role="button" data-filter=".branding">
+                Hip<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".illustration">
-                illustration<sup></sup>
+                Ballad<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".photography">
-                Photography<sup></sup>
+                Zazz<sup></sup>
               </li>
               <li class="filter" data-role="button" data-filter=".web-design">
-                Web Design<sup></sup>
-              </li>
+                Indi<sup></sup>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -48,11 +54,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >10cm</router-link
                       >
                     </h5>
                   </div>
@@ -83,11 +89,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >유재석</router-link
                       >
                     </h5>
                   </div>
@@ -118,11 +124,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -153,11 +159,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -190,11 +196,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -225,11 +231,11 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Graphic</span></div>
+                  <div class="cat"><span>Artist 명?</span></div>
                   <div class="title">
                     <h5>
                       <router-link to="/portfolio-single"
-                        >Fimlor Experience</router-link
+                        >공연제목?</router-link
                       >
                     </h5>
                   </div>
@@ -246,6 +252,7 @@
 <script>
 import GLightbox from "glightbox";
 import mixitup from "mixitup";
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: "GallerySection",
@@ -254,10 +261,15 @@ export default {
       mixer: null,
     };
   },
+  computed:{
+    ...mapGetters('concert', ["getCategories"])
+  },
+  methods: {
+    ...mapActions('concert', ["requestCategory", "requestConcert"]),
+  },
   mounted() {
     const containerEl = document.querySelector(".filter-list");
     this.mixer = new mixitup(containerEl, {});
-
     new GLightbox({
       selector: ".lightbox-image",
       touchNavigation: true,
@@ -265,6 +277,10 @@ export default {
       autoplayVideos: true,
     });
   },
+  created: function () {
+    this.requestCategory('categories')
+  }
+
 };
 </script>
 

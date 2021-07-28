@@ -1,10 +1,6 @@
 package com.ssafy.db.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

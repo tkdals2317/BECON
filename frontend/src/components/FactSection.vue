@@ -22,7 +22,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Projects Completed</div>
+                  <div class="counter-title">Artists With So Far</div>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">Active clients</div>
+                  <div class="counter-title">Fans With Us</div>
                 </div>
               </div>
             </div>
@@ -53,12 +53,12 @@
                     <span class="count-text"
                       ><countTo
                         :startVal="0"
-                        :endVal="startCounter ? 626 : 0"
+                        :endVal="startCounter ? 151432 : 0"
                         :duration="3000"
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">cups of coffee</div>
+                  <div class="counter-title">Current Room</div>
                 </div>
               </div>
             </div>
@@ -71,12 +71,12 @@
                     <span class="count-text"
                       ><countTo
                         :startVal="0"
-                        :endVal="startCounter ? 9704 : 0"
+                        :endVal="startCounter ? 154 : 0"
                         :duration="3000"
                       ></countTo
                     ></span>
                   </div>
-                  <div class="counter-title">happy clients</div>
+                  <div class="counter-title">Donation</div>
                 </div>
               </div>
             </div>
@@ -111,5 +111,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

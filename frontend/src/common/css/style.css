@@ -490,7 +490,7 @@ img {
   display: block;
   width: 100%;
   z-index: 9999;
-  background: none;
+  background: #000000;;
 }
 
 /*=== Header Main Box ===*/
@@ -3561,7 +3561,7 @@ img.lazy-image.loaded {
 
 .gallery-section {
   position: relative;
-  padding: 120px 0 90px;
+  padding: 140px 0 90px;
 }
 
 .gallery-section .upper-row {

@@ -9,6 +9,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.db.entity.ConcertCategory;
 import com.ssafy.db.entity.QConcertCategory;
 
+
 @Repository
 public class ConcertCategoryRepositorySupport {
 	@Autowired
@@ -21,4 +22,5 @@ public class ConcertCategoryRepositorySupport {
 			return Optional.empty();
 		return Optional.ofNullable(concertCategory);
 	}
+
 }

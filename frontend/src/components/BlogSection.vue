@@ -2,7 +2,7 @@
   <section class="news-section">
     <div class="auto-container">
       <div class="sec-title centered">
-        <h2>Latest news & articles<span class="dot">.</span></h2>
+        <h2>Coming Up<span class="dot">.</span></h2>
       </div>
 
       <div class="row clearfix">

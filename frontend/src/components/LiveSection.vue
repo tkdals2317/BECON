@@ -2,7 +2,7 @@
   <section class="live-section">
     <div class="auto-container">
       <div class="sec-title centered">
-        <h2>Experience us live <span class="dot">.</span></h2>
+        <h2>Experience us live (티저?)<span class="dot">.</span></h2>
       </div>
       <div class="main-image-box">
         <div

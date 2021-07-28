@@ -11,6 +11,8 @@ import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserProfile;
+import com.ssafy.db.repository.ConcertRepository;
+import com.ssafy.db.repository.ConcertRepositorySupport;
 import com.ssafy.db.repository.UserProfileRepository;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
@@ -26,6 +28,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
+	ConcertRepositorySupport concertRepositorySupport;
+	@Autowired
 	UserRepositorySupport userRepositorySupport;
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -33,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(UserRegisterPostReq request, UserProfile fileId) {
 		User user = new User();
-		user.setUserId(request.getId());
+		user.setUserId(request.getUserId());
 		// 보안을 위해서 유저 패스워드 암호화 하여 디비에 저장.
 		user.setPassword(passwordEncoder.encode(request.getPassword()));
 		user.setName(request.getName());
@@ -64,9 +68,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public Optional<User> deleteUser(String userId) {
-		// 해당 유저가 생성한 방을 모두 삭제한다.
-		// 해당 유저의 지난 회의 이력을 모두 삭제한다.
-		// 해당 유저 정보를 삭제한다.
+		Optional<User> ownerId=userRepository.findByUserId(userId);
 		return userRepository.deleteByUserId(userId);
 	}
 
