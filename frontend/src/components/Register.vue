@@ -11,8 +11,9 @@
               
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="checkID">
-                  <!-- <span v-if="errors.requireID">Require Feild!</span> -->
+                  <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="[checkID(), checkMax()]">
+                  <div v-if="!errors.requireID">Require Feild!</div>
+                  <div v-if="!errors.maxID">Max 16</div>
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
@@ -111,12 +112,20 @@ export default {
       this.requestRegister(this.user);
     },
     checkID(){
-      console.log("실행");
+       console.log("실행");
       if(!this.user.userId){
         this.errors.requireID=false;
         return;
       }else {
 		    this.errors.requireID=true;
+      }
+    },
+    checkMax(){
+      if(this.user.userId.length>16){
+        this.errors.maxID=false;
+        return;
+      }else {
+		    this.errors.maxID=true;
       }
     },
   }

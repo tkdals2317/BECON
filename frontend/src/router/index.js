@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import Home from "../views/index.vue";
 import Contact from "../views/contact.vue";
+import EX from "../views/ex.vue";
 import Login from "../views/login.vue";
 import MyPage from "../views/mypage.vue";
 import ConcertRegist from "../views/concertRegist.vue";
@@ -17,6 +18,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/EX",
+    name: "EX",
+    component: EX,
   },
   {
     path: "/concertRegist",
