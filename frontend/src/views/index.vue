@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <Banner />
-    <Services />
+    <BannerThree />
+    <!-- <Services /> -->
     <GallerySection />
     <ParallaxSection />
     <BlogSection />
@@ -15,8 +15,8 @@
 
 <script>
 import Nav from "../components/Nav";
-import Banner from "../components/Banner";
-import Services from "../components/Services";
+import BannerThree from "../components/BannerThree";
+// import Services from "../components/Services";
 import GallerySection from "../components/GallerySection";
 import FactSection from "../components/FactSection";
 import TrustedSection from "../components/TrustedSection";
@@ -34,8 +34,8 @@ export default {
     BlogSection,
     FactSection,
     GallerySection,
-    Services,
-    Banner,
+    // Services,
+    BannerThree,
     Nav,
   },
 };
