@@ -9,13 +9,13 @@
 <script>
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
-import Footer from "../components/Footer";
 import ContactPage from "../components/ContactPage";
+import Footer from "../components/Footer";
 export default {
   components: {
     ContactPage,
     Footer,
-    PageHeader,
+    PageHeader, 
     Nav,
   },
   head() {

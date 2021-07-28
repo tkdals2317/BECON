@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="FAQs" />
+    <PageHeader title="mypage" />
     <QuoteSectionThree />
     <CallToActionThree />
     <Footer />

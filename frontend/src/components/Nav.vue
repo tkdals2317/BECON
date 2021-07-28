@@ -61,7 +61,6 @@
             </div>
           </nav>
         </div>
-
         <div class="other-links clearfix">
           <div class="fun-box">
             <div class="call-us">

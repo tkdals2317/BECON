@@ -11,34 +11,40 @@
 
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="[checkID(), checkMax()]">
-                  <div v-if="!errors.requireID">Require Feild!</div>
-                  <div v-if="!errors.maxID">Max 16</div>
+                  <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="[checkID(), checkMaxID()]" >
+                  <span v-if="errors.requireID">Require Feild!</span>
+                  <span v-if="errors.maxID"> max16</span>
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
-                  <input type="password" v-model="user.password" name="userpassword" value="" placeholder="비밀번호" required="">
+                  <input type="password" v-model="user.password" name="userpassword" value="" placeholder="비밀번호" required="" @blur="checkPASS">
+                  <span v-if="errors.requirePASS">Require Feild! & min9 & max16</span>
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
                   <input type="password" v-model="user.passwordConfirm" name="passwordConfirm" value="" placeholder="비밀번호 확인" required="">
+                  <span v-if="errors.requirePASS">Require Feild! & min9 & max16</span>
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.name" name="username" value="" placeholder="이름">
+                  <input type="text" v-model="user.name" name="username" value="" placeholder="이름" required="" @blur="checkNAME">
+                  <span v-if="errors.requireNAME">Require Feild! </span>
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.phone" name="phone" value="" placeholder="핸드폰 번호">
+                  <input type="text" v-model="user.phone" name="phone" value="" placeholder="핸드폰 번호" required="" @blur="checkPHONE">
+                  <span v-if="errors.requirePHONE">Require Feild! </span>
+
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.email" name="email" value="" placeholder="이메일">
+                  <input type="text" v-model="user.email" name="email" value="" placeholder="이메일" required="" @blur="checkEMAIL">
+                  <span v-if="errors.requireEMAIL">Require Feild! </span>
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
@@ -76,8 +82,12 @@ export default {
               profile: null,
           },
           errors: {
-            requireID:true,
-            maxID:true,
+            requireID:false,
+            maxID:false,
+            requirePASS:false,
+            requireNAME:false,
+            requirePHONE:false,
+            requireEMAIL:false,
           },
           rules: {
             userId: [
@@ -112,20 +122,57 @@ export default {
       this.requestRegister(this.user);
     },
     checkID(){
-       console.log("실행");
+      console.log("실행");
       if(!this.user.userId){
-        this.errors.requireID=false;
+        this.errors.requireID=true;
         return;
       }else {
-		    this.errors.requireID=true;
+        this.errors.requireID=false;
       }
     },
-    checkMax(){
-      if(this.user.userId.length>16){
-        this.errors.maxID=false;
+    checkMaxID(){
+      console.log("실행");
+      if(!this.user.maxID.length>16){
+        this.errors.maxID=true;
         return;
       }else {
-		    this.errors.maxID=true;
+        this.errors.maxID=false;
+      }
+    },
+    checkPASS(){
+      console.log("실행");
+      if(!this.user.password==/^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]|.*[0-9]).{8,24}$/){
+        this.errors.requirePASS=true;
+        return;
+      }else{
+		    this.errors.requirePASS=false;
+      }
+    },
+    checkNAME(){
+      console.log("실행");
+      if(!this.user.name){
+        this.errors.requireNAME=true;
+        return;
+      }else{
+		    this.errors.requireNAME=false;
+      }
+    },
+    checkPHONE(){
+      console.log("실행");
+      if(!this.user.phone){
+        this.errors.requirePHONE=true;
+        return;
+      }else{
+		    this.errors.requirePHONE=false;
+      }
+    },
+    checkEMAIL(){
+      console.log("실행");
+      if(!this.user.email){
+        this.errors.requireEMAIL=true;
+        return;
+      }else{
+		    this.errors.requireEMAIL=false;
       }
     },
   }

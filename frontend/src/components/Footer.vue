@@ -13,13 +13,12 @@
                     <router-link to="/"
                       ><img
                         id="fLogo"
-                        src="@/common/images/footer-logo.png"
+                        src="@/common/images/be-con.jpg"
                         alt=""
                     /></router-link>
                   </div>
                   <div class="text">
-                    Welcome to our web design agency. Lorem ipsum simply free
-                    text dolor sited amet cons cing elit.
+                    Welcome to our be-con
                   </div>
                   <ul class="social-links clearfix">
                     <li>
