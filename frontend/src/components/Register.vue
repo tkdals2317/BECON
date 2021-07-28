@@ -130,9 +130,9 @@ export default {
         this.errors.requireID=false;
       }
     },
-    checkMAXID(){
+    checkMaxID(){
       console.log("실행");
-      if(this.user.maxID.length>16){
+      if(!this.user.maxID.length>16){
         this.errors.maxID=true;
         return;
       }else {
@@ -141,7 +141,7 @@ export default {
     },
     checkPASS(){
       console.log("실행");
-      if(!this.user.password.pattern==/^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]|.*[0-9]).{8,24}$/){
+      if(!this.user.password==/^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]|.*[0-9]).{8,24}$/){
         this.errors.requirePASS=true;
         return;
       }else{
