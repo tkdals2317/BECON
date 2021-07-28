@@ -12,7 +12,7 @@
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="checkID">
-                  <span v-if="errors.requireID">Require Feild!</span>
+                  <!-- <span v-if="errors.requireID">Require Feild!</span> -->
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
