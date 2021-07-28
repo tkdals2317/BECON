@@ -5,12 +5,12 @@
         <div class="sec-title">
           <h2>My Page<span class="dot">!</span></h2>
         </div>
-        <!-- <div v-if="profile==null" >
-					<img src="../files/5887b47695b084b04d2e575438d5a794" class="profile_image">
+        <div v-if="profile==null" >
+					<img src="files\profile\5887b47695b084b04d2e575438d5a794" class="profile_image">
 				</div>
 				<div v-else>
-					<img src="../../files/5887b47695b084b04d2e575438d5a794" class="profile_image" alt="프로필">
-				</div> -->
+					<img src="files\profile\5887b47695b084b04d2e575438d5a794" class="profile_image" alt="프로필">
+				</div>
         <div class="form-box">
             <div class="default-form">
                 <div class="row clearfix" v-if="!isClick">
@@ -106,15 +106,15 @@ export default {
     ...mapGetters('user',['getUserInfo']),
   },
   updated:{
-    
+
   },
   methods:{
     ...mapActions('user',['requestUserInfo', 'requestDelete', 'requestModify']),
     ...mapState('user',['userInfo']),
     //...mapGetters('user',['getUserInfo']),
-    init(){  
+    init(){
       this.requestUserInfo();
-    },    
+    },
     click(){
       this.isClick=!this.isClick;
     },
