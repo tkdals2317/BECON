@@ -58,8 +58,6 @@ public class ConcertController {
 	@Autowired
 	ConcertCategoryService concertCategoryService;
 	
-	
-	
 	@GetMapping("/concert-categories")
 	@ApiOperation(value="공연 카테고리", notes = "DB에 등록된 공연 카테고리들을 조회한다")
     @ApiResponses({
@@ -84,26 +82,7 @@ public class ConcertController {
 		String userId = userDetails.getUsername();
 		Concert concert = new Concert();
 		try{
-			String origFilename = files.getOriginalFilename();
-	        String filename = new MD5Generator(origFilename).toString();
-	        String savePath = System.getProperty("user.dir") + "\\files";
-	        if (!new File(savePath).exists()) {
-                try{
-                    new File(savePath).mkdir();
-                }
-                catch(Exception e){
-                    e.getStackTrace();
-                }
-            }
-	        String filePath = savePath + "\\" + filename;
-            files.transferTo(new File(filePath));
-            
-            ConcertThumbnailPostReq concertTumbnailInfo=new ConcertThumbnailPostReq();
-            concertTumbnailInfo.setOriginName(origFilename);
-            concertTumbnailInfo.setName(filename);
-            concertTumbnailInfo.setPath(filePath);
-            
-            ConcertThumbnail fileId = concertThumbnailService.saveFile(concertTumbnailInfo);
+            ConcertThumbnail fileId = concertThumbnailService.saveFile(concertThumbnailService.setFile(files));
             User user = userService.getUserByUserId(userId);
             ConcertCategory category = concertCategoryService.getCategoryByCategoryId(registerInfo.getCategoryName());
             concert = concertService.createConcert(registerInfo, fileId, user, category);

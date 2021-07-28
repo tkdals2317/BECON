@@ -27,6 +27,7 @@ import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.api.response.UserModifyPostRes;
 import com.ssafy.api.response.UserRes;
+import com.ssafy.api.service.concert.ConcertService;
 import com.ssafy.api.service.user.UserProfileService;
 import com.ssafy.api.service.user.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
@@ -52,6 +53,8 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	@Autowired
+	ConcertService concertService;
+	@Autowired
 	UserProfileService userProfileService;
 	
 	@PostMapping("/regist")
@@ -63,34 +66,8 @@ public class UserController {
 			@ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo, 
 			@ApiParam(value="imgUrlBase", required = false) MultipartFile files){
 		User user;
-		UserProfilePostReq userProfileInfo = null;
 		try{
-			if(files!= null) {
-				String origFilename = files.getOriginalFilename();
-		        String filename = new MD5Generator(origFilename).toString();
-		        String savePath = System.getProperty("user.dir") + "\\files";
-		        if (!new File(savePath).exists()) {
-	                try{
-	                    new File(savePath).mkdir();
-	                }
-	                catch(Exception e){
-	                    e.getStackTrace();
-	                }
-	            }
-		        String filePath = savePath + "\\" + filename;
-	            files.transferTo(new File(filePath));
-	            
-	            userProfileInfo=new UserProfilePostReq();
-	            userProfileInfo.setOriginName(origFilename);
-	            userProfileInfo.setName(filename);
-	            userProfileInfo.setPath(filePath);
-			}else {
-				userProfileInfo=new UserProfilePostReq();
-	            userProfileInfo.setOriginName("BeCon.jfif");
-	            userProfileInfo.setName("5887b47695b084b04d2e575438d5a794");
-	            userProfileInfo.setPath("C:\\Users\\multicampus\\git\\S05P12D102\\backend\\files\\5887b47695b084b04d2e575438d5a794");
-			}
-            UserProfile fileId = userProfileService.saveFile(userProfileInfo);
+            UserProfile fileId = userProfileService.saveFile(userProfileService.setFile(files));
 			user = userService.createUser(registerInfo, fileId);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
@@ -135,10 +112,6 @@ public class UserController {
     })
 	public ResponseEntity<UserRes> getUserInfo(
 			@ApiIgnore Authentication authentication) {
-		/**
-		 * 요청 헤더 액세스 토큰이 포함된 경우에만 실행되는 인증 처리이후, 리턴되는 인증 정보 객체(authentication) 통해서 요청한 유저 식별.
-		 * 액세스 토큰이 없이 요청하는 경우, 403 에러({"error": "Forbidden", "message": "Access Denied"}) 발생.
-		 */
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		 
 		String userId = userDetails.getUsername();
@@ -154,23 +127,17 @@ public class UserController {
 			@ApiIgnore Authentication authentication,
 			@PathVariable("userId") @ApiParam(value="회원 아이디", required = true) String userId,
 			@ApiParam(value="imgUrlBase", required = true) MultipartFile files,
-			@ApiParam(value="회원 정보 수정", required = true) UserModifyPostReq request) {
-		/**
-		 * 요청 헤더 액세스 토큰이 포함된 경우에만 실행되는 인증 처리이후, 리턴되는 인증 정보 객체(authentication) 통해서 요청한 유저 식별.
-		 * 액세스 토큰이 없이 요청하는 경우, 403 에러({"error": "Forbidden", "message": "Access Denied"}) 발생.
-		 */
-
+			@ApiParam(value="회원 정보 수정", required = false) UserModifyPostReq request) {
 		 SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		 String existId = userDetails.getUsername(); System.out.println(existId);
 
 		long rows = 0;
 		User user = userService.getUserByUserId(userId);
-		//프로필 변경이 있을 경우	
 		try{
-			if(!files.isEmpty()) {
-	            Long userPID=user.getUserProfile().getId();
-	            userProfileService.changeFile(userPID, files);
-	        }
+//			if(!files.isEmpty()) {
+//	            Long userPID=user.getUserProfile().getId();
+//	            userProfileService.changeFile(userPID, files);
+//	        }
 			rows = userService.modifyUser(userId, request);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
@@ -181,8 +148,8 @@ public class UserController {
 		}catch(Exception e) {
             e.printStackTrace();
         }
-		if (rows > 0 /* && existId==userId */) {
-			return ResponseEntity.status(200).body(UserModifyPostRes.of(200, "Success"));
+		if (rows > 0) {
+			return ResponseEntity.status(200).body(UserRes.of(user));
 		}
 		return ResponseEntity.status(200).body(UserModifyPostRes.of(200, "Fail"));
 	}
@@ -196,14 +163,11 @@ public class UserController {
 	public ResponseEntity<? extends BaseResponseBody> delete(
 			@ApiIgnore Authentication authentication,
 			@PathVariable("userId") @ApiParam(value="회원 아이디", required = true) String userId) {
-		/**
-		 * 요청 헤더 액세스 토큰이 포함된 경우에만 실행되는 인증 처리이후, 리턴되는 인증 정보 객체(authentication) 통해서 요청한 유저 식별.
-		 * 액세스 토큰이 없이 요청하는 경우, 403 에러({"error": "Forbidden", "message": "Access Denied"}) 발생.
-		 */
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 		String existId = userDetails.getUsername();
 		Optional<User> rows;
 		try{
+			concertService.deleteConcert(userId);
 			rows = userService.deleteUser(userId);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));

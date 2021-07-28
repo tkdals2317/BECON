@@ -5,39 +5,33 @@
         <div class="sec-title">
           <h2>My Page<span class="dot">!</span></h2>
         </div>
-        
+        <!-- <div v-if="profile==null" >
+					<img src="../files/5887b47695b084b04d2e575438d5a794" class="profile_image">
+				</div>
+				<div v-else>
+					<img src="../../files/5887b47695b084b04d2e575438d5a794" class="profile_image" alt="프로필">
+				</div> -->
         <div class="form-box">
             <div class="default-form">
                 <div class="row clearfix" v-if="!isClick">
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="">
+                        <input readonly type="text" v-model="getUserInfo.userId" name="userId" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input type="password" v-model="user.password" name="userpassword" value="" placeholder="비밀번호"
-                                required="">
+                        <input readonly type="text" v-model="getUserInfo.userName" name="name" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input type="text" v-model="user.name" name="username" value="" placeholder="이름">
+                        <input readonly type="text" v-model="getUserInfo.userPhone" name="phone" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input type="text" v-model="user.phone" name="phone" value="" placeholder="핸드폰 번호">
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <div class="field-inner">
-                        <input type="text" v-model="user.email" name="email" value="" placeholder="이메일">
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <div class="field-inner">
-                        <input type="file" ref="picture" name="files" required="">
+                        <input readonly type="text" v-model="getUserInfo.userEmail" name="email" value="">
                         </div>
                     </div>
                 </div>
@@ -45,33 +39,22 @@
                 <div class="row clearfix" v-if="isClick">
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="">
+                        <input type="text" v-model="getUserInfo.userId" name="userId" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input type="password" v-model="user.password" name="userpassword" value="" placeholder="비밀번호"
-                                required="">
+                        <input type="text" v-model="getUserInfo.userName" name="name" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input type="text" v-model="user.name" name="username" value="" placeholder="이름">
+                        <input type="text" v-model="getUserInfo.userPhone" name="phone" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input type="text" v-model="user.phone" name="phone" value="" placeholder="핸드폰 번호">
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <div class="field-inner">
-                        <input type="text" v-model="user.email" name="email" value="" placeholder="이메일">
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <div class="field-inner">
-                        <input type="file" ref="picture" name="files" required="">
+                        <input type="text" v-model="getUserInfo.userEmail" name="email" value="">
                         </div>
                     </div>
                 </div>
@@ -98,18 +81,17 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex';
+import {mapActions, mapState, mapGetters} from 'vuex';
 export default {
   name: "Mypage",
   data:function(){
     return{
-      user: {
-        userId: '',
-        userpwd: '',
-        name: '',
-        phone: '',
-        email: '',
-      },
+      userId: '',
+      password: '',
+      name: '',
+      phone: '',
+      email: '',
+      profile:null,
       isClick:false,
       message: ""
     }
@@ -117,28 +99,40 @@ export default {
   created(){
     this.init();
   },
-  computed: {
-    ...mapState('user',['userInfo']),
-
+  mounted(){
+    this.init();
   },
-
+  computed :{
+    ...mapGetters('user',['getUserInfo']),
+  },
+  updated:{
+    
+  },
   methods:{
     ...mapActions('user',['requestUserInfo', 'requestDelete', 'requestModify']),
+    ...mapState('user',['userInfo']),
+    //...mapGetters('user',['getUserInfo']),
     init(){  
       this.requestUserInfo();
-      console.log(this.userInfo);
-      this.user.userId=this.userInfo.userId;
     },    
     click(){
       this.isClick=!this.isClick;
     },
     modifyUser(){
-      this.requestModify(this.user);
+      let modifyed={
+        name:this.getUserInfo.userName,
+        userId:this.getUserInfo.userId,
+        email:this.getUserInfo.userEmail,
+        phone:this.getUserInfo.userPhone
+      }
+      this.requestModify(modifyed);
+      this.click();
     },
     deleteUser(){
-      this.requestDelete(this.user.userId);
-    }
-
+      this.requestDelete(this.getUserInfo.userId);
+      localStorage.removeItem('accessToken');
+      location.href = "/";
+    },
   }
 };
 </script>

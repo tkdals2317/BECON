@@ -11,6 +11,8 @@ import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserProfile;
+import com.ssafy.db.repository.ConcertRepository;
+import com.ssafy.db.repository.ConcertRepositorySupport;
 import com.ssafy.db.repository.UserProfileRepository;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
@@ -25,6 +27,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	ConcertRepositorySupport concertRepositorySupport;
 	@Autowired
 	UserRepositorySupport userRepositorySupport;
 	@Autowired
@@ -64,9 +68,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public Optional<User> deleteUser(String userId) {
-		// 해당 유저가 생성한 방을 모두 삭제한다.
-		// 해당 유저의 지난 회의 이력을 모두 삭제한다.
-		// 해당 유저 정보를 삭제한다.
+		Optional<User> ownerId=userRepository.findByUserId(userId);
 		return userRepository.deleteByUserId(userId);
 	}
 

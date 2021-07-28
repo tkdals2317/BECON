@@ -2,6 +2,7 @@ package com.ssafy.api.service.user;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 import javax.transaction.Transactional;
@@ -22,6 +23,40 @@ public class UserProfileServiceImpl implements UserProfileService {
 	UserProfileRepository userProfileRepository;
 	@Autowired
 	UserProfileRepositorySupport userProfileRepositorySupport;
+	
+	@Transactional
+	@Override
+	public UserProfilePostReq setFile(MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
+		UserProfilePostReq userProfileInfo = null;
+		
+		if(files!= null) {
+			String origFilename = files.getOriginalFilename();
+	        String filename = new MD5Generator(origFilename).toString();
+	        String savePath = "C:\\Users\\multicampus\\git\\S05P12D102\\frontend\\files\\profile";
+	        if (!new File(savePath).exists()) {
+                try{
+                    new File(savePath).mkdir();
+                }
+                catch(Exception e){
+                    e.getStackTrace();
+                }
+            }
+	        String filePath = savePath + "\\" + filename;
+            files.transferTo(new File(filePath));
+            
+            userProfileInfo=new UserProfilePostReq();
+            userProfileInfo.setOriginName(origFilename);
+            userProfileInfo.setName(filename);
+            userProfileInfo.setPath(filePath);
+		}else {
+			userProfileInfo=new UserProfilePostReq();
+            userProfileInfo.setOriginName("BeCon.jfif");
+            userProfileInfo.setName("5887b47695b084b04d2e575438d5a794");
+            userProfileInfo.setPath("C:\\Users\\multicampus\\git\\S05P12D102\\frontend\\files\\profile\\5887b47695b084b04d2e575438d5a794");
+		}
+		
+		return userProfileInfo;
+	}
 	
 	@Transactional
 	@Override
@@ -57,20 +92,5 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public UserProfile saveFile(UserProfilePostReq request) {
 		return userProfileRepository.save(request.toEntity());
 	}
-
-	@Transactional
-	@Override
-	public UserProfilePostReq getFile(Long id) {
-		UserProfile userProfile = userProfileRepository.findById(id).get();
-
-		UserProfilePostReq request = UserProfilePostReq.builder()
-				.originName(userProfile.getOriginName())
-				.name(userProfile.getName())
-				.path(userProfile.getPath())
-				.build();
-		return request;
-	}
-
-
 
 }

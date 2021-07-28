@@ -68,6 +68,11 @@ public class ConcertServiceImpl implements ConcertService{
 		return concertRepositorySupport.getConcertByOwnerId(ownerId);
 	}
 
+	@Override
+	public void deleteConcert(String ownerId) {
+		concertRepositorySupport.deleteConcertByOwnerId(ownerId);	
+	}
+
 
 
 }
