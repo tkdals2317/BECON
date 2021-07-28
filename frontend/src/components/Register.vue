@@ -8,7 +8,7 @@
       <div class="form-box">
         <div class="default-form">
             <div class="row clearfix">
-              
+
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="[checkID(), checkMax()]">
@@ -46,7 +46,7 @@
                   <input type="file" ref="picture" name="files" required="">
                 </div>
               </div>
-              
+
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <button class="theme-btn btn-style-one">
                   <i class="btn-curve"></i>
