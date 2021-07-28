@@ -4,17 +4,22 @@
       <div class="sec-title centered">
         <h2>Register<span class="dot">.</span></h2>
       </div>
-      <form @submit.prevent="clickRegister">
       <div class="form-box">
         <div class="default-form">
             <div class="row clearfix">
 
-              <div class="form-group col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group col-lg-9 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="[checkID(), checkMaxID()]" >
                   <div v-if="!errors.requireID">필수 입력 항목입니다.</div>
                   <div v-if="!errors.maxID"> 최대 16자까지 입력 가능합니다.</div>
                 </div>
+              </div>
+              <div class="form-group col-lg-3 col-md-12 col-sm-12">
+                <button class="theme-btn btn-style-one">
+                  <i class="btn-curve"></i>
+                  <span class="btn-title" @click="clickDuplicate()">Check</span>
+                </button>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
@@ -60,13 +65,12 @@
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <button class="theme-btn btn-style-one">
                   <i class="btn-curve"></i>
-                  <span class="btn-title" type="submit">Register</span>
+                  <span class="btn-title" @click="clickRegister()">Register</span>
                 </button>
               </div>
             </div>
         </div>
       </div>
-      </form>
     </div>
   </section>
 </template>
@@ -103,10 +107,13 @@ export default {
       }
   },
   methods: {
-    ...mapActions('user', ["requestRegister"]),
+    ...mapActions('user', ["requestRegister", "requestDuplicate"]),
     clickRegister: function () {
       this.user.profile = this.$refs.picture.files[0];
       this.requestRegister(this.user);
+    },
+    clickDuplicate: function (){
+      this.requestDuplicate(this.user.userId);
     },
     checkID(){
       if(!this.user.userId){
