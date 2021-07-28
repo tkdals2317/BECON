@@ -92,7 +92,7 @@ export default {
           commit("USERINFO", data);
           alert('회원정보가 수정 되었습니다.')
         })
-        .catch(() => { 
+        .catch(() => {
          console.error();
         });
     },

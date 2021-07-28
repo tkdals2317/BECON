@@ -5,12 +5,18 @@
         <div class="sec-title">
           <h2>My Page<span class="dot">!</span></h2>
         </div>
-        <div v-if="profile==null" >
-					<img src="files\profile\5887b47695b084b04d2e575438d5a794" class="profile_image">
-				</div>
-				<div v-else>
-					<img src="files\profile\5887b47695b084b04d2e575438d5a794" class="profile_image" alt="프로필">
-				</div>
+        <div style="margin-bottom: 25px;">
+          <div class="profile_tag" v-if="getUserInfo.userProfile.originName==null" >
+            <img :src="require(`@/common/images/resource/profile/BeConImg.jpg`)" class="profile_image">
+          </div>
+          <div class="profile_tag" v-else>
+            <img :src="require(`@/common/images/resource/profile/${getUserInfo.userProfile.originName}`)" class="profile_image" alt="프로필">
+          </div>
+          <div class="filebox" v-if="isClick">
+            <label for="ex_file">프로필 수정</label>
+            <input type="file" id="ex_file" ref="picture" name="files">
+          </div>
+        </div>
         <div class="form-box">
             <div class="default-form">
                 <div class="row clearfix" v-if="!isClick">
@@ -114,16 +120,20 @@ export default {
     //...mapGetters('user',['getUserInfo']),
     init(){
       this.requestUserInfo();
+
     },
     click(){
       this.isClick=!this.isClick;
+      console.log(this.getUserInfo.userProfile.originName)
     },
     modifyUser(){
+      this.profile = this.$refs.picture.files[0];
       let modifyed={
         name:this.getUserInfo.userName,
         userId:this.getUserInfo.userId,
         email:this.getUserInfo.userEmail,
-        phone:this.getUserInfo.userPhone
+        phone:this.getUserInfo.userPhone,
+        files:this.profile,
       }
       this.requestModify(modifyed);
       this.click();
@@ -137,4 +147,54 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.profile_tag{
+    margin: 0 auto;
+    overflow: hidden;
+    width:100px;
+    height:100px;
+    border-radius: 70%;
+}
+.profile_image{
+    display: block;
+    margin: 0 auto;
+    width:100px;
+    height:100px;
+    object-fit: cover;
+
+}
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #d43114;
+  cursor: pointer;
+  border: 0.3px solid #d43114;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  margin-bottom: 10px;
+}
+
+.filebox label:hover {
+  background-color: #ee2d1496;
+}
+
+.filebox label:active {
+  background-color: #ee2d1496;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+</style>
