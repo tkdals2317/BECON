@@ -124,7 +124,11 @@ export default {
 
 <style scoped>
 .bg-image {
-  background-image: url('../common/images/main-slider/banner-bg-shape-3.png');
+  background-image: url('../common/images/resource/profile/BeConImg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 1 !important;
 }
 .content * {
   opacity: 1 !important;
