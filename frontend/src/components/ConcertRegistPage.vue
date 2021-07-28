@@ -1,10 +1,12 @@
 <template>
   <section class="contact-section">
     <div class="auto-container">
+      <div class="sec-title">
+        <h2>Let's go have fun<span class="dot">!</span></h2>
+      </div>
+      <form @submit.prevent="clickRegistConcert">
       <div class="form-box">
-        <div class="sec-title">
-          <h2>Let's go have fun<span class="dot">!</span></h2>
-        </div>
+
         <div class="default-form">
             <div class="row clearfix">
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
@@ -40,12 +42,14 @@
               <div class="form-group col-lg-6 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <select v-model="concert.categoryName" name="CategoryName" value="" placeholder="CategoryName" required="">
-                    <!-- 이부분 수정 필요 -->
+                    <!-- 카테고리 부분 -->
                     <option value="">공연 카테고리</option>
-                    <option value="HIPHOP">HipHop</option>
-							      <option value="발라드">Balad</option>
-                    <option value="재즈">Zazz</option>
-                    <option value="인디">Indi</option>
+                    <option 
+                      v-for="category in getCategories" :key="category.id"
+                      :value="category.name"
+                      >
+                      {{ category.name}}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -57,20 +61,21 @@
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <button class="theme-btn btn-style-one">
                   <i class="btn-curve"></i>
-                  <span @click="clickRegist" class="btn-title">콘서트 신청</span>
+                  <span class="btn-title" type="submit">콘서트 신청</span>
                 </button>
               </div>
             </div>
         </div>
       </div>
+      </form>
     </div>
   </section>
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
-  name: "LoginPage",
+  name: "ConcertRegistPage",
   data:function(){
     return{
       concert: {
@@ -88,14 +93,14 @@ export default {
   },
   
   computed: {
-   
+    ...mapGetters('concert', ["getCategories"])
   },
 
   methods:{
-    ...mapActions('concert',["requestRegister"]),
-    clickRegist:function(){
+    ...mapActions('concert',["registConcert"]),
+    clickRegistConcert:function(){
       this.concert.files = this.$refs.picture.files[0];
-      this.requestRegister(this.concert);
+      this.registConcert(this.concert);
     }
   }
 };
