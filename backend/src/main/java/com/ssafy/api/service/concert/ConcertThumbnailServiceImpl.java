@@ -36,7 +36,7 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 
 		String origFilename = files.getOriginalFilename();
 		String filename = new MD5Generator(origFilename).toString();
-		String savePath = "C:\\Users\\multicampus\\git\\S05P12D102\\frontend\\files\\thumbnail";
+		String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\thumbnail";
 		if (!new File(savePath).exists()) {
 			try {
 				new File(savePath).mkdir();
@@ -44,7 +44,7 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 				e.getStackTrace();
 			}
 		}
-		String filePath = savePath + "\\" + filename;
+		String filePath = savePath + "\\" + origFilename;
 		files.transferTo(new File(filePath));
 
 		concertTumbnailInfo = new ConcertThumbnailPostReq();
