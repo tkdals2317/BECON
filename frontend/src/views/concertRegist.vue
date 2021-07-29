@@ -20,7 +20,7 @@ export default {
   },
   head() {
     return {
-      title: "Be-con | Concert Regist",
+      title: "BeCon | Concert Regist",
     };
   },
 };

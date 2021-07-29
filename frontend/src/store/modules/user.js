@@ -105,6 +105,8 @@ export default {
         .then(({ data })=>{
           commit("USERINFO", data);
           alert('회원정보가 수정 되었습니다.')
+          window.location.reload();
+          this.requestUserInfo();
         })
         .catch(() => {
          console.error();

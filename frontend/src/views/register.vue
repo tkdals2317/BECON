@@ -20,7 +20,7 @@ export default {
   },
   head() {
     return {
-      title: "Linoor | Contact Us",
+      title: "BeCon | SignUp",
     };
   },
 };
