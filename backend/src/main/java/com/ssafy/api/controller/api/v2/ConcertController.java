@@ -128,27 +128,28 @@ public class ConcertController {
 		return ResponseEntity.status(201).body(concertList);	
 	}
 	
-	@GetMapping("/findByOwnerId/{OwnerId}")
-	@ApiOperation(value = "조건에 맞게 콘서트 리스트를 반환한다")
+	@GetMapping("/findByOwnerId")
+    @ApiOperation(value = "조건에 맞게 콘서트 리스트를 반환한다")
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
         @ApiResponse(code = 210, message = "공연 정보 없음")
     })
-	public ResponseEntity<?> findByOwnerId(
-			/* @ApiIgnore Authentication authentication, */ 
-			@PathVariable String OwnerId){	
-		Optional<List<Concert>> concertList = null;
-		System.out.println(OwnerId);
-		try {
-			concertList = concertService.getConcertByOwnerId(OwnerId);
-			System.out.println();
-			
-		} catch (Exception e) {
-			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
-		}
-		return ResponseEntity.status(201).body(concertList);
+    public ResponseEntity<?> findByOwnerId(
+            @ApiIgnore Authentication authentication){
+        SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+        String userId = userDetails.getUsername();
+        Optional<List<Concert>> concertList = null;
+        System.out.println(userId);
+        try {
+            concertList = concertService.getConcertByOwnerId(userId);
+            System.out.println();
 
-	}
+        } catch (Exception e) {
+            return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
+        }
+        return ResponseEntity.status(201).body(concertList);
+
+}
 	
 	@GetMapping("/{concertId}")
 	@ApiOperation(value = "concertId에 해당하는 콘서트 상세정보를 조회한다")

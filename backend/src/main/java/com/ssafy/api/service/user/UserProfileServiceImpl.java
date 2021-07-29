@@ -19,21 +19,21 @@ import com.ssafy.db.repository.UserProfileRepositorySupport;
 
 @Service("userProfileService")
 public class UserProfileServiceImpl implements UserProfileService {
-    @Autowired
-    UserProfileRepository userProfileRepository;
-    @Autowired
-    UserProfileRepositorySupport userProfileRepositorySupport;
-    
-    @Transactional
-    @Override
-    public UserProfilePostReq setFile(MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
-        UserProfilePostReq userProfileInfo = null;
-        
-        if(files!= null) {
-            String origFilename = files.getOriginalFilename();
-            String filename = new MD5Generator(origFilename).toString();
-            String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile";
-            if (!new File(savePath).exists()) {
+	@Autowired
+	UserProfileRepository userProfileRepository;
+	@Autowired
+	UserProfileRepositorySupport userProfileRepositorySupport;
+	
+	@Transactional
+	@Override
+	public UserProfilePostReq setFile(MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
+		UserProfilePostReq userProfileInfo = null;
+		
+		if(files!= null) {
+			String origFilename = files.getOriginalFilename();
+	        String filename = new MD5Generator(origFilename).toString();
+	        String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile";
+	        if (!new File(savePath).exists()) {
                 try{
                     new File(savePath).mkdir();
                 }
@@ -41,30 +41,30 @@ public class UserProfileServiceImpl implements UserProfileService {
                     e.getStackTrace();
                 }
             }
-            String filePath = savePath + "\\" + origFilename;
+	        String filePath = savePath + "\\" + origFilename;
             files.transferTo(new File(filePath));
             
             userProfileInfo=new UserProfilePostReq();
             userProfileInfo.setOriginName(origFilename);
             userProfileInfo.setName(filename);
             userProfileInfo.setPath(filePath);
-        }else {
-            userProfileInfo=new UserProfilePostReq();
+		}else {
+			userProfileInfo=new UserProfilePostReq();
             userProfileInfo.setOriginName("BeConImg.jpg");
             userProfileInfo.setName("5887b47695b084b04d2e575438d5a794");
             userProfileInfo.setPath("C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile\\BeConImg.jpg");
-        }
-        
-        return userProfileInfo;
-    }
-    
-    @Transactional
-    @Override
-    public void changeFile(Long userPID, MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
-        UserProfilePostReq userProfileInfo=new UserProfilePostReq();
-        System.out.println(userPID);
-    
-        String origFilename = files.getOriginalFilename();
+		}
+		
+		return userProfileInfo;
+	}
+	
+	@Transactional
+	@Override
+	public void changeFile(Long userPID, MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
+		UserProfilePostReq userProfileInfo=new UserProfilePostReq();
+    	System.out.println(userPID);
+	
+		String origFilename = files.getOriginalFilename();
         String filename = new MD5Generator(origFilename).toString();
         String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile";
         if (!new File(savePath).exists()) {

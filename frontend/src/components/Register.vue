@@ -2,7 +2,7 @@
   <section class="contact-section">
     <div class="auto-container">
       <div class="sec-title centered">
-        <h2>Register<span class="dot">.</span></h2>
+        <h2>Sign Up<span class="dot">.</span></h2>
       </div>
       <div class="form-box">
         <div class="default-form">

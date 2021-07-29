@@ -1,6 +1,7 @@
 package com.ssafy.api.controller.api.v1;
 
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ import com.ssafy.api.service.user.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.common.util.MD5Generator;
+import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserProfile;
 
@@ -134,10 +136,10 @@ public class UserController {
 		long rows = 0;
 		User user = userService.getUserByUserId(userId);
 		try{
-//			if(!files.isEmpty()) {
-//	            Long userPID=user.getUserProfile().getId();
-//	            userProfileService.changeFile(userPID, files);
-//	        }
+			if(files!=null) {
+	            Long userPID=user.getUserProfile().getId();
+	            userProfileService.changeFile(userPID, files);
+	        }
 			rows = userService.modifyUser(userId, request);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
@@ -167,7 +169,12 @@ public class UserController {
 		String existId = userDetails.getUsername();
 		Optional<User> rows;
 		try{
-			concertService.deleteConcert(userId);
+			System.out.println(userId);
+			//관련된 콘서트 삭제
+			concertService.deleteConcertByOwnerId(userId);
+			
+		
+			System.out.println("콘서트 삭제?");
 			rows = userService.deleteUser(userId);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));

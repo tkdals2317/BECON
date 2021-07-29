@@ -4,9 +4,7 @@
       <div class="sec-title centered">
         <h2>Let's go have fun<span class="dot">!</span></h2>
       </div>
-      <form @submit.prevent="clickRegistConcert">
       <div class="form-box">
-
         <div class="default-form">
             <div class="row clearfix">
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
@@ -71,13 +69,13 @@
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <button class="theme-btn btn-style-one">
                   <i class="btn-curve"></i>
-                  <span class="btn-title" type="submit">콘서트 신청</span>
+                  <span class="btn-title" type="button" @click="clickRegistConcert()">콘서트 신청</span>
                 </button>
               </div>
             </div>
         </div>
       </div>
-      </form>
+
     </div>
   </section>
 </template>
@@ -113,12 +111,13 @@ export default {
   },
 
   methods:{
-    ...mapActions('concert',["requestRegister"]),
+    ...mapActions('concert',["requestRegistConcert"]),
     clickRegistConcert:function(){
+      console.log("clickRegist")
       this.concert.startTime = this.time.startDay+" "+this.time.startClock;
       this.concert.endTime = this.time.endDay+" "+this.time.endClock;
       this.concert.files = this.$refs.picture.files[0];
-      this.requestRegister(this.concert);
+      this.requestRegistConcert(this.concert);
     }
   }
 };

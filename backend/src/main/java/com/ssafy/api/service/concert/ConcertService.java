@@ -18,5 +18,5 @@ public interface ConcertService {
 	Optional<Concert> getConcertByConcertId(Long concertId);
 	Optional<List<UserConcert>> getUserConcertByConcerId(Long concertId);
 	Optional<List<Concert>> getConcertByOwnerId(String ownerId);
-	void deleteConcert(String ownerId);
+	void deleteConcertByOwnerId(String ownerId);
 }
