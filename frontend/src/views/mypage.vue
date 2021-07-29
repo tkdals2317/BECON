@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="MyPage" />
+    <PageHeader title="My Info" />
     <MyPage />
     <Footer />
   </div>
@@ -20,7 +20,7 @@ export default {
   },
   head() {
     return {
-      title: "Be-con | Login",
+      title: "Be-con | My Services | My Info",
     };
   },
 };
