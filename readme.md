@@ -9,13 +9,20 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 
 음악을 사랑하는 모두와 함께  소통할 수 있는 페스티벌, BECON로 오세요.
 
+---
+
 ## 🛠Stack
 <img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"> <img src="https://img.shields.io/badge/vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white"> <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"> <img src="https://img.shields.io/badge/gitlab-FCA121?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=aws&logoColor=white"> <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
+
+---
 
 ## 🔎Progress
 > BackEnd  50%
 
 > FrontEnd 30%
+
+---
+
 ## 📜Subject
 > 코로나 사태가 심화되면서 공연 문화가 죽고있다. (모든 아티스트들이 울고있음😭)
 - 온라인 화상 비대면 공연 플랫폼
@@ -24,6 +31,8 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
   - 코로나 19로 인해 죽어가는 공연 문화 속에서 새로운 공연 문화를 정착시킬 수 있음.
 - 아티스트들과 팬들간의 소통의 자리 마련
   - 비대면 환경 속에서도 서로 의사소통 할 수 있는 자리를 마련해줄 수 있음.
+
+---
 
 ## 🎬Planning the road
 > 같은 공간, 가슴뛰는 공연, 함께하는 소통
@@ -35,6 +44,8 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
   - 차별화된 볼거리와 즐길 거리를 통해 참여자들의 원활한 커뮤니케이션을 유도하고, 더욱 많은 사람들이 공간의 제약 없이 실시간으로 즐길 수 있도록 하는 등 현장에서 느낄 수 있는 체험과 소통을 온라인으로 전달할 수 있다.
 - 코로나 블루의 확산
   - 문화활동 위축은 시민의 행복감에도 영향을 미친 것으로 나타났다. 코로나 이후 문화활동 변화로 인한 정서적 경험을 묻는 말에 응답자의 72.8%는 ‘문화시설을 방문하지 못해 답답함을 느꼈다’고 답했다.
+
+---
 
 ## 🎨Design
 ![frontend2_-_Chrome_2021-07-30_01-05-51](/uploads/00c2dbf2e974cea32aca5e41667f45f3/frontend2_-_Chrome_2021-07-30_01-05-51.mp4)
@@ -49,6 +60,8 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 ![공연신청](/uploads/5cd86db02a10a632a8cc7675cfe81a0f/공연신청.PNG)
 ![콘서트입장](/uploads/d0302c0f5e49ea750284f4fed6c9a086/콘서트입장.PNG)
 
+
+---
 
 ## 👨‍💻Specification
 
@@ -86,16 +99,25 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 
 > Design Resources
 - 외부 템플릿 또는 에셋 : [Linoor - Vue Nuxt Digital Agency Services Template](https://themeforest.net/item/linoor-vue-nuxt-digital-agency-services-template/29146481) (유료) 
-  - __사용 기능__ : 프로젝트 전체적인 프레임 및 컴포넌트 사용
+  - 사용 기능 : 프로젝트 전체적인 프레임 및 컴포넌트 사용
 
 
 - LOGO
-  <img width="540" alt="KakaoTalk_20210725_230610901" src="https://user-images.githubusercontent.com/77487962/127521182-6079635e-9e63-4bec-bdd0-15dede77638d.png">
+<img width="540" alt="KakaoTalk_20210725_230610901" src="https://user-images.githubusercontent.com/77487962/127521182-6079635e-9e63-4bec-bdd0-15dede77638d.png">
 
-### 핵심 라이브러리
+> 핵심 라이브러리
+
 ![다운로드](/uploads/396e030dded8ce4760c3e3c5d718c16a/다운로드.jpg)
+- WebRTC를 사용하면 개방형 표준 위에서 작동하는 애플리케이션에 실시간 통신 기능을 추가 할 수 있습니다.
+- 피어간에 전송되는 비디오, 음성 및 일반 데이터를 지원하므로 개발자는 강력한 음성 및 비디오 통신 솔루션을 구축 할 수 있습니다. 
+- 이 기술은 모든 최신 브라우저와 모든 주요 플랫폼의 기본 클라이언트에서 사용할 수 있습니다. 
+- WebRTC 기반의 기술은 개방형 웹 표준으로 구현되며 모든 주요 브라우저에서 일반 JavaScript API로 사용할 수 있습니다.
+- Android 및 iOS 애플리케이션과 같은 기본 클라이언트의 경우 동일한 기능을 제공하는 라이브러리를 사용할 수 있습니다.
+- WebRTC 프로젝트는 오픈 소스 이며 Apple, Google, Microsoft 및 Mozilla 등이 지원합니다. 이 페이지는 Google WebRTC 팀에서 관리합니다.
 
-## 🤭Rules
+---
+
+## 🤭Rules (꼭 지킵시다!!)
 > 협업을 위해 개발에 필요한 여러 규칙들을 정의합니다
 
 ### GIT 규칙
@@ -106,8 +128,6 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 - Commit 규칙 : 수정 시 Modify 기능명, 추가 시 Add 기능명, 삭제시 Delete 기능명 등 앞에 확실히 알 수 있는 단어 붙이기
 - **반드시 다른 사람에게 코드 리뷰를 받은 후 merge** 할 것
 
----
-
 ### JIRA 규칙
 
 - 큰틀은 BE, FE로 구분
@@ -117,34 +137,16 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 - 담당자와 스토리포인트 설정하기
 - 스프린트에서 상태 변경하기
 
----
-
 ### 파일명 및 변수명 규칙
 
 - vue 관련 파일명 : 소문자로만 구성, 띄어쓰기시 - 로 구분
-
 - Spring 관련 파일 : 파스칼 표기법, 카멜 표기법과 동일하지만 첫 글자를 대문자로 표기 ex) PascalCase
-
 - 메소드의 이름은 대소문자 혼용 가능하지만 반드시 동사를 사용하여 소문자로 시작 ex) checkRange()
-
 - 그 외 일반적인 변수 : 카멜 표기법, 각 단어의 첫글자는 대문자로 하되, 첫 글자만 소문자로 표기 ex) camelCase 
-
 - 엔티티의 멤버 변수 이름은 DB에 있는 변수명을 기본
-
 - is 접두사를 통해 boolean변수를 표기한다 ex) 로그인이 되었는지 체크하는 변수 :  isLogin
-
 - n 접두사를 통해 객체의 개수를 나타내는 변수를 표기한다 ex) nUser
-
 - No 접미사를 통해 엔티티 번호를 나타낸다 ex) userNo, coferenceNo
-
 - 상수의 경우 대문자로 표기한다 ex) 회원의 등급 : USER_GUEST, USER_ADMIN
-
 - 최대한 직관적으로  작성 ex) ~num, ~cnt, 
-
-## 용어집
-
-
-## 라이센스
-
-> 프로젝트에 사용된 라이선스를 표기합니다
 
