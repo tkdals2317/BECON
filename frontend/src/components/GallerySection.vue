@@ -26,7 +26,7 @@
           <div class="gallery-item mix web-design col-lg-4 col-md-4 col-sm-12" v-for="concertInfo in getConcertInfos" :key="concertInfo.id">
             <div class="inner-box">
               <figure class="image">
-                <img src="@/common/images/gallery/1.jpg" alt="" />
+                <img src="@/common/images/resource/thumbnail/rucidfall.jpg" alt="" />
               </figure>
               <a
                 href="/images/gallery/1.jpg"
