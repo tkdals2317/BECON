@@ -44,7 +44,7 @@
                   <a href="/team">Concert</a>
                   <ul>
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
-                    <li><router-link to="/EX">Concert EX</router-link></li>
+                    <li><router-link to="/concertPage">Concert Enter</router-link></li>
                     <li><router-link to="/testimonials">Concert Schedule</router-link></li>
                     <li><router-link to="/not-found">Concert Search</router-link></li>
                   </ul>
