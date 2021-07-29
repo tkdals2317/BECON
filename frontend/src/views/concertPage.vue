@@ -1,9 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="mypage" />
-    <QuoteSectionThree />
-    <CallToActionThree />
+    <PageHeader title="공연이름" />
+    <ConcertRoom/>
     <Footer />
   </div>
 </template>
@@ -11,19 +10,17 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import QuoteSectionThree from "../components/QuoteSectionThree";
-import CallToActionThree from "../components/CallToActionThree";
+import ConcertRoom from "../components/ConcertRoom";
 export default {
   components: {
-    CallToActionThree,
-    QuoteSectionThree,
+    ConcertRoom,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "BeCon | FAQs",
+      title: "Be-con | Ex",
     };
   },
 };

@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.QConcert;
@@ -19,6 +21,7 @@ public class ConcertRepositorySupport {
 	private JPAQueryFactory jpaQueryFactory;
 	QConcert qConcert = QConcert.concert;
 	QUserConcert qUserConcert = QUserConcert.userConcert;
+	
 	public Optional<List<UserConcert>> findUserConcertByConcertId(Long concertId) {
 		List<UserConcert> userConcerts = jpaQueryFactory.select(qUserConcert).from(qUserConcert)
 				.where(qUserConcert.concert.id.eq(concertId)).fetch();
@@ -29,7 +32,7 @@ public class ConcertRepositorySupport {
 				.where(qConcert.user.userId.eq(ownerId)).fetch();
 		return Optional.ofNullable(userConcerts);
 	}
-
+	
 	public void deleteConcertByOwnerId(String ownerId) {
 		jpaQueryFactory.delete(qConcert)
 		.where(qConcert.user.userId.eq(ownerId)).execute();

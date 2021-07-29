@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="Ex" />
-    <EX/>
+    <PageHeader title="Concert Check" />
+    <ConcertCheck />
     <Footer />
   </div>
 </template>
@@ -10,17 +10,17 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import EX from "../components/Ex";
+import ConcertCheck from "../components/ConcertCheck";
 export default {
   components: {
-    EX,
+    ConcertCheck,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "Be-con | Ex",
+      title: "Be-con | My Services | Check Concert",
     };
   },
 };

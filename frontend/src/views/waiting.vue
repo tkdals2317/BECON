@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="My Info" />
-    <MyPage />
+    <PageHeader title="공연이름" />
+    <EX/>
     <Footer />
   </div>
 </template>
@@ -10,18 +10,13 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import MyPage from "../components/MyPage";
+import EX from "../components/Ex";
 export default {
   components: {
-    MyPage,
+    EX,
     Footer,
     PageHeader,
     Nav,
-  },
-  head() {
-    return {
-      title: "Be-con | My Services | My Info",
-    };
   },
 };
 </script>

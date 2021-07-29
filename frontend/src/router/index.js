@@ -3,10 +3,13 @@ import VueRouter from "vue-router";
 
 import Home from "../views/index.vue";
 import Contact from "../views/contact.vue";
-import EX from "../views/ex.vue";
+import Waiting from "../views/waiting.vue";
+import ConcertPage from "../views/concertPage.vue";
+import Service from "../views/service.vue";
 import Login from "../views/login.vue";
 import MyPage from "../views/mypage.vue";
 import ConcertRegist from "../views/concertRegist.vue";
+import ConcertCheck from "../views/concertCheck.vue"
 import Faqs from "../views/faqs.vue";
 import Register from "../views/register.vue";
 import NotFound from "../views/not-found.vue";
@@ -20,9 +23,14 @@ const routes = [
     component: Home,
   },
   {
-    path: "/EX",
-    name: "EX",
-    component: EX,
+    path: "/waiting",
+    name: "Waiting",
+    component: Waiting,
+  },
+  {
+    path: "/concertPage",
+    name: "ConcertPage",
+    component: ConcertPage,
   },
   {
     path: "/concertRegist",
@@ -53,6 +61,15 @@ const routes = [
     path: "/regist",
     name: "Register",
     component: Register,
+  },
+  {
+    path: "/service",
+    name: "Service",
+    component: Service,
+  },{
+    path: "/concertCK",
+    name: "ConcertCheck",
+    component: ConcertCheck,
   },
   {
     path: "/notfound",

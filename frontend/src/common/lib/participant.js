@@ -34,16 +34,16 @@ function Participant(name, sendMessage) {
 	var container = document.createElement('div');
 	container.className = isPresentMainParticipant() ? PARTICIPANT_CLASS : PARTICIPANT_MAIN_CLASS;
 	container.id = name;
-	var span = document.createElement('span');
+	var div = document.createElement('div');
 	var video = document.createElement('video');
 	var rtcPeer;
 
 	container.appendChild(video);
-	container.appendChild(span);
+	container.appendChild(div);
 	container.onclick = switchContainerClass;
 	document.getElementById('participants').appendChild(container);
 
-	span.appendChild(document.createTextNode(name));
+	div.appendChild(document.createTextNode(name));
 
 	video.id = 'video-' + name;
 	video.autoplay = true;
