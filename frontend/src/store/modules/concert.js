@@ -16,6 +16,9 @@ export default {
           console.log('getters확인' + state.categories)
           return state.categories;
         },
+        getConcertInfos(state) {
+          return state.concertInfos;
+        }
     },
 
     mutations: {

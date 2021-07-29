@@ -110,7 +110,7 @@ public class ConcertController {
 		System.out.println(category);
 		List<Concert> concertList = null;
 		try {
-			if(category.equals("전체")) {
+			if(category.equals("All")) {
 				System.out.println("category");
 				concertList = concertService.findConcerts();
 			}else {
