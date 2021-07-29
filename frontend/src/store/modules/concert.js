@@ -5,6 +5,7 @@ export default {
     namespaced: true,
     state: {
         categories: [],
+        concertInfos:[],
         registConcertList:{},
     },
 
@@ -15,6 +16,9 @@ export default {
         getCategories(state) {
           return state.categories;
         },
+        getConcertInfos(state) {
+          return state.concertInfos;
+        },
         getRegistConcertList(state){
           return state.registConcertList;
         }
@@ -24,13 +28,15 @@ export default {
       CATEGORY(state, payload) {
         state.categories = payload
       },
+      CONCERT(state, payload) {
+        state.concertInfos = payload
+      },
       REGISTCONCERT(state, payload){
         state.registConcertList = payload;
       }
     },
     actions: {
         requestRegistConcert(commit, concert) {
-            console.log("clickRegist2")
             var formData = new FormData();
             const CSRF_TOKEN=localStorage.getItem("accessToken");
             for (var variable in concert) {
@@ -62,15 +68,16 @@ export default {
             console.error();
           });
       },
-      requestConcert() {
+      requestConcert({commit}, category) {
         http
-          .get(`/api/v2/concert/findByCategory/전체`)
-          .then(({ data }) => {
-            console.log(data)
-          })
-          .catch(() => {
-            console.error();
-          });
+          .get('/api/v2/concert/findByCategory/' + category)
+            .then(({ data }) => {
+              console.log(data)
+              commit('CONCERT', data)
+            })
+            .catch(() => {
+              console.error();
+            });
       },
       requestCheckConcert({commit}){
         const CSRF_TOKEN=localStorage.getItem("accessToken");

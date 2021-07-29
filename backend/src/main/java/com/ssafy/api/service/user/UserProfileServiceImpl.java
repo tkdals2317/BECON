@@ -82,15 +82,15 @@ public class UserProfileServiceImpl implements UserProfileService {
         System.out.println(userProfileInfo.getOriginName());
         userProfileInfo.setName(filename);
         userProfileInfo.setPath(filePath);
-    	
+        
         userProfileRepositorySupport.modifyProfile(userPID, userProfileInfo);
-	}
-	
-	
-	@Transactional
-	@Override
-	public UserProfile saveFile(UserProfilePostReq request) {
-		return userProfileRepository.save(request.toEntity());
-	}
+    }
+    
+    
+    @Transactional
+    @Override
+    public UserProfile saveFile(UserProfilePostReq request) {
+        return userProfileRepository.save(request.toEntity());
+    }
 
 }

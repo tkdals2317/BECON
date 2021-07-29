@@ -33,7 +33,6 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 			throws UnsupportedEncodingException, NoSuchAlgorithmException,
 			IllegalStateException, IOException {
 		ConcertThumbnailPostReq concertTumbnailInfo = null;
-
 		String origFilename = files.getOriginalFilename();
 		String filename = new MD5Generator(origFilename).toString();
 		String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\thumbnail";
