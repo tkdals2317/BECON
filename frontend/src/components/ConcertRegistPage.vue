@@ -1,7 +1,7 @@
 <template>
   <section class="contact-section">
     <div class="auto-container">
-      <div class="sec-title">
+      <div class="sec-title centered">
         <h2>Let's go have fun<span class="dot">!</span></h2>
       </div>
       <form @submit.prevent="clickRegistConcert">

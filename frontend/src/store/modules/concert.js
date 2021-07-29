@@ -5,6 +5,7 @@ export default {
     namespaced: true,
     state: {
         categories: [],
+        concertInfos: []
     },
 
     getters: {
@@ -22,31 +23,36 @@ export default {
         state.categories = payload
         console.log(this.categories + '여기는 mutations')
       },
+      CONCERT(state, payload) {
+        state.concertInfos = payload
+      }
     },
 
     actions: {
-        registConcert(commit, concert) {
-            var formData = new FormData();
-            const CSRF_TOKEN=localStorage.getItem("accessToken");
-            for (var variable in concert) {
-              formData.append(variable, concert[variable]);
-              console.log(variable, concert[variable]);
-            }
-            http
-              .post(`/api/v2/concert/regist`, formData, {
-                headers: {  "Authorization": 'Bearer '+ CSRF_TOKEN,
-                            "Content-Type": "multipart/form-data"
-                },
-              })
-              .then(() => {
-                alert('공연 신청이 완료되었습니다.');
-                router.push('/');
-              })
-              .catch((err) => {
-                alert(err.response.data.message);
-                  console.error();
-              });
-          },
+      requestRegister(commit, concert) {
+        var formData = new FormData();
+        const CSRF_TOKEN = localStorage.getItem("accessToken");
+        for (var variable in concert) {
+          formData.append(variable, concert[variable]);
+          console.log(variable, concert[variable]);
+        }
+              
+        http
+          .post(`/api/v2/concert/regist`, formData, {
+            headers: {
+              "Authorization": 'Bearer ' + CSRF_TOKEN,
+              "Content-Type": "multipart/form-data"
+            },
+          })
+          .then(() => {
+            alert('공연 신청이 완료되었습니다.');
+            router.push('/');
+          })
+          .catch((err) => {
+            alert(err.response.data.message);
+            console.error();
+          });
+      },
       requestCategory({ commit }) {
         http
           .get(`/api/v2/concert/concert-categories`)
@@ -61,16 +67,17 @@ export default {
             console.error();
           });
       },
-      requestConcert() {
+      requestConcert({commit}, category) {
+        console.log(category)
         http
-          .get(`/api/v2/concert/findByCategory/전체`)
-          .then(({ data }) => {
-            console.log(data)
-            // router.push('/');
-          })
-          .catch(() => {
-            console.error();
-          });
+          .get('/api/v2/concert/findByCategory/' + category)
+            .then(({ data }) => {
+              console.log(data)
+              commit('CONCERT', data)
+            })
+            .catch(() => {
+              console.error();
+            });
+        },
       },
-    },
-  };
+    };

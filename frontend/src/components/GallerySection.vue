@@ -18,7 +18,7 @@
                 All<sup></sup>
               </li>
               <span v-for="category in getCategories" :key="category.id">
-                <li class="filter" data-role="button" data-filter=".branding">
+                <li class="filter"  @click="click(category.name)">
                   {{ category.name }}
                 </li>
               </span>
@@ -38,7 +38,7 @@
             </ul>
           </div>
         </div>
-        <div class="filter-list row">
+        <div class="filter-list row" v-for="concertInfo in getConcertInfos" :key="concertInfo.id">
           <!-- Gallery Item -->
           <div
             class="gallery-item mix all web-design col-lg-4 col-md-6 col-sm-12"
@@ -54,12 +54,10 @@
               ></a>
               <div class="cap-box">
                 <div class="cap-inner">
-                  <div class="cat"><span>Artist</span></div>
+                  <div class="cat"><span>{{concertInfo.title}}</span></div>
                   <div class="title">
                     <h5>
-                      <router-link to="/portfolio-single"
-                        >10cm</router-link
-                      >
+                      <router-link to="/portfolio-single">{{concertInfo.description}}</router-link>
                     </h5>
                   </div>
                 </div>
@@ -68,7 +66,7 @@
           </div>
 
           <!-- Gallery Item -->
-          <div
+          <!-- <div
             class="
               gallery-item
               mix
@@ -100,10 +98,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- Gallery Item -->
-          <div
+          <!-- <div
             class="
               gallery-item
               mix
@@ -135,10 +133,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- Gallery Item -->
-          <div
+          <!-- <div
             class="
               gallery-item
               mix
@@ -170,10 +168,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- Gallery Item -->
-          <div
+          <!-- <div
             class="
               gallery-item
               mix
@@ -207,10 +205,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- Gallery Item -->
-          <div
+          <!-- <div
             class="
               gallery-item
               mix
@@ -242,7 +240,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -262,10 +260,15 @@ export default {
     };
   },
   computed:{
-    ...mapGetters('concert', ["getCategories"])
+    ...mapGetters('concert', ["getCategories", "getConcertInfos"])
   },
   methods: {
     ...mapActions('concert', ["requestCategory", "requestConcert"]),
+    click(data){
+      console.log(data+" 카테고리 선택")
+      this.requestConcert(data)
+    }
+
   },
   mounted() {
     const containerEl = document.querySelector(".filter-list");
@@ -278,7 +281,9 @@ export default {
     });
   },
   created: function () {
-    this.requestCategory('categories')
+    this.selectedCategory = '전체'
+    this.requestCategory()
+    this.requestConcert(this.selectedCategory)
   }
 
 };
