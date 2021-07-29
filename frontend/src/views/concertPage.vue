@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="Ex" />
-    <EX/>
+    <PageHeader title="공연이름" />
+    <ConcertRoom/>
     <Footer />
   </div>
 </template>
@@ -10,10 +10,10 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import EX from "../components/Ex";
+import ConcertRoom from "../components/ConcertRoom";
 export default {
   components: {
-    EX,
+    ConcertRoom,
     Footer,
     PageHeader,
     Nav,

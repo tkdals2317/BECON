@@ -1,11 +1,6 @@
 <template>
   <section class="page-banner">
-    <div
-      class="image-layer"
-      style="background-image: url(/images/background/image-7.jpg)"
-    ></div>
-    <div class="shape-1"></div>
-    <div class="shape-2"></div>
+    <div class="image-layer"></div>
     <div class="banner-inner">
       <div class="auto-container">
         <div class="inner-container clearfix">
@@ -33,4 +28,15 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.image-layer {
+  background-image: url('../common/images/resource/profile/BeConImg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 1 !important;
+}
+h1 {
+  /* color: ; */
+}
+</style>
