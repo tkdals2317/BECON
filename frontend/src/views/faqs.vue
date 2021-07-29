@@ -23,7 +23,7 @@ export default {
   },
   head() {
     return {
-      title: "Linoor | FAQs",
+      title: "BeCon | FAQs",
     };
   },
 };

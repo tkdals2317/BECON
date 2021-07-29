@@ -20,7 +20,7 @@ export default {
   },
   head() {
     return {
-      title: "Be-con | Login",
+      title: "BeCon | Login",
     };
   },
 };
