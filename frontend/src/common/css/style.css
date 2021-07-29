@@ -111,13 +111,8 @@
  ***/
 
 :root {
-<<<<<<< HEAD
   --thm-font: "양진체", sans-serif;
   --thm-base: #E71D36;
-=======
-  --thm-font: "Teko", sans-serif;
-  --thm-base: #e71d36;
->>>>>>> 7ab83e41c4dfb35b066c4da9b22e9276f17e9b7e
   --thm-base-rgb: 255, 170, 23;
   --thm-black: #222429;
   --thm-text: #686a6f;
