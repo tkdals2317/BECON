@@ -63,11 +63,11 @@
               <a class="link">
                 <span class="icon"></span>
                 <div v-if="!isLogin">
-                  <span class="number"><router-link to="/regist" class="nav1">SignUp</router-link></span>
+                  <span class="funBtn"><router-link to="/regist" class="nav1">SignUp</router-link></span>
                   <span class="funBtn"><router-link to="/login" class="nav1">Login</router-link></span>
                 </div>
                 <div v-if="isLogin">
-                  <span class="number"><router-link to="/service" class="nav1">MyService</router-link></span>
+                  <span class="funBtn"><router-link to="/service" class="nav1">MyService</router-link></span>
                   <span class="funBtn" @click="clickLogout">Logout</span>
                 </div>
               </a>
@@ -172,7 +172,7 @@ export default {
 .main-header .other-links .fun-box {
   position: relative;
   float: left;
-  padding: 26px 0px;
+  padding: 35px 0px;
 }
 
 .main-header .other-links .fun-box .link {
