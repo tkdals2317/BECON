@@ -63,6 +63,20 @@ export default {
           console.error();
         });
     },
+    requestDuplicate(commit, userId){
+      http
+        .get(`/api/v1/users/`+userId)
+        .then((res) => {
+          console.log(res);
+          alert(res.data.message);
+
+        })
+        .catch((error) => {
+          if(error.response.data.statusCode==409){
+            alert(error.response.data.message);
+          }
+        });
+    },
     requestUserInfo({commit}){
       const CSRF_TOKEN=localStorage.getItem("accessToken");
       http

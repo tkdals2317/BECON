@@ -25,18 +25,17 @@ export default {
     },
 
     actions: {
-        requestRegister(commit, concert) {
+        registConcert(commit, concert) {
             var formData = new FormData();
             const CSRF_TOKEN=localStorage.getItem("accessToken");
             for (var variable in concert) {
               formData.append(variable, concert[variable]);
               console.log(variable, concert[variable]);
             }
-            
             http
               .post(`/api/v2/concert/regist`, formData, {
-                headers: {  "Authorization": 'Bearer '+ CSRF_TOKEN, 
-                            "Content-Type": "multipart/form-data" 
+                headers: {  "Authorization": 'Bearer '+ CSRF_TOKEN,
+                            "Content-Type": "multipart/form-data"
                 },
               })
               .then(() => {
