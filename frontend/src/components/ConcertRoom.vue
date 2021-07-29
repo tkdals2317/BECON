@@ -214,7 +214,7 @@
             <!--Sidebar Widget-->
             <div class="sidebar-widget recent-posts" style="height: 400px">
               <div class="widget-inner" style="height: 100%">
-                <!-- <div class="sidebar-title">
+                <div class="sidebar-title">
                   <h4>Chat</h4>
                 </div>
 
@@ -222,20 +222,19 @@
                   class="post"
                   v-for="(message, index) in messages"
                   :key="index"
-                  :ref="chatForm"
                 >
                   <figure class="post-thumb"></figure>
                   <div class="text" style="font-size: 15px">
                     {{ message.sender }} - {{ message.message }}
                   </div>
-                </div> -->
+                </div>
               </div>
             </div>
 
             <div class="sidebar-widget search-box">
               <div class="widget-inner">
                 <div class="form-group">
-                  <!-- <input
+                  <input
                     type="text"
                     name="search-field"
                     v-model="message"
@@ -243,7 +242,7 @@
                   />
                   <button @click="sendMessage">
                     <span class="icon flaticon-magnifying-glass-1"></span>
-                  </button> -->
+                  </button>
                 </div>
               </div>
             </div>
@@ -350,11 +349,11 @@ export default {
   data() {
     return {
       // roomId: "",
-      // sender: "",
-      // room: {},
-      // message: "",
-      // messages: [],
-      // reconnect: 0,
+      sender: "",
+      room: {},
+      message: "",
+      messages: [],
+      reconnect: 0,
 
       participants: [],
       roomId: '1',
@@ -386,19 +385,19 @@ export default {
     //     this.room = response.data;
     //   });
     // },
-    // sendMessage() {
-    //   ws.send(
-    //     "/pub/chat/message",
-    //     JSON.stringify({
-    //       type: "TALK",
-    //       roomId: this.roomId,
-    //       sender: this.sender,
-    //       message: this.message,
-    //     }),
-    //     {}
-    //   );
-    //   this.message = "";
-    // },
+    sendMessage() {
+      // ws.send(
+      //   "/pub/chat/message",
+      //   JSON.stringify({
+      //     type: "TALK",
+      //     roomId: this.roomId,
+      //     sender: this.sender,
+      //     message: this.message,
+      //   }),
+      //   {}
+      // );
+      // this.message = "";
+    },
     // recvMessage(recv) {
     //   this.messages.unshift({
     //     type: recv.type,
@@ -598,6 +597,9 @@ export default {
   min-height: 20px !important;
   margin-bottom: 0px !important;
 }
+.auto-container {
+  max-width: 1600px;
+}
 </style>
 
 <style>
@@ -654,5 +656,10 @@ export default {
  
  .participant.main video {
 	 height: auto;
+ }
+
+.form-group > input {
+   background-color: #f4f5f8 !important;
+   border: none !important;
  }
 </style>
