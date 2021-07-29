@@ -23,21 +23,18 @@ export default {
     mutations: {
       CATEGORY(state, payload) {
         state.categories = payload
-        //console.log(this.categories + '여기는 mutations')
       },
       REGISTCONCERT(state, payload){
         state.registConcertList = payload;
-        console.log(state.registConcertList);
       }
     },
-
     actions: {
-        requsetRegister(commit, concert) {
+        requestRegistConcert(commit, concert) {
+            console.log("clickRegist2")
             var formData = new FormData();
             const CSRF_TOKEN=localStorage.getItem("accessToken");
             for (var variable in concert) {
               formData.append(variable, concert[variable]);
-              console.log(variable, concert[variable]);
             }
             http
               .post(`/api/v2/concert/regist`, formData, {
@@ -59,10 +56,7 @@ export default {
           .get(`/api/v2/concert/concert-categories`)
           .then(({ data }) => {
             this.categories = data
-            // console.log("state categories : "+this.data)
-            console.log(data)
             commit('CATEGORY', data)
-            // router.push('/');
           })
           .catch(() => {
             console.error();
@@ -73,7 +67,6 @@ export default {
           .get(`/api/v2/concert/findByCategory/전체`)
           .then(({ data }) => {
             console.log(data)
-            // router.push('/');
           })
           .catch(() => {
             console.error();
