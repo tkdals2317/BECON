@@ -1,7 +1,7 @@
 <template>
   <section class="contact-section">
     <div class="auto-container">
-      <div class="sec-title">
+      <div class="sec-title centered">
         <h2>Let's go have fun<span class="dot">!</span></h2>
       </div>
       <form @submit.prevent="clickRegistConcert">
@@ -19,14 +19,24 @@
                   <input type="text" v-model="concert.description" name="Description" value="" placeholder="Description" required=""/>
                 </div>
               </div>
-              <div class="form-group col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group col-lg-3 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="concert.startTime" name="StartTime" value="" placeholder="StartTime" required=""/>
+                  <input type="text" v-model="time.startDay" name="StartDay" value="" placeholder="2000-00-00" required=""/>
                 </div>
               </div>
-              <div class="form-group col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group col-lg-3 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="concert.endTime" name="EndTime" value="" placeholder="EndTime" required=""/>
+                  <input type="text" v-model="time.startClock" name="StartClock" value="" placeholder="14:00" required=""/>
+                </div>
+              </div>
+              <div class="form-group col-lg-3 col-md-12 col-sm-12">
+                <div class="field-inner">
+                  <input type="text" v-model="time.endDay" name="EndDay" value="" placeholder="2000-00-01" required=""/>
+                </div>
+              </div>
+              <div class="form-group col-lg-3 col-md-12 col-sm-12">
+                <div class="field-inner">
+                  <input type="text" v-model="time.endClock" name="EndClock" value="" placeholder="14:00" required=""/>
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-12 col-sm-12">
@@ -44,7 +54,7 @@
                   <select v-model="concert.categoryName" name="CategoryName" value="" placeholder="CategoryName" required="">
                     <!-- 카테고리 부분 -->
                     <option value="">공연 카테고리</option>
-                    <option 
+                    <option
                       v-for="category in getCategories" :key="category.id"
                       :value="category.name"
                       >
@@ -88,19 +98,27 @@ export default {
         categoryName:"",
         files: null,
       },
+      time:{
+        startDay:"",
+        startClock:"",
+        endDay:"",
+        endClock:"",
+      },
       message: ""
     }
   },
-  
+
   computed: {
     ...mapGetters('concert', ["getCategories"])
   },
 
   methods:{
-    ...mapActions('concert',["registConcert"]),
+    ...mapActions('concert',["requestRegister"]),
     clickRegistConcert:function(){
+      this.concert.startTime = this.time.startDay+" "+this.time.startClock;
+      this.concert.endTime = this.time.endDay+" "+this.time.endClock;
       this.concert.files = this.$refs.picture.files[0];
-      this.registConcert(this.concert);
+      this.requestRegister(this.concert);
     }
   }
 };

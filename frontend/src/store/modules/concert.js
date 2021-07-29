@@ -5,6 +5,7 @@ export default {
     namespaced: true,
     state: {
         categories: [],
+        registConcertList:{},
     },
 
     getters: {
@@ -12,31 +13,36 @@ export default {
             return state.concertCategory;
         },
         getCategories(state) {
-          console.log('getters확인' + state.categories)
           return state.categories;
         },
+        getRegistConcertList(state){
+          return state.registConcertList;
+        }
     },
 
     mutations: {
       CATEGORY(state, payload) {
         state.categories = payload
-        console.log(this.categories + '여기는 mutations')
+        //console.log(this.categories + '여기는 mutations')
       },
+      REGISTCONCERT(state, payload){
+        state.registConcertList = payload;
+        console.log(state.registConcertList);
+      }
     },
 
     actions: {
-        requestRegister(commit, concert) {
+        requsetRegister(commit, concert) {
             var formData = new FormData();
             const CSRF_TOKEN=localStorage.getItem("accessToken");
             for (var variable in concert) {
               formData.append(variable, concert[variable]);
               console.log(variable, concert[variable]);
             }
-            
             http
               .post(`/api/v2/concert/regist`, formData, {
-                headers: {  "Authorization": 'Bearer '+ CSRF_TOKEN, 
-                            "Content-Type": "multipart/form-data" 
+                headers: {  "Authorization": 'Bearer '+ CSRF_TOKEN,
+                            "Content-Type": "multipart/form-data"
                 },
               })
               .then(() => {
@@ -72,6 +78,19 @@ export default {
           .catch(() => {
             console.error();
           });
+      },
+      requestCheckConcert({commit}){
+        const CSRF_TOKEN=localStorage.getItem("accessToken");
+        http
+          .get(`/api/v2/concert/findByOwnerId`,{
+            headers: { "Authorization": 'Bearer '+ CSRF_TOKEN }
+          })
+          .then(({data})=>{
+            commit('REGISTCONCERT', data);
+          })
+          .catch(()=>{
+            console.error();
+          })
       },
     },
   };
