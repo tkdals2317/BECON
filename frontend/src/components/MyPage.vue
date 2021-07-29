@@ -19,48 +19,25 @@
         </div>
         <div class="form-box">
             <div class="default-form">
-                <div class="row clearfix" v-if="!isClick">
+                <div class="row clearfix" >
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input readonly type="text" v-model="getUserInfo.userId" name="userId" value="">
+                        <input v-bind:disabled="!isClick" type="text" v-model="getUserInfo.userId" name="userId" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input readonly type="text" v-model="getUserInfo.userName" name="name" value="">
+                        <input v-bind:disabled="!isClick" type="text" v-model="getUserInfo.userName" name="name" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input readonly type="text" v-model="getUserInfo.userPhone" name="phone" value="">
+                        <input v-bind:disabled="!isClick" type="text" v-model="getUserInfo.userPhone" name="phone" value="">
                         </div>
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input readonly type="text" v-model="getUserInfo.userEmail" name="email" value="">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row clearfix" v-if="isClick">
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <div class="field-inner">
-                        <input type="text" v-model="getUserInfo.userId" name="userId" value="">
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <div class="field-inner">
-                        <input type="text" v-model="getUserInfo.userName" name="name" value="">
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <div class="field-inner">
-                        <input type="text" v-model="getUserInfo.userPhone" name="phone" value="">
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                        <div class="field-inner">
-                        <input type="text" v-model="getUserInfo.userEmail" name="email" value="">
+                        <input v-bind:disabled="!isClick" type="text" v-model="getUserInfo.userEmail" name="email" value="">
                         </div>
                     </div>
                 </div>
@@ -111,20 +88,14 @@ export default {
   computed :{
     ...mapGetters('user',['getUserInfo']),
   },
-  updated:{
-
-  },
   methods:{
     ...mapActions('user',['requestUserInfo', 'requestDelete', 'requestModify']),
     ...mapState('user',['userInfo']),
-    //...mapGetters('user',['getUserInfo']),
     init(){
       this.requestUserInfo();
-
     },
     click(){
       this.isClick=!this.isClick;
-      console.log(this.getUserInfo.userProfile.originName)
     },
     modifyUser(){
       this.profile = this.$refs.picture.files[0];
@@ -135,9 +106,10 @@ export default {
         phone:this.getUserInfo.userPhone,
         files:this.profile,
       }
-      this.requestModify(modifyed);
       this.click();
+      this.requestModify(modifyed);
     },
+
     deleteUser(){
       this.requestDelete(this.getUserInfo.userId);
       localStorage.removeItem('accessToken');

@@ -5,7 +5,8 @@ export default {
     namespaced: true,
     state: {
         categories: [],
-        concertInfos: []
+        concertInfos:[],
+        registConcertList:{},
     },
 
     getters: {
@@ -13,62 +14,61 @@ export default {
             return state.concertCategory;
         },
         getCategories(state) {
-          console.log('getters확인' + state.categories)
           return state.categories;
         },
+        getConcertInfos(state) {
+          return state.concertInfos;
+        },
+        getRegistConcertList(state){
+          return state.registConcertList;
+        }
     },
 
     mutations: {
       CATEGORY(state, payload) {
         state.categories = payload
-        console.log(this.categories + '여기는 mutations')
       },
       CONCERT(state, payload) {
         state.concertInfos = payload
+      },
+      REGISTCONCERT(state, payload){
+        state.registConcertList = payload;
       }
     },
-
     actions: {
-      requestRegister(commit, concert) {
-        var formData = new FormData();
-        const CSRF_TOKEN = localStorage.getItem("accessToken");
-        for (var variable in concert) {
-          formData.append(variable, concert[variable]);
-          console.log(variable, concert[variable]);
-        }
-              
-        http
-          .post(`/api/v2/concert/regist`, formData, {
-            headers: {
-              "Authorization": 'Bearer ' + CSRF_TOKEN,
-              "Content-Type": "multipart/form-data"
-            },
-          })
-          .then(() => {
-            alert('공연 신청이 완료되었습니다.');
-            router.push('/');
-          })
-          .catch((err) => {
-            alert(err.response.data.message);
-            console.error();
-          });
-      },
+        requestRegistConcert(commit, concert) {
+            var formData = new FormData();
+            const CSRF_TOKEN=localStorage.getItem("accessToken");
+            for (var variable in concert) {
+              formData.append(variable, concert[variable]);
+            }
+            http
+              .post(`/api/v2/concert/regist`, formData, {
+                headers: {  "Authorization": 'Bearer '+ CSRF_TOKEN,
+                            "Content-Type": "multipart/form-data"
+                },
+              })
+              .then(() => {
+                alert('공연 신청이 완료되었습니다.');
+                router.push('/');
+              })
+              .catch((err) => {
+                alert(err.response.data.message);
+                  console.error();
+              });
+          },
       requestCategory({ commit }) {
         http
           .get(`/api/v2/concert/concert-categories`)
           .then(({ data }) => {
             this.categories = data
-            // console.log("state categories : "+this.data)
-            console.log(data)
             commit('CATEGORY', data)
-            // router.push('/');
           })
           .catch(() => {
             console.error();
           });
       },
       requestConcert({commit}, category) {
-        console.log(category)
         http
           .get('/api/v2/concert/findByCategory/' + category)
             .then(({ data }) => {
@@ -78,6 +78,19 @@ export default {
             .catch(() => {
               console.error();
             });
-        },
       },
-    };
+      requestCheckConcert({commit}){
+        const CSRF_TOKEN=localStorage.getItem("accessToken");
+        http
+          .get(`/api/v2/concert/findByOwnerId`,{
+            headers: { "Authorization": 'Bearer '+ CSRF_TOKEN }
+          })
+          .then(({data})=>{
+            commit('REGISTCONCERT', data);
+          })
+          .catch(()=>{
+            console.error();
+          })
+      },
+    },
+  };

@@ -20,11 +20,7 @@
         <div class="nav-outer clearfix">
           <!--Mobile Navigation Toggler-->
           <div class="mobile-nav-toggler">
-            <span
-              @click="mobileToggle = !mobileToggle"
-              class="icon flaticon-menu-2"
-            ></span
-            ><span class="txt">Menu</span>
+            <span @click="mobileToggle = !mobileToggle" class="icon flaticon-menu-2"></span><span class="txt">Menu</span>
           </div>
 
           <!-- Main Menu -->
@@ -35,13 +31,13 @@
                   <a href="/">Home</a>
                   <ul>
                     <li><router-link to="/">Home</router-link></li>
-                    <li><router-link to="/contact">Page1</router-link></li>
+                    <!-- <li><router-link to="/contact">Page1</router-link></li>
                     <li><router-link to="/faqs">Page2</router-link></li>
-                    <li><router-link to="/notfound">Page3</router-link></li>
+                    <li><router-link to="/notfound">Page3</router-link></li> -->
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a href="/team">Concert</a>
+                  <a href="#">Concert</a>
                   <ul>
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
                     <li><router-link to="/concertPage">Concert Enter</router-link></li>
@@ -50,7 +46,7 @@
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <router-link to="/services">Services</router-link>
+                  <a href="#">Services</a>
                   <ul>
                     <li><router-link to="/services">FAQs</router-link></li>
                     <li><router-link to="/web-development">Q&A</router-link>
@@ -71,7 +67,7 @@
                   <span class="funBtn"><router-link to="/login" class="nav1">Login</router-link></span>
                 </div>
                 <div v-if="isLogin">
-                  <span class="number"><router-link to="/myPage" class="nav1">MyPage</router-link></span>
+                  <span class="number"><router-link to="/service" class="nav1">MyService</router-link></span>
                   <span class="funBtn" @click="clickLogout">Logout</span>
                 </div>
               </a>
@@ -91,40 +87,33 @@
         } clearfix`"
       >
         <ul class="navigation clearfix">
-          <li class="dropdown">
-            <a href="#"
-              >Home
-              <div class="dropdown-btn">
-                <span class="fa fa-angle-right"></span></div
-            ></a>
-            <ul class="sub-menu">
-              <li><router-link to="/">Home Style 01</router-link></li>
-              <li><router-link to="/index-2">Home Style 02</router-link></li>
-              <li><router-link to="/index-3">Home Style 03</router-link></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#"
-              >Concert
-              <div class="dropdown-btn">
-                <span class="fa fa-angle-right"></span></div
-            ></a>
-            <ul class="sub-menu">
-              <li><router-link to="/team">Concert Regist</router-link></li>
-              <li><router-link to="/EX">Concert EX</router-link></li>
-              <li><router-link to="/testimonials">Concert Schedule</router-link></li>
-              <li><router-link to="/faqs">Concert Search</router-link></li>
-              <!-- <li><router-link to="/not-found">404 Page</router-link></li> -->
-            </ul>
-          </li>
-          <li class="dropdown">
-            <router-link to="#">Services<div class="dropdown-btn"><span class="fa fa-angle-right"></span></div></router-link>
-            <ul class="sub-menu">
-              <li><router-link to="/faqs">FAQs</router-link></li>
-              <li><router-link to="/web-development">Q&A</router-link></li>
-            </ul>
-          </li>
-        </ul>
+                <li class="current dropdown">
+                  <a href="/">Home</a>
+                  <ul>
+                    <li><router-link to="/">Home</router-link></li>
+                    <!-- <li><router-link to="/contact">Page1</router-link></li>
+                    <li><router-link to="/faqs">Page2</router-link></li>
+                    <li><router-link to="/notfound">Page3</router-link></li> -->
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#">Concert</a>
+                  <ul>
+                    <li><router-link to="/concertRegist">Concert Regist</router-link></li>
+                    <li><router-link to="/EX">Concert EX</router-link></li>
+                    <li><router-link to="/testimonials">Concert Schedule</router-link></li>
+                    <li><router-link to="/not-found">Concert Search</router-link></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#">Services</a>
+                  <ul>
+                    <li><router-link to="/services">FAQs</router-link></li>
+                    <li><router-link to="/web-development">Q&A</router-link>
+                  </li>
+                  </ul>
+                </li>
+              </ul>
       </div>
     </nav>
   </header>

@@ -1,9 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="mypage" />
-    <QuoteSectionThree />
-    <CallToActionThree />
+    <PageHeader title="Concert Check" />
+    <ConcertCheck />
     <Footer />
   </div>
 </template>
@@ -11,19 +10,17 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import QuoteSectionThree from "../components/QuoteSectionThree";
-import CallToActionThree from "../components/CallToActionThree";
+import ConcertCheck from "../components/ConcertCheck";
 export default {
   components: {
-    CallToActionThree,
-    QuoteSectionThree,
+    ConcertCheck,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "BeCon | FAQs",
+      title: "Be-con | My Services | Check Concert",
     };
   },
 };
