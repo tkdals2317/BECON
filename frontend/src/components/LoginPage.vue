@@ -28,6 +28,7 @@
                     value=""
                     placeholder="Password"
                     required=""
+                    @keyup.enter="clickLogin"
                   />
                 </div>
               </div>
@@ -64,7 +65,7 @@ export default {
 
   methods:{
     ...mapActions('user',["requestLogin"]),
-    clickLogin:function(){
+    clickLogin(){
       this.requestLogin(this.user);
     }
   }

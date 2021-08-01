@@ -8,13 +8,14 @@
         <!--Logo-->
         <div class="logo-box">
           <div class="logo">
-            <a href="/" title="Linoor - Digital Agency Template">
+            <router-link to="/" title="Linoor - Digital Agency Template">
             <img
                 src="@/common/images/be-conlogo.png"
                 id="thm-logo"
                 alt="Linoor - DIgital Agency HTML Template"
                 title="Linoor - DIgital Agency Template"
-            /></a>
+            />
+            </router-link>
           </div>
         </div>
         <div class="nav-outer clearfix">
@@ -40,7 +41,7 @@
                   <a href="#">Concert</a>
                   <ul>
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
-                    <li><router-link to="/concertPage">Concert Enter</router-link></li>
+                    <li @click="concertEnter"><a>Concert Enter</a></li>
                     <li><router-link to="/testimonials">Concert Schedule</router-link></li>
                     <li><router-link to="/not-found">Concert Search</router-link></li>
                   </ul>
@@ -164,6 +165,13 @@ export default {
       localStorage.removeItem('accessToken');
       location.href = "/";
     },
+    concertEnter() {
+      let num = prompt('방 번호를 입력해주세요');
+      console.log(num);
+      // this.$router.push('concertPage');
+      this.$router.push({ name: 'ConcertPage', params: { roomId: num }});
+      // this.$router.push({ name: 'Waiting', params: { roomId: num }});
+    }
   },
 };
 </script>

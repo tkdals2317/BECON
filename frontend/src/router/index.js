@@ -31,6 +31,7 @@ const routes = [
     path: "/concertPage",
     name: "ConcertPage",
     component: ConcertPage,
+    props: true,
   },
   {
     path: "/concertRegist",

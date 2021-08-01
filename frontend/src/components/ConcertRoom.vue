@@ -336,6 +336,7 @@
 <script>
 import { Participant } from "../common/lib/participant";
 import kurentoUtils from "kurento-utils";
+import { mapGetters } from 'vuex';
 // import Stomp from "webstomp-client";
 // import SockJS from "sockjs-client";
 // import axios from "axios";
@@ -356,17 +357,32 @@ export default {
       reconnect: 0,
 
       participants: [],
-      roomId: '1',
-      userName: 'heung',
+      userId: '',
     };
+  },
+
+  props: {
+    roomId : String,
   },
 
   created() {
     // this.connect();
     // this.findRoom();
-    
+    console.log(this.getUserId);
+    this.userId = this.getUserId;
+
+    console.log('아이디:'+this.userId);
+    console.log('방번호:'+this.roomId);
     this.connection();
     this.register();
+  },
+
+  destroyed() {
+    this.leaveRoom();
+  },
+
+  computed:{
+    ...mapGetters('user', ['getUserId'])
   },
 
   // computed: {
@@ -438,7 +454,7 @@ export default {
     // },
     // WebRTC
     connection() {
-      this.ws = new WebSocket("ws://localhost:8080/groupcall");
+      this.ws = new WebSocket("ws://192.168.0.102:8080/groupcall");
       console.info("message: ");
       this.ws.onmessage = (message) => {
         var parsedMessage = JSON.parse(message.data);
@@ -475,16 +491,9 @@ export default {
       };
     },
     register() {
-      console.log("regist");
-      // var name = document.getElementById('name').value;
-      // var room = document.getElementById('roomName').value;
-      // console.log(name+" "+room)
-      // document.getElementById('room-header').innerText = 'ROOM ' + room;
-      // document.getElementById('join').style.display = 'none';
-      // document.getElementById('room').style.display = 'block';
       var message = {
         id: "joinRoom",
-        name: this.userName,
+        name: this.userId,
         room: this.roomId,
       };
       this.sendMessageRTC(message);
@@ -515,17 +524,16 @@ export default {
         audio: true,
         video: {
           mandatory: {
-            // maxWidth: 100,
             maxFrameRate: 15,
             minFrameRate: 15,
           },
         },
       };
-      console.log(this.userName + " registered in room " + this.roomId);
-      var participant = new Participant(this.userName, this.sendMessageRTC);
-      this.participants[this.userName] = participant;
+      console.log(this.userId + " registered in room " + this.roomId);
+      var participant = new Participant(this.userId, this.sendMessageRTC);
+      this.participants[this.userId] = participant;
       var video = participant.getVideoElement();
-
+      console.log(video);
       var options = {
         localVideo: video,
         mediaConstraints: constraints,
@@ -542,19 +550,18 @@ export default {
       );
 
       msg.data.forEach(this.receiveVideo);
+      console.log(this.participants);
     },
-    // leaveRoom() {
-    //     this.sendMessage({
-    //         id : 'leaveRoom'
-    //     });
+    leaveRoom() {
+        this.sendMessageRTC({
+            id : 'leaveRoom'
+        });
 
-    //     for ( var key in this.participants) {
-    //         this.participants[key].dispose();
-    //     }
-    //     document.getElementById('join').style.display = 'block';
-    //     document.getElementById('room').style.display = 'none';
-    //     this.socket.close();
-    // },
+        for ( var key in this.participants) {
+            this.participants[key].dispose();
+        }
+        this.ws.close();
+    },
     receiveVideo(sender) {
       var participant = new Participant(sender, this.sendMessageRTC);
       this.participants[sender] = participant;

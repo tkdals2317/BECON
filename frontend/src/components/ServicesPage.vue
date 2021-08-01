@@ -8,9 +8,9 @@
             <div class="inner-box">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-vector"></span></div>
-              <h5><a href="/mypage">My Info!</a></h5>
+              <h5><div @click="moveMyPage">My Info!</div></h5>
               <div class="text">내 정보 확인 및 <br>수정</div>
-              <div class="link-box"><a href="/mypage"><span class="fa fa-angle-right"></span></a></div>
+              <div class="link-box"><div @click="moveMyPage"><span class="fa fa-angle-right"></span></div></div>
             </div>
           </div>
 
@@ -19,9 +19,9 @@
             <div class="inner-box">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-digital"></span></div>
-              <h5><a href="/concertCK">콘서트 Check</a></h5>
+              <h5><div @click="moveConcertCK">콘서트 Check</div></h5>
               <div class="text">신청한 콘서트 실시간 확인</div>
-              <div class="link-box"><a href="/concertCK"><span class="fa fa-angle-right"></span></a></div>
+              <div class="link-box"><div @click="moveConcertCK"><span class="fa fa-angle-right"></span></div></div>
             </div>
           </div>
 
@@ -55,7 +55,15 @@
 
 <script>
   export default {
-    name: "ServicesPage"
+    name: "ServicesPage",
+    methods: {
+      moveMyPage() {
+        this.$router.push("mypage");
+      },
+      moveConcertCK() {
+        this.$router.push("concertCK");        
+      },
+    }
   }
 </script>
 
