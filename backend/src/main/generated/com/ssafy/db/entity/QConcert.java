@@ -47,6 +47,8 @@ public class QConcert extends EntityPathBase<Concert> {
 
     public final QUser user;
 
+    public final ListPath<UserConcert, QUserConcert> userConcertLsit = this.<UserConcert, QUserConcert>createList("userConcertLsit", UserConcert.class, QUserConcert.class, PathInits.DIRECT2);
+
     public QConcert(String variable) {
         this(Concert.class, forVariable(variable), INITS);
     }
