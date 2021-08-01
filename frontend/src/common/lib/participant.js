@@ -40,8 +40,6 @@ function Participant(name, sendMessage) {
 		var video = document.createElement('video');
 		var rtcPeer;
 
-		console.log('비디오 !!');
-		
 		container.appendChild(video);
 		container.appendChild(div);
 		container.onclick = switchContainerClass;

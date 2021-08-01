@@ -168,9 +168,9 @@ export default {
     concertEnter() {
       let num = prompt('방 번호를 입력해주세요');
       console.log(num);
-      // this.$router.push('concertPage');
-      this.$router.push({ name: 'ConcertPage', params: { roomId: num }});
-      // this.$router.push({ name: 'Waiting', params: { roomId: num }});
+      
+      // this.$router.push({ name: 'ConcertPage', params: { roomId: num }});
+      this.$router.push({ name: 'Waiting', params: { roomId: num }});
     }
   },
 };

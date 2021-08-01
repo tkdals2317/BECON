@@ -24,8 +24,8 @@ public class ConcertServiceImpl implements ConcertService{
 	ConcertRepository concertRepository;
 	@Autowired
 	ConcertRepositorySupport concertRepositorySupport;
-	@Autowired
-	private RoomManager roomManager;
+//	@Autowired
+//	private RoomManager roomManager;
 	
 	@Transactional
 	@Override
@@ -43,7 +43,7 @@ public class ConcertServiceImpl implements ConcertService{
 		concert.setCategory(categoryId);
 		
 		Concert temp = concertRepository.save(concert);
-		roomManager.getRoom(temp.getId()+"");
+//		roomManager.getRoom(temp.getId()+"");
 		
 		return temp;
 	}
