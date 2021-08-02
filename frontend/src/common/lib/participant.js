@@ -32,23 +32,34 @@ const PARTICIPANT_CLASS = 'participant';
 function Participant(name, sendMessage) {
 	this.name = name;
 	var container = document.createElement('div');
-	container.className = isPresentMainParticipant() ? PARTICIPANT_CLASS : PARTICIPANT_MAIN_CLASS;
 	container.id = name;
-	var div = document.createElement('div');
-	var video = document.createElement('video');
-	var rtcPeer;
+	
+	if (document.getElementById('participants')) {
+		container.className = isPresentMainParticipant() ? PARTICIPANT_CLASS : PARTICIPANT_MAIN_CLASS;
+		var div = document.createElement('div');
+		var video = document.createElement('video');
+		var rtcPeer;
 
-	container.appendChild(video);
-	container.appendChild(div);
-	container.onclick = switchContainerClass;
-	document.getElementById('participants').appendChild(container);
+		container.appendChild(video);
+		container.appendChild(div);
+		container.onclick = switchContainerClass;
+		document.getElementById('participants').appendChild(container);
 
-	div.appendChild(document.createTextNode(name));
+		div.appendChild(document.createTextNode(name));
 
-	video.id = 'video-' + name;
-	video.autoplay = true;
-	video.controls = false;
-
+		video.id = 'video-' + name;
+		video.autoplay = true;
+		video.controls = false;
+	}
+	if (document.getElementById('participants-img')) {
+		container.classList.add('image', 'col');
+		var img = document.createElement('img');
+		img.setAttribute('src',  require("../images/resource/author-1.jpg"));
+		img.style.borderRadius = '50%';
+		container.appendChild(img);
+		
+		document.getElementById('participants-img').appendChild(container);
+	}
 
 	this.getElement = function() {
 		return container;
@@ -87,8 +98,8 @@ function Participant(name, sendMessage) {
 
 
 	this.onIceCandidate = function (candidate, wp) {
-		  console.log("Local candidate" + JSON.stringify(candidate));
-
+		//   console.log("Local candidate" + JSON.stringify(candidate));
+		  
 		  var message = {
 		    id: 'onIceCandidate',
 		    candidate: candidate,
@@ -101,7 +112,7 @@ function Participant(name, sendMessage) {
 
 	this.dispose = function() {
 		console.log('Disposing participant ' + this.name);
-		this.rtcPeer.dispose();
+		if (this.rtcPeer) this.rtcPeer.dispose();
 		container.parentNode.removeChild(container);
 	};
 }

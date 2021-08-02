@@ -2,7 +2,6 @@
   <section class="parallax-section">
     <div
       class="image-layer"
-      style="background-image: url(/images/background/image-2.jpg)"
     ></div>
     <div class="auto-container">
       <div class="content-box">

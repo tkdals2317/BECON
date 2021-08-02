@@ -3,8 +3,10 @@ package com.ssafy.api.service.concert;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,10 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 		ConcertThumbnailPostReq concertTumbnailInfo = null;
 		String origFilename = files.getOriginalFilename();
 		String filename = new MD5Generator(origFilename).toString();
-		String savePath = "C:\\Users\\multicampus\\git\\S05P12D102\\frontend\\src\\common\\images\\resource\\thumbnail";
+		
+		
+		String savePath = new File("../thumbnail").getCanonicalPath();
+		
 		if (!new File(savePath).exists()) {
 			try {
 				new File(savePath).mkdir();
@@ -47,10 +52,17 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 		files.transferTo(new File(filePath));
 
 		concertTumbnailInfo = new ConcertThumbnailPostReq();
-		concertTumbnailInfo.setOriginName(origFilename);
+		concertTumbnailInfo.setOriginName(origFilename);  
 		concertTumbnailInfo.setName(filename);
 		concertTumbnailInfo.setPath(filePath);
 
 		return concertTumbnailInfo;
 	}
+	
+//	public static void main(String[] args) throws IOException {
+//		System.out.println(System.getProperty("user.dir"));
+//		System.out.println(System.getProperty("user.home").concat("/S05P12D102/frontend/dist/img"));
+//		File file = new File("../frontend/dist/img");
+//		System.out.println(file.getCanonicalPath());
+//	}
 }
