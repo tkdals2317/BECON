@@ -12,7 +12,6 @@
                   <!-- <img src="@/common/images/resource/news-7.jpg" alt=""> -->
                   <h2 id="room-header"></h2>
                   <div id="participants"></div>
-                  <!-- <input type="button" id="button-leave" value="Leave room" /> -->
                 </div>
                 <div class="lower-box">
                   <div class="post-meta">
@@ -336,111 +335,97 @@
 <script>
 import { Participant } from "../common/lib/participant";
 import kurentoUtils from "kurento-utils";
-// import Stomp from "webstomp-client";
-// import SockJS from "sockjs-client";
-// import axios from "axios";
+import { mapGetters } from 'vuex';
+import Stomp from "webstomp-client";
+import SockJS from "sockjs-client";
 
-// const sock = new SockJS("http://localhost:8080/ws-stomp");
-// const ws = Stomp.over(sock);
 
 export default {
   name: "concertRoom",
 
   data() {
     return {
-      // roomId: "",
-      sender: "",
-      room: {},
       message: "",
       messages: [],
-      reconnect: 0,
-
       participants: [],
-      roomId: '1',
-      userName: 'heung',
+      userId: '',
     };
   },
 
+  props: {
+    roomId : String,
+  },
+
   created() {
-    // this.connect();
-    // this.findRoom();
-    
+    this.userId = this.getUserId;
+    console.log('아이디:'+this.userId);
+    console.log('방번호:'+this.roomId);
+
+    this.connect();
     this.connection();
     this.register();
   },
 
-  // computed: {
-  //   getRoomId() {
-  //     return localStorage.getItem("wschat.roomId");
-  //   },
-  //   getSender() {
-  //     return localStorage.getItem("wschat.sender");
-  //   },
-  // },
+  destroyed() {
+    this.leaveRoom();
+  },
+
+  computed: {
+    ...mapGetters('user', ['getUserId']),
+  },
 
   methods: {
-    // findRoom() {
-    //   console.log("초기화");
-    //   axios.get("/chat/room/" + this.roomId).then((response) => {
-    //     this.room = response.data;
-    //   });
-    // },
+    // WebSocket
     sendMessage() {
-      // ws.send(
-      //   "/pub/chat/message",
-      //   JSON.stringify({
-      //     type: "TALK",
-      //     roomId: this.roomId,
-      //     sender: this.sender,
-      //     message: this.message,
-      //   }),
-      //   {}
-      // );
-      // this.message = "";
+      this.ws.send(
+        "/pub/chat/message",
+        JSON.stringify({
+          type: "TALK",
+          roomId: this.roomId,
+          sender: this.userId,
+          message: this.message,
+        }),
+        {}
+      );
+      this.message = "";
     },
-    // recvMessage(recv) {
-    //   this.messages.unshift({
-    //     type: recv.type,
-    //     sender: recv.type == "ENTER" ? "[알림]" : recv.sender,
-    //     message: recv.message,
-    //   });
-    // },
-    // connect() {
-    //   ws.connect(
-    //     {},
-    //     function () {
-    //       ws.subscribe("/sub/chat/room/" + this.roomId, function (message) {
-    //         var recv = JSON.parse(message.body);
-    //         this.recvMessage(recv);
-    //       });
-    //       ws.send(
-    //         "/pub/chat/message",
-    //         JSON.stringify({
-    //           type: "ENTER",
-    //           roomId: this.roomId,
-    //           sender: this.sender,
-    //         }),
-    //         {}
-    //       );
-    //     },
-    //     function (error) {
-    //       console.log(error);
-    //       // if(this.reconnect++ <= 5) {
-    //       //     setTimeout(function() {
-    //       //         console.log("connection reconnect");
-    //       //         sock = new SockJS("http://localhost:8080/ws-stomp");
-    //       //         ws = Stomp.over(sock);
-    //       //         connect();
-    //       //     },10*1000);
-    //       // }
-    //     }
-    //   );
-    // },
+    recvMessage(recv) {
+      this.messages.unshift({
+        type: recv.type,
+        sender: recv.type == "ENTER" ? "[알림]" : recv.sender,
+        message: recv.message,
+      });
+    },
+    connect() {
+      // this.ws = new Stomp.over(new SockJS("http://3.36.67.58:8080/ws-stomp"));
+      this.ws = new Stomp.over(new SockJS("http://localhost:8080/ws-stomp"));
+      var app = this;
+
+      this.ws.connect(
+        {},
+        function () {
+          app.ws.subscribe("/sub/chat/room/" + app.roomId, function (message) {
+            var recv = JSON.parse(message.body);
+            app.recvMessage(recv);
+          });
+          app.ws.send(
+            "/pub/chat/message",
+            JSON.stringify({
+              type: "ENTER",
+              roomId: app.roomId,
+              sender: app.userId,
+            }),
+            {}
+          );
+        },
+      );
+    },
     // WebRTC
     connection() {
-      this.ws = new WebSocket("ws://localhost:8080/groupcall");
+      // this.wss = new WebSocket("ws://3.36.67.58:8080/groupcall");
+      this.wss = new WebSocket("ws://localhost:8080/groupcall");
       console.info("message: ");
-      this.ws.onmessage = (message) => {
+      this.wss.onmessage = (message) => {
         var parsedMessage = JSON.parse(message.data);
         console.info("Received message: "+parsedMessage);
 
@@ -475,16 +460,9 @@ export default {
       };
     },
     register() {
-      console.log("regist");
-      // var name = document.getElementById('name').value;
-      // var room = document.getElementById('roomName').value;
-      // console.log(name+" "+room)
-      // document.getElementById('room-header').innerText = 'ROOM ' + room;
-      // document.getElementById('join').style.display = 'none';
-      // document.getElementById('room').style.display = 'block';
       var message = {
         id: "joinRoom",
-        name: this.userName,
+        name: this.userId,
         room: this.roomId,
       };
       this.sendMessageRTC(message);
@@ -515,46 +493,47 @@ export default {
         audio: true,
         video: {
           mandatory: {
-            // maxWidth: 100,
             maxFrameRate: 15,
             minFrameRate: 15,
           },
         },
       };
-      console.log(this.userName + " registered in room " + this.roomId);
-      var participant = new Participant(this.userName, this.sendMessageRTC);
-      this.participants[this.userName] = participant;
+      console.log(this.userId + " registered in room " + this.roomId);
+      var participant = new Participant(this.userId, this.sendMessageRTC);
+      this.participants[this.userId] = participant;
       var video = participant.getVideoElement();
-
+      
       var options = {
         localVideo: video,
         mediaConstraints: constraints,
         onicecandidate: participant.onIceCandidate.bind(participant),
       };
-      participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(
-        options,
-        function (error) {
-          if (error) {
-            return console.error(error);
-          }
-          this.generateOffer(participant.offerToReceiveVideo.bind(participant));
-        }
-      );
 
+      console.log(options);
+      
+      // participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(
+      //   options,
+      //   function (error) {
+      //     if (error) {
+      //       return console.error(error);
+      //     }
+      //     this.generateOffer(participant.offerToReceiveVideo.bind(participant));
+      //   }
+      // );
+      
       msg.data.forEach(this.receiveVideo);
+      console.log(this.participants);
     },
-    // leaveRoom() {
-    //     this.sendMessage({
-    //         id : 'leaveRoom'
-    //     });
+    leaveRoom() {
+        this.sendMessageRTC({
+            id : 'leaveRoom'
+        });
 
-    //     for ( var key in this.participants) {
-    //         this.participants[key].dispose();
-    //     }
-    //     document.getElementById('join').style.display = 'block';
-    //     document.getElementById('room').style.display = 'none';
-    //     this.socket.close();
-    // },
+        for ( var key in this.participants) {
+            this.participants[key].dispose();
+        }
+        this.wss.close();
+    },
     receiveVideo(sender) {
       var participant = new Participant(sender, this.sendMessageRTC);
       this.participants[sender] = participant;
@@ -582,10 +561,10 @@ export default {
       delete this.participants[request.name];
     },
     sendMessageRTC(message) {
-      this.ws.onopen = () => {
+      this.wss.onopen = () => {
         var jsonMessage = JSON.stringify(message);
         console.log("Sending message: " + jsonMessage);
-        this.ws.send(jsonMessage);
+        this.wss.send(jsonMessage);
       }
     },
   },

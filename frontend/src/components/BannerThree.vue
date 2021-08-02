@@ -26,7 +26,7 @@
       <slide>
         <div class="slide-item">
           <div class="round-shape-1"></div>
-          <div class="round-image">
+          <div class="round-image"> 
             <div class="image image1"></div>
           </div>
           <div class="auto-container">

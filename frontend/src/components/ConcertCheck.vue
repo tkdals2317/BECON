@@ -20,7 +20,8 @@
                     <div class="image-col col-lg-5 col-md-6 col-sm-12">
                       <div class="inner">
                         <div class="image">
-                          <img src="/images/resource/thumbnail/BeConImg.jpg" alt="">
+                          <!-- <img :src="'@/common/images/resource/thumbnail/'+concert.thumbnail.originName" alt="" /> -->
+                          <!-- <img src="/images/resource/thumbnail/BeConImg.jpg" alt=""> -->
                         </div>
                       </div>
                     </div>
@@ -68,23 +69,20 @@ import {mapActions, mapGetters} from 'vuex';
           category:'',
         }
       },
-      created: function (){
+      created(){
         this.requestCheckConcert();
       },
-      mounted(){
-        this.init();
-      },
+      // mounted(){
+      //   this.init();
+      // },
       computed:{
         ...mapGetters('concert', ['getRegistConcertList'])
       },
-      updated:{
-
-      },
       methods:{
         ...mapActions('concert', ['requestCheckConcert']),
-        init(){
-          this.requestCheckConcert();
-        }
+        // init(){
+        //   this.requestCheckConcert();
+        // }
       }
     }
 </script>

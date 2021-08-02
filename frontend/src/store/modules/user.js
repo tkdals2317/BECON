@@ -24,7 +24,9 @@ export default {
     }
   },
   mutations: {
-    LOGIN(state, payload) {
+    LOGIN(state, {payload, user}) {
+      state.userId = user.userId;
+      console.log(state.userId);
       state.accessToken = payload.accessToken;
       localStorage.setItem("accessToken", state.accessToken);
     },
@@ -37,8 +39,8 @@ export default {
       http
         .post(`/api/v1/auth/login`, user)
         .then(({ data }) => {
-          commit("LOGIN", data);
-          alert('로그인되었습니다.');
+          commit("LOGIN", {payload: data, user: user});
+          // alert('로그인되었습니다.');
           router.push('/');
         })
         .catch((err) => {

@@ -168,6 +168,8 @@ public class UserSession implements Closeable {
     log.debug("PARTICIPANT {}: canceling video reception from {}", this.name, senderName);
     final WebRtcEndpoint incoming = incomingMedia.remove(senderName);
 
+    if (incoming == null) return;
+    
     log.debug("PARTICIPANT {}: removing endpoint for {}", this.name, senderName);
     incoming.release(new Continuation<Void>() {
       @Override
@@ -225,6 +227,7 @@ public class UserSession implements Closeable {
 
   public void sendMessage(JsonObject message) throws IOException {
     log.debug("USER {}: Sending message {}", name, message);
+    System.out.println(message.toString());
     synchronized (session) {
       session.sendMessage(new TextMessage(message.toString()));
     }

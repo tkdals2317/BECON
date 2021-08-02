@@ -6,7 +6,7 @@
           <h2>My Page<span class="dot">!</span></h2>
         </div>
         <div style="margin-bottom: 25px;">
-          <div class="profile_tag" v-if="getUserInfo.userProfile.originName==null" >
+          <div class="profile_tag" v-if="!getUserInfo.userProfile.originName" >
             <img :src="require(`@/common/images/resource/profile/BeConImg.jpg`)" class="profile_image">
           </div>
           <div class="profile_tag" v-else>

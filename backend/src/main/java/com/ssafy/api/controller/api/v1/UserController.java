@@ -120,6 +120,7 @@ public class UserController {
 		User user = userService.getUserByUserId(userId);
 		return ResponseEntity.status(200).body(UserRes.of(user));
 	}
+	
 	@PatchMapping("/{userId}")
 	@ApiOperation(value = "회원 정보 수정", notes = "로그인한 회원 본인의 정보를 수정한다.") 
     @ApiResponses({

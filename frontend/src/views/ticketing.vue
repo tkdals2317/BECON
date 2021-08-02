@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="공연이름" />
-    <ConcertRoom :roomId="$route.params.roomId"/>
+    <PageHeader title="Ticketing" />
+    <ConcertRegistPage />
     <Footer />
   </div>
 </template>
@@ -10,17 +10,17 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import ConcertRoom from "../components/ConcertRoom";
+import ConcertRegistPage from "../components/Ticket";
 export default {
   components: {
-    ConcertRoom,
+    ConcertRegistPage,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "Be-con | Ex",
+      title: "BeCon | ticketing",
     };
   },
 };
