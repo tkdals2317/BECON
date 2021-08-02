@@ -10,6 +10,8 @@ import Login from "../views/login.vue";
 import MyPage from "../views/mypage.vue";
 import ConcertRegist from "../views/concertRegist.vue";
 import ConcertCheck from "../views/concertCheck.vue"
+import ConcertDetail from "../views/concertDetail.vue"
+import ConcertSchedule from "../views/concertSchedule.vue"
 import Faqs from "../views/faqs.vue";
 import Register from "../views/register.vue";
 import NotFound from "../views/not-found.vue";
@@ -36,6 +38,16 @@ const routes = [
     path: "/concertRegist",
     name: "ConcertRegist",
     component: ConcertRegist,
+  },
+  {
+    path: "/concertSchedule",
+    name: "ConcertSchedule",
+    component: ConcertSchedule,
+  },
+  {
+    path: "/concertDetail",
+    name: "ConcertDetail",
+    component: ConcertDetail,
   },
   {
     path: "/contact",

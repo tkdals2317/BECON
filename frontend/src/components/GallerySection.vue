@@ -24,12 +24,11 @@
         <div class="filter-list row">
           <!-- Gallery Item -->
           <div class="gallery-item mix web-design col-lg-4 col-md-4 col-sm-12" v-for="concertInfo in getConcertInfos" :key="concertInfo.id">
-            <div class="inner-box">
+            <div class="inner-box" @click="goDetail(concertInfo.id)">
               <figure class="image">
                 <img src="@/common/images/resource/thumbnail/rucidfall.jpg" alt="" />
               </figure>
               <a
-                href="/images/gallery/1.jpg"
                 class="lightbox-image overlay-box"
                 data-fancybox="gallery"
               ></a>
@@ -40,9 +39,9 @@
                   </div>
                   <div class="title">
                     <h5>
-                      <router-link to="/portfolio-single">{{
+                      <a>{{
                         concertInfo.description
-                      }}</router-link>
+                      }}</a>
                     </h5>
                   </div>
                 </div>
@@ -65,6 +64,7 @@ export default {
   data() {
     return {
       mixer: null,
+      concertId: '',
     };
   },
   computed: {
@@ -77,6 +77,9 @@ export default {
       console.log(data);
       this.requestConcert(data);
     },
+    goDetail(concertId) {
+      this.$router.push({name: 'ConcertDetail', params:{ concertId: concertId } })
+    }
   },
   mounted() {
     const containerEl = document.querySelector(".filter-list");
