@@ -213,13 +213,13 @@
 </template>
 
 <script>
-import Nossr from "vue-no-ssr";
+// import Nossr from "vue-no-ssr";
 import Carousel from "carousel";
 import GLightbox from "glightbox";
   export default {
     name: "ConcertSchedule",
     components: {
-      Nossr,
+      // Nossr,
       Carousel,
     },
     mounted () {

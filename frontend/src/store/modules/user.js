@@ -102,7 +102,9 @@ export default {
       }
       http
         .patch(`/api/v1/users/`+user.userId, formData,{
-          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN , "Content-Type": "multipart/form-data" },
+          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN,
+          "Content-Type": "multipart/form-data"
+        },
         })
         .then(({ data })=>{
           commit("USERINFO", data);
@@ -117,7 +119,8 @@ export default {
     requestDelete(commit, data){
       const CSRF_TOKEN=localStorage.getItem("accessToken");
       http
-        .delete(`/api/v1/users/`+ data ,{headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
+        .delete(`/api/v1/users/`+ data ,{
+          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
         })
         .then(()=>{
           alert('회원탈퇴가 완료 되었습니다.')

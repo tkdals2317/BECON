@@ -222,7 +222,9 @@
                   v-for="(message, index) in messages"
                   :key="index"
                 >
-                  <figure class="post-thumb"></figure>
+                  <figure class="post-thumb">
+                    <img :src="require('@/common/images/resource/author-1.jpg')"/>
+                  </figure>
                   <div class="text" style="font-size: 15px">
                     {{ message.sender }} - {{ message.message }}
                   </div>
@@ -383,14 +385,14 @@ export default {
           sender: this.userId,
           message: this.message,
         }),
-        {}
+        {},
       );
       this.message = "";
     },
     recvMessage(recv) {
       this.messages.unshift({
         type: recv.type,
-        sender: recv.type == "ENTER" ? "[알림]" : recv.sender,
+        sender: recv.sender,
         message: recv.message,
       });
     },
@@ -412,7 +414,7 @@ export default {
               roomId: app.roomId,
               sender: app.userId,
             }),
-            {}
+            {},
           );
         },
       );
@@ -636,5 +638,11 @@ export default {
 .form-group > input {
    background-color: #f4f5f8 !important;
    border: none !important;
+ }
+ .post > .text {
+   max-width: none !important;
+ }
+ .post-thumb > img {
+   width: 60% !important;
  }
 </style>
