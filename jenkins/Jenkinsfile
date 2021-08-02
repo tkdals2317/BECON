@@ -30,8 +30,8 @@ pipeline {
 			steps {
 				//sh 'docker build -t <front-image-name>:latest <front dockerfile path>'
 				//sh 'docker build -t <back-image-name>:latest <back dockerfile path>'
-				sh 'docker build -t BECON-front:latest ./frontend/Dockerfile'
-				sh 'docker build -t BECON-back:latest ./backend/Dockerfile'
+				sh 'docker build -t BECON-front:latest frontend/Dockerfile'
+				sh 'docker build -t BECON-back:latest backend/Dockerfile'
 			}
 		}
 		stage('Docker run') {
