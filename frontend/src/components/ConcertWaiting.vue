@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { Participant } from "../common/lib/participant";
+import { Participant } from "@/common/lib/participant";
+import { webSocket } from "@/common/lib/socket";
 import { mapGetters } from 'vuex';
 
 export default {
@@ -64,8 +65,7 @@ export default {
 
   methods: {
     connection() {
-      // this.ws = new WebSocket("ws://3.36.67.58:8080/groupcall");
-      this.ws = new WebSocket("ws://localhost:8080/groupcall");
+      this.ws = webSocket();
       console.info("message: ");
       this.ws.onmessage = (message) => {
         var parsedMessage = JSON.parse(message.data);

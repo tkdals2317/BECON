@@ -15,7 +15,7 @@
  *
  */
 
-package com.ssafy;
+package com.ssafy.api.rtc;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

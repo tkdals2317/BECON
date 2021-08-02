@@ -333,12 +333,10 @@
 </template>
 
 <script>
-import { Participant } from "../common/lib/participant";
+import { Participant } from "@/common/lib/participant";
+import { stomp, webSocket } from "@/common/lib/socket";
 import kurentoUtils from "kurento-utils";
 import { mapGetters } from 'vuex';
-import Stomp from "webstomp-client";
-import SockJS from "sockjs-client";
-
 
 export default {
   name: "concertRoom",
@@ -397,8 +395,7 @@ export default {
       });
     },
     connect() {
-      // this.ws = new Stomp.over(new SockJS("http://3.36.67.58:8080/ws-stomp"));
-      this.ws = new Stomp.over(new SockJS("http://localhost:8080/ws-stomp"));
+      this.ws = stomp();
       var app = this;
 
       this.ws.connect(
@@ -422,8 +419,7 @@ export default {
     },
     // WebRTC
     connection() {
-      // this.wss = new WebSocket("ws://3.36.67.58:8080/groupcall");
-      this.wss = new WebSocket("ws://localhost:8080/groupcall");
+      this.wss = webSocket();
       console.info("message: ");
       this.wss.onmessage = (message) => {
         var parsedMessage = JSON.parse(message.data);

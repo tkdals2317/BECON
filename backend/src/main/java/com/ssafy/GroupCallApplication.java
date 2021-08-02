@@ -31,6 +31,10 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean;
 
+import com.ssafy.api.rtc.CallHandler;
+import com.ssafy.api.rtc.RoomManager;
+import com.ssafy.api.rtc.UserRegistry;
+
 /**
  *
  * @author Ivan Gracia (izanmail@gmail.com)

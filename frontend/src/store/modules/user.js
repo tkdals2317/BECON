@@ -1,5 +1,5 @@
-import http from "@/util/http-common";
-import router from "@/router/index.js";
+import http from '@/common/lib/http';
+import router from "@/router/index";
 
 export default {
   namespaced: true,

@@ -15,7 +15,7 @@
  *
  */
 
-package com.ssafy;
+package com.ssafy.api.rtc;
 
 import java.io.Closeable;
 import java.io.IOException;

@@ -4,7 +4,7 @@
       <div class="sec-title centered">
         <h2>마이페이지<span class="dot">.</span></h2>
         <br>
-        <img src="@/common/images/수지.jpg" alt=""/>
+        <img src="@/common/images/suji.jpg" alt=""/>
         <br>
       </div>
       <div class="form-box">
