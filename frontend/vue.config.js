@@ -1,20 +1,23 @@
+const URL = "3.36.67.58:8443";
+// const URL = "localhost:8080";
+
 module.exports = {
     devServer: {
-      https: false,
+      https: true,
       port: 8083,
       open: true,
       proxy: {
         '/api/v1': {
-          target: 'http://localhost:8080/'
+          target: `https://${URL}/`
         },
         '/api/v2': {
-          target: 'http://localhost:8080/'
+          target: `https://${URL}/`
         },
         '/groupcall': {
-          target: 'http://localhost:8080/'
+          target: `https://${URL}/`
         },
         '/upload': {
-          target: 'http://localhost:8080/'
+          target: `https://${URL}/`
         },
       },
       historyApiFallback: true,
