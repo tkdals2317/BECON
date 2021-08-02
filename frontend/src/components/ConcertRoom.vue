@@ -338,7 +338,6 @@ import kurentoUtils from "kurento-utils";
 import { mapGetters } from 'vuex';
 import Stomp from "webstomp-client";
 import SockJS from "sockjs-client";
-import http from "@/util/http-common";
 
 
 export default {
@@ -346,11 +345,8 @@ export default {
 
   data() {
     return {
-      room: {},
       message: "",
       messages: [],
-      reconnect: 0,
-
       participants: [],
       userId: '',
     };
@@ -361,14 +357,11 @@ export default {
   },
 
   created() {
-    console.log(this.getUserId);
     this.userId = this.getUserId;
-
-    this.connect();
-    this.findRoom();
-
     console.log('아이디:'+this.userId);
     console.log('방번호:'+this.roomId);
+
+    this.connect();
     this.connection();
     this.register();
   },
@@ -379,22 +372,10 @@ export default {
 
   computed: {
     ...mapGetters('user', ['getUserId']),
-    getRoomId() {
-      return localStorage.getItem("wschat.roomId");
-    },
-    getSender() {
-      return localStorage.getItem("wschat.sender");
-    },
   },
 
   methods: {
     // WebSocket
-    findRoom() {
-      console.log("초기화");
-      http.get("/chat/room/" + this.roomId).then((response) => {
-        this.room = response.data;
-      });
-    },
     sendMessage() {
       this.ws.send(
         "/pub/chat/message",
@@ -416,7 +397,8 @@ export default {
       });
     },
     connect() {
-      this.ws = new Stomp.over(new SockJS("http://3.36.67.58:8080/ws-stomp"));
+      // this.ws = new Stomp.over(new SockJS("http://3.36.67.58:8080/ws-stomp"));
+      this.ws = new Stomp.over(new SockJS("http://localhost:8080/ws-stomp"));
       var app = this;
 
       this.ws.connect(
@@ -440,7 +422,8 @@ export default {
     },
     // WebRTC
     connection() {
-      this.wss = new WebSocket("ws://3.36.67.58:8080/groupcall");
+      // this.wss = new WebSocket("ws://3.36.67.58:8080/groupcall");
+      this.wss = new WebSocket("ws://localhost:8080/groupcall");
       console.info("message: ");
       this.wss.onmessage = (message) => {
         var parsedMessage = JSON.parse(message.data);

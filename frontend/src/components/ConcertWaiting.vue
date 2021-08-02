@@ -64,7 +64,8 @@ export default {
 
   methods: {
     connection() {
-      this.ws = new WebSocket("ws://3.36.67.58:8080/groupcall");
+      // this.ws = new WebSocket("ws://3.36.67.58:8080/groupcall");
+      this.ws = new WebSocket("ws://localhost:8080/groupcall");
       console.info("message: ");
       this.ws.onmessage = (message) => {
         var parsedMessage = JSON.parse(message.data);
