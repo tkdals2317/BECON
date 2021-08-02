@@ -30,8 +30,8 @@ pipeline {
 			steps {
 				//sh 'docker build -t <front-image-name>:latest <front dockerfile path>'
 				//sh 'docker build -t <back-image-name>:latest <back dockerfile path>'
-				sh 'docker build -t BECON-front:latest ./frontend/Dockerfile'
-				sh 'docker build -t BECON-back:latest ./backend/Dockerfile'
+				sh 'docker build -t front:latest ./frontend'
+				sh 'docker build -t back:latest ./backend'
 			}
 		}
 		stage('Docker run') {
@@ -39,25 +39,25 @@ pipeline {
 			steps {
 				// 현재 동작중인 컨테이너 중 <front-image-name>의 이름을 가진
 				// 컨테이너를 stop 한다
-				sh 'docker ps -f name=BECON-front:latest -q \
+				sh 'docker ps -f name=front -q \
 					| xargs --no-run-if-empty docker container stop'
 				// 현재 동작중인 컨테이너 중 <back-image-name>의 이름을 가진
 				// 컨테이너를 stop 한다
-				sh 'docker ps -f name=BECON-back -q \
+				sh 'docker ps -f name=back -q \
 					| xargs --no-run-if-empty docker container stop'
 				// <front-image-name>의 이름을 가진 컨테이너를 삭제한다.
-				sh 'docker container ls -a -f name=BECON-front -q \
+				sh 'docker container ls -a -f name=front -q \
 					| xargs -r docker container rm'
 				// <back-image-name>의 이름을 가진 컨테이너를 삭제한다.
-				sh 'docker container ls -a -f name=BECON-back -q \
+				sh 'docker container ls -a -f name=back -q \
 					| xargs -r docker container rm'
 				// docker image build 시 기존에 존재하던 이미지는
 				// dangling 상태가 되기 때문에 이미지를 일괄 삭제
 				sh 'docker images -f "dangling=true" -q \
 					| xargs -r docker rmi'
 				// docker container 실행
-				sh 'docker run -d --name BECON-front -p 80:80 BECON-front:latest'
-				sh 'docker run -d --name BECON-back -p 8080:8080 BECON-back:latest'
+				sh 'docker run -d --name front -p 80:80 front:latest'
+				sh 'docker run -d --name back -p 8080:8080 back:latest'
 			}
 		}
 	}
