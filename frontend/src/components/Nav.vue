@@ -43,6 +43,7 @@
                     <li><router-link to="/concertPage">Concert Enter</router-link></li>
                     <li><router-link to="/testimonials">Concert Schedule</router-link></li>
                     <li><router-link to="/not-found">Concert Search</router-link></li>
+                    <li><router-link to="/ticketing">Ticketing</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
