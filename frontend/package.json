@@ -10,6 +10,7 @@
   "dependencies": {
     "accordion": "^3.0.2",
     "axios": "^0.21.1",
+    "carousel": "0.0.3",
     "core-js": "^3.6.5",
     "glightbox": "^3.0.9",
     "kurento-client": "^6.16.0",

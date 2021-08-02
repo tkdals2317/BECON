@@ -7,6 +7,7 @@ export default {
         categories: [],
         concertInfos:[],
         registConcertList:{},
+        concertDetail: [],
     },
 
     getters: {
@@ -21,6 +22,9 @@ export default {
         },
         getRegistConcertList(state){
           return state.registConcertList;
+        },
+        getDetail(state) {
+          return state.concertDetail;
         }
     },
 
@@ -33,6 +37,9 @@ export default {
       },
       REGISTCONCERT(state, payload){
         state.registConcertList = payload;
+      },
+      DETAIL(state, payload) {
+        state.concertDetail = payload;
       }
     },
     actions: {
@@ -90,6 +97,20 @@ export default {
           })
           .catch(()=>{
             console.error();
+          })
+      },
+      getConcertDetail({ commit }, concertId) {
+        const CSRF_TOKEN=localStorage.getItem("accessToken");
+        http
+          .get(`/api/v2/concert/${concertId}`, {
+            headers: { "Authorization": 'Bearer '+ CSRF_TOKEN }
+          })
+          .then(({data}) => {
+            console.log(data);
+            commit('DETAIL', data)
+          })
+          .catch((err) => {
+            console.log(err)
           })
       },
     },
