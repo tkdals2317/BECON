@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="공연이름" />
-    <ConcertRoom :roomId="$route.params.roomId"/>
+    <PageHeader title="ConcertDetail" />
+    <ConcertDetail :concertId="$route.params.concertId"/>
     <Footer />
   </div>
 </template>
@@ -10,17 +10,17 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import ConcertRoom from "../components/ConcertRoom";
+import ConcertDetail from "../components/ConcertDetail";
 export default {
   components: {
-    ConcertRoom,
+    ConcertDetail,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "Be-con | Ex",
+      title: "BeCon | Concert Detail",
     };
   },
 };

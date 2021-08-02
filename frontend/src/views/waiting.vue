@@ -2,7 +2,7 @@
   <div>
     <Nav />
     <PageHeader title="공연이름" />
-    <EX/>
+    <ConcertWaiting :roomId="$route.params.roomId"/>
     <Footer />
   </div>
 </template>
@@ -10,10 +10,10 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import EX from "../components/Ex";
+import ConcertWaiting from "../components/ConcertWaiting";
 export default {
   components: {
-    EX,
+    ConcertWaiting,
     Footer,
     PageHeader,
     Nav,

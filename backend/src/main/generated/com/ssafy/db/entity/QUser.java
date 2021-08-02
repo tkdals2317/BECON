@@ -35,6 +35,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath phone = createString("phone");
 
+    public final ListPath<UserConcert, QUserConcert> userConcertLsit = this.<UserConcert, QUserConcert>createList("userConcertLsit", UserConcert.class, QUserConcert.class, PathInits.DIRECT2);
+
     public final StringPath userId = createString("userId");
 
     public final QUserProfile userProfile;

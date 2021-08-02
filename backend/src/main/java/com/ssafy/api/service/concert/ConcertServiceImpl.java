@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ssafy.RoomManager;
 import com.ssafy.api.request.ConcertRegisterPostReq;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
@@ -23,8 +24,10 @@ public class ConcertServiceImpl implements ConcertService{
 	ConcertRepository concertRepository;
 	@Autowired
 	ConcertRepositorySupport concertRepositorySupport;
+//	@Autowired
+//	private RoomManager roomManager;
 	
-	
+	@Transactional
 	@Override
 	public Concert createConcert(ConcertRegisterPostReq request, ConcertThumbnail fileId, User userId, ConcertCategory categoryId) {
 		Concert concert = new Concert();
@@ -38,7 +41,11 @@ public class ConcertServiceImpl implements ConcertService{
 		concert.setThumbnail(fileId);
 		concert.setUser(userId);
 		concert.setCategory(categoryId);
-		return concertRepository.save(concert);
+		
+		Concert temp = concertRepository.save(concert);
+//		roomManager.getRoom(temp.getId()+"");
+		
+		return temp;
 	}
 
 	@Override
@@ -75,6 +82,6 @@ public class ConcertServiceImpl implements ConcertService{
 		concertRepositorySupport.deleteConcertByOwnerId(ownerId);	
 	}
 
-
+	
 
 }
