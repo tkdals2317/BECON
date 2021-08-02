@@ -122,7 +122,7 @@
 </template>
 
 <script>
-import {mapState, mapGetters} from 'vuex';
+import {mapState, mapActions} from 'vuex';
 export default {
   name: "Nav",
   data() {
@@ -151,10 +151,10 @@ export default {
     }
   },
   computed:{
-    ...mapGetters('user',["getAccessToken"]),
     ...mapState('user',["accessToken"])
   },
   methods: {
+    ...mapActions('room', ["setRoomId"]),
     handleScroll() {
       if (window.scrollY > 70) {
         this.sticky = true;
@@ -163,15 +163,15 @@ export default {
       }
     },
     clickLogout() {
-      localStorage.removeItem('accessToken');
+      localStorage.clear();
       location.href = "/";
     },
     concertEnter() {
       let num = prompt('방 번호를 입력해주세요');
       console.log(num);
       
-      // this.$router.push({ name: 'ConcertPage', params: { roomId: num }});
-      this.$router.push({ name: 'Waiting', params: { roomId: num }});
+      this.setRoomId(num);
+      this.$router.push('/waiting');
     }
   },
 };

@@ -39,15 +39,13 @@ export default {
     return {
       participants: [],
       userId: '',
+      roomId: '',
     };
-  },
-
-  props: {
-    roomId : String,
   },
 
   created() {
     this.userId = this.getUserId;
+    this.roomId = this.getRoomId;
 
     console.log('아이디:'+this.userId);
     console.log('방번호:'+this.roomId+'x');
@@ -60,7 +58,8 @@ export default {
   },
 
   computed:{
-    ...mapGetters('user', ['getUserId'])
+    ...mapGetters('user', ['getUserId']),
+    ...mapGetters('room', ['getRoomId']),
   },
 
   methods: {

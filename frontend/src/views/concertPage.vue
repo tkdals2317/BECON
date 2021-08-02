@@ -2,7 +2,7 @@
   <div>
     <Nav />
     <PageHeader title="공연이름" />
-    <ConcertRoom :roomId="$route.params.roomId"/>
+    <ConcertRoom/>
     <Footer />
   </div>
 </template>
