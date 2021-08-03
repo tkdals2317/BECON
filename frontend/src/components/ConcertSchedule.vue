@@ -2,7 +2,7 @@
   <section class="gallery-section-two alternate">
     <div class="auto-container">
       <div class="sec-title centered">
-        <h2>Our work showcase <span class="dot">.</span></h2>
+        <h2>Concert Schedule <span class="dot">.</span></h2>
       </div>
     </div>
     <!--Porfolio Tabs-->
@@ -13,196 +13,36 @@
         <!--Portfolio Tab / Active Tab-->
         <div class="p-tab active-tab" id="p-tab-1">
           <div class="project-carousel-two">
+            <no-ssr>
 
-            <carousel :dots="false" :margin="30" :autoplay="true" :responsive="{0: {items: 1},640: {items: 2},992: {items: 3},1200: {items: 3}}">
+            <carousel 
+              v-if="getConcertInfos && requestConcert"
+              :dots="false" 
+              :margin="30" 
+              :responsive="{0: {items: 1},640: {items: 2},992: {items: 3},1200: {items: 3}}"
+            >
 
               <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/8.jpg" alt=""></figure>
-                  <a href="/images/gallery/8.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
+              <div class="gallery-item" v-for="concertInfo in getConcertInfos" :key="concertInfo.id">
+                <div class="h4 centered">
+                  {{ concertInfo.startTime }}
                 </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
                 <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/9.jpg" alt=""></figure>
-                  <a href="/images/gallery/9.jpg" class="lightbox-image overlay-box"
+                  <figure class="image"><img src="@/common/images/resource/thumbnail/rucidfall.jpg" alt=""></figure>
+                  <a href="#" class="lightbox-image overlay-box"
                      data-fancybox="gallery"></a>
                   <div class="cap-box">
                     <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
+                      <div class="cat"><span>{{ concertInfo.title }}</span></div>
                       <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/10.jpg" alt=""></figure>
-                  <a href="/images/gallery/10.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/7.jpg" alt=""></figure>
-                  <a href="/images/gallery/7.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/8.jpg" alt=""></figure>
-                  <a href="/images/gallery/8.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/9.jpg" alt=""></figure>
-                  <a href="/images/gallery/9.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/10.jpg" alt=""></figure>
-                  <a href="/images/gallery/10.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/7.jpg" alt=""></figure>
-                  <a href="/images/gallery/7.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/8.jpg" alt=""></figure>
-                  <a href="/images/gallery/8.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/9.jpg" alt=""></figure>
-                  <a href="/images/gallery/9.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gallery Item -->
-              <div class="gallery-item">
-                <div class="inner-box">
-                  <figure class="image"><img src="/images/gallery/10.jpg" alt=""></figure>
-                  <a href="/images/gallery/10.jpg" class="lightbox-image overlay-box"
-                     data-fancybox="gallery"></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat"><span>Graphic</span></div>
-                      <div class="title">
-                        <h5><a href="/portfolio-single">Fimlor Experience</a></h5>
+                        <h5><a href="/">{{ concertInfo.description }}</a></h5>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </carousel>
+            </no-ssr>
           </div>
         </div>
 
@@ -213,14 +53,21 @@
 </template>
 
 <script>
-// import Nossr from "vue-no-ssr";
-import Carousel from "carousel";
+import NoSsr from "vue-no-ssr";
+import carousel from "vue-owl-carousel";
 import GLightbox from "glightbox";
+import { mapActions, mapGetters } from "vuex";
   export default {
     name: "ConcertSchedule",
     components: {
-      // Nossr,
-      Carousel,
+      NoSsr,
+      carousel,
+    },
+    computed: {
+      ...mapGetters("concert", ["getCategories", "getConcertInfos"]),
+    },
+    methods: {
+      ...mapActions("concert", ["requestCategory", "requestConcert"]),
     },
     mounted () {
       new GLightbox({
@@ -230,9 +77,14 @@ import GLightbox from "glightbox";
         autoplayVideos: true
       });
     },
+    // created: function () {
+    //   this.requestConcert("All");
+    // },
   }
 </script>
 
 <style scoped>
-
+.project-tab * {
+  padding: 1px 0px 0px 0px;
+}
 </style>

@@ -2,7 +2,7 @@
   <div>
     <Nav />
     <PageHeader title="Concert Schedule" />
-    <ConcertSchedule />
+    <ConcertSchedule :getConcertInfos="$route.params.getConcertInfos"/>
     <Footer />
   </div>
 </template>

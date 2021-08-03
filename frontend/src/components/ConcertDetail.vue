@@ -21,6 +21,7 @@
                   <li><strong>Concert</strong> <br>{{ getDetail.title }}</li>
                   <li><strong>Category</strong> <br>{{ getDetail.category }}</li>
                   <li><strong>Date</strong> <br>{{ getDetail.startTime }}</li>
+                  <button @click="goTicketing(getDetail)">Ticket!</button>
                 </ul>
               </div>
             </div>
@@ -36,6 +37,7 @@
 <script>
 import GLightbox from "glightbox";
 import { mapActions, mapGetters } from "vuex";
+// import "compass/css3";
   export default {
     name: "ConcertDetail",
     props: {
@@ -46,6 +48,9 @@ import { mapActions, mapGetters } from "vuex";
     },
     methods: {
       ...mapActions("concert", ["getConcertDetail"]),
+      goTicketing(concertId) {
+        this.$router.push({name: 'Ticketing', params:{ concertId: concertId } })
+      },
     },
     mounted() {
       new GLightbox({

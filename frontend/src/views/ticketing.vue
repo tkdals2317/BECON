@@ -2,7 +2,7 @@
   <div>
     <Nav />
     <PageHeader title="Ticketing" />
-    <ConcertRegistPage />
+    <Ticket :concertId="$route.params.concertId"/>
     <Footer />
   </div>
 </template>
@@ -10,10 +10,10 @@
 import Nav from "../components/Nav";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
-import ConcertRegistPage from "../components/Ticket";
+import Ticket from "../components/Ticket";
 export default {
   components: {
-    ConcertRegistPage,
+    Ticket,
     Footer,
     PageHeader,
     Nav,
