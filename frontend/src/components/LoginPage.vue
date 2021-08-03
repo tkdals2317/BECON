@@ -53,21 +53,17 @@ export default {
     return{
       user: {
         userId: "",
-        password: ""
+        password: "",
       },
-      message: ""
+      message: "",
     }
-  },
-  
-  computed: {
-   
   },
 
   methods:{
     ...mapActions('user',["requestLogin"]),
     clickLogin(){
       this.requestLogin(this.user);
-    }
+    },
   }
 };
 </script>
