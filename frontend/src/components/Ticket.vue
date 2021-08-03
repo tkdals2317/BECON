@@ -16,23 +16,23 @@
             <div class="row clearfix">
               <div class="form-group col-lg-12 col-md-6 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" name="username" value="" placeholder="이름(단체)명 불러와짐" required="">
+                  <input type="text" name="owener" value="owner" v-model="concertId.owner">
                 </div>
               </div>
               
               <div class="form-group col-lg-12 col-md-6 col-sm-12">
                 <div class="field-inner">
-                  <input type="email" name="email" value="" placeholder="공연 제목 불러와짐" required="">
+                  <input type="text" name="title" value="title" v-model="concertId.title">
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" name="phone" value="" placeholder="시작일 선택하기" required="">
+                  <input type="text" name="startTime" value="startTime" v-model="concertId.startTime">
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" name="phone" value="" placeholder="종료일 선택하기" required="">
+                  <input type="text" name="endTime" value="endTime" v-model="concertId.endTime">
                 </div>
               </div>
               <h2>
@@ -83,9 +83,12 @@
 </template>
 
 <script>
-    export default {
-        name: "Ticket"
-    }
+  export default {
+    name: "Ticket",
+    props: {
+      concertId: Object,
+    },
+  }
 </script>
 
 <style scoped>
