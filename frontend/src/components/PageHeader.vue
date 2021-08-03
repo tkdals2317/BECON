@@ -37,6 +37,6 @@ export default {
   opacity: 1 !important;
 }
 h1 {
-  /* color: ; */
+  color: black;
 }
 </style>
