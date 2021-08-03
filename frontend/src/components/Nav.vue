@@ -41,13 +41,8 @@
                   <a href="#">Concert</a>
                   <ul>
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
-<<<<<<< HEAD
-                    <li><router-link to="/concertPage">Concert Enter</router-link></li>
-                    <li><router-link to="/concertSchedule">Concert Schedule</router-link></li>
-=======
                     <li @click="concertEnter"><a>Concert Enter</a></li>
                     <li><router-link to="/testimonials">Concert Schedule</router-link></li>
->>>>>>> 3464056ce5fcad85f359b0e0f2cf9df9c752d612
                     <li><router-link to="/not-found">Concert Search</router-link></li>
                     <li><router-link to="/ticketing">Ticketing</router-link></li>
                   </ul>

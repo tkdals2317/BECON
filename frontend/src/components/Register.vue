@@ -8,11 +8,13 @@
         <div class="default-form">
             <div class="row clearfix">
 
-              <div class="form-group col-lg-9 col-md-12 col-sm-12">
+              <div class="form-group col-lg-9 col-md-12 col-sm-12" >
                 <div class="field-inner">
                   <input type="text" v-model="user.userId" name="userid" value="" placeholder="아이디" required="" @blur="[checkID(), checkMaxID()]" >
-                  <div v-if="!errors.requireID">필수 입력 항목입니다.</div>
+                  <div style="color:red;">
+                  <div v-if="!errors.requireID" color: red>필수 입력 항목입니다.</div>
                   <div v-if="!errors.maxID"> 최대 16자까지 입력 가능합니다.</div>
+                  </div>
                 </div>
               </div>
               <div class="form-group col-lg-3 col-md-12 col-sm-12">
@@ -24,36 +26,36 @@
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
                   <input type="password" v-model="user.password" name="userpassword" value="" placeholder="비밀번호" required="" @blur="[checkPass(), checkMinPass(), checkMaxPass(), checkMatch()]">
-                  <div v-if="!errors.requirePass">필수 입력 항목입니다.</div>
-                  <div v-if="!errors.minPass"> 최소 9 글자까지 입력 해야 합니다.</div>
-                  <div v-if="!errors.maxPass"> 최대 16 글자까지 입력 가능합니다.</div>
-                  <div v-if="!errors.matchPass"> 비밀번호는 영문, 숫자, 특수문자가 조합되어야합니다.</div>
+                  <div v-if="!errors.requirePass" style="color:red;">필수 입력 항목입니다.</div>
+                  <div v-if="!errors.minPass" style="color:red;"  > 최소 9 글자까지 입력 해야 합니다.</div>
+                  <div v-if="!errors.maxPass" style="color:red;"> 최대 16 글자까지 입력 가능합니다.</div>
+                  <div v-if="!errors.matchPass" style="color:red;"> 비밀번호는 영문, 숫자, 특수문자가 조합되어야합니다.</div>
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
                   <input type="password" v-model="user.passwordConfirm" name="passwordConfirm" value="" placeholder="비밀번호 확인" required="" @blur="matchPass()">
-                  <div v-if="!errors.checkPass">비밀번호가 일치하지 않습니다.</div>
+                  <div v-if="!errors.checkPass" style="color:red;">비밀번호가 일치하지 않습니다.</div>
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="text" v-model="user.name" name="username" value="" placeholder="이름" required="" @blur="checkName()">
-                  <div v-if="!errors.requireName">필수 입력 항목입니다.</div>
+                  <div v-if="!errors.requireName" style="color:red;" >필수 입력 항목입니다.</div>
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="text" v-model="user.phone" name="phone" value="" placeholder="010-1234-5678" required="" @blur="[checkPhone(), matchPhone()]">
-                  <div v-if="!errors.requirePhone">필수 입력 항목입니다.</div>
-                  <div v-if="!errors.matchPhone">전화번호 형식이 맞지 않습니다.</div>
+                  <div v-if="!errors.requirePhone" style="color:red;">필수 입력 항목입니다.</div>
+                  <div v-if="!errors.matchPhone" style="color:red;">전화번호 형식이 맞지 않습니다.</div>
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="text" v-model="user.email" name="email" value="" placeholder="becon@becon.com" required="" @blur="[checkEmail(),matchEmail()]">
-                  <div v-if="!errors.requireEmail">필수 입력 항목입니다.</div>
-                  <div v-if="!errors.matchEmail">이메일 형식이 맞지 않습니다.</div>
+                  <div v-if="!errors.requireEmail" style="color:red;">필수 입력 항목입니다.</div>
+                  <div v-if="!errors.matchEmail" style="color:red;">이메일 형식이 맞지 않습니다.</div>
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
