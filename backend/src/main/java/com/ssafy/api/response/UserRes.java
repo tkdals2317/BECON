@@ -26,6 +26,7 @@ public class UserRes extends BaseResponseBody{
 	String userPhone;
 	@ApiModelProperty(name="User Profile")
 	UserProfile userProfile;
+	
 	public static UserRes of(User user) {
 		UserRes res = new UserRes();
 		res.setUserId(user.getUserId());
