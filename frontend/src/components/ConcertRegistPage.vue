@@ -19,22 +19,22 @@
               </div>
               <div class="form-group col-lg-3 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="time.startDay" name="StartDay" value="" placeholder="2000-00-00" required=""/>
+                  <input type="date" v-model="time.startDay" name="StartDay" value="" required=""/>
                 </div>
               </div>
               <div class="form-group col-lg-3 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="time.startClock" name="StartClock" value="" placeholder="14:00" required=""/>
+                  <input type="time" v-model="time.startClock" name="StartClock" min="00:00" max="24:00" required=""/>
                 </div>
               </div>
               <div class="form-group col-lg-3 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="time.endDay" name="EndDay" value="" placeholder="2000-00-01" required=""/>
+                  <input type="date" v-model="time.endDay" name="EndDay" value="" required=""/>
                 </div>
               </div>
               <div class="form-group col-lg-3 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="time.endClock" name="EndClock" value="" placeholder="14:00" required=""/>
+                  <input type="time" v-model="time.endClock" name="EndClock" min="00:00" max="24:00" placeholder="14:00" required=""/>
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-12 col-sm-12">
@@ -113,7 +113,6 @@ export default {
   methods:{
     ...mapActions('concert',["requestRegistConcert"]),
     clickRegistConcert:function(){
-      console.log("clickRegist")
       this.concert.startTime = this.time.startDay+" "+this.time.startClock;
       this.concert.endTime = this.time.endDay+" "+this.time.endClock;
       this.concert.files = this.$refs.picture.files[0];
