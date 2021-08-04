@@ -11,18 +11,18 @@
             <div class="date">
               <span class="day">24</span>
               <span class="month-and-time"
-                >JAN<br /><span class="small">8PM</span></span
+                >{{ concertId.startTime }}<br /><span class="small">{{ concertId.endTime }}</span></span
               >
             </div>
             <div class="artist">
               <span class="name">STAND</span>
               <br />
-              <span class="live small">30000원</span>
+              <span class="live small">{{ concertId.priceStand }}</span>
             </div>
             <div class="location">
-              <span>공연제목</span>
+              <span>{{ concertId.title }}</span>
               <br />
-              <span class="live small"><span>가수이름</span></span>
+              <span class="live small"><span>{{ concertId.owner }}</span></span>
             </div>
             <div class="rip"></div>
             <div class="cta">
@@ -34,18 +34,18 @@
             <div class="date">
               <span class="day">24</span>
               <span class="month-and-time"
-                >JAN<br /><span class="small">8PM</span></span
+                >{{ concertId.startTime }}<br /><span class="small">{{ concertId.endTime }}</span></span
               >
             </div>
             <div class="artist">
               <span class="name"> VVVIP </span>
               <br />
-              <span class="live small">50000원</span>
+              <span class="live small">{{ concertId.priceVip }}</span>
             </div>
             <div class="location">
-              <span>공연제목</span>
+              <span>{{ concertId.title }}</span>
               <br />
-              <span class="small"><span>가수이름</span></span>
+              <span class="small"><span>{{ concertId.owner }}</span></span>
             </div>
             <div class="rip"></div>
             <div class="cta">
