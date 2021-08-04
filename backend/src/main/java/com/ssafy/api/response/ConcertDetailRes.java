@@ -31,6 +31,10 @@ public class ConcertDetailRes{
 	String thumbnailUrl;
 	@ApiModelProperty(name="Title")
 	String title;
+	@ApiModelProperty(name="PriceStand")
+	Integer priceStand;
+	@ApiModelProperty(name="PriceVip")
+	Integer priceVip;
 	@ApiModelProperty(name="Decription")
 	String decription;
 	@ApiModelProperty(name="IsActive")
@@ -48,6 +52,8 @@ public class ConcertDetailRes{
 		res.setEndTime(concert.get().getEndTime());
 		res.setThumbnailUrl(concert.get().getThumbnail().getPath());
 		res.setTitle(concert.get().getTitle());
+		res.setPriceStand(concert.get().getPriceStand());
+		res.setPriceVip(concert.get().getPriceVip());
 		res.setDecription(concert.get().getDescription());
 		res.setIsActive(concert.get().getIsActive());
 		res.setUsers(userResList);

@@ -21,7 +21,10 @@
                   <li><strong>Concert</strong> <br>{{ getDetail.title }}</li>
                   <li><strong>Category</strong> <br>{{ getDetail.category }}</li>
                   <li><strong>Date</strong> <br>{{ getDetail.startTime }}</li>
-                  <button @click="goTicketing(getDetail)">Ticket!</button>
+                  <button class="theme-btn btn-style-one">
+                    <i class="btn-curve"></i>
+                    <span class="btn-title" type="button" @click="goTicketing(getDetail)">Ticket!</span>
+                  </button>
                 </ul>
               </div>
             </div>
