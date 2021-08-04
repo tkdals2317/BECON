@@ -50,7 +50,7 @@
                 <li class="dropdown">
                   <a href="#">Services</a>
                   <ul>
-                    <li><router-link to="/services">FAQs</router-link></li>
+                    <li><router-link to="/faqs">FAQs</router-link></li>
                     <li><router-link to="/web-development">Q&A</router-link>
                   </li>
                   </ul>
