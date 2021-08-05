@@ -11,7 +11,7 @@ function stomp() {
 }
 
 function webSocket() {
-    let socket = new WebSocket(`ws://${URL}/groupcall`);
+    let socket = new WebSocket(`wss://${URL}/groupcall`);
     return socket;
 }
 
