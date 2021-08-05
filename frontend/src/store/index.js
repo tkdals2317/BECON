@@ -5,6 +5,7 @@ import createPersistedState from "vuex-persistedstate";
 import user from "./modules/user";
 import concert from "./modules/concert";
 import room from "./modules/room";
+import ticket from "./modules/ticket";
 
 Vue.use(Vuex);
 
@@ -13,10 +14,11 @@ export default new Vuex.Store({
     user,
     concert,
     room,
+    ticket,
   },
   plugins: [
     createPersistedState({
-      paths: ["user", "room", "concert"],
+      paths: ["user", "room", "concert", "ticket"],
     })
   ],
 });
