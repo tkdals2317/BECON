@@ -8,7 +8,7 @@ import com.ssafy.db.entity.Ticket;
 import com.ssafy.db.entity.User;
 
 public interface TicketService {
-	Ticket buyTicket(TicketPostReq ticketInfo, Long concertId, User user);
+	Ticket buyTicket(TicketPostReq ticketInfo, User user);
 	String createCode();
 	Optional<List<Ticket>> findTicketBuy(User user);
 }
