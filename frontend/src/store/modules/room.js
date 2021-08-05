@@ -1,22 +1,24 @@
-
 export default {
   namespaced: true,
   state: {
-    roomId: '',
+    concert: {},
   },
   getters: {
     getRoomId(state) {
-        return state.roomId;
-    }
+      return state.concert.id;
+    },
+    getStartTime(state) {
+      return state.concert.startTime;
+    },
   },
   mutations: {
-      SET_ROOM_ID(state, payload) {
-        state.roomId = payload;
-      }
+    SET_ENTER_CONCERT(state, payload) {
+      state.concert = payload;
+    },
   },
   actions: {
-      setRoomId({ commit }, roomId) {
-        commit('SET_ROOM_ID', roomId);
-      }
-  }
+    setEnterConcert({ commit }, concert) {
+      commit("SET_ENTER_CONCERT", concert);
+    },
+  },
 };

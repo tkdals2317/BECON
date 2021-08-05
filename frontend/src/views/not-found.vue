@@ -2,18 +2,15 @@
   <div>
     <Nav />
     <PageHeader title="my concert" />
-    <Footer />
     <Mycon />
-    <CallToActionThree />
+    <Footer />
   </div>
 </template>
 <script>
-import Nav from "../components/Nav";
-import PageHeader from "../components/PageHeader";
-import Footer from "../components/Footer";
-import Mycon from "../components/Mycon";
-import CallToActionThree from "../components/CallToActionThree";
-
+import Nav from "../components/layout/Nav";
+import PageHeader from "../components/layout/PageHeader";
+import Footer from "../components/layout/Footer";
+import Mycon from "../components/user/Mycon";
 
 export default {
   components: {
@@ -21,8 +18,6 @@ export default {
     PageHeader,
     Nav,
     Mycon,
-    CallToActionThree,
-
   },
   head() {
     return {

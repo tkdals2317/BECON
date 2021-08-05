@@ -2,15 +2,16 @@
   <div>
     <Nav />
     <PageHeader title="Ticketing" />
-    <Ticket :concertId="$route.params.concertId"/>
+    <Ticket :concertId="$route.params.concertId" />
     <Footer />
   </div>
 </template>
 <script>
-import Nav from "../components/Nav";
-import PageHeader from "../components/PageHeader";
-import Footer from "../components/Footer";
-import Ticket from "../components/Ticket";
+import Nav from "../components/layout/Nav";
+import PageHeader from "../components/layout/PageHeader";
+import Footer from "../components/layout/Footer";
+import Ticket from "../components/user/Ticket";
+
 export default {
   components: {
     Ticket,

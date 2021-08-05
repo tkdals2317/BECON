@@ -2,7 +2,6 @@
   <div>
     <Nav />
     <BannerThree />
-    <!-- <Services /> -->
     <GallerySection />
     <ParallaxSection />
     <BlogSection />
@@ -14,16 +13,15 @@
 </template>
 
 <script>
-import Nav from "../components/Nav";
-import BannerThree from "../components/BannerThree";
-// import Services from "../components/Services";
-import GallerySection from "../components/GallerySection";
-import FactSection from "../components/FactSection";
-import TrustedSection from "../components/TrustedSection";
-import ParallaxSection from "../components/ParallaxSection";
-import BlogSection from "../components/BlogSection";
-import CallToAction from "../components/CallToAction";
-import Footer from "../components/Footer";
+import Nav from "../components/layout/Nav";
+import BannerThree from "../components/main/BannerThree";
+import GallerySection from "../components/main/GallerySection";
+import FactSection from "../components/main/FactSection";
+import TrustedSection from "../components/main/TrustedSection";
+import ParallaxSection from "../components/main/ParallaxSection";
+import BlogSection from "../components/main/BlogSection";
+import CallToAction from "../components/main/CallToAction";
+import Footer from "../components/layout/Footer";
 
 export default {
   components: {
@@ -34,7 +32,6 @@ export default {
     BlogSection,
     FactSection,
     GallerySection,
-    // Services,
     BannerThree,
     Nav,
   },

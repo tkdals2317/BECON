@@ -15,6 +15,7 @@ public interface ConcertService {
 	Concert createConcert(ConcertRegisterPostReq registerInfo, ConcertThumbnail fileId, User userId, ConcertCategory categoryId);
 	List<Concert> findByCategory(Long category);
 	List<Concert> findConcerts();
+	List<Concert> findComingConcerts();
 	Optional<Concert> getConcertByConcertId(Long concertId);
 	Optional<List<UserConcert>> getUserConcertByConcerId(Long concertId);
 	Optional<List<Concert>> getConcertByOwnerId(String ownerId);

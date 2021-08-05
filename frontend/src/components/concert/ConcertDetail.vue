@@ -3,7 +3,7 @@
     <section class="project-single style-two">
       <div class="auto-container">
         <figure class="image-box">
-          <a href="/images/resource/featured-image-20.jpg" class="portfolio" data-fancybox="gallery"><img src="../common/images/resource/featured-image-20.jpg" alt=""></a>
+          <a class="portfolio" data-fancybox="gallery"><img src="@/common/images/resource/featured-image-20.jpg" alt=""></a>
         </figure>
         <div class="text-content">
           <div class="row clearfix">
