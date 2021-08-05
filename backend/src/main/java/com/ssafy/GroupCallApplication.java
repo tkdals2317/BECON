@@ -25,6 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -42,6 +43,7 @@ import com.ssafy.api.rtc.UserRegistry;
  */
 @SpringBootApplication
 @EnableWebSocket
+@EnableScheduling
 public class GroupCallApplication implements WebSocketConfigurer {
 
   @Bean

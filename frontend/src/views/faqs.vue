@@ -8,11 +8,12 @@
   </div>
 </template>
 <script>
-import Nav from "../components/Nav";
-import PageHeader from "../components/PageHeader";
-import Footer from "../components/Footer";
-import QuoteSectionThree from "../components/QuoteSectionThree";
-import CallToActionThree from "../components/CallToActionThree";
+import Nav from "../components/layout/Nav";
+import PageHeader from "../components/layout/PageHeader";
+import Footer from "../components/layout/Footer";
+import QuoteSectionThree from "../components/unused/QuoteSectionThree";
+import CallToActionThree from "../components/unused/CallToActionThree";
+
 export default {
   components: {
     CallToActionThree,

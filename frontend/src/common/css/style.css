@@ -1362,7 +1362,7 @@ img.lazy-image.loaded {
   position: relative;
   display: block;
   color: #0f172b;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 24px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -1379,6 +1379,8 @@ img.lazy-image.loaded {
 .default-form .form-group input[type="tel"],
 .default-form .form-group input[type="url"],
 .default-form .form-group input[type="file"],
+.default-form .form-group input[type="date"],
+.default-form .form-group input[type="time"],
 .default-form .form-group input[type="number"],
 .default-form .form-group textarea,
 .default-form .form-group select {
@@ -1415,9 +1417,11 @@ img.lazy-image.loaded {
 .default-form .form-group input[type="text"]:focus,
 .default-form .form-group input[type="email"]:focus,
 .default-form .form-group input[type="password"]:focus,
+.default-form .form-group input[type="date"]:focus,
 .default-form .form-group input[type="tel"]:focus,
 .default-form .form-group input[type="url"]:focus,
 .default-form .form-group input[type="file"]:focus,
+.default-form .form-group input[type="time"]:focus,
 .default-form .form-group input[type="number"]:focus,
 .default-form .form-group textarea:focus,
 .default-form .form-group select:focus,
@@ -4840,7 +4844,7 @@ img.lazy-image.loaded {
   color: var(--thm-text);
   display: block;
   font-weight: 300;
-  line-height: 1.5em;
+  line-height: 2;
   letter-spacing: 0.1em;
 }
 

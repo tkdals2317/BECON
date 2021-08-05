@@ -42,15 +42,15 @@
                   <ul>
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
                     <li @click="concertEnter"><a>Concert Enter</a></li>
-                    <li><router-link to="/testimonials">Concert Schedule</router-link></li>
-                    <li><router-link to="/not-found">Concert Search</router-link></li>
+                    <li @click="concertSchedule"><a>Concert Schedule</a></li>
+                    <li><router-link to="/notfound">Concert Search</router-link></li>
                     <li><router-link to="/ticketing">Ticketing</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#">Services</a>
                   <ul>
-                    <li><router-link to="/services">FAQs</router-link></li>
+                    <li><router-link to="/faqs">FAQs</router-link></li>
                     <li><router-link to="/web-development">Q&A</router-link>
                   </li>
                   </ul>
@@ -103,8 +103,8 @@
                   <ul>
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
                     <li><router-link to="/EX">Concert EX</router-link></li>
-                    <li><router-link to="/concertSchedule">Concert Schedule</router-link></li>
-                    <li><router-link to="/not-found">Concert Search</router-link></li>
+                    <li @click="concertSchedule"><a>Concert Schedule</a></li>
+                    <li><router-link to="/notfound">Concert Search</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -122,7 +122,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex';
+import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "Nav",
   data() {
@@ -151,6 +151,7 @@ export default {
     }
   },
   computed:{
+    ...mapGetters('user',["getAccessToken"], 'concert', ["getConcertInfos"]),
     ...mapState('user',["accessToken"])
   },
   methods: {
@@ -169,9 +170,11 @@ export default {
     concertEnter() {
       let num = prompt('방 번호를 입력해주세요');
       console.log(num);
-      
       this.setRoomId(num);
       this.$router.push('/waiting');
+    },
+    concertSchedule() {
+      this.$router.push({ name: 'ConcertSchedule', params: { getConcertInfos: this.getConcertInfos }})  
     }
   },
 };
@@ -204,7 +207,7 @@ export default {
   top: 0;
   width: 44px;
   height: 42px;
-  background: url(../common/images/icons/chat-icon.png) left center no-repeat;
+  background: url('../../common/images/icons/chat-icon.png') left center no-repeat;
 }
 
 .main-header .other-links .fun-box .sub-text {

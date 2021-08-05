@@ -1,23 +1,29 @@
 <template>
-  <section class="error-section">
+  <section class="image-layer text-center">
     <div class="auto-container">
       <div class="big-text">
           <div class="row text-center">
-            <div class="col-5">00</div>
+            <div class="col-5 text-right">{{minute.toString().padStart(2,'0')}}</div>
             <div class="col-2">:</div>
-            <div class="col-5">00</div>
+            <div class="col-5 text-left">{{second.toString().padStart(2,'0')}}</div>
           </div>
-        </div>
+      </div>
       <div class="content">
-        <h2>공연이 곧 시작됩니다.</h2>
-        <div class="text">
-          잠시만 기다려주세요.
+        <div v-if="isActive">
+          <h2>공연이 곧 시작됩니다.</h2>
+          <h4>잠시만 기다려주세요.</h4>
+        </div>
+        <div v-if="!isActive">
+          <h2>공연이 시작됐습니다.</h2>
+          <h4>입장해 주세요.</h4>
         </div>
         <div class="error-form">
           <div id="participants-img" class="row"></div>
         </div>
         <div class="link-box">
-          <router-link class="theme-btn btn-style-one" :to="{ name: 'ConcertPage', params: { roomId: roomId }}">
+          <router-link class="theme-btn btn-style-one"
+            to="ConcertPage" tag="button" :disabled="isActive"
+          >
             <i class="btn-curve"></i>
             <span class="btn-title">입장하기</span>
           </router-link>
@@ -37,13 +43,19 @@ export default {
 
   data() {
     return {
+      startTime: Date,
+      minute: 0,
+      second: 0,
       participants: [],
       userId: '',
       roomId: '',
+      isActive: true,
     };
   },
 
   created() {
+    this.setTimer();
+
     this.userId = this.getUserId;
     this.roomId = this.getRoomId;
 
@@ -55,14 +67,45 @@ export default {
 
   destroyed() {
     this.leaveRoom();
-  },
+    clearInterval(this.timer);
+  }, 
 
   computed:{
     ...mapGetters('user', ['getUserId']),
-    ...mapGetters('room', ['getRoomId']),
+    ...mapGetters('room', ['getRoomId', 'getStartTime']),
   },
 
   methods: {
+    setTimer() {
+      this.startTime = new Date(this.getStartTime);
+      var now = new Date();
+
+      var diff = (this.startTime.getTime() - now.getTime())/1000;
+
+      if (diff < 0) {
+        this.isActive = false;
+        return;
+      }
+
+      this.minute = Math.floor(diff / 60);
+      this.second = Math.floor(diff % 60);
+
+      var app = this;
+      this.timer = setInterval(function() {
+        app.second -= 1;
+
+        if (app.second < 0) {
+          app.minute -= 1;
+          if (app.minute < 0) {
+            app.second = 0;
+            app.minute = 0;
+            app.isActive = false;
+            clearInterval(app.timer);
+          }
+          else app.second = 60;
+        }
+      }, 1000);
+    },
     connection() {
       this.ws = webSocket();
       console.info("message: ");
@@ -150,9 +193,27 @@ export default {
 <style scoped>
 .big-text {
   font-size: 200px;
-  margin-bottom: 50px;
+  color: red;
+}
+h4, h2 {
+  color: black;
+}
+.auto-container {
+  padding-top: 200px;
+  padding-bottom: 100px;
 }
 .link-box {
-  margin-top: 100px;
+  margin-top: 50px;
+}
+.btn-style-one:disabled {
+  -webkit-filter: grayscale(100%);
+}
+.image-layer {
+  background-image: url('../../common/images/resource/profile/BeConImg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* -webkit-filter: grayscale(100%); */
+  opacity: 1 !important;
 }
 </style>

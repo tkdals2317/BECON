@@ -38,4 +38,10 @@ public class ConcertRepositorySupport {
 		.where(qConcert.user.userId.eq(ownerId)).execute();
 	}
 	
+	public Concert findConcertById(Long Id) {
+		Concert concert=jpaQueryFactory.select(qConcert).from(qConcert)
+				.where(qConcert.id.eq(Id)).fetchOne();
+		return concert;
+	}
+	
 }

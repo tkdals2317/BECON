@@ -1,7 +1,6 @@
 package com.ssafy.api.request;
 
 import com.ssafy.db.entity.ConcertThumbnail;
-import com.ssafy.db.entity.UserProfile;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -3,7 +3,7 @@
     <section class="project-single style-two">
       <div class="auto-container">
         <figure class="image-box">
-          <a href="/images/resource/featured-image-20.jpg" class="portfolio" data-fancybox="gallery"><img src="../common/images/resource/featured-image-20.jpg" alt=""></a>
+          <a class="portfolio" data-fancybox="gallery"><img src="@/common/images/resource/featured-image-20.jpg" alt=""></a>
         </figure>
         <div class="text-content">
           <div class="row clearfix">
@@ -21,6 +21,10 @@
                   <li><strong>Concert</strong> <br>{{ getDetail.title }}</li>
                   <li><strong>Category</strong> <br>{{ getDetail.category }}</li>
                   <li><strong>Date</strong> <br>{{ getDetail.startTime }}</li>
+                  <button class="theme-btn btn-style-one">
+                    <i class="btn-curve"></i>
+                    <span class="btn-title" type="button" @click="goTicketing(getDetail)">Ticket!</span>
+                  </button>
                 </ul>
               </div>
             </div>
@@ -36,6 +40,7 @@
 <script>
 import GLightbox from "glightbox";
 import { mapActions, mapGetters } from "vuex";
+// import "compass/css3";
   export default {
     name: "ConcertDetail",
     props: {
@@ -46,6 +51,9 @@ import { mapActions, mapGetters } from "vuex";
     },
     methods: {
       ...mapActions("concert", ["getConcertDetail"]),
+      goTicketing(concertId) {
+        this.$router.push({name: 'Ticketing', params:{ concertId: concertId } })
+      },
     },
     mounted() {
       new GLightbox({

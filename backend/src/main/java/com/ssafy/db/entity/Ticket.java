@@ -1,7 +1,5 @@
 package com.ssafy.db.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -21,7 +19,7 @@ public class Ticket extends BaseEntity {
 	private String code;
 	private String type;
 	private Integer price;
-	private Date buyDate;
+	private String buyDate;
 	
 	public static Ticket of (Concert concert, User user) {
 		Ticket ticket = new Ticket();

@@ -24,8 +24,7 @@ public class ConcertServiceImpl implements ConcertService{
 	ConcertRepository concertRepository;
 	@Autowired
 	ConcertRepositorySupport concertRepositorySupport;
-//	@Autowired
-//	private RoomManager roomManager;
+
 	
 	@Transactional
 	@Override
@@ -57,6 +56,11 @@ public class ConcertServiceImpl implements ConcertService{
 	public List<Concert> findConcerts() {
 		return concertRepository.findAll();
 	}
+	
+	@Override
+	public List<Concert> findComingConcerts() {
+		return concertRepository.findComingConcert();
+	}
 
 
 	@Override
@@ -81,7 +85,4 @@ public class ConcertServiceImpl implements ConcertService{
 	public void deleteConcertByOwnerId(String ownerId) {
 		concertRepositorySupport.deleteConcertByOwnerId(ownerId);	
 	}
-
-	
-
 }

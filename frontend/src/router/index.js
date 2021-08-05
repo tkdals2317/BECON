@@ -9,14 +9,14 @@ import Service from "../views/service.vue";
 import Login from "../views/login.vue";
 import MyPage from "../views/mypage.vue";
 import ConcertRegist from "../views/concertRegist.vue";
-import ConcertCheck from "../views/concertCheck.vue"
-import ConcertDetail from "../views/concertDetail.vue"
-import ConcertSchedule from "../views/concertSchedule.vue"
+import ConcertCheck from "../views/concertCheck.vue";
+import ConcertDetail from "../views/concertDetail.vue";
+import ConcertSchedule from "../views/concertSchedule.vue";
 import Faqs from "../views/faqs.vue";
 import Register from "../views/register.vue";
 import NotFound from "../views/not-found.vue";
 import Ticketing from "../views/ticketing.vue";
-
+import ConcertConfirm from "../views/concertConfirm.vue"
 
 Vue.use(VueRouter);
 
@@ -77,13 +77,22 @@ const routes = [
     component: Register,
   },
   {
+    path: "/concertRegist/confirm",
+    name: "ConcertConfirm",
+    component: ConcertConfirm,
+    props: true,
+    // component: ConcertConfirm,
+  },
+  {
     path: "/service",
     name: "Service",
     component: Service,
-  },{
+  },
+  {
     path: "/concertCK",
     name: "ConcertCheck",
     component: ConcertCheck,
+    
   },
   {
     path: "/notfound",
@@ -93,7 +102,7 @@ const routes = [
   {
     path: "/ticketing",
     name: "Ticketing",
-    component:Ticketing,
+    component: Ticketing,
   },
 ];
 

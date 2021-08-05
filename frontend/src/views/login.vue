@@ -2,18 +2,19 @@
   <div>
     <Nav />
     <PageHeader title="Login" />
-    <ContactPage />
+    <LoginPage />
     <Footer />
   </div>
 </template>
 <script>
-import Nav from "../components/Nav";
-import PageHeader from "../components/PageHeader";
-import Footer from "../components/Footer";
-import ContactPage from "../components/LoginPage";
+import Nav from "../components/layout/Nav";
+import PageHeader from "../components/layout/PageHeader";
+import Footer from "../components/layout/Footer";
+import LoginPage from "../components/user/LoginPage";
+
 export default {
   components: {
-    ContactPage,
+    LoginPage,
     Footer,
     PageHeader,
     Nav,
