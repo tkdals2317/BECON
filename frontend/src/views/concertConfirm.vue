@@ -7,9 +7,9 @@
   </div>
 </template>
 <script>
-import Nav from "../components/Nav";
-import PageHeader from "../components/PageHeader";
-import Footer from "../components/Footer";
+import Nav from "../components/layout/Nav";
+import PageHeader from "../components/layout/PageHeader";
+import Footer from "../components/layout/Footer";
 import ConcertConfirm from "../components/ConcertConfirm.vue";
 export default {
   components: {
