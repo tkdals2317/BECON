@@ -73,7 +73,7 @@ body {
 }
 
 .ticket {
-  font-family: sans-serif;
+  font-family: '양진체';
   background-repeat: no-repeat;
   background-position: top;
   background-size: 100%;
@@ -107,7 +107,7 @@ body {
 
 .artist {
   font-size: 40px;
-  margin: 10px 100px 0 40px;
+  margin: 10px 0px 0 40px;
   float: left;
   font-weight: bold;
   -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
@@ -116,7 +116,7 @@ body {
 
 .location {
   float: left;
-  margin: 135px 0 0;
+  margin: 180px 0 0 auto;
   font-size: 30px;
   font-weight: bold;
   -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
@@ -144,7 +144,7 @@ body {
   height: 300px;
   position: absolute;
   top: 0;
-  left: 530px;
+  left: 560px;
 }
 
 .cta .buy {

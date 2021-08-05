@@ -48,8 +48,6 @@
                   <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
                       <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Meet Our Team</a></li>
                         <li><a href="#">Our Portfolio</a></li>
                         <li><a href="#">Latest News</a></li>
                         <li><a href="#">Contact</a></li>
@@ -59,7 +57,6 @@
                       <ul>
                         <li><a href="#">Support</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Use</a></li>
                         <li><a href="#">Help</a></li>
                       </ul>
                     </div>
@@ -75,49 +72,20 @@
                   <h6>Contact</h6>
                   <ul class="contact-info">
                     <li class="address">
-                      <span class="icon flaticon-pin-1"></span> 66 Broklyn
-                      Street, New York <br />United States of America
+                      <span class="icon flaticon-pin-1"></span> 경상북도 구미시 임수동
+                      <br />
                     </li>
                     <li>
                       <span class="icon flaticon-call"></span
-                      ><a href="tel:666888000">666 888 000</a>
+                      ><a href="tel:666888000">054 584 000</a>
                     </li>
                     <li>
                       <span class="icon flaticon-email-2"></span
-                      ><a href="mailto:needhelp@linoor.com"
-                        >needhelp@linoor.com</a
+                      ><a href="mailto:needhelp@becon.com"
+                        >needhelp@becon.com</a
                       >
                     </li>
                   </ul>
-                </div>
-              </div>
-            </div>
-
-            <!--Column-->
-            <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
-              <div class="footer-widget newsletter-widget">
-                <div class="widget-content">
-                  <h6>Newsletter</h6>
-                  <div class="newsletter-form">
-                    <form method="post" action="#">
-                      <div class="form-group clearfix">
-                        <input
-                          type="email"
-                          name="email"
-                          value=""
-                          placeholder="Email Address"
-                          required=""
-                        />
-                        <button type="submit" class="theme-btn">
-                          <span class="fa fa-envelope"></span>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="text">
-                    Sign up for our latest news & articles. We won’t give you
-                    spam mails.
-                  </div>
                 </div>
               </div>
             </div>
@@ -129,7 +97,7 @@
       <div class="footer-bottom">
         <div class="auto-container">
           <div class="inner clearfix">
-            <div class="copyright">&copy; copyright 2020 by Layerdrops.com</div>
+            <div class="copyright">&copy; copyright 2021 by Be-Con.com</div>
           </div>
         </div>
       </div>
@@ -173,4 +141,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.row {
+  margin: 0 -15px;
+  justify-content: center;
+}</style>
