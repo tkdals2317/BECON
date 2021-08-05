@@ -1,5 +1,5 @@
 import http from '@/common/lib/http';
-import router from "@/router/index";
+//import router from "@/router/index";
 
 export default {
     namespaced: true,
@@ -57,7 +57,7 @@ export default {
               })
               .then(() => {
                 alert('공연 신청이 완료되었습니다.');
-                router.push('/');
+                
               })
               .catch((err) => {
                 alert(err.response.data.message);

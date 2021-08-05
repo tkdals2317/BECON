@@ -16,6 +16,7 @@ import Faqs from "../views/faqs.vue";
 import Register from "../views/register.vue";
 import NotFound from "../views/not-found.vue";
 import Ticketing from "../views/ticketing.vue";
+import ConcertConfirm from "../views/concertConfirm.vue"
 
 
 Vue.use(VueRouter);
@@ -77,6 +78,13 @@ const routes = [
     component: Register,
   },
   {
+    path: "/concertRegist/confirm",
+    name: "ConcertConfirm",
+    component: ConcertConfirm,
+    props: true,
+    // component: ConcertConfirm,
+  },
+  {
     path: "/service",
     name: "Service",
     component: Service,
@@ -84,6 +92,7 @@ const routes = [
     path: "/concertCK",
     name: "ConcertCheck",
     component: ConcertCheck,
+    
   },
   {
     path: "/notfound",
