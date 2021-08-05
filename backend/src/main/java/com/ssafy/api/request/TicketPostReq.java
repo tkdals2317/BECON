@@ -1,7 +1,5 @@
 package com.ssafy.api.request;
 
-import javax.persistence.Entity;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

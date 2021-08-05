@@ -123,7 +123,7 @@ export default {
 
 <style scoped>
 .bg-image {
-  background-image: url('../common/images/resource/profile/BeConImg.jpg');
+  background-image: url('../../common/images/resource/profile/BeConImg.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -145,19 +145,19 @@ export default {
   transform: none !important;
 }
 .image1 {
-  background-image: url('../common/images/backcon4.jpg');
+  background-image: url('../../common/images/backcon4.jpg');
   background-size: cover;
   opacity: 1 !important;
   transform: none !important;
   -webkit-filter: none !important;
 }
 .image2 {
-  background-image: url('../common/images/backcon5.jpg');
+  background-image: url('../../common/images/backcon5.jpg');
   opacity: 1 !important;
   transform: none !important;
 }
 .image3 {
-  background-image: url('../common/images/backcon6.jpg');
+  background-image: url('../../common/images/backcon6.jpg');
   opacity: 1 !important;
   transform: none !important;
   -webkit-filter: none !important;

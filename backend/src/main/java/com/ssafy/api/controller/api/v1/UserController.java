@@ -1,7 +1,5 @@
 package com.ssafy.api.controller.api.v1;
 
-import java.io.File;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +19,6 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.UserModifyPostReq;
-import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.api.response.UserModifyPostRes;
 import com.ssafy.api.response.UserRes;
@@ -33,8 +27,6 @@ import com.ssafy.api.service.user.UserProfileService;
 import com.ssafy.api.service.user.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.common.util.MD5Generator;
-import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserProfile;
 

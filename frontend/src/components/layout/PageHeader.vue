@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .image-layer {
-  background-image: url('../common/images/resource/profile/BeConImg.jpg');
+  background-image: url('../../common/images/resource/profile/BeConImg.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

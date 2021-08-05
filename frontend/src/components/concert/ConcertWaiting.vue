@@ -67,15 +67,17 @@ export default {
 
   destroyed() {
     this.leaveRoom();
+    clearInterval(this.timer);
   }, 
+
   computed:{
     ...mapGetters('user', ['getUserId']),
-    ...mapGetters('room', ['getRoomId']),
+    ...mapGetters('room', ['getRoomId', 'getStartTime']),
   },
 
   methods: {
     setTimer() {
-      this.startTime = new Date('2021-08-03 16:33:00');
+      this.startTime = new Date(this.getStartTime);
       var now = new Date();
 
       var diff = (this.startTime.getTime() - now.getTime())/1000;
@@ -89,7 +91,7 @@ export default {
       this.second = Math.floor(diff % 60);
 
       var app = this;
-      var timer = setInterval(function() {
+      this.timer = setInterval(function() {
         app.second -= 1;
 
         if (app.second < 0) {
@@ -98,7 +100,7 @@ export default {
             app.second = 0;
             app.minute = 0;
             app.isActive = false;
-            clearInterval(timer);
+            clearInterval(app.timer);
           }
           else app.second = 60;
         }
@@ -207,7 +209,7 @@ h4, h2 {
   -webkit-filter: grayscale(100%);
 }
 .image-layer {
-  background-image: url('../common/images/resource/profile/BeConImg.jpg');
+  background-image: url('../../common/images/resource/profile/BeConImg.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

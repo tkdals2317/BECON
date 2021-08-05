@@ -43,7 +43,7 @@
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
                     <li @click="concertEnter"><a>Concert Enter</a></li>
                     <li @click="concertSchedule"><a>Concert Schedule</a></li>
-                    <li><router-link to="/not-found">Concert Search</router-link></li>
+                    <li><router-link to="/notfound">Concert Search</router-link></li>
                     <li><router-link to="/ticketing">Ticketing</router-link></li>
                   </ul>
                 </li>
@@ -104,7 +104,7 @@
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
                     <li><router-link to="/EX">Concert EX</router-link></li>
                     <li @click="concertSchedule"><a>Concert Schedule</a></li>
-                    <li><router-link to="/not-found">Concert Search</router-link></li>
+                    <li><router-link to="/notfound">Concert Search</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -207,7 +207,7 @@ export default {
   top: 0;
   width: 44px;
   height: 42px;
-  background: url(../common/images/icons/chat-icon.png) left center no-repeat;
+  background: url('../../common/images/icons/chat-icon.png') left center no-repeat;
 }
 
 .main-header .other-links .fun-box .sub-text {

@@ -162,7 +162,7 @@
 
 <script>
 export default {
-  name: "ContactPage",
+  name: "Mycon",
 };
 </script>
 

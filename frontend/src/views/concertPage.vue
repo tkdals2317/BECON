@@ -2,15 +2,16 @@
   <div>
     <Nav />
     <PageHeader title="공연이름" />
-    <ConcertRoom/>
+    <ConcertRoom />
     <Footer />
   </div>
 </template>
 <script>
-import Nav from "../components/Nav";
-import PageHeader from "../components/PageHeader";
-import Footer from "../components/Footer";
-import ConcertRoom from "../components/ConcertRoom";
+import Nav from "../components/layout/Nav";
+import PageHeader from "../components/layout/PageHeader";
+import Footer from "../components/layout/Footer";
+import ConcertRoom from "../components/concert/ConcertRoom";
+
 export default {
   components: {
     ConcertRoom,
