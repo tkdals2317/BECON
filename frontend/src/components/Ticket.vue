@@ -26,7 +26,7 @@
             </div>
             <div class="rip"></div>
             <div class="cta">
-              <button class="buy" href="#">BUY TICKET</button>
+              <button class="buy" @click="clickBuyStand()">BUY TICKET</button>
             </div>
           </div>
 
@@ -49,7 +49,7 @@
             </div>
             <div class="rip"></div>
             <div class="cta">
-              <button class="buy" href="#">BUY TICKET</button>
+              <button class="buy" @click="clickBuyVip()">BUY TICKET</button>
             </div>
           </div>
         </div>
@@ -59,10 +59,41 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
   name: "Ticket",
   props: {
     concertId: Object,
+  },
+  methods:{
+    ...mapActions('ticket',["requestBuyTicket"]),
+    getNow(){
+      const today = new Date();
+      const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const dateTime = date +' '+ time;
+      this.timestamp = dateTime;
+    },
+    clickBuyStand(){
+      this.getNow();
+      let ticket={
+        buyDate:this.timestamp,
+        price:this.concertId.priceStand,
+        type:"Standard",
+        concertId:this.concertId.id
+      }
+      this.requestBuyTicket(ticket);
+    },
+    clickBuyVip(){
+     this.getNow();
+      let ticket={
+        buyDate:this.timestamp,
+        price:this.concertId.priceVip,
+        type:"Vip",
+        concertId:this.concertId.id
+      }
+      this.requestBuyTicket(ticket);
+    }
   },
 };
 </script>

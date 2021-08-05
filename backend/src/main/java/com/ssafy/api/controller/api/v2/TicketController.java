@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
@@ -15,15 +17,11 @@ import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-
 import com.ssafy.api.request.TicketPostReq;
 import com.ssafy.api.service.ticket.TicketService;
 import com.ssafy.api.service.user.UserService;
-import com.ssafy.api.service.user.UserServiceImpl;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.db.entity.Concert;
-import com.ssafy.db.entity.ConcertCategory;
 import com.ssafy.db.entity.Ticket;
 import com.ssafy.db.entity.User;
 
@@ -32,6 +30,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Api(value = "티켓 API", tags = {"Ticket"})
 @RestController
@@ -48,18 +47,18 @@ public class TicketController {
 		@ApiResponse(code = 201, message = "성공"),
 	})
 	public ResponseEntity<? extends BaseResponseBody> register(
-			/*@ApiIgnore Authentication authentication,*/
-			@ApiParam(value="티켓 정보", required = true) TicketPostReq ticketInfo, 
-			@ApiParam(value="공연 아이디", required = true) Long concertId,
-			@ApiParam(value="유저 아이디", required = true) String userId){
-		
-//		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+			@ApiIgnore Authentication authentication,
+			@ApiParam(value="티켓 정보", required = true) @RequestBody TicketPostReq ticketInfo
+			//@ApiParam(value="공연 아이디", required = true) Long concertId
+			/*@ApiParam(value="유저 아이디", required = true) String userId*/){
+		System.out.println(ticketInfo.getBuyDate());
+		System.out.println(ticketInfo.getBuyDate());
+		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 
 		Ticket ticket=null;
 		try{
-			System.out.println(userId);
-			User user=userService.getUserByUserId(userId); 
-			ticket=ticketService.buyTicket(ticketInfo, concertId, user);
+			User user=userService.getUserByUserId(userDetails.getUsername()); 
+			ticket=ticketService.buyTicket(ticketInfo, user);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
 		}catch(TokenExpiredException e) {

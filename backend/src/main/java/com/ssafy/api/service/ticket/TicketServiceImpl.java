@@ -29,7 +29,7 @@ public class TicketServiceImpl implements TicketService{
 	ConcertRepositorySupport concertRepositorySupport;
 	
 	@Override
-	public Ticket buyTicket(TicketPostReq ticketInfo, Long concertId, User user) {
+	public Ticket buyTicket(TicketPostReq ticketInfo, User user) {
 		Ticket ticket=new Ticket();
 		Date date=new Date();
 
@@ -39,7 +39,7 @@ public class TicketServiceImpl implements TicketService{
 		ticket.setCode(createCode());
 		ticket.setPrice(ticketInfo.getPrice());
 		ticket.setType(ticketInfo.getType());
-		ticket.setConcert(concertRepositorySupport.findConcertById(concertId));
+		ticket.setConcert(concertRepositorySupport.findConcertById(ticketInfo.getConcertId()));
 		ticket.setUser(user);
 		
 		return ticketRepository.save(ticket);

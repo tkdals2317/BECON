@@ -17,5 +17,7 @@ public class TicketPostReq {
 	int price;
 	@ApiModelProperty(name="티켓 종류", example="VIP")
 	String type;
+	@ApiModelProperty(name="공연 번호", example="1")
+	Long concertId;
 	
 }
