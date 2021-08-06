@@ -55,7 +55,11 @@ import { mapActions, mapGetters } from "vuex";
         this.$router.push({name: 'Ticketing', params:{ concertId: concertId } })
       },
     },
+    create(){
+      window.scrollTo(0, 0);
+    },
     mounted() {
+      window.scrollTo(0, 0);
       new GLightbox({
         selector: '.portfolio',
       });

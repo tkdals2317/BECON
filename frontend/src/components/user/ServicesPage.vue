@@ -30,9 +30,9 @@
             <div class="inner-box">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-instant-camera"></span></div>
-              <h5><a href="#">Regist 콘서트</a></h5>
+              <h5><a href="#">my 콘서트</a></h5>
               <div class="text">예매한 콘서트를 한눈에!</div>
-              <div class="link-box"><a href="#"><span class="fa fa-angle-right"></span></a></div>
+              <div class="link-box"><a href="/myconcert"><span class="fa fa-angle-right"></span></a></div>
             </div>
           </div>
 
@@ -56,6 +56,9 @@
 <script>
   export default {
     name: "ServicesPage",
+    created() {
+      window.scrollTo(0, 0);
+    },
     methods: {
       moveMyPage() {
         this.$router.push("mypage");

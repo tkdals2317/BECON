@@ -30,31 +30,15 @@
             <div class="inner">
               <div class="sec-title">
                 <h2>
-                  We’re trusted by more <br />than 6260 clients<span class="dot"
+                  BE-CON과 함께 팬과 가수의 소통  <br /><span class="dot"
                     >.</span
                   >
                 </h2>
                 <div class="lower-text">
-                  There are many variations of passages of Lorem Ipsum
-                  available, but the majority have suffered alteration in some
-                  form, simply free text by injected humour, or randomised.
+                  It is a place where many people enjoy and share together.
                 </div>
               </div>
               <div class="featured-block-two clearfix">
-                <div class="image">
-                  <img
-                    src="@/common/images/resource/featured-image-5.jpg"
-                    alt=""
-                  />
-                </div>
-                <div class="text">
-                  <ul>
-                    <li>Suspe ndisse sagittis leo.</li>
-                    <li>Entum estibulum is posuere.</li>
-                    <li>If you are going to use passage.</li>
-                    <li>Lorem Ipsum on the tend to repeat.</li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>

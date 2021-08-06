@@ -54,6 +54,7 @@ export default {
   },
 
   created() {
+    window.scrollTo(0, 0);
     this.setTimer();
 
     this.userId = this.getUserId;
@@ -69,7 +70,6 @@ export default {
     this.leaveRoom();
     clearInterval(this.timer);
   }, 
-
   computed:{
     ...mapGetters('user', ['getUserId']),
     ...mapGetters('room', ['getRoomId', 'getStartTime']),

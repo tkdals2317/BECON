@@ -85,6 +85,24 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NEXONFootballGothicLA1';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicLA1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 /***
 
 ====================================================================
@@ -111,7 +129,7 @@
  ***/
 
 :root {
-  --thm-font: "양진체", sans-serif;
+  --thm-font: "GmarketSansMedium", sans-serif;
   --thm-base: #E71D36;
   --thm-base-rgb: 255, 170, 23;
   --thm-black: #222429;
@@ -535,7 +553,7 @@ img {
 }
 
 .fixed-header .header-upper {
-  background: #171717;
+  background: #000000;
   -webkit-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
   -ms-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
@@ -553,6 +571,7 @@ img {
 }
 
 .main-header .header-upper .inner-container {
+  background: #000000;
   position: relative;
   display: block;
   padding: 0px 60px;
@@ -663,6 +682,7 @@ img {
 }
 
 .main-header .nav-outer {
+  background: #000000;
   position: absolute;
   left: 0;
   top: 0;
@@ -3575,7 +3595,7 @@ img.lazy-image.loaded {
 
 .gallery-section {
   position: relative;
-  padding: 140px 0 90px;
+  padding: 140px 0 30px;
 }
 
 .gallery-section .upper-row {
@@ -9279,12 +9299,16 @@ img.lazy-image.loaded {
 
 .project-single {
   position: relative;
-  padding: 120px 0px 80px;
+  padding: 80px 10px 10px 80px;
 }
 
 .project-single .image-col {
   position: relative;
+  margin-top: 10px;
   margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+
 }
 
 .project-single .image-col .inner {
@@ -9330,7 +9354,9 @@ img.lazy-image.loaded {
   text-transform: uppercase;
   font-weight: 400;
   line-height: 1.1em;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+
 }
 
 .project-single.style-two h5 {
@@ -9348,6 +9374,8 @@ img.lazy-image.loaded {
 
 .project-single .text-content p {
   margin-bottom: 25px;
+  margin-top: 25px;
+
 }
 
 .project-single .text-content .last {

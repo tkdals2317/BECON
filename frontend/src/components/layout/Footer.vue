@@ -18,7 +18,7 @@
                     /></router-link>
                   </div>
                   <div class="text">
-                    Welcome to our be-con
+                    Welcome to our BeCon
                   </div>
                   <ul class="social-links clearfix">
                     <li>
@@ -44,22 +44,39 @@
             <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
               <div class="footer-widget links-widget">
                 <div class="widget-content">
-                  <h6>Explore</h6>
+                  <h6>Concert</h6>
                   <div class="row clearfix">
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-12 col-sm-12">
                       <ul>
-                        <li><a href="#">Our Portfolio</a></li>
-                        <li><a href="#">Latest News</a></li>
+                        <li><a href="#">Concert</a></li>
+                        <li><a href="#">Service</a></li>
                         <li><a href="#">Contact</a></li>
                       </ul>
                     </div>
+                    <!-- <div class="col-md-6 col-sm-12">
+                      <ul>
+                        <li><a href="#">Con Schedule</a></li>
+                        <li><a href="#">Con Search</a></li>
+                      </ul>
+                    </div>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Column-->
+            <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget links-widget">
+                <div class="widget-content">
+                  <h6>Services</h6>
+                  <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
                       <ul>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="#">FAQS</a></li>
+                        <li><a href="#">Q&A</a></li>
+                        
                       </ul>
-                    </div>
+                    </div> 
                   </div>
                 </div>
               </div>
@@ -69,21 +86,18 @@
             <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
               <div class="footer-widget info-widget">
                 <div class="widget-content">
-                  <h6>Contact</h6>
+                  <h6>CONTACT</h6>
                   <ul class="contact-info">
-                    <li class="address">
-                      <span class="icon flaticon-pin-1"></span> 경상북도 구미시 임수동
-                      <br />
+                    <li>
+                      <span class="icon flaticon-pin-1"></span> 경상북도 구미시 진평동 498-2 그레이 503호
                     </li>
                     <li>
                       <span class="icon flaticon-call"></span
-                      ><a href="tel:666888000">054 584 000</a>
+                      >010 5137 8979 (Tel. 055 363 8972)
                     </li>
                     <li>
                       <span class="icon flaticon-email-2"></span
-                      ><a href="mailto:needhelp@becon.com"
-                        >needhelp@becon.com</a
-                      >
+                      >cherrykang97@becon.com
                     </li>
                   </ul>
                 </div>

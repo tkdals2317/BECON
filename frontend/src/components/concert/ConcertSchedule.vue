@@ -70,6 +70,7 @@ import { mapActions, mapGetters } from "vuex";
       ...mapActions("concert", ["requestCategory", "requestConcert"]),
     },
     mounted () {
+      window.scrollTo(0, 0);
       new GLightbox({
         selector: '.lightbox-image',
         touchNavigation: true,
