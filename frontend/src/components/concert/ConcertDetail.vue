@@ -11,7 +11,7 @@
             <div class="text-col col-lg-8 col-md-12 col-sm-12">
               <div class="inner">
                 <h5>Concert description</h5>
-                <p>{{ getDetail.description }}</p>
+                <p>{{ getDetail.decription }}</p>
               </div>
             </div>
             <!-- Text COl -->
@@ -74,5 +74,7 @@ import { mapActions, mapGetters } from "vuex";
 </script>
 
 <style scoped>
-
+p {
+  font-size: 16px;
+}
 </style>
