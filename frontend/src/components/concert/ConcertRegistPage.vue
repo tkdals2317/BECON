@@ -123,4 +123,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.field-inner > div {
+  padding: 14px 19px !important;
+}
+</style>

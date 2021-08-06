@@ -52,9 +52,9 @@ export default {
       isActive: true,
     };
   },
-
+  
   created() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     this.setTimer();
 
     this.userId = this.getUserId;

@@ -72,7 +72,7 @@ export default {
           },
         })
         .then(() => {
-          alert("공연 신청이 완료되었습니다.");
+          // alert("공연 신청이 완료되었습니다.");
         })
         .catch((err) => {
           alert(err.response.data.message);
