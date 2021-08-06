@@ -44,20 +44,37 @@
             <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
               <div class="footer-widget links-widget">
                 <div class="widget-content">
-                  <h6>Explore</h6>
+                  <h6>Concert</h6>
                   <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
                       <ul>
-                        <li><a href="#">Our Portfolio</a></li>
-                        <li><a href="#">Latest News</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Con Regist</a></li>
+                        <li><a href="#">Con Enter</a></li>
+                        
                       </ul>
                     </div>
                     <div class="col-md-6 col-sm-12">
                       <ul>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Con Schedule</a></li>
+                        <li><a href="#">Con Search</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Column-->
+            <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget links-widget">
+                <div class="widget-content">
+                  <h6>Services</h6>
+                  <div class="row clearfix">
+                    <div class="col-md-6 col-sm-12">
+                      <ul>
+                        <li><a href="#">FAQS</a></li>
+                        <li><a href="#">Q&A</a></li>
+                        
                       </ul>
                     </div>
                   </div>
@@ -69,10 +86,10 @@
             <div class="column col-xl-3 col-lg-6 col-md-6 col-sm-12">
               <div class="footer-widget info-widget">
                 <div class="widget-content">
-                  <h6>Contact</h6>
+                  <h6>CONTACT</h6>
                   <ul class="contact-info">
                     <li class="address">
-                      <span class="icon flaticon-pin-1"></span> 경상북도 구미시 임수동
+                      <span class="icon flaticon-pin-1"></span> 경상북도 구미시 삼성 싸피캠퍼스
                       <br />
                     </li>
                     <li>
@@ -82,7 +99,7 @@
                     <li>
                       <span class="icon flaticon-email-2"></span
                       ><a href="mailto:needhelp@becon.com"
-                        >needhelp@becon.com</a
+                        >SAFFY@becon.com</a
                       >
                     </li>
                   </ul>
