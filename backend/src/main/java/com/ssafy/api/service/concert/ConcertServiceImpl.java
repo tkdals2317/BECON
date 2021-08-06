@@ -32,7 +32,7 @@ public class ConcertServiceImpl implements ConcertService{
 		Concert concert = new Concert();
 		concert.setTitle(request.getTitle());
 		concert.setDescription(request.getDescription());
-		concert.setStartTime(request.getEndTime());
+		concert.setStartTime(request.getStartTime());
 		concert.setEndTime(request.getEndTime());
 		concert.setPriceStand(request.getPriceStand());
 		concert.setPriceVip(request.getPriceVip());

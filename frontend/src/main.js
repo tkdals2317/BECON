@@ -5,6 +5,9 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
+var VueTruncate = require('vue-truncate-filter')
+Vue.use(VueTruncate)
+
 new Vue({
   router,
   store,
