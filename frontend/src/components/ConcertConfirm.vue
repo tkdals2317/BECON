@@ -113,6 +113,7 @@
       },
       created(){
         console.log(this.concert.files);
+        window.scrollTo(0, 0)
       },
       methods:{
         clickHome(){

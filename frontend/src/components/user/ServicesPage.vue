@@ -56,6 +56,9 @@
 <script>
   export default {
     name: "ServicesPage",
+    created() {
+      window.scrollTo(0, 0);
+    },
     methods: {
       moveMyPage() {
         this.$router.push("mypage");
