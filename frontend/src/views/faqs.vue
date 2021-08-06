@@ -1,9 +1,9 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="mypage" />
+    <PageHeader title="FAQ" />
+    <!-- <FaqSection /> -->
     <QuoteSectionThree />
-    <CallToActionThree />
     <Footer />
   </div>
 </template>
@@ -12,11 +12,11 @@ import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
 import QuoteSectionThree from "../components/unused/QuoteSectionThree";
-import CallToActionThree from "../components/unused/CallToActionThree";
+// import FaqSection from "../components/unused/FaqSection";
 
 export default {
   components: {
-    CallToActionThree,
+    // FaqSection,
     QuoteSectionThree,
     Footer,
     PageHeader,

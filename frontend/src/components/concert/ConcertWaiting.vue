@@ -22,8 +22,8 @@
         </div>
         <div class="link-box">
           <router-link class="theme-btn btn-style-one"
-            to="ConcertPage" tag="button" :disabled="isActive"
-          >
+            to="ConcertPage" tag="button" :disabled="isActive" 
+          > <!-- isActive -> false -->
             <i class="btn-curve"></i>
             <span class="btn-title">입장하기</span>
           </router-link>

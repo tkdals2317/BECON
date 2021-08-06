@@ -43,16 +43,12 @@
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
                     <li @click="concertEnter"><a>Concert Enter</a></li>
                     <li @click="concertSchedule"><a>Concert Schedule</a></li>
-                    <li><router-link to="/notfound">Concert Search</router-link></li>
-                    <li><router-link to="/ticketing">Ticketing</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#">Services</a>
                   <ul>
                     <li><router-link to="/faqs">FAQs</router-link></li>
-                    <li><router-link to="/web-development">Q&A</router-link>
-                  </li>
                   </ul>
                 </li>
               </ul>

@@ -4,7 +4,6 @@
       <div class="sec-title centered">
         <h2>티켓 예매</h2>
       </div>
-
       <div class="form-box">
         <div class="sec-title">
           <div class="ticket ticket-1">
@@ -17,12 +16,12 @@
             <div class="artist">
               <span class="name">STAND</span>
               <br />
-              <span class="live small">{{ concertId.priceStand }}</span>
+              <span class="small">{{ concertId.priceStand }}</span>
             </div>
             <div class="location">
               <span>{{ concertId.title }}</span>
               <br />
-              <span class="live small"><span>{{ concertId.owner }}</span></span>
+              <span class="small"><span>{{ concertId.owner }}</span></span>
             </div>
             <div class="rip"></div>
             <div class="cta">
@@ -38,9 +37,9 @@
               >
             </div>
             <div class="artist">
-              <span class="name"> VVVIP </span>
+              <span class="name">VIP</span>
               <br />
-              <span class="live small">{{ concertId.priceVip }}</span>
+              <span class="small">{{ concertId.priceVip }}</span>
             </div>
             <div class="location">
               <span>{{ concertId.title }}</span>
@@ -141,7 +140,7 @@ body {
 
 .artist {
   font-size: 40px;
-  margin: 10px 0px 0 40px;
+  margin: 10px 0px 0 30px;
   float: left;
   font-weight: bold;
   -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));

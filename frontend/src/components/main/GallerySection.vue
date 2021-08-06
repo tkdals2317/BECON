@@ -45,7 +45,7 @@
                       </div>
                       <div class="title">
                         <h5>
-                          <a>{{ concertInfo.description | truncate(50) }}</a>
+                          <a>{{ concertInfo.description | truncate(20) }}</a>
                         </h5>
                       </div>
                     </div>
