@@ -16,12 +16,12 @@
                 <div class="lower-box">
                   <div class="post-meta">
                     <ul class="clearfix">
-                      <li><span class="far fa-clock"></span> 20 Mar</li>
-                      <li><span class="far fa-user-circle"></span> Admin</li>
-                      <li><span class="far fa-comments"></span> 2 Comments</li>
+                      <li><span class="far fa-clock"></span> <span>{{minute}}분</span><span>{{second}}초</span> </li>
+                      <li><span class="far fa-user-circle"></span> {{getConcert.user.name}}</li>
+                      <li><span class="far fa-comments"></span> 2 People</li>
                     </ul>
                   </div>
-                  <h4>basic rules of running web agency business</h4>
+                  <h4>{{getConcert.title}}</h4>
                   <div class="text">
                     <p>
                       There are many variations of passages of Lorem Ipsum
@@ -350,12 +350,16 @@ export default {
       participants: [],
       userId: '',
       roomId: '',
+      minute: 0,
+      second: 0,
     };
   },
 
   created() {
     this.userId = this.getUserId;
     this.roomId = this.getRoomId;
+    this.minute = -this.getConcert.minute;
+    this.second = -this.getConcert.second;
     
     console.log('아이디:'+this.userId);
     console.log('방번호:'+this.roomId);
@@ -363,18 +367,30 @@ export default {
     this.connect();
     this.connection();
     this.register();
+    this.setTimer();
   },
 
   destroyed() {
     this.leaveRoom();
+    clearInterval(this.timer);
   },
 
   computed: {
     ...mapGetters('user', ['getUserId']),
-    ...mapGetters('room', ['getRoomId']),
+    ...mapGetters('room', ['getRoomId', 'getConcert']),
   },
 
   methods: {
+    setTimer() {
+      var app = this;
+      this.timer = setInterval(function() {
+        app.second += 1;
+        if (app.second >= 60) {
+          app.minute += 1;
+          app.second = 0;
+        }
+      }, 1000);
+    },
     // WebSocket
     sendMessage() {
       this.ws.send(
@@ -509,15 +525,15 @@ export default {
 
       console.log(options);
       
-      // participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(
-      //   options,
-      //   function (error) {
-      //     if (error) {
-      //       return console.error(error);
-      //     }
-      //     this.generateOffer(participant.offerToReceiveVideo.bind(participant));
-      //   }
-      // );
+      participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(
+        options,
+        function (error) {
+          if (error) {
+            return console.error(error);
+          }
+          this.generateOffer(participant.offerToReceiveVideo.bind(participant));
+        }
+      );
       
       msg.data.forEach(this.receiveVideo);
       console.log(this.participants);

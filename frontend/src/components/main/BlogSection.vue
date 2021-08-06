@@ -6,18 +6,13 @@
       </div>
       <div class="row clearfix">
         <no-ssr>
-          <carousel
-          v-if="true"
-          :dots="false"
-          :margin="30"
-          :center="false"
-          >
+          <carousel :perPage="3">
             <!--News Block-->
+            <slide v-for="concertInfo in getComingConcert" :key="concertInfo.id">
             <div
-              class="news-block wow fadeInUp"
+              class="news-block wow fadeInUp mx-3"
               data-wow-delay="0ms"
               data-wow-duration="1500ms"
-              v-for="concertInfo in getComingConcert" :key="concertInfo.id"
             >
               <div class="inner-box">
                 <div class="image-box">
@@ -30,8 +25,7 @@
                     <ul class="clearfix">
                       <li>
                         <span class="far fa-clock"></span>
-                        <span>{{concertInfo.minute}}</span> 분
-                        <span>{{concertInfo.second}}</span> 초
+                        <span>{{-concertInfo.minute}}</span> 분
                       </li>
                       <li><span class="far fa-user-circle"></span> {{concertInfo.user.name}}</li>
                     </ul>
@@ -52,6 +46,7 @@
                 </div>
               </div>
             </div>
+            </slide>
           </carousel>
         </no-ssr>
       </div>
@@ -60,7 +55,7 @@
 </template>
 <script>
 import NoSsr from "vue-no-ssr";
-import carousel from "vue-owl-carousel";
+import { Carousel, Slide } from "vue-carousel";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -68,13 +63,13 @@ export default {
 
   components: {
     NoSsr,
-    carousel,
+    Carousel,
+    Slide,
   },
 
   created() {
     this.findComingConcert();
     this.setTimer();
-    this.setSecondTimer();
     console.log(this.getComingConcert);
   },
 
@@ -93,25 +88,16 @@ export default {
       var app = this;
       this.timer = setInterval(function() {
         app.findComingConcert();
-        console.log('comming concert update')
-      }, 60000);
-    },
-    setSecondTimer() {
-      var app = this;
-      this.timer = setInterval(function() {
-        app.getComingConcert.forEach(element => {
-          element.second -= 1;
 
-          if (element.second < 0) {
-            element.minute -= 1;
-            if (element.minute < 0) {
-              element.second = 0;
-              element.minute = 0;
-            }
-            else element.second = 60;
+        app.getComingConcert.forEach(element => {
+          element.minute -= 1;
+          if (element.minute < 0) {
+            element.minute = 0;
           }
         });
-      }, 1000);
+
+        console.log('comming concert update');
+      }, 60000);
     },
     concertEnter(concert) {
       let num = prompt('방 번호를 입력해주세요');

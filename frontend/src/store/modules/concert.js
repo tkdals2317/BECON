@@ -93,9 +93,11 @@ export default {
         });
     },
     requestConcert({ commit }, category) {
+      console.log(category);
       http
         .get("/api/v2/concert/findByCategory/" + category)
         .then(({ data }) => {
+          console.log(data);
           commit("CONCERT", data);
         })
         .catch(() => {

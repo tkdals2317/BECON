@@ -22,19 +22,11 @@
 
         <div class="filter-list row">
           <no-ssr>
-            <carousel
-              v-if="true"
-              :dots="false"
-              :margin="30"
-              :nav="true"
-              :center="false"
-            >
+            <carousel :perPage="4">
+              <slide v-for="concertInfo in getConcertInfos"
+                :key="concertInfo.id">
               <!-- Gallery Item -->
-              <div
-                class="gallery-item"
-                v-for="concertInfo in getConcertInfos"
-                :key="concertInfo.id"
-              >
+              <div class="gallery-item mx-3">
                 <div class="inner-box" @click="goDetail(concertInfo.id)">
                   <figure class="image">
                     <img
@@ -60,6 +52,7 @@
                   </div>
                 </div>
               </div>
+              </slide>
             </carousel>
           </no-ssr>
         </div>
@@ -70,7 +63,7 @@
 
 <script>
 import NoSsr from "vue-no-ssr";
-import carousel from "vue-owl-carousel";
+import { Carousel, Slide } from "vue-carousel";
 import GLightbox from "glightbox";
 import mixitup from "mixitup";
 import { mapActions, mapGetters } from "vuex";
@@ -80,7 +73,8 @@ export default {
 
   components: {
     NoSsr,
-    carousel,
+    Carousel,
+    Slide,
   },
 
   data() {
@@ -112,8 +106,6 @@ export default {
   methods: {
     ...mapActions("concert", ["requestCategory", "requestConcert"]),
     click(data) {
-      //this.selectedCategory = data;
-      // console.log(data);
       this.requestConcert(data);
     },
     goDetail(concertId) {
