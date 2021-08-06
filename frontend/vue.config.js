@@ -22,12 +22,11 @@ module.exports = {
       },
       historyApiFallback: true,
       hot: true,
-      disableHostCheck: true,
     },
     css: {
       requireModuleExtension: false // import 시에 경로에 .module 포함 안해도 됨.
     },
     lintOnSave: false,
-    // outputDir: '../backend/src/main/resources/dist',
+    outputDir: '../backend/src/main/resources/dist',
   }
   
