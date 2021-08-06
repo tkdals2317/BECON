@@ -65,6 +65,9 @@ export default {
   props: {
     concertId: Object,
   },
+  created() {
+      window.scrollTo(0, 0);
+  },
   methods:{
     ...mapActions('ticket',["requestBuyTicket"]),
     getNow(){

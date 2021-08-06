@@ -20,10 +20,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.TicketPostReq;
 import com.ssafy.api.service.ticket.TicketService;
 import com.ssafy.api.service.user.UserService;
-<<<<<<< HEAD
 import com.ssafy.common.auth.SsafyUserDetails;
-=======
->>>>>>> FE-todayConcert
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.Ticket;
 import com.ssafy.db.entity.User;

@@ -80,9 +80,10 @@ export default {
     }
   },
   created(){
+    window.scrollTo(0, 0);
     this.init();
   },
-  mounted(){
+  mounted () {
     this.init();
   },
   computed :{
