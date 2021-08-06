@@ -4067,7 +4067,7 @@ img.lazy-image.loaded {
   position: relative;
   display: block;
   min-height: 260px;
-  padding: 115px 0px 0px 110px;
+  padding: 40px 0px 0px 100px;
   background: #ffffff;
   border-radius: 7px 0px 0px 0px;
 }
@@ -4087,7 +4087,7 @@ img.lazy-image.loaded {
   position: relative;
   display: block;
   padding-left: 280px;
-  min-height: 170px;
+  min-height: 50px;
 }
 
 .trusted-section .featured-block-two .image {

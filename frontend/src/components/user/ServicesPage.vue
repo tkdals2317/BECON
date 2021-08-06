@@ -19,7 +19,7 @@
             <div class="inner-box">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-digital"></span></div>
-              <h5><div @click="moveConcertCK">콘서트 Check</div></h5>
+              <h5><div @click="moveConcertCK">CONCERT</div></h5>
               <div class="text">신청한 콘서트 실시간 확인</div>
               <div class="link-box"><div @click="moveConcertCK"><span class="fa fa-angle-right"></span></div></div>
             </div>
