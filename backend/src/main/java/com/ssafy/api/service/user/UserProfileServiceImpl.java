@@ -28,20 +28,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public UserProfilePostReq setFile(MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
 		UserProfilePostReq userProfileInfo = null;
-		
-		if(files!= null) {
+		String savePath = "/images/profile";
+		if(!(files.isEmpty())) {
 			String origFilename = files.getOriginalFilename();
 	        String filename = new MD5Generator(origFilename).toString();
-	        String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile";
-	        if (!new File(savePath).exists()) {
-                try{
-                    new File(savePath).mkdir();
-                }
-                catch(Exception e){
-                    e.getStackTrace();
-                }
-            }
-	        String filePath = savePath + "\\" + origFilename;
+			String filePath = savePath + "/" + origFilename;
             files.transferTo(new File(filePath));
             
             userProfileInfo=new UserProfilePostReq();
@@ -52,7 +43,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			userProfileInfo=new UserProfilePostReq();
             userProfileInfo.setOriginName("BeConImg.jpg");
             userProfileInfo.setName("5887b47695b084b04d2e575438d5a794");
-            userProfileInfo.setPath("C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile\\BeConImg.jpg");
+            userProfileInfo.setPath(savePath+"/BeConImg.jpg");
 		}
 		
 		return userProfileInfo;
@@ -66,20 +57,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 	
 		String origFilename = files.getOriginalFilename();
         String filename = new MD5Generator(origFilename).toString();
-        String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile";
-        if (!new File(savePath).exists()) {
-            try{
-                new File(savePath).mkdir();
-            }
-            catch(Exception e){
-                e.getStackTrace();
-            }
-        }
-        String filePath = savePath + "\\" + origFilename;
+		String savePath = "/images/profile";
+
+        String filePath = savePath + "/" + origFilename;
         files.transferTo(new File(filePath));
-        System.out.println(origFilename);
         userProfileInfo.setOriginName(origFilename);
-        System.out.println(userProfileInfo.getOriginName());
         userProfileInfo.setName(filename);
         userProfileInfo.setPath(filePath);
         
