@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,7 +56,8 @@ public class UserController {
     })
 	public ResponseEntity<? extends BaseResponseBody> register(
 			@ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo, 
-			@ApiParam(value="imgUrlBase", required = false) MultipartFile files){
+			@ApiParam(value="imgUrlBase", required = true) MultipartFile files){
+		
 		User user;
 		try{
             UserProfile fileId = userProfileService.saveFile(userProfileService.setFile(files));

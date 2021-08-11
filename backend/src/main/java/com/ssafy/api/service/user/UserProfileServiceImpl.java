@@ -28,11 +28,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public UserProfilePostReq setFile(MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
 		UserProfilePostReq userProfileInfo = null;
-		String savePath = "/images/profile";
-		if(!(files.isEmpty())) {
+		String basePath = "/images/profile";
+
+		if(files!=null) {
 			String origFilename = files.getOriginalFilename();
 	        String filename = new MD5Generator(origFilename).toString();
-			String filePath = savePath + "/" + origFilename;
+			String filePath = basePath + "/" + origFilename;
             files.transferTo(new File(filePath));
             
             userProfileInfo=new UserProfilePostReq();
@@ -43,7 +44,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			userProfileInfo=new UserProfilePostReq();
             userProfileInfo.setOriginName("BeConImg.jpg");
             userProfileInfo.setName("5887b47695b084b04d2e575438d5a794");
-            userProfileInfo.setPath(savePath+"/BeConImg.jpg");
+            userProfileInfo.setPath(basePath+"/BeConImg.jpg");
 		}
 		
 		return userProfileInfo;
@@ -53,14 +54,14 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public void changeFile(Long userPID, MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
 		UserProfilePostReq userProfileInfo=new UserProfilePostReq();
-    	System.out.println(userPID);
-	
+		String basePath = "/images/profile";
+
 		String origFilename = files.getOriginalFilename();
         String filename = new MD5Generator(origFilename).toString();
-		String savePath = "/images/profile";
-
-        String filePath = savePath + "/" + origFilename;
+		String filePath = basePath + "/" + origFilename;
         files.transferTo(new File(filePath));
+        
+        userProfileInfo=new UserProfilePostReq();
         userProfileInfo.setOriginName(origFilename);
         userProfileInfo.setName(filename);
         userProfileInfo.setPath(filePath);
