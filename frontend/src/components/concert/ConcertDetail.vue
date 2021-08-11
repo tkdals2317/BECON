@@ -3,7 +3,7 @@
     <section class="project-single style-two">
       <div class="auto-container">
         <figure class="image-box">
-          <a class="portfolio" data-fancybox="gallery"><img src="@/common/images/resource/featured-image-20.jpg" alt=""></a>
+          <a class="portfolio" data-fancybox="gallery"><img src="https://i5d102.p.ssafy.io/thumbnailImg/${getDtail.}" alt=""></a>
         </figure>
         <div class="text-content">
           <div class="row clearfix">

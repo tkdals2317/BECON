@@ -28,20 +28,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public UserProfilePostReq setFile(MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
 		UserProfilePostReq userProfileInfo = null;
-		
-		if(files!= null) {
+		String basePath = "/images/profile";
+
+		if(files!=null) {
 			String origFilename = files.getOriginalFilename();
 	        String filename = new MD5Generator(origFilename).toString();
-	        String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile";
-	        if (!new File(savePath).exists()) {
-                try{
-                    new File(savePath).mkdir();
-                }
-                catch(Exception e){
-                    e.getStackTrace();
-                }
-            }
-	        String filePath = savePath + "\\" + origFilename;
+			String filePath = basePath + "/" + origFilename;
             files.transferTo(new File(filePath));
             
             userProfileInfo=new UserProfilePostReq();
@@ -52,7 +44,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			userProfileInfo=new UserProfilePostReq();
             userProfileInfo.setOriginName("BeConImg.jpg");
             userProfileInfo.setName("5887b47695b084b04d2e575438d5a794");
-            userProfileInfo.setPath("C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile\\BeConImg.jpg");
+            userProfileInfo.setPath(basePath+"/BeConImg.jpg");
 		}
 		
 		return userProfileInfo;
@@ -62,24 +54,15 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public void changeFile(Long userPID, MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
 		UserProfilePostReq userProfileInfo=new UserProfilePostReq();
-    	System.out.println(userPID);
-	
+		String basePath = "/images/profile";
+
 		String origFilename = files.getOriginalFilename();
         String filename = new MD5Generator(origFilename).toString();
-        String savePath = "C:\\Users\\multicampus\\S05P12D102\\frontend\\src\\common\\images\\resource\\profile";
-        if (!new File(savePath).exists()) {
-            try{
-                new File(savePath).mkdir();
-            }
-            catch(Exception e){
-                e.getStackTrace();
-            }
-        }
-        String filePath = savePath + "\\" + origFilename;
+		String filePath = basePath + "/" + origFilename;
         files.transferTo(new File(filePath));
-        System.out.println(origFilename);
+        
+        userProfileInfo=new UserProfilePostReq();
         userProfileInfo.setOriginName(origFilename);
-        System.out.println(userProfileInfo.getOriginName());
         userProfileInfo.setName(filename);
         userProfileInfo.setPath(filePath);
         

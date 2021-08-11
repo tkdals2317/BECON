@@ -50,14 +50,21 @@ export default {
     },
     requestRegister(commit, user) {
       var formData = new FormData();
-      for (var variable in user) {
-        formData.append(variable, user[variable]);
-      }
+      
+      formData.append("userId", user.userId);
+      formData.append("password", user.password);
+      formData.append("name", user.name);
+      formData.append("phone", user.phone);
+      formData.append("email", user.email);
+      formData.append("files", user.profile);
+
+      console.log(formData.get("files"));
       http
         .post(`/api/v1/users/regist`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then(() => {
+          console.log(formData);
           alert('회원가입되었습니다.')
           router.push('/');
         })
