@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "accordion": "^3.0.2",
-    "ant-design-vue": "^1.5.3",
+    "ant-design-vue": "^1.7.7",
     "axios": "^0.21.1",
+    "babel-plugin-import": "^1.13.3",
     "carousel": "0.0.3",
     "core-js": "^3.6.5",
     "glightbox": "^3.0.9",
