@@ -77,24 +77,26 @@ export default {
       this.timestamp = dateTime;
     },
     clickBuyStand(){
-      this.getNow();
-      let ticket={
-        buyDate:this.timestamp,
-        price:this.concertId.priceStand,
-        type:"Standard",
-        concertId:this.concertId.id
-      }
-      this.requestBuyTicket(ticket);
+      this.$router.push('/payment');
+      // this.getNow();
+      // let ticket={
+      //   buyDate:this.timestamp,
+      //   price:this.concertId.priceStand,
+      //   type:"Standard",
+      //   concertId:this.concertId.id
+      // }
+      // this.requestBuyTicket(ticket);
     },
     clickBuyVip(){
-     this.getNow();
-      let ticket={
-        buyDate:this.timestamp,
-        price:this.concertId.priceVip,
-        type:"Vip",
-        concertId:this.concertId.id
-      }
-      this.requestBuyTicket(ticket);
+      this.$router.push('/payment');
+    //  this.getNow();
+    //   let ticket={
+    //     buyDate:this.timestamp,
+    //     price:this.concertId.priceVip,
+    //     type:"Vip",
+    //     concertId:this.concertId.id
+    //   }
+    //   this.requestBuyTicket(ticket);
     }
   },
 };

@@ -18,6 +18,7 @@ import NotFound from "../views/not-found.vue";
 import Ticketing from "../views/ticketing.vue";
 import Myconcert from "../views/myconcert.vue";
 import ConcertConfirm from "../views/concertConfirm.vue";
+import Payment from "../views/payment.vue";
 
 Vue.use(VueRouter);
 
@@ -109,6 +110,11 @@ const routes = [
     path: "/myconcert",
     name: "Myconcert",
     component:Myconcert,
+  },
+  {
+    path: "/payment",
+    name: "Payment",
+    component: Payment,
   },
 ];
 
