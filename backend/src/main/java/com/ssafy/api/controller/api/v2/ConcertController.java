@@ -1,6 +1,5 @@
 package com.ssafy.api.controller.api.v2;
 
-import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,8 +20,6 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.ConcertRegisterPostReq;
-import com.ssafy.api.request.ConcertThumbnailPostReq;
-import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.api.response.ConcertDetailRes;
 import com.ssafy.api.service.concert.ConcertCategoryService;
 import com.ssafy.api.service.concert.ConcertService;
@@ -31,7 +27,6 @@ import com.ssafy.api.service.concert.ConcertThumbnailService;
 import com.ssafy.api.service.user.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
-import com.ssafy.common.util.MD5Generator;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
 import com.ssafy.db.entity.ConcertThumbnail;
@@ -199,5 +194,22 @@ public class ConcertController {
 			@PathVariable("concertId") @ApiParam(value="공연 아이디", required = true) Long concertId) {
 
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Fail"));
+	}
+	
+	@GetMapping("/findComing")
+	@ApiOperation(value = "진행예정인 콘서트 리스트를 반환한다")
+    @ApiResponses({
+        @ApiResponse(code = 201, message = "성공"),
+        @ApiResponse(code = 210, message = "공연 정보 없음")
+    })
+	public ResponseEntity<?> findComing() {
+		List<Concert> concertList = null;
+		try {
+            concertList = concertService.findComingConcerts();
+			System.out.println("오늘의 공연 : "+concertList.size());
+        } catch (Exception e) {
+            return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
+        }
+        return ResponseEntity.status(201).body(concertList);
 	}
 }

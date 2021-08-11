@@ -85,6 +85,24 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NEXONFootballGothicLA1';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicLA1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 /***
 
 ====================================================================
@@ -111,7 +129,7 @@
  ***/
 
 :root {
-  --thm-font: "양진체", sans-serif;
+  --thm-font: "GmarketSansMedium", sans-serif;
   --thm-base: #E71D36;
   --thm-base-rgb: 255, 170, 23;
   --thm-black: #222429;
@@ -535,7 +553,7 @@ img {
 }
 
 .fixed-header .header-upper {
-  background: #171717;
+  background: #000000;
   -webkit-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
   -ms-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
@@ -553,6 +571,7 @@ img {
 }
 
 .main-header .header-upper .inner-container {
+  background: #000000;
   position: relative;
   display: block;
   padding: 0px 60px;
@@ -663,6 +682,7 @@ img {
 }
 
 .main-header .nav-outer {
+  background: #000000;
   position: absolute;
   left: 0;
   top: 0;
@@ -1362,7 +1382,7 @@ img.lazy-image.loaded {
   position: relative;
   display: block;
   color: #0f172b;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 24px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -1379,6 +1399,8 @@ img.lazy-image.loaded {
 .default-form .form-group input[type="tel"],
 .default-form .form-group input[type="url"],
 .default-form .form-group input[type="file"],
+.default-form .form-group input[type="date"],
+.default-form .form-group input[type="time"],
 .default-form .form-group input[type="number"],
 .default-form .form-group textarea,
 .default-form .form-group select {
@@ -1415,9 +1437,11 @@ img.lazy-image.loaded {
 .default-form .form-group input[type="text"]:focus,
 .default-form .form-group input[type="email"]:focus,
 .default-form .form-group input[type="password"]:focus,
+.default-form .form-group input[type="date"]:focus,
 .default-form .form-group input[type="tel"]:focus,
 .default-form .form-group input[type="url"]:focus,
 .default-form .form-group input[type="file"]:focus,
+.default-form .form-group input[type="time"]:focus,
 .default-form .form-group input[type="number"]:focus,
 .default-form .form-group textarea:focus,
 .default-form .form-group select:focus,
@@ -3571,7 +3595,7 @@ img.lazy-image.loaded {
 
 .gallery-section {
   position: relative;
-  padding: 140px 0 90px;
+  padding: 140px 0 30px;
 }
 
 .gallery-section .upper-row {
@@ -4045,7 +4069,7 @@ img.lazy-image.loaded {
   position: relative;
   display: block;
   min-height: 260px;
-  padding: 115px 0px 0px 110px;
+  padding: 40px 0px 0px 100px;
   background: #ffffff;
   border-radius: 7px 0px 0px 0px;
 }
@@ -4065,7 +4089,7 @@ img.lazy-image.loaded {
   position: relative;
   display: block;
   padding-left: 280px;
-  min-height: 170px;
+  min-height: 50px;
 }
 
 .trusted-section .featured-block-two .image {
@@ -4840,7 +4864,7 @@ img.lazy-image.loaded {
   color: var(--thm-text);
   display: block;
   font-weight: 300;
-  line-height: 1.5em;
+  line-height: 2;
   letter-spacing: 0.1em;
 }
 
@@ -9275,12 +9299,16 @@ img.lazy-image.loaded {
 
 .project-single {
   position: relative;
-  padding: 120px 0px 80px;
+  padding: 80px 10px 10px 80px;
 }
 
 .project-single .image-col {
   position: relative;
+  margin-top: 10px;
   margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+
 }
 
 .project-single .image-col .inner {
@@ -9326,7 +9354,9 @@ img.lazy-image.loaded {
   text-transform: uppercase;
   font-weight: 400;
   line-height: 1.1em;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+
 }
 
 .project-single.style-two h5 {
@@ -9344,6 +9374,8 @@ img.lazy-image.loaded {
 
 .project-single .text-content p {
   margin-bottom: 25px;
+  margin-top: 25px;
+
 }
 
 .project-single .text-content .last {

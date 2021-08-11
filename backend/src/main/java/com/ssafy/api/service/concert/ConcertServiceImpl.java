@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssafy.RoomManager;
 import com.ssafy.api.request.ConcertRegisterPostReq;
+import com.ssafy.api.rtc.RoomManager;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
 import com.ssafy.db.entity.ConcertThumbnail;
@@ -24,8 +24,7 @@ public class ConcertServiceImpl implements ConcertService{
 	ConcertRepository concertRepository;
 	@Autowired
 	ConcertRepositorySupport concertRepositorySupport;
-//	@Autowired
-//	private RoomManager roomManager;
+
 	
 	@Transactional
 	@Override
@@ -33,7 +32,7 @@ public class ConcertServiceImpl implements ConcertService{
 		Concert concert = new Concert();
 		concert.setTitle(request.getTitle());
 		concert.setDescription(request.getDescription());
-		concert.setStartTime(request.getEndTime());
+		concert.setStartTime(request.getStartTime());
 		concert.setEndTime(request.getEndTime());
 		concert.setPriceStand(request.getPriceStand());
 		concert.setPriceVip(request.getPriceVip());
@@ -56,6 +55,11 @@ public class ConcertServiceImpl implements ConcertService{
 	@Override
 	public List<Concert> findConcerts() {
 		return concertRepository.findAll();
+	}
+	
+	@Override
+	public List<Concert> findComingConcerts() {
+		return concertRepository.findComingConcert();
 	}
 
 
@@ -81,7 +85,4 @@ public class ConcertServiceImpl implements ConcertService{
 	public void deleteConcertByOwnerId(String ownerId) {
 		concertRepositorySupport.deleteConcertByOwnerId(ownerId);	
 	}
-
-	
-
 }

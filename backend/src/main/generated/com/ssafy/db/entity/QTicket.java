@@ -24,7 +24,7 @@ public class QTicket extends EntityPathBase<Ticket> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final DatePath<java.sql.Date> buyDate = createDate("buyDate", java.sql.Date.class);
+    public final StringPath buyDate = createString("buyDate");
 
     public final StringPath code = createString("code");
 

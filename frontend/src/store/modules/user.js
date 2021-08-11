@@ -1,5 +1,5 @@
-import http from "@/util/http-common";
-import router from "@/router/index.js";
+import http from '@/common/lib/http';
+import router from "@/router/index";
 
 export default {
   namespaced: true,
@@ -50,14 +50,21 @@ export default {
     },
     requestRegister(commit, user) {
       var formData = new FormData();
-      for (var variable in user) {
-        formData.append(variable, user[variable]);
-      }
+      
+      formData.append("userId", user.userId);
+      formData.append("password", user.password);
+      formData.append("name", user.name);
+      formData.append("phone", user.phone);
+      formData.append("email", user.email);
+      formData.append("files", user.profile);
+
+      console.log(formData.get("files"));
       http
         .post(`/api/v1/users/regist`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then(() => {
+          console.log(formData);
           alert('회원가입되었습니다.')
           router.push('/');
         })
@@ -83,7 +90,7 @@ export default {
       const CSRF_TOKEN=localStorage.getItem("accessToken");
       http
         .get(`/api/v1/users/me`, {
-          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN }
+          headers: {"Authorization": 'Bearer '+ CSRF_TOKEN }
         })
         .then(({ data })=>{
           console.log(data);
@@ -102,7 +109,9 @@ export default {
       }
       http
         .patch(`/api/v1/users/`+user.userId, formData,{
-          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN , "Content-Type": "multipart/form-data" },
+          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN,
+          "Content-Type": "multipart/form-data"
+        },
         })
         .then(({ data })=>{
           commit("USERINFO", data);
@@ -117,7 +126,8 @@ export default {
     requestDelete(commit, data){
       const CSRF_TOKEN=localStorage.getItem("accessToken");
       http
-        .delete(`/api/v1/users/`+ data ,{headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
+        .delete(`/api/v1/users/`+ data ,{
+          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
         })
         .then(()=>{
           alert('회원탈퇴가 완료 되었습니다.')

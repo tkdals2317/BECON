@@ -1,3 +1,6 @@
+// const URL = "3.36.67.58:8443";
+const URL = "localhost:8080";
+
 module.exports = {
     devServer: {
       https: false,
@@ -5,26 +8,25 @@ module.exports = {
       open: true,
       proxy: {
         '/api/v1': {
-          target: 'http://localhost:8080/'
+          target: `https://${URL}/`
         },
         '/api/v2': {
-          target: 'http://localhost:8080/'
+          target: `https://${URL}/`
         },
         '/groupcall': {
-          target: 'http://localhost:8080/'
+          target: `https://${URL}/`
         },
         '/upload': {
-          target: 'http://localhost:8080/'
+          target: `https://${URL}/`
         },
       },
       historyApiFallback: true,
       hot: true,
-      disableHostCheck: true,
     },
     css: {
       requireModuleExtension: false // import 시에 경로에 .module 포함 안해도 됨.
     },
     lintOnSave: false,
-    // outputDir: '../backend/src/main/resources/dist',
+    outputDir: '../backend/src/main/resources/dist',
   }
   

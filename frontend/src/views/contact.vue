@@ -7,15 +7,16 @@
   </div>
 </template>
 <script>
-import Nav from "../components/Nav";
-import PageHeader from "../components/PageHeader";
-import ContactPage from "../components/ContactPage";
-import Footer from "../components/Footer";
+import Nav from "../components/layout/Nav";
+import PageHeader from "../components/layout/PageHeader";
+import ContactPage from "../components/user/ContactPage";
+import Footer from "../components/layout/Footer";
+
 export default {
   components: {
     ContactPage,
     Footer,
-    PageHeader, 
+    PageHeader,
     Nav,
   },
   head() {

@@ -2,15 +2,16 @@
   <div>
     <Nav />
     <PageHeader title="Concert Schedule" />
-    <ConcertSchedule />
+    <ConcertSchedule :getConcertInfos="$route.params.getConcertInfos" />
     <Footer />
   </div>
 </template>
 <script>
-import Nav from "../components/Nav";
-import PageHeader from "../components/PageHeader";
-import Footer from "../components/Footer";
-import ConcertSchedule from "../components/ConcertSchedule";
+import Nav from "../components/layout/Nav";
+import PageHeader from "../components/layout/PageHeader";
+import Footer from "../components/layout/Footer";
+import ConcertSchedule from "../components/concert/ConcertSchedule";
+
 export default {
   components: {
     ConcertSchedule,
