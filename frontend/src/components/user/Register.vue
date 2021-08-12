@@ -44,7 +44,19 @@
                   <div v-if="!errors.requireName" style="color:red;" >필수 입력 항목입니다.</div>
                 </div>
               </div>
-              <div class="form-group col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group col-lg-3 col-md-3 col-sm-3">
+                <div class="field-inner">
+                  <select v-model="user.carrier" name="carrier" required="" @blur="[checkCarrier()]" >
+                    <option value="none">통신사</option>
+                    <option value="SKT">SKT</option>
+                    <option value="KTF">KT</option>
+                    <option value="LGT">LG U+</option>
+                    <option value="MVNO">알뜰폰</option>
+                  </select>
+                  <div v-if="!errors.requireCarrier" style="color:red;">통신사를 선택해주세요.</div>
+                </div>
+              </div>
+              <div class="form-group col-lg-9 col-md-9 col-sm-9">
                 <div class="field-inner">
                   <input type="text" v-model="user.phone" name="phone" value="" placeholder="010-1234-5678" required="" @blur="[checkPhone(), matchPhone()]">
                   <div v-if="!errors.requirePhone" style="color:red;">필수 입력 항목입니다.</div>
@@ -63,7 +75,6 @@
                   <input type="file" ref="picture" name="files" required="">
                 </div>
               </div>
-
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <button class="theme-btn btn-style-one">
                   <i class="btn-curve"></i>
@@ -90,6 +101,7 @@ export default {
               name: '',
               phone: '',
               email: '',
+              carrier: 'none',
               profile: null,
           },
           errors: {
@@ -102,6 +114,7 @@ export default {
             matchPass:true,
             requireName:true,
             requirePhone:true,
+            requireCarrier:true,
             matchPhone:true,
             requireEmail:true,
             matchEmail:true,
@@ -195,6 +208,14 @@ export default {
 		    this.errors.requirePhone=true;
       }
     },
+    checkCarrier(){
+      if(this.user.carrier === 'none'){
+        this.errors.requireCarrier=false;
+        return;
+      }else{
+		    this.errors.requireCarrier=true;
+      }
+    },
     matchPhone(){
       if(!/01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/.test(this.user.phone)){
         this.errors.matchPhone=false;
@@ -223,4 +244,3 @@ export default {
 };
 </script>
 
-<style scoped></style>

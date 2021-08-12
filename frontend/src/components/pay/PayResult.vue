@@ -1,16 +1,20 @@
 <template>
+<section class="contact-section">
   <div class="imp-container imp-result">
+    <div class="form-box">
+    <div>
     <a-icon
       v-if="success"
       type="check-circle"
-      :style="{ fontSize: '200px', color: '#52c41a' }"
+      :style="{ fontSize: '100px', color: '#52c41a' }"
     />
     <a-icon
       v-else
       type="exclamation-circle"
-      :style="{ fontSize: '200px', color: '#f5222d' }"
+      :style="{ fontSize: '100px', color: '#f5222d' }"
     />
-    <h1>{{ type === 'payment' ? '결제' : '본인인증' }}에 {{ success ? '성공' : '실패'}}하였습니다</h1>
+    <h3>{{ type === 'payment' ? '결제' : '본인인증' }}에 {{ success ? '성공' : '실패'}}했습니다</h3>
+    </div>
     <ul>
       <li>
         <span>아임포트 번호</span>
@@ -28,7 +32,9 @@
     <a-button size="large" @click="handleGoBack">
       뒤로가기
     </a-button>
+    </div>
   </div>
+</section>
 </template>
 
 <script>
@@ -65,36 +71,8 @@ export default {
   },
 };
 </script>
-
-<style lang="less">
-.imp-container.imp-result {
-  .anticon {
-    margin-bottom: 20px;
-  }
-  ul {
-    padding: 0;
-    margin: 0 auto;
-    width: 50%;
-    li {
-      text-align: left;
-      list-style: none;
-      font-size: 16px;
-      display: flex;
-      margin: 10px 0;
-      span {
-        display: inline-block;
-      }
-      span:first-child {
-        width: 40%;
-        color: #888;
-      }
-      span:last-child {
-        width: 60%;
-      }
-    }
-  }
-  .ant-btn {
-    margin-top: 30px;
-  }
+<style scoped>
+ul li span {
+  font-size: 20px;
 }
 </style>

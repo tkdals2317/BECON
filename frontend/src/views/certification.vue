@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="결제" />
-    <Payment />
+    <PageHeader title="본인인증" />
+    <Certification />
     <Footer />
   </div>
 </template>
@@ -10,11 +10,11 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import Payment from "../components/pay/Payment";
+import Certification from "../components/pay/Certification";
 
 export default {
   components: {
-    Payment,
+    Certification,
     Footer,
     PageHeader,
     Nav,

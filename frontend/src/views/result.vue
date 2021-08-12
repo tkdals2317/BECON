@@ -2,7 +2,7 @@
   <div>
     <Nav />
     <PageHeader title="결제" />
-    <Payment />
+    <PayResult />
     <Footer />
   </div>
 </template>
@@ -10,11 +10,11 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import Payment from "../components/pay/Payment";
+import PayResult from "../components/pay/PayResult";
 
 export default {
   components: {
-    Payment,
+    PayResult,
     Footer,
     PageHeader,
     Nav,

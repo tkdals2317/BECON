@@ -19,6 +19,8 @@ import Ticketing from "../views/ticketing.vue";
 import Myconcert from "../views/myconcert.vue";
 import ConcertConfirm from "../views/concertConfirm.vue";
 import Payment from "../views/payment.vue";
+import Result from "../views/result.vue";
+import Certification from "../views/certification.vue";
 
 Vue.use(VueRouter);
 
@@ -115,6 +117,16 @@ const routes = [
     path: "/payment",
     name: "Payment",
     component: Payment,
+  },
+  {
+    path: "/result",
+    name: "Result",
+    component: Result,
+  },
+  {
+    path: "/certification",
+    name: "Certification",
+    component: Certification,
   },
 ];
 

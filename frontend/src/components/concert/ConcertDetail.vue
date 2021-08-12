@@ -40,7 +40,7 @@
 <script>
 import GLightbox from "glightbox";
 import { mapActions, mapGetters } from "vuex";
-// import "compass/css3";
+
   export default {
     name: "ConcertDetail",
     props: {
@@ -50,9 +50,9 @@ import { mapActions, mapGetters } from "vuex";
       ...mapGetters("concert", ["getDetail"]),
     },
     methods: {
-      ...mapActions("concert", ["getConcertDetail"]),
-      goTicketing(concertId) {
-        this.$router.push({name: 'Ticketing', params:{ concertId: concertId } })
+      ...mapActions("concert", ["findConcertDetail"]),
+      goTicketing(concert) {
+        this.$router.push({name: 'Ticketing', params:{ concert: concert } })
       },
     },
     create(){
@@ -68,7 +68,7 @@ import { mapActions, mapGetters } from "vuex";
       });
     },
     created() {
-      this.getConcertDetail(this.concertId);
+      this.findConcertDetail(this.concertId);
     }
   }
 </script>
