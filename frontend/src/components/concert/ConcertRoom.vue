@@ -513,7 +513,7 @@ export default {
           this.generateOffer(participant.offerToReceiveVideo.bind(participant));
         }
       );
-      //기존의 참가자 영상을 전달 받을 수 있는 수신용 webRtcPerr생성
+      //기존의 참가자 영상을 전달 받을 수 있는 수신용 webRtcPeer생성
       msg.data.forEach(this.receiveVideo);
       console.log(this.participants);
     },
@@ -545,12 +545,9 @@ export default {
             "urls" : 'turn:3.36.67.58:3478?transport=udp',
             "username" : 'myuser',
             "credential" : 'mypassword'
-          },
-          
-          ]
+          },]
         }
       };
-
       participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerRecvonly(
         options,
         function (error) {
