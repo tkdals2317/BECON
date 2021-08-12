@@ -30,7 +30,7 @@
                 <div class="inner-box" @click="goDetail(concertInfo.id)">
                   <figure class="image">
                     <img
-                      src="@/common/images/resource/thumbnail/rucidfall.jpg"
+                      :src="`https://i5d102.p.ssafy.io/thumbnailImg/${concertInfo.thumbnail.originName}`"
                       alt=""
                     />
                   </figure>

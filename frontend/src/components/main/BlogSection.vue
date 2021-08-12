@@ -17,7 +17,7 @@
               <div class="inner-box">
                 <div class="image-box">
                   <a @click="concertEnter(concertInfo)"
-                    ><img src="@/common/images/resource/news-1.jpg" alt=""
+                    ><img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${concertInfo.thumbnail.originName}`" alt=""
                   /></a>
                 </div>
                 <div class="lower-box">
