@@ -494,7 +494,7 @@ export default {
         configuration:{
           iceServers:[
           {
-            "urls":'turn:3.36.67.58:3478?transport=upd',
+            "urls":'turn:3.36.67.58:3478?transport=udp',
             "username" : 'myuser',
             "credential" : 'mypassword'
           }
@@ -542,7 +542,7 @@ export default {
         configuration:{
           iceServers:[
           {
-            "urls" : 'turn:3.36.67.58:3478?transport=upd',
+            "urls" : 'turn:3.36.67.58:3478?transport=udp',
             "username" : 'myuser',
             "credential" : 'mypassword'
           },
