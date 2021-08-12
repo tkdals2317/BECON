@@ -78,6 +78,7 @@ export default {
       profile:null,
       isClick:false,
       message: "",
+      orginName:"",
       img:"",
     }
   },
