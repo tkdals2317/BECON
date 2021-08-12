@@ -6,15 +6,19 @@
           <h2>My Page<span class="dot">!</span></h2>
         </div>
         <div style="margin-bottom: 25px;">
-          <div class="profile_tag">
+          <div class="profile_tag" v-if="!getUserInfo.userProfile.originName" >
+            <img :src="`https://i5d102.p.ssafy.io/profileImg/BeConImg.jpg`" class="프로필">
+          </div>
+          <div class="profile_tag" v-else>
             <img :src="`https://i5d102.p.ssafy.io/profileImg/${getUserInfo.userProfile.originName}`" class="프로필">
           </div>
           <div class="filebox" v-if="isClick">
             <label for="ex_file">프로필 수정</label>
-              <div class="field-inner">
+            <div class="field-inner">
                     <input type="file" id="ex_file" ref="picture" name="files" required="">
-              </div>
+            </div>
           </div>
+        </div>
         </div>
         <div class="form-box">
             <div class="default-form">
@@ -55,8 +59,6 @@
                   </button>
                 </div>
             </div>
-        </div>
-
         </div>
     </div>
   </section>
