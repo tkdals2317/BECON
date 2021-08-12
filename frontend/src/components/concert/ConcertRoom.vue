@@ -319,6 +319,8 @@ export default {
       messages: [],
       participants: [],
       userId: '',
+      userName:'',
+      userPassword:'',
       roomId: '',
       minute: 0,
       second: 0,
@@ -452,9 +454,6 @@ export default {
       };
       this.sendMessageRTC(message);
     },
-    onNewParticipant(request) {
-      this.receiveVideo(request.name);
-    },
     receiveVideoResponse(result) {
       this.participants[result.name].rtcPeer.processAnswer(
         result.sdpAnswer,
@@ -492,13 +491,15 @@ export default {
         localVideo: video,
         mediaConstraints: constraints,
         onicecandidate: participant.onIceCandidate.bind(participant),
-        // // configuration:{
-        // //   iceServers:[{
-        // //     "urls":'turn:54.180.26.236.3478?transport=upd',
-        // //     "username" : this.username,
-        // //     "credential" :
-        // //   }]
-        // }
+        configuration:{
+          iceServers:[
+          {
+            "urls":'turn:3.36.67.58:3478?transport=upd',
+            "username" : 'myuser',
+            "credential" : 'mypassword'
+          }
+          ]
+        }
       };
 
       console.log(options);
@@ -516,10 +517,9 @@ export default {
       msg.data.forEach(this.receiveVideo);
       console.log(this.participants);
     },
-    //새로운 참가자 영상을 전달 받을 수 있는 수신용 webRtcPerr생성
-    // onNewParticipant(requset){
-    //   this.receiveVideo(requset.name);
-    // },
+    onNewParticipant(request) {
+      this.receiveVideo(request.name);
+    },
     leaveRoom() {
         this.sendMessageRTC({
             id : 'leaveRoom'
@@ -539,6 +539,16 @@ export default {
       var options = {
         remoteVideo: video,
         onicecandidate: participant.onIceCandidate.bind(participant),
+        configuration:{
+          iceServers:[
+          {
+            "urls" : 'turn:3.36.67.58:3478?transport=upd',
+            "username" : 'myuser',
+            "credential" : 'mypassword'
+          },
+          
+          ]
+        }
       };
 
       participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerRecvonly(
