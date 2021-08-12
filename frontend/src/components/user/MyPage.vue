@@ -7,7 +7,7 @@
         </div>
         <div style="margin-bottom: 25px;">
           <div class="profile_tag">
-            <img src="https://i5d102.p.ssafy.io/profileImg/${getUserInfo.userProfile.originName}" class="프로필">
+            <img :src="`https://i5d102.p.ssafy.io/profileImg/${getUserInfo.userProfile.originName}`" class="프로필">
           </div>
           <div class="filebox" v-if="isClick">
             <label for="ex_file">프로필 수정</label>
@@ -73,9 +73,10 @@ export default {
       name: '',
       phone: '',
       email: '',
-      files:null,
+      profile:null,
       isClick:false,
-      message: ""
+      message: "",
+      img:"",
     }
   },
   created(){
@@ -89,6 +90,9 @@ export default {
     ...mapGetters('user',['getUserInfo']),
   },
   methods:{
+    getImg(){
+
+    },
     ...mapActions('user',['requestUserInfo', 'requestDelete', 'requestModify']),
     ...mapState('user',['userInfo']),
     init(){
@@ -98,7 +102,7 @@ export default {
       this.isClick=!this.isClick;
     },
     modifyUser(){
-      this.files = this.$refs.picture.files[0];
+      this.profile = this.$refs.picture.files[0];
       let modifyed={
         name:this.getUserInfo.userName,
         userId:this.getUserInfo.userId,
