@@ -32,8 +32,8 @@ public class User extends BaseEntity {
     private String phone;
     private String userId;
     private String email;
+    private String carrier;
     
-
     @ToString.Exclude
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

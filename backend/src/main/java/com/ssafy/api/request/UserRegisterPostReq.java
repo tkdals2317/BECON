@@ -29,4 +29,6 @@ public class UserRegisterPostReq {
 	String phone;
 	@ApiModelProperty(name="유저 Name", example="your_name")
 	String name;
+	@ApiModelProperty(name="유저 Carrier", example="your_carrier")
+	String carrier;
 }

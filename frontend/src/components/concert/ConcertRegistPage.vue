@@ -94,7 +94,7 @@
             <div class="form-group col-lg-4 col-md-12 col-sm-12">
               <div class="field-inner">
                 <input
-                  type="text"
+                  type="Number"
                   v-model="concert.minAge"
                   name="MinAge"
                   value=""

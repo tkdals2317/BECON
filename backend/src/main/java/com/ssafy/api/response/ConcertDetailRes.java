@@ -39,6 +39,8 @@ public class ConcertDetailRes{
 	String decription;
 	@ApiModelProperty(name="IsActive")
 	Boolean isActive;
+	@ApiModelProperty(name="IsMinAge")
+	Integer minAge;
 	@ApiModelProperty(name="Users")
 	List<ConcertUserDetailRes> users;
 
@@ -56,6 +58,7 @@ public class ConcertDetailRes{
 		res.setPriceVip(concert.get().getPriceVip());
 		res.setDecription(concert.get().getDescription());
 		res.setIsActive(concert.get().getIsActive());
+		res.setMinAge(concert.get().getMinAge());
 		res.setUsers(userResList);
 		return res;
 	}
