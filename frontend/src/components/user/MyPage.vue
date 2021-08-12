@@ -6,10 +6,7 @@
           <h2>My Page<span class="dot">!</span></h2>
         </div>
         <div style="margin-bottom: 25px;">
-          <div class="profile_tag" v-if="!getUserInfo.userProfile.originName" >
-            <img :src="`https://i5d102.p.ssafy.io/profileImg/BeConImg.jpg`" class="프로필">
-          </div>
-          <div class="profile_tag" v-else>
+          <div class="profile_tag" v-if="getUserInfo">
             <img :src="`https://i5d102.p.ssafy.io/profileImg/${getUserInfo.userProfile.originName}`" class="프로필">
           </div>
           <div class="filebox" v-if="isClick">
@@ -65,6 +62,7 @@
 </template>
 
 <script>
+
 import {mapActions, mapState, mapGetters} from 'vuex';
 export default {
   name: "Mypage",
@@ -78,7 +76,6 @@ export default {
       profile:null,
       isClick:false,
       message: "",
-      orginName:"",
       img:"",
     }
   },
@@ -93,9 +90,6 @@ export default {
     ...mapGetters('user',['getUserInfo']),
   },
   methods:{
-    getImg(){
-
-    },
     ...mapActions('user',['requestUserInfo', 'requestDelete', 'requestModify']),
     ...mapState('user',['userInfo']),
     init(){

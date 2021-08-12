@@ -492,6 +492,13 @@ export default {
         localVideo: video,
         mediaConstraints: constraints,
         onicecandidate: participant.onIceCandidate.bind(participant),
+        // // configuration:{
+        // //   iceServers:[{
+        // //     "urls":'turn:54.180.26.236.3478?transport=upd',
+        // //     "username" : this.username,
+        // //     "credential" :
+        // //   }]
+        // }
       };
 
       console.log(options);
@@ -505,10 +512,14 @@ export default {
           this.generateOffer(participant.offerToReceiveVideo.bind(participant));
         }
       );
-      
+      //기존의 참가자 영상을 전달 받을 수 있는 수신용 webRtcPerr생성
       msg.data.forEach(this.receiveVideo);
       console.log(this.participants);
     },
+    //새로운 참가자 영상을 전달 받을 수 있는 수신용 webRtcPerr생성
+    // onNewParticipant(requset){
+    //   this.receiveVideo(requset.name);
+    // },
     leaveRoom() {
         this.sendMessageRTC({
             id : 'leaveRoom'
@@ -519,6 +530,7 @@ export default {
         }
         this.wss.close();
     },
+    //영상을 전달 받을 수신용 webRTCPeer 생성 함수
     receiveVideo(sender) {
       var participant = new Participant(sender, this.sendMessageRTC);
       this.participants[sender] = participant;

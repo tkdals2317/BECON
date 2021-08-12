@@ -7,7 +7,7 @@ export default {
     userId: "",
     userName: "",
     accessToken: null,
-    userInfo: {},
+    userInfo: null,
   },
   getters: {
     getAccessToken(state) {
