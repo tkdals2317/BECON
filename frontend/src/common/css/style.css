@@ -116,7 +116,7 @@
   padding: 0px;
   border: none;
   outline: none;
-  font-size: 80%;
+  font-size: 103%;
   line-height: 2;
 }
 
@@ -6698,7 +6698,7 @@ img.lazy-image.loaded {
   font-size: 40px;
   font-weight: 400;
   text-transform: uppercase;
-  margin-bottom: 25px;
+  margin-bottom: -20px;
 }
 
 .get-quote-section .form-box h4 span {

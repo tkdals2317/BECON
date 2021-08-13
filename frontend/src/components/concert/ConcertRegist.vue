@@ -174,7 +174,6 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ConcertRegistPage",
   data: function () {
-    this.$props;
     return {
       concert: {
         title: "",
@@ -227,8 +226,7 @@ export default {
       this.concert.files = this.$refs.picture.files[0];
       this.requestRegistConcert(this.concert);
       this.$router.push({
-        name: "ConcertConfirm",
-        params: { concert: this.concert },
+        name: "ConcertConfirm"
       });
     },
     checkTitle(){

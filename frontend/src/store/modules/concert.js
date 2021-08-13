@@ -8,6 +8,7 @@ export default {
     registConcertList: {},
     concertDetail: [],
     comingConcerts: [],
+    concertConfirm:[],
   },
 
   getters: {
@@ -29,6 +30,9 @@ export default {
     getComingConcert(state) {
       return state.comingConcerts;
     },
+    getConfrimConcert(state) {
+      return state.concertConfirm;
+    }
   },
 
   mutations: {
@@ -56,9 +60,13 @@ export default {
       });
       state.comingConcerts = payload;
     },
+    GET_CONFIRM_CONCERT(state, payload){
+      state.concertConfirm=payload;
+      console.log(state.concertConfirm);
+    }
   },
   actions: {
-    requestRegistConcert(commit, concert) {
+    requestRegistConcert({commit}, concert) {
       var formData = new FormData();
       const CSRF_TOKEN = localStorage.getItem("accessToken");
       for (var variable in concert) {
@@ -71,11 +79,11 @@ export default {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then(() => {
-          // alert("공연 신청이 완료되었습니다.");
+        .then(({data}) => {
+          console.log(data);
+          commit("GET_CONFIRM_CONCERT", data);
         })
-        .catch((err) => {
-          alert(err.response.data.message);
+        .catch(() => {
           console.error();
         });
     },

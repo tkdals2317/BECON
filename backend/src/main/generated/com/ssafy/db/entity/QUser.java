@@ -24,6 +24,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
+    public final StringPath carrier = createString("carrier");
+
     public final StringPath email = createString("email");
 
     //inherited

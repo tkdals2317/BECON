@@ -84,7 +84,6 @@ const routes = [
     path: "/concertRegist/confirm",
     name: "ConcertConfirm",
     component: ConcertConfirm,
-    props: true,
   },
   {
     path: "/service",

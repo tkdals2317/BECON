@@ -21,6 +21,7 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.ConcertRegisterPostReq;
 import com.ssafy.api.response.ConcertDetailRes;
+import com.ssafy.api.response.ConcertRes;
 import com.ssafy.api.service.concert.ConcertCategoryService;
 import com.ssafy.api.service.concert.ConcertService;
 import com.ssafy.api.service.concert.ConcertThumbnailService;
@@ -90,7 +91,7 @@ public class ConcertController {
 		}catch(Exception e) {
             e.printStackTrace();
         }
-		return ResponseEntity.status(201).body(BaseResponseBody.of(201, "Success"));
+		return ResponseEntity.status(201).body(ConcertRes.of(concert));
 	}
 	
 	@GetMapping("/findByCategory/{category}")

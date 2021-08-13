@@ -35,6 +35,8 @@ public class QConcert extends EntityPathBase<Concert> {
 
     public final BooleanPath isActive = createBoolean("isActive");
 
+    public final NumberPath<Integer> minAge = createNumber("minAge", Integer.class);
+
     public final NumberPath<Integer> priceStand = createNumber("priceStand", Integer.class);
 
     public final NumberPath<Integer> priceVip = createNumber("priceVip", Integer.class);
