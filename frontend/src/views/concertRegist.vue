@@ -2,7 +2,7 @@
   <div>
     <Nav />
     <PageHeader title="공연신청" />
-    <ConcertRegistPage />
+    <ConcertRegist />
     <Footer />
   </div>
 </template>
@@ -10,11 +10,11 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import ConcertRegistPage from "../components/concert/ConcertRegistPage";
+import ConcertRegist from "../components/concert/ConcertRegist";
 
 export default {
   components: {
-    ConcertRegistPage,
+    ConcertRegist,
     Footer,
     PageHeader,
     Nav,
