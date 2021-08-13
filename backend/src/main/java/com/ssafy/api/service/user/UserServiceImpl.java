@@ -44,6 +44,8 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(request.getEmail());
 		user.setPhone(request.getPhone());
 		user.setUserProfile(fileId);
+		user.setCarrier(request.getCarrier());
+		
 		return userRepository.save(user);
 	}
 

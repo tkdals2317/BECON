@@ -25,4 +25,6 @@ public class ConcertRegisterPostReq {
 	String ownerId;
 	@ApiModelProperty(name="공연 카테고리 이름", example="힙합")
 	String categoryName;
+	@ApiModelProperty(name="공연 연령제한", example="19")
+	Integer minAge;
 }

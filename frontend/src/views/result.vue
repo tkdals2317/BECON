@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="공연신청" />
-    <ConcertRegistPage />
+    <PageHeader title="결제" />
+    <PayResult />
     <Footer />
   </div>
 </template>
@@ -10,18 +10,18 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import ConcertRegistPage from "../components/concert/ConcertRegistPage";
+import PayResult from "../components/pay/PayResult";
 
 export default {
   components: {
-    ConcertRegistPage,
+    PayResult,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "BeCon | Concert Regist",
+      title: "BeCon | Login",
     };
   },
 };

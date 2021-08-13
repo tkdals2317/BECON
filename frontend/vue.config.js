@@ -1,5 +1,9 @@
 const URL = "3.36.67.58:8443";
+<<<<<<< HEAD
 //const URL = "localhost:8080";
+=======
+// const URL = "localhost:8080";
+>>>>>>> FE-pay
 
 module.exports = {
     devServer: {

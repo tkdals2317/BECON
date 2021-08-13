@@ -115,7 +115,7 @@ export default {
           console.error();
         });
     },
-    getConcertDetail({ commit }, concertId) {
+    findConcertDetail({ commit }, concertId) {
       const CSRF_TOKEN = localStorage.getItem("accessToken");
       http
         .get(`/api/v2/concert/${concertId}`, {
