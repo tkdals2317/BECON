@@ -16,12 +16,12 @@
                 <div class="lower-box">
                   <div class="post-meta">
                     <ul class="clearfix">
-                      <li><span class="far fa-clock"></span> 20 Mar</li>
-                      <li><span class="far fa-user-circle"></span> Admin</li>
-                      <li><span class="far fa-comments"></span> 2 Comments</li>
+                      <li><span class="far fa-clock"></span> <span>{{minute}}분</span><span>{{second}}초</span> </li>
+                      <li><span class="far fa-user-circle"></span> {{getConcert.user.name}}</li>
+                      <li><span class="far fa-comments"></span> 2 People</li>
                     </ul>
                   </div>
-                  <h4>basic rules of running web agency business</h4>
+                  <h4>{{getConcert.title}}</h4>
                   <div class="text">
                     <p>
                       여기는 아티스트 정보
@@ -31,16 +31,15 @@
               </div>
               <div class="info-row clearfix">
                 <div class="tags-info">
-                  <strong>Tags:</strong> <a href="#">Business</a>,
-                  <a href="#">Agency</a>, <a href="#">Technology</a>
+                  <strong>Tags:</strong> <a href="#">{{getConcert.user.name}}</a>,
+                  <a href="#">{{getConcert.title}}</a>
                 </div>
                 <div class="cat-info">
-                  <strong>Category:</strong> <a href="#">Business</a>,
-                  <a href="#">Agency</a>
+                  <strong>Category:</strong> <a href="#">{{ getConcert.category.name }}</a>
                 </div>
               </div>
             </div>
-            <div class="post-control-two">
+            <!-- <div class="post-control-two">
               <div class="row clearfix">
                 <div class="control-col col-md-6 col-sm-12">
                   <div class="control-inner">
@@ -59,12 +58,12 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!--Comments Area-->
             <div class="comments-area">
-              <div class="comments-title">
+              <!-- <div class="comments-title">
                 <h3>2 Comments</h3>
-              </div>
+              </div> -->
               <div class="comment-box">
                 <div class="comment">
                   <div class="author-thumb">
@@ -73,24 +72,22 @@
                     </figure>
                   </div>
                   <div class="info">
-                    <div class="name">Jessica Brown</div>
-                    <div class="date">20 May, 2020 . 4:00 pm</div>
+                    <div class="name">{{getConcert.user.name}}</div>
+                    <!-- <div class="date">20 May, 2020 . 4:00 pm</div> -->
                   </div>
                   <div class="text">
-                    Lorem Ipsum is simply dummy free text of the available
-                    printing and typesetting been the industry standard dummy
-                    text ever sincer condimentum purus.
+                    아티스트에 대한 설명
                   </div>
                   <div class="reply-btn">
                     <a class="theme-btn btn-style-one" href="/about">
                       <i class="btn-curve"></i>
-                      <span class="btn-title">Reply</span>
+                      <span class="btn-title">소개 바로가기</span>
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div class="comment-box">
+              <!-- <div class="comment-box">
                 <div class="comment">
                   <div class="author-thumb">
                     <figure class="thumb">
@@ -113,11 +110,11 @@
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
 
             <!--Leave Comment Form-->
-            <div class="leave-comments">
+            <!-- <div class="leave-comments">
               <div class="comments-title">
                 <h3>Leave a comment</h3>
               </div>
@@ -176,7 +173,7 @@
                   </div>
                 </form>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -184,7 +181,7 @@
         <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
           <aside class="sidebar blog-sidebar">
             <!--Sidebar Widget-->
-            <div class="sidebar-widget recent-posts" style="height: 400px">
+            <div class="sidebar-widget recent-posts" style="height: 440px">
               <div class="widget-inner" style="height: 100%">
                 <div class="sidebar-title">
                   <h4>Chat</h4>
@@ -215,13 +212,13 @@
                     v-on:keypress.enter="sendMessage"
                   />
                   <button @click="sendMessage">
-                    <span class="icon flaticon-magnifying-glass-1"></span>
+                    <span class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines"></span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <div class="sidebar-widget archives">
+            <!-- <div class="sidebar-widget archives">
               <div class="widget-inner">
                 <div class="sidebar-title">
                   <h4>Categories</h4>
@@ -299,7 +296,7 @@
                   </h5>
                 </div>
               </div>
-            </div>
+            </div> -->
           </aside>
         </div>
       </div>
@@ -322,13 +319,20 @@ export default {
       messages: [],
       participants: [],
       userId: '',
+      userName:'',
+      userPassword:'',
       roomId: '',
+      minute: 0,
+      second: 0,
     };
   },
 
   created() {
+    window.scrollTo(0, 0);
     this.userId = this.getUserId;
     this.roomId = this.getRoomId;
+    this.minute = -this.getConcert.minute;
+    this.second = -this.getConcert.second;
     
     console.log('아이디:'+this.userId);
     console.log('방번호:'+this.roomId);
@@ -336,18 +340,30 @@ export default {
     this.connect();
     this.connection();
     this.register();
+    this.setTimer();
   },
 
   destroyed() {
     this.leaveRoom();
+    clearInterval(this.timer);
   },
 
   computed: {
     ...mapGetters('user', ['getUserId']),
-    ...mapGetters('room', ['getRoomId']),
+    ...mapGetters('room', ['getRoomId', 'getConcert']),
   },
 
   methods: {
+    setTimer() {
+      var app = this;
+      this.timer = setInterval(function() {
+        app.second += 1;
+        if (app.second >= 60) {
+          app.minute += 1;
+          app.second = 0;
+        }
+      }, 1000);
+    },
     // WebSocket
     sendMessage() {
       this.ws.send(
@@ -438,9 +454,6 @@ export default {
       };
       this.sendMessageRTC(message);
     },
-    onNewParticipant(request) {
-      this.receiveVideo(request.name);
-    },
     receiveVideoResponse(result) {
       this.participants[result.name].rtcPeer.processAnswer(
         result.sdpAnswer,
@@ -478,22 +491,34 @@ export default {
         localVideo: video,
         mediaConstraints: constraints,
         onicecandidate: participant.onIceCandidate.bind(participant),
+        configuration:{
+          iceServers:[
+          {
+            "urls":'turn:3.36.67.58:3478?transport=udp',
+            "username" : 'myuser',
+            "credential" : 'mypassword'
+          }
+          ]
+        }
       };
 
       console.log(options);
       
-      // participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(
-      //   options,
-      //   function (error) {
-      //     if (error) {
-      //       return console.error(error);
-      //     }
-      //     this.generateOffer(participant.offerToReceiveVideo.bind(participant));
-      //   }
-      // );
-      
+      participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(
+        options,
+        function (error) {
+          if (error) {
+            return console.error(error);
+          }
+          this.generateOffer(participant.offerToReceiveVideo.bind(participant));
+        }
+      );
+      //기존의 참가자 영상을 전달 받을 수 있는 수신용 webRtcPeer생성
       msg.data.forEach(this.receiveVideo);
       console.log(this.participants);
+    },
+    onNewParticipant(request) {
+      this.receiveVideo(request.name);
     },
     leaveRoom() {
         this.sendMessageRTC({
@@ -505,6 +530,7 @@ export default {
         }
         this.wss.close();
     },
+    //영상을 전달 받을 수신용 webRTCPeer 생성 함수
     receiveVideo(sender) {
       var participant = new Participant(sender, this.sendMessageRTC);
       this.participants[sender] = participant;
@@ -513,8 +539,15 @@ export default {
       var options = {
         remoteVideo: video,
         onicecandidate: participant.onIceCandidate.bind(participant),
+        configuration:{
+          iceServers:[
+          {
+            "urls" : 'turn:3.36.67.58:3478?transport=udp',
+            "username" : 'myuser',
+            "credential" : 'mypassword'
+          },]
+        }
       };
-
       participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerRecvonly(
         options,
         function (error) {

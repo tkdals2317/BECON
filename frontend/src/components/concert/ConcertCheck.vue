@@ -70,6 +70,7 @@ import {mapActions, mapGetters} from 'vuex';
         }
       },
       created(){
+        window.scrollTo(0, 0);
         this.requestCheckConcert();
       },
       // mounted(){

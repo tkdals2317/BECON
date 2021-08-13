@@ -7,6 +7,7 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.filechooser.FileSystemView;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,19 +39,11 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 		String origFilename = files.getOriginalFilename();
 		String filename = new MD5Generator(origFilename).toString();
 		
+		String savePath = "/images/thumbnail";
 		
-		String savePath = new File("../thumbnail").getCanonicalPath();
-		
-		if (!new File(savePath).exists()) {
-			try {
-				new File(savePath).mkdir();
-			} catch (Exception e) {
-				e.getStackTrace();
-			}
-		}
-		String filePath = savePath + "\\" + origFilename;
+		String filePath = savePath + "/" + origFilename;
 		files.transferTo(new File(filePath));
-
+		
 		concertTumbnailInfo = new ConcertThumbnailPostReq();
 		concertTumbnailInfo.setOriginName(origFilename);  
 		concertTumbnailInfo.setName(filename);

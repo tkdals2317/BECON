@@ -553,7 +553,7 @@ img {
 }
 
 .fixed-header .header-upper {
-  background: #171717;
+  background: #000000;
   -webkit-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
   -moz-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
   -ms-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
@@ -571,6 +571,7 @@ img {
 }
 
 .main-header .header-upper .inner-container {
+  background: #000000;
   position: relative;
   display: block;
   padding: 0px 60px;
@@ -681,6 +682,7 @@ img {
 }
 
 .main-header .nav-outer {
+  background: #000000;
   position: absolute;
   left: 0;
   top: 0;

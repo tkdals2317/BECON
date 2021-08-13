@@ -1,4 +1,4 @@
-<template>
+<tem  late>
   <div>
     <Nav />
     <PageHeader title="Register" />

@@ -58,7 +58,9 @@ export default {
       message: "",
     }
   },
-
+  created() {
+    window.scrollTo(0, 0);
+  },
   methods:{
     ...mapActions('user',["requestLogin"]),
     clickLogin(){

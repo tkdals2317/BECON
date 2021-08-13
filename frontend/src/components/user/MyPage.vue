@@ -6,16 +6,16 @@
           <h2>My Page<span class="dot">!</span></h2>
         </div>
         <div style="margin-bottom: 25px;">
-          <div class="profile_tag" v-if="!getUserInfo.userProfile.originName" >
-            <img :src="require(`@/common/images/resource/profile/BeConImg.jpg`)" class="profile_image">
-          </div>
-          <div class="profile_tag" v-else>
-            <img :src="require(`@/common/images/resource/profile/${getUserInfo.userProfile.originName}`)" class="profile_image" alt="프로필">
+          <div class="profile_tag" v-if="getUserInfo">
+            <img :src="`https://i5d102.p.ssafy.io/profileImg/${getUserInfo.userProfile.originName}`" class="프로필">
           </div>
           <div class="filebox" v-if="isClick">
             <label for="ex_file">프로필 수정</label>
-            <input type="file" id="ex_file" ref="picture" name="files">
+            <div class="field-inner">
+                    <input type="file" id="ex_file" ref="picture" name="files" required="">
+            </div>
           </div>
+        </div>
         </div>
         <div class="form-box">
             <div class="default-form">
@@ -57,13 +57,12 @@
                 </div>
             </div>
         </div>
-
-        </div>
     </div>
   </section>
 </template>
 
 <script>
+
 import {mapActions, mapState, mapGetters} from 'vuex';
 export default {
   name: "Mypage",
@@ -76,13 +75,15 @@ export default {
       email: '',
       profile:null,
       isClick:false,
-      message: ""
+      message: "",
+      img:"",
     }
   },
   created(){
+    window.scrollTo(0, 0);
     this.init();
   },
-  mounted(){
+  mounted () {
     this.init();
   },
   computed :{

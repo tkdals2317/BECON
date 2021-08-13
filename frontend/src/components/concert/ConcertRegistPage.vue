@@ -17,7 +17,7 @@
                   <input type="text" v-model="concert.description" name="Description" value="" placeholder="Description" required=""/>
                 </div>
               </div>
-              <div class="form-group col-lg-3 col-md-12 col-sm-12">
+              <div class="form-group col-lg-6 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="date" v-model="time.startDay" name="StartDay" value="" required=""/>
                 </div>
@@ -25,11 +25,6 @@
               <div class="form-group col-lg-3 col-md-12 col-sm-12">
                 <div class="field-inner">
                   <input type="time" v-model="time.startClock" name="StartClock" min="00:00" max="24:00" required=""/>
-                </div>
-              </div>
-              <div class="form-group col-lg-3 col-md-12 col-sm-12">
-                <div class="field-inner">
-                  <input type="date" v-model="time.endDay" name="EndDay" value="" required=""/>
                 </div>
               </div>
               <div class="form-group col-lg-3 col-md-12 col-sm-12">
@@ -100,22 +95,26 @@ export default {
       time:{
         startDay:"",
         startClock:"",
-        endDay:"",
         endClock:"",
       },
       message: ""
     }
   },
-
+  create(){
+    window.scrollTo(0, 0);
+  },
+  mounted(){
+    window.scrollTo(0, 0);
+  },
   computed: {
     ...mapGetters('concert', ["getCategories"])
   },
-
+  
   methods:{
     ...mapActions('concert',["requestRegistConcert"]),
     clickRegistConcert:function(){
       this.concert.startTime = this.time.startDay+" "+this.time.startClock;
-      this.concert.endTime = this.time.endDay+" "+this.time.endClock;
+      this.concert.endTime = this.time.startDay+" "+this.time.endClock;
       this.concert.files = this.$refs.picture.files[0];
       this.requestRegistConcert(this.concert);
       this.$router.push({name: 'ConcertConfirm', params: {concert: this.concert}})
@@ -124,4 +123,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.field-inner > div {
+  padding: 14px 19px !important;
+}
+</style>

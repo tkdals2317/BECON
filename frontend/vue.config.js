@@ -1,5 +1,5 @@
-// const URL = "3.36.67.58:8443";
-const URL = "localhost:8080";
+const URL = "3.36.67.58:8443";
+//const URL = "localhost:8080";
 
 module.exports = {
     devServer: {
@@ -22,12 +22,10 @@ module.exports = {
       },
       historyApiFallback: true,
       hot: true,
-      disableHostCheck: true,
     },
     css: {
       requireModuleExtension: false // import 시에 경로에 .module 포함 안해도 됨.
     },
     lintOnSave: false,
-    // outputDir: '../backend/src/main/resources/dist',
   }
   

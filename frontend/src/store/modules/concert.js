@@ -1,5 +1,4 @@
 import http from "@/common/lib/http";
-import router from "@/router/index";
 
 export default {
   namespaced: true,
@@ -73,8 +72,7 @@ export default {
           },
         })
         .then(() => {
-          alert("공연 신청이 완료되었습니다.");
-          router.push("/");
+          // alert("공연 신청이 완료되었습니다.");
         })
         .catch((err) => {
           alert(err.response.data.message);
@@ -93,9 +91,11 @@ export default {
         });
     },
     requestConcert({ commit }, category) {
+      console.log(category);
       http
         .get("/api/v2/concert/findByCategory/" + category)
         .then(({ data }) => {
+          console.log(data);
           commit("CONCERT", data);
         })
         .catch(() => {

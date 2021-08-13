@@ -10,6 +10,9 @@ export default {
     getStartTime(state) {
       return state.concert.startTime;
     },
+    getConcert(state) {
+      return state.concert;
+    },
   },
   mutations: {
     SET_ENTER_CONCERT(state, payload) {

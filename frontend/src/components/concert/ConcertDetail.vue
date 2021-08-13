@@ -3,7 +3,7 @@
     <section class="project-single style-two">
       <div class="auto-container">
         <figure class="image-box">
-          <a class="portfolio" data-fancybox="gallery"><img src="@/common/images/resource/featured-image-20.jpg" alt=""></a>
+          <a class="portfolio" data-fancybox="gallery"><img src="https://i5d102.p.ssafy.io/thumbnailImg/${getDtail.}" alt=""></a>
         </figure>
         <div class="text-content">
           <div class="row clearfix">
@@ -11,7 +11,7 @@
             <div class="text-col col-lg-8 col-md-12 col-sm-12">
               <div class="inner">
                 <h5>Concert description</h5>
-                <p>{{ getDetail.description }}</p>
+                <p>{{ getDetail.decription }}</p>
               </div>
             </div>
             <!-- Text COl -->
@@ -55,7 +55,11 @@ import { mapActions, mapGetters } from "vuex";
         this.$router.push({name: 'Ticketing', params:{ concertId: concertId } })
       },
     },
+    create(){
+      window.scrollTo(0, 0);
+    },
     mounted() {
+      window.scrollTo(0, 0);
       new GLightbox({
         selector: '.portfolio',
       });
@@ -70,5 +74,7 @@ import { mapActions, mapGetters } from "vuex";
 </script>
 
 <style scoped>
-
+p {
+  font-size: 16px;
+}
 </style>

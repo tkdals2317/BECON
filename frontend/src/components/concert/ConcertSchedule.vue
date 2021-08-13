@@ -35,7 +35,7 @@
                     <div class="cap-inner">
                       <div class="cat"><span>{{ concertInfo.title }}</span></div>
                       <div class="title">
-                        <h5><a href="/">{{ concertInfo.description }}</a></h5>
+                        <h5><a href="/">{{ concertInfo.description | truncate(50) }}</a></h5>
                       </div>
                     </div>
                   </div>
@@ -70,6 +70,7 @@ import { mapActions, mapGetters } from "vuex";
       ...mapActions("concert", ["requestCategory", "requestConcert"]),
     },
     mounted () {
+      window.scrollTo(0, 0);
       new GLightbox({
         selector: '.lightbox-image',
         touchNavigation: true,
