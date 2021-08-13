@@ -8,6 +8,7 @@ export default {
     userName: "",
     accessToken: null,
     userInfo: null,
+    availableId:true,
   },
   getters: {
     getAccessToken(state) {
@@ -21,17 +22,22 @@ export default {
     },
     getUserInfo(state) {
       return state.userInfo;
+    },
+    getAvaliableId(state){
+      return state.availableId;
     }
   },
   mutations: {
     LOGIN(state, {payload, user}) {
       state.userId = user.userId;
-      console.log(state.userId);
       state.accessToken = payload.accessToken;
       localStorage.setItem("accessToken", state.accessToken);
     },
     USERINFO(state, payload){
       state.userInfo = payload;
+    },
+    USERID(state, payload){
+      state.availableId = payload;
     }
   },
   actions: {
@@ -72,16 +78,17 @@ export default {
           console.error();
         });
     },
-    requestDuplicate(commit, userId){
+    requestDuplicate({commit}, userId){
       http
         .get(`/api/v1/users/`+userId)
         .then((res) => {
           console.log(res);
           alert(res.data.message);
-
+          commit("USERID", true);
         })
         .catch((error) => {
           if(error.response.data.statusCode==409){
+            commit("USERID", false);
             alert(error.response.data.message);
           }
         });
@@ -98,7 +105,7 @@ export default {
         })
         .catch(() => {
           //alert(err.response.message);
-            console.error();
+          console.error();
         });
     },
     requestModify({commit}, user){
