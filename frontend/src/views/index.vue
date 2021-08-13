@@ -9,6 +9,7 @@
     <TrustedSection />
     <CallToAction />
     <Footer />
+    <QA />
   </div>
 </template>
 
@@ -22,6 +23,8 @@ import ParallaxSection from "../components/main/ParallaxSection";
 import BlogSection from "../components/main/BlogSection";
 import CallToAction from "../components/main/CallToAction";
 import Footer from "../components/layout/Footer";
+import QA from "../components/user/QA";
+
 
 export default {
   components: {
@@ -34,6 +37,7 @@ export default {
     GallerySection,
     BannerThree,
     Nav,
+    QA,
   },
 };
 </script>

@@ -43,7 +43,7 @@
               <div class="icon-box"><span class="flaticon-monitor"></span></div>
               <h5><a href="#">Q&A</a></h5>
               <div class="text">문의사항이 있다면 여기로!</div>
-              <div class="link-box"><a href="#"><span class="fa fa-angle-right"></span></a></div>
+              <div class="link-box"><a href="/qa"><span class="fa fa-angle-right"></span></a></div>
             </div>
           </div>
 

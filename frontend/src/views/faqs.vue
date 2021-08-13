@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="mypage" />
-    <QuoteSectionThree />
+    <PageHeader title="FAQS" />
+    <FAQS />
     <CallToActionThree />
     <Footer />
   </div>
@@ -11,13 +11,13 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import QuoteSectionThree from "../components/unused/QuoteSectionThree";
+import FAQS from "../components/user/FAQS";
 import CallToActionThree from "../components/unused/CallToActionThree";
 
 export default {
   components: {
     CallToActionThree,
-    QuoteSectionThree,
+    FAQS,
     Footer,
     PageHeader,
     Nav,

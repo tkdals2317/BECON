@@ -1,27 +1,31 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="my concert" />
-    <Mycon />
+    <PageHeader title="Q&A" />
+    <QA />
+    <CallToActionThree />
     <Footer />
-  </div>
+  </div>  
 </template>
 <script>
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
+import QA from "../components/user/QA";
 import Footer from "../components/layout/Footer";
-import Mycon from "../components/user/Mycon";
+import CallToActionThree from "../components/unused/CallToActionThree";
+
 
 export default {
   components: {
+    QA,
+    CallToActionThree,
     Footer,
     PageHeader,
     Nav,
-    Mycon,
   },
   head() {
     return {
-      title: "Linoor | 404 Error",
+      title: "Be-con | QA ",
     };
   },
 };

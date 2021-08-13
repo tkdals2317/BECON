@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="MYconcert"/>
-    <Myconcert :concertId="$route.params.concertId"/>
+    <PageHeader title="Singer" />
+    <Singer />
     <Footer />
   </div>
 </template>
@@ -10,17 +10,18 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import Myconcert from "../components/user/Myconcert";
+import Singer from "../components/user/Singer";
+
 export default {
   components: {
-    Myconcert,
     Footer,
     PageHeader,
     Nav,
+    Singer,
   },
   head() {
     return {
-      title: "Be-con | My concert",
+      title: "Linoor | Singer",
     };
   },
 };
