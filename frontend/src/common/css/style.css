@@ -136,6 +136,10 @@
   --thm-text: #686a6f;
 }
 
+#app {
+  overflow: hidden;
+}
+
 body {
   font-size: 15px;
   color: var(--thm-text);

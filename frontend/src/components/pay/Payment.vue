@@ -289,9 +289,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-@import "~ant-design-vue/dist/antd";
-</style>
+
 <style>
 .ant-select-selection-selected-value {
   font-size: 16px !important;
