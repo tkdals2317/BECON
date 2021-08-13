@@ -204,14 +204,6 @@ export default {
 		    this.errors.requireName=true;
       }
     },
-    checkMatch(){
-      if(!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/.test(this.user.password)){
-        this.errors.matchPass=false;
-        return;
-      }else{
-        this.errors.matchPass=true;
-      }
-    },
     checkPhone(){
       if(!this.user.phone){
         this.errors.requirePhone=false;
