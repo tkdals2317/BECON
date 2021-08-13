@@ -8,7 +8,6 @@
         <div class="sec-title">
           <div class="ticket ticket-1">
             <div class="date">
-              <span class="day">24</span>
               <span class="month-and-time"
                 >{{ concertId.startTime }}<br /><span class="small">{{ concertId.endTime }}</span></span
               >
@@ -31,7 +30,6 @@
 
           <div class="ticket ticket-2">
             <div class="date">
-              <span class="day">24</span>
               <span class="month-and-time"
                 >{{ concertId.startTime }}<br /><span class="small">{{ concertId.endTime }}</span></span
               >
@@ -149,7 +147,7 @@ body {
 
 .location {
   float: left;
-  margin: 180px 0 0 auto;
+  margin: 10px 0 0 78px;
   font-size: 30px;
   font-weight: bold;
   -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
