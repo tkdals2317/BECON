@@ -93,7 +93,6 @@ function Participant(name, sendMessage) {
 				sender : name,
 				sdpOffer : offerSdp
 			};
-		console.log('가라 !!');
 		sendMessage(msg);
 	}
 
