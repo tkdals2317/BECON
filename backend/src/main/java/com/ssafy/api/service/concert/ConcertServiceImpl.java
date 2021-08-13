@@ -40,9 +40,9 @@ public class ConcertServiceImpl implements ConcertService{
 		concert.setThumbnail(fileId);
 		concert.setUser(userId);
 		concert.setCategory(categoryId);
+		concert.setMinAge(request.getMinAge());
 		
 		Concert temp = concertRepository.save(concert);
-//		roomManager.getRoom(temp.getId()+"");
 		
 		return temp;
 	}
