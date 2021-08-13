@@ -13,7 +13,7 @@ import ConcertCheck from "../views/concertCheck.vue";
 import ConcertDetail from "../views/concertDetail.vue";
 import ConcertSchedule from "../views/concertSchedule.vue";
 import Faqs from "../views/faqs.vue";
-import Register from "../views/register.vue";
+import Regist from "../views/regist.vue";
 import Ticketing from "../views/ticketing.vue";
 import Myconcert from "../views/myconcert.vue";
 import ConcertConfirm from "../views/concertConfirm.vue";
@@ -77,8 +77,8 @@ const routes = [
   },
   {
     path: "/regist",
-    name: "Register",
-    component: Register,
+    name: "Regist",
+    component: Regist,
   },
   {
     path: "/concertRegist/confirm",
