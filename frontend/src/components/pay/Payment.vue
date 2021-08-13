@@ -102,28 +102,32 @@
                 { initialValue: initialMerchantUid },
               ]"
               size="large"
+              readOnly
             />
           </a-form-item>
-          <a-form-item label="주문명">
+          <a-form-item label="상품명">
             <a-input
               v-decorator="[
                 'name',
-                { initialValue: '아임포트 VueJS 테스트 결제' },
+                { initialValue: getTicketInfo.title + ' ' + getTicketInfo.type },
               ]"
               size="large"
+              readOnly
             />
           </a-form-item>
           <a-form-item label="결제금액">
             <a-input
-              v-decorator="['amount', { initialValue: '1000' }]"
+              v-decorator="['amount', { initialValue: getTicketInfo.price/100 }]"
               size="large"
               type="number"
+              readOnly
             />
           </a-form-item>
           <a-form-item label="이름">
             <a-input
               v-decorator="['buyerName', { initialValue: getUserInfo.userName }]"
               size="large"
+              readOnly
             />
           </a-form-item>
           <a-form-item label="연락처">
@@ -131,6 +135,7 @@
               v-decorator="['buyerTel', { initialValue: getUserInfo.userPhone.replace(/\-/g,'') }]"
               size="large"
               type="text"
+              readOnly
             />
           </a-form-item>
           <a-form-item label="이메일">
@@ -140,6 +145,7 @@
                 { initialValue: getUserInfo.userEmail },
               ]"
               size="large"
+              readOnly
             />
           </a-form-item>
           <!-- <a-form-item label="주소">
@@ -178,7 +184,7 @@ export default {
     return {
       formLayout: "horizontal",
       form: this.$form.createForm(this, { name: "payment" }),
-      initialMerchantUid: `mid_${new Date().getTime()}`,
+      initialMerchantUid: `${new Date().getTime()}`,
       pgs: PGS,
       methods: Utils.getMethodsByPg(),
       quotas: Utils.getQuotaByPg(),
@@ -190,6 +196,7 @@ export default {
   },
   computed :{
     ...mapGetters('user',['getUserInfo']),
+    ...mapGetters('ticket',['getTicketInfo']),
   },
   methods: {
     handleSubmit(e) {
@@ -274,10 +281,8 @@ export default {
       this.$router.push("/");
     },
     callback(response) {
-      // 본인인증 종료 후 result 페이지로 이동
       const query = {
         ...response,
-        type: "payment",
       };
       this.$router.push({ path: "/result", query });
     },

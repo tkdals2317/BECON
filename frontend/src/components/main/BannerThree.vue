@@ -60,8 +60,7 @@
             <div class="content">
               <div class="inner" style="color: black;">
                   <h1>TOP <br>TWO <br>MUSICAIN</h1>
-                <div class="text">We are committed to providing our customers with exceptional
-                  service while offering our employees the best training.</div>
+                <div class="text">best of best music</div>
                 <div class="link-box">
                   <router-link class="theme-btn btn-style-two" to="/about">
                     <i class="btn-curve"></i>
@@ -87,8 +86,7 @@
             <div class="content">
               <div class="inner">
                   <h1>TOP <br>THREE <br>MUSICAIN</h1>
-                <div class="text">We are committed to providing our customers with exceptional
-                  service while offering our employees the best training.</div>
+                <div class="text">best of best music</div>
                 <div class="link-box">
                   <router-link class="theme-btn btn-style-two" to="/about">
                     <i class="btn-curve"></i>

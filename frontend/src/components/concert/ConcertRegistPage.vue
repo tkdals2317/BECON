@@ -13,7 +13,6 @@
                   type="text"
                   v-model="concert.title"
                   name="Title"
-                  value=""
                   placeholder="공연 제목"
                   required=""
                 />
@@ -25,7 +24,6 @@
                   type="text"
                   v-model="concert.description"
                   name="Description"
-                  value=""
                   placeholder="간단한 공연 설명을 적어주세요."
                   required=""
                 />
@@ -37,7 +35,6 @@
                   type="date"
                   v-model="time.startDay"
                   name="StartDay"
-                  value=""
                   required=""
                 />
               </div>
@@ -73,7 +70,6 @@
                   type="text"
                   v-model="concert.priceVip"
                   name="PriceVip"
-                  value=""
                   placeholder="Vip 가격"
                   required=""
                 />
@@ -85,7 +81,6 @@
                   type="text"
                   v-model="concert.priceStand"
                   name="PriceStand"
-                  value=""
                   placeholder="Stand 가격"
                   required=""
                 />
@@ -97,7 +92,6 @@
                   type="Number"
                   v-model="concert.minAge"
                   name="MinAge"
-                  value=""
                   placeholder="연령제한"
                   required=""
                 />
@@ -108,7 +102,6 @@
                 <select
                   v-model="concert.categoryName"
                   name="CategoryName"
-                  value=""
                   placeholder="CategoryName"
                   required=""
                 >
@@ -186,6 +179,7 @@ export default {
       this.concert.startTime = this.time.startDay + " " + this.time.startClock;
       this.concert.endTime = this.time.startDay + " " + this.time.endClock;
       this.concert.files = this.$refs.picture.files[0];
+      if (this.concert.minAge === "") this.concert.minAge = 0;
       this.requestRegistConcert(this.concert);
       this.$router.push({
         name: "ConcertConfirm",

@@ -151,6 +151,7 @@ export default {
   },
   methods:{
     ...mapActions('user', ['requestUserInfo']),
+    ...mapActions('ticket', ['selectTicket']),
     getNow(){
       const today = new Date();
       const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -159,7 +160,7 @@ export default {
       this.timestamp = dateTime;
     },
     clickBuyStand(){
-      this.handleSubmit();
+      this.handleSubmit(1);
       // this.$router.push('/payment');
       // this.getNow();
       // let ticket={
@@ -171,7 +172,7 @@ export default {
       // this.requestBuyTicket(ticket);
     },
     clickBuyVip(){
-      this.handleSubmit();
+      this.handleSubmit(2);
       // this.$router.push('/payment');
     //  this.getNow();
     //   let ticket={
@@ -182,7 +183,12 @@ export default {
     //   }
     //   this.requestBuyTicket(ticket);
     },
-    handleSubmit() {
+    handleSubmit(type) {
+      if (type === 1) {
+        this.callback = this.callbackStand;
+      } else {
+        this.callback = this.callbackVip;
+      }
       this.form.validateFields((err, values) => {
         if (!err) {
           const {
@@ -205,13 +211,51 @@ export default {
     handleGoBack() {
       this.$router.push('/');
     },
-    callback(response) {
-      // 본인인증 종료 후 result 페이지로 이동
-      const query = {
-        ...response,
-        type: 'certification',
-      };
-      this.$router.push({ path: '/payment', query });
+    callbackStand(response) {
+      this.success = this.getSuccess(response);
+      if (!this.success) {
+        alert('인증에 실패했습니다.')
+        return;
+      }
+
+      this.selectTicket({
+        concertId: this.concert.id,
+        title: this.concert.title,
+        type: 'STAND',
+        price: this.concert.priceStand,
+      });
+
+      this.$router.push('/payment');
+    },
+    callbackVip(response) {
+      this.success = this.getSuccess(response);
+      if (!this.success) {
+        alert('인증에 실패했습니다.')
+        return;
+      }
+
+      this.selectTicket({
+        concertId: this.concert.id,
+        title: this.concert.title,
+        type: 'VIP',
+        price: this.concert.priceVip,
+      });
+
+      this.$router.push('/payment');
+    },
+    getSuccess(query) {
+      const { success } = query;
+      const impSuccess = query.imp_success;
+      if (impSuccess === undefined) {
+        if (typeof success === 'string') {
+          return success === 'true';
+        }
+        return success;
+      }
+      if (typeof impSuccess === 'string') {
+        return impSuccess === 'true';
+      }
+      return impSuccess;
     },
   },
 };
