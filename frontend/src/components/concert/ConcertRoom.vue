@@ -411,10 +411,8 @@ export default {
     // WebRTC
     connection() {
       this.wss = webSocket();
-      console.info("message: ");
       this.wss.onmessage = (message) => {
         var parsedMessage = JSON.parse(message.data);
-        console.info("Received message: "+parsedMessage);
 
         switch (parsedMessage.id) {
           case "existingParticipants":
@@ -441,8 +439,6 @@ export default {
               }
             );
             break;
-          default:
-            console.error("Unrecognized message", parsedMessage);
         }
       };
     },
@@ -452,7 +448,9 @@ export default {
         name: this.userId,
         room: this.roomId,
       };
-      this.sendMessageRTC(message);
+      this.wss.onopen = () => {
+        this.sendMessageRTC(message);
+      }
     },
     receiveVideoResponse(result) {
       this.participants[result.name].rtcPeer.processAnswer(
@@ -464,7 +462,6 @@ export default {
     },
     callResponse(message) {
       if (message.response != "accepted") {
-        console.info("Call not accepted by peer. Closing call");
         stop();
       } else {
         this.webRtcPeer.processAnswer(message.sdpAnswer, function (error) {
@@ -482,7 +479,6 @@ export default {
           },
         },
       };
-      console.log(this.userId + " registered in room " + this.roomId);
       var participant = new Participant(this.userId, this.sendMessageRTC);
       this.participants[this.userId] = participant;
       var video = participant.getVideoElement();
@@ -502,8 +498,6 @@ export default {
         }
       };
 
-      console.log(options);
-      
       participant.rtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(
         options,
         function (error) {
@@ -513,9 +507,7 @@ export default {
           this.generateOffer(participant.offerToReceiveVideo.bind(participant));
         }
       );
-      //기존의 참가자 영상을 전달 받을 수 있는 수신용 webRtcPeer생성
       msg.data.forEach(this.receiveVideo);
-      console.log(this.participants);
     },
     onNewParticipant(request) {
       this.receiveVideo(request.name);
@@ -530,7 +522,6 @@ export default {
         }
         this.wss.close();
     },
-    //영상을 전달 받을 수신용 webRTCPeer 생성 함수
     receiveVideo(sender) {
       var participant = new Participant(sender, this.sendMessageRTC);
       this.participants[sender] = participant;
@@ -559,17 +550,14 @@ export default {
       );
     },
     onParticipantLeft(request) {
-      console.log("Participant " + request.name + " left");
       var participant = this.participants[request.name];
       participant.dispose();
       delete this.participants[request.name];
     },
     sendMessageRTC(message) {
-      this.wss.onopen = () => {
         var jsonMessage = JSON.stringify(message);
-        console.log("Sending message: " + jsonMessage);
+        
         this.wss.send(jsonMessage);
-      }
     },
   },
 };
