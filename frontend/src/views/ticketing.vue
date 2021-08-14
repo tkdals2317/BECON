@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="Ticketing" />
+    <PageHeader title="티켓팅" />
     <Ticket :concertId="$route.params.concertId" />
     <Footer />
   </div>

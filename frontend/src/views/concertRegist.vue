@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="ConcertRegist" />
+    <PageHeader title="콘서트 등록" />
     <ConcertRegistPage />
     <Footer />
   </div>

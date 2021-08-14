@@ -13,7 +13,9 @@
               </div>
               <div class="sec-title">
                 <div class="lower-text">
-                <h4> with <br />YOU AND I<span class="dot"
+                <h4> with <span class="dot"
+                    >.</span
+                  ><br />YOU AND I<span class="dot"
                     >.</span
                   ></h4>
                   <br>
