@@ -25,7 +25,11 @@ public class UserRepositorySupport {
 			return Optional.empty();
 		return Optional.ofNullable(user);
 	}
-
+	
+	public long findCountUser() {
+		long result = jpaQueryFactory.selectFrom(qUser).fetchCount();
+		return result;
+	}
 	
 	public long modifyUserByUserId(String userId, UserModifyPostReq request) {
 		long result = jpaQueryFactory.update(qUser) 

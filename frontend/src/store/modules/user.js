@@ -4,6 +4,7 @@ import router from "@/router/index";
 export default {
   namespaced: true,
   state: {
+    total: 0,
     userId: "",
     userName: "",
     accessToken: null,
@@ -25,6 +26,9 @@ export default {
     },
     getAvaliableId(state){
       return state.availableId;
+    },
+    getTotalUser(state) {
+      return state.total;
     }
   },
   mutations: {
@@ -38,6 +42,9 @@ export default {
     },
     USERID(state, payload){
       state.availableId = payload;
+    },
+    SET_TOTAL_USER(state, payload) {
+      state.total = payload;
     }
   },
   actions: {
@@ -141,5 +148,15 @@ export default {
             console.error();
         });
     },
+    findTotalUser({ commit }) {
+      http
+        .get(`/api/v1/users/total`)
+        .then(({ data }) => {
+          commit("SET_TOTAL_USER", data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   },
 };

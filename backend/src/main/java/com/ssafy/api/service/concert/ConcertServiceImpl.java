@@ -80,4 +80,16 @@ public class ConcertServiceImpl implements ConcertService {
 	public void deleteConcertByOwnerId(String ownerId) {
 		concertRepositorySupport.deleteConcertByOwnerId(ownerId);
 	}
+	
+	@Override
+	public long getTotalConcert() {
+		long total = concertRepositorySupport.findCountConcert();
+		return total;
+	}
+	
+	@Override
+	public long getIngConcert() {
+		long total = concertRepositorySupport.findIngConcert();
+		return total;
+	}
 }

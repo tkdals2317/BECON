@@ -51,8 +51,19 @@ public class ConcertRepositorySupport {
 	
 	public Concert findConcertById(Long Id) {
 		Concert concert=jpaQueryFactory.select(qConcert).from(qConcert)
-				.where(qConcert.id.eq(Id)).fetchOne();
+						.where(qConcert.id.eq(Id)).fetchOne();
 		return concert;
 	}
 	
+	public long findCountConcert() {
+		long result = jpaQueryFactory.selectFrom(qConcert).fetchCount();
+		return result;
+	}
+	
+	public long findIngConcert() {
+		long result = jpaQueryFactory.selectFrom(qConcert)
+						.where(qConcert.isActive.eq(2))
+						.fetchCount();
+		return result;
+	}
 }

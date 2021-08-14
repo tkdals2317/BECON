@@ -3,6 +3,8 @@ import http from "@/common/lib/http";
 export default {
   namespaced: true,
   state: {
+    total: 0,
+    playing: 0,
     categories: [],
     concertInfos: [],
     registConcertList: {},
@@ -32,6 +34,12 @@ export default {
     },
     getConfrimConcert(state) {
       return state.concertConfirm;
+    },
+    getTotalConcert(state) {
+      return state.total;
+    },
+    getIngConcert(state) {
+      return state.playing;
     }
   },
 
@@ -62,6 +70,12 @@ export default {
     },
     GET_CONFIRM_CONCERT(state, payload){
       state.concertConfirm=payload;
+    },
+    SET_TOTAL_CONCERT(state, payload) {
+      state.total = payload;
+    },
+    SET_TOTAL_PLAYING(state, payload) {
+      state.playing = payload;
     }
   },
   actions: {
@@ -140,5 +154,25 @@ export default {
           console.log(err);
         });
     },
+    findTotalConcert({ commit }) {
+      http
+        .get(`/api/v2/concert/total`)
+        .then(({ data }) => {
+          commit("SET_TOTAL_CONCERT", data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    findIngConcert({ commit }) {
+      http
+        .get(`/api/v2/concert/playing`)
+        .then(({ data }) => {
+          commit("SET_TOTAL_PLAYING", data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   },
 };
