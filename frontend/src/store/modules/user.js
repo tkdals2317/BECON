@@ -6,7 +6,7 @@ export default {
   state: {
     userId: "",
     userName: "",
-    accessToken: null,
+    accessToken: "",
     userInfo: null,
     availableId:true,
   },

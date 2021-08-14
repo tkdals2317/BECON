@@ -98,7 +98,7 @@ export default {
       }, 60000);
     },
     concertEnter(concert) {
-      let num = prompt('방 번호를 입력해주세요');
+      var num = prompt('방 번호를 입력해주세요');
 
       if (concert.id == num) {
         this.setEnterConcert(concert);

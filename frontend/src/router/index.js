@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store/modules/user.js"
 
 import Home from "../views/index.vue";
 import Contact from "../views/contact.vue";
@@ -21,8 +22,23 @@ import QA from "../views/qa.vue";
 import Singer from "../views/singer.vue";
 import Payment from "../views/payment.vue";
 import Result from "../views/result.vue";
+import VueSimpleAlert from "vue-simple-alert";
 
 Vue.use(VueRouter);
+Vue.use(VueSimpleAlert, { reverseButtons: true });
+
+const requireAuth = () => (to, from, next) => {
+  if (store.state.accessToken != "") {
+    return next();
+  }
+  VueSimpleAlert.fire({
+    title:"서비스 권한 없음",
+    text:"로그인이 필요한 서비스입니다.",
+    type:"error",
+}).then(() => {
+    next('/login');
+  }); 
+};
 
 const routes = [
   {
@@ -34,6 +50,7 @@ const routes = [
     path: "/waiting",
     name: "Waiting",
     component: Waiting,
+    beforeEnter: requireAuth()
   },
   {
     path: "/concertPage",
@@ -44,6 +61,7 @@ const routes = [
     path: "/concertRegist",
     name: "ConcertRegist",
     component: ConcertRegist,
+    beforeEnter: requireAuth()
   },
   {
     path: "/concertSchedule",
@@ -84,6 +102,7 @@ const routes = [
     path: "/concertRegist/confirm",
     name: "ConcertConfirm",
     component: ConcertConfirm,
+    beforeEnter: requireAuth()
   },
   {
     path: "/service",
@@ -100,6 +119,7 @@ const routes = [
     path: "/ticketing",
     name: "Ticketing",
     component: Ticketing,
+    beforeEnter: requireAuth()
   },
   {
     path: "/myconcert",
