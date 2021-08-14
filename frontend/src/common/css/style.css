@@ -3992,7 +3992,7 @@ img.lazy-image.loaded {
 
 .trusted-section .col-header .header-inner {
   position: relative;
-  padding: 75px 50px 20px;
+  padding: 10px 50px 20px;
   min-height: 240px;
   background: var(--thm-base);
   font-weight: 400;
