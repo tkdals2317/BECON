@@ -9338,7 +9338,8 @@ img.lazy-image.loaded {
 
 .project-single .image-box img {
   display: block;
-  width: 100%;
+  width: 1170px;
+  height: 580px;
   -webkit-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -moz-filter: grayscale(100%);

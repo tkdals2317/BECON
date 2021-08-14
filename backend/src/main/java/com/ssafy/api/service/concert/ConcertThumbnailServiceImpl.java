@@ -35,7 +35,7 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 	public ConcertThumbnailPostReq setFile(MultipartFile files)
 			throws UnsupportedEncodingException, NoSuchAlgorithmException,
 			IllegalStateException, IOException {
-		ConcertThumbnailPostReq concertTumbnailInfo = null;
+		ConcertThumbnailPostReq concertThumbnailInfo = null;
 		String origFilename = files.getOriginalFilename();
 		String filename = new MD5Generator(origFilename).toString();
 		
@@ -44,12 +44,12 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 		String filePath = savePath + "/" + origFilename;
 		files.transferTo(new File(filePath));
 		
-		concertTumbnailInfo = new ConcertThumbnailPostReq();
-		concertTumbnailInfo.setOriginName(origFilename);  
-		concertTumbnailInfo.setName(filename);
-		concertTumbnailInfo.setPath(filePath);
+		concertThumbnailInfo = new ConcertThumbnailPostReq();
+		concertThumbnailInfo.setOriginName(origFilename);  
+		concertThumbnailInfo.setName(filename);
+		concertThumbnailInfo.setPath(filePath);
 
-		return concertTumbnailInfo;
+		return concertThumbnailInfo;
 	}
 	
 //	public static void main(String[] args) throws IOException {
