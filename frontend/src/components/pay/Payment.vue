@@ -2,173 +2,216 @@
   <section class="contact-section">
     <div class="imp-container">
       <div class="form-box">
-        <a-form
-          :form="form"
-          :label-col="{ span: 6 }"
-          :wrapper-col="{ span: 18 }"
-          :colon="false"
-          labelAlign="left"
-          @submit="handleSubmit"
-        >
-          <a-form-item label="PG사">
-            <a-select
-              v-decorator="['pg', { initialValue: 'html5_inicis' }]"
-              size="large"
-              @change="handlePg"
-            >
-              <a-select-option
-                v-bind:key="pg.value"
-                v-for="pg in pgs"
-                :value="pg.value"
-              >
-                {{ pg.label }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-form-item label="결제수단">
-            <a-select
-              v-decorator="['payMethod', { initialValue: 'card' }]"
-              size="large"
-              @change="handleMethod"
-            >
-              <a-select-option
-                v-bind:key="method.value"
-                v-for="method in methods"
-                :value="method.value"
-              >
-                {{ method.label }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-form-item label="에스크로 결제여부" class="imp-payment-escrow text-left">
-            <a-switch v-decorator="['escrow', { valuePropName: 'checked' }]" />
-          </a-form-item>
-          <a-form-item label="입금기한" v-if="vbankDueVisible">
-            <a-input
-              v-decorator="[
-                'vbankDue',
-                {
-                  rules: [
-                    {
-                      required: true,
-                      message: '가상계좌 입금기한은 필수입력입니다',
-                    },
-                  ],
-                },
-              ]"
-              placeholder="YYYYMMDDhhmm"
-              size="large"
-              type="number"
-            />
-          </a-form-item>
-          <a-form-item label="사업자번호" v-if="bizNumVisible">
-            <a-input
-              v-decorator="[
-                'bizNum',
-                {
-                  rules: [
-                    { required: true, message: '사업자번호는 필수입력입니다' },
-                  ],
-                },
-              ]"
-              size="large"
-              type="number"
-            />
-          </a-form-item>
-          <a-form-item label="할부개월수" v-if="quotaVisible">
-            <a-select
-              v-decorator="['quota', { initialValue: '0' }]"
-              size="large"
-            >
-              <a-select-option
-                v-bind:key="quota"
-                v-for="quota in quotas"
-                :value="quota"
-              >
-                {{
-                  quota === "0"
-                    ? "PG사 기본제공"
-                    : quota === "1"
-                    ? "일시불"
-                    : `${quota}개월`
-                }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-form-item label="주문번호">
-            <a-input
-              v-decorator="[
-                'merchantUid',
-                { initialValue: initialMerchantUid },
-              ]"
-              size="large"
-              readOnly
-            />
-          </a-form-item>
-          <a-form-item label="상품명">
-            <a-input
-              v-decorator="[
-                'name',
-                { initialValue: getTicketInfo.title + ' ' + getTicketInfo.type },
-              ]"
-              size="large"
-              readOnly
-            />
-          </a-form-item>
-          <a-form-item label="결제금액">
-            <a-input
+        <div class="default-form">
+          <div class="row clearfix">
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form
+                  :form="form"
+                  :label-col="{ span: 6 }"
+                  :wrapper-col="{ span: 18 }"
+                  :colon="false"
+                  labelAlign="left"
+                  @submit="handleSubmit"
+                />
+                <a-form-item label="PG사"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-select
+                  v-decorator="['pg', { initialValue: 'html5_inicis' }]"
+                  size="large"
+                  @change="handlePg"
+                >
+                  <a-select-option
+                    v-bind:key="pg.value"
+                    v-for="pg in pgs"
+                    :value="pg.value"
+                  >
+                  {{ pg.label }}
+                  </a-select-option>
+                </a-select> 
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form-item label="결제수단"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-select
+                  v-decorator="['payMethod', { initialValue: 'card' }]"
+                  size="large"
+                  @change="handleMethod"
+                >
+                  <a-select-option
+                    v-bind:key="method.value"
+                    v-for="method in methods"
+                    :value="method.value"
+                  >
+                    {{ method.label }}
+                  </a-select-option>
+                </a-select>
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form-item label="결제수단"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-select
+                  v-decorator="['payMethod', { initialValue: 'card' }]"
+                  size="large"
+                  @change="handleMethod"
+                >
+                  <a-select-option
+                    v-bind:key="method.value"
+                    v-for="method in methods"
+                    :value="method.value"
+                  >
+                    {{ method.label }}
+                  </a-select-option>
+                </a-select>
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form-item label="할부개월수" v-if="quotaVisible"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-select
+                  v-decorator="['quota', { initialValue: '0' }]"
+                  size="large"
+                >
+                  <a-select-option
+                    v-bind:key="quota"
+                    v-for="quota in quotas"
+                    :value="quota"
+                  >
+                    {{
+                      quota === "0"
+                        ? "PG사 기본제공"
+                        : quota === "1"
+                        ? "일시불"
+                        : `${quota}개월`
+                    }}
+                  </a-select-option>
+                </a-select>
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form-item label="주문번호"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                 <a-input
+                    v-decorator="[
+                      'merchantUid',
+                      { initialValue: initialMerchantUid },
+                    ]"
+                    size="large"
+                    readOnly
+                  />
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                 <a-form-item label="상품명"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-input
+                  v-decorator="[
+                    'name',
+                    { initialValue: getTicketInfo.title + ' ' + getTicketInfo.type },
+                  ]"
+                  size="large"
+                  readOnly
+                />
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form-item label="결제금액"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-input
               v-decorator="['amount', { initialValue: getTicketInfo.price/100 }]"
               size="large"
               type="number"
               readOnly
             />
-          </a-form-item>
-          <a-form-item label="이름">
-            <a-input
-              v-decorator="['buyerName', { initialValue: getUserInfo.userName }]"
-              size="large"
-              readOnly
-            />
-          </a-form-item>
-          <a-form-item label="연락처">
-            <a-input
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form-item label="이름"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-input
+                  v-decorator="['buyerName', { initialValue: getUserInfo.userName }]"
+                  size="large"
+                  readOnly
+                />
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form-item label="연락처"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-input
               v-decorator="['buyerTel', { initialValue: getUserInfo.userPhone.replace(/\-/g,'') }]"
               size="large"
               type="text"
               readOnly
             />
-          </a-form-item>
-          <a-form-item label="이메일">
-            <a-input
-              v-decorator="[
-                'buyerEmail',
-                { initialValue: getUserInfo.userEmail },
-              ]"
-              size="large"
-              readOnly
-            />
-          </a-form-item>
-          <!-- <a-form-item label="주소">
-            <a-input
-              v-decorator="[
-                'buyerAddr',
-                { initialValue: '서울시 강남구 신사동 661-16' },
-              ]"
-              size="large"
-            />
-          </a-form-item>
-          <a-form-item label="우편번호">
-            <a-input
-              v-decorator="['buyerPostcode', { initialValue: '06010' }]"
-              size="large"
-              type="number"
-            />
-          </a-form-item> -->
-          <a-button size="large" @click="handleGoBack"> 취소 </a-button>
-          <a-button type="primary" html-type="submit" size="large">
-            결제
-          </a-button>
-        </a-form>
+              </div>
+            </div>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-form-item label="이메일"></a-form-item>
+              </div>
+            </div>
+            <div class="form-group col-lg-10 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-input
+                  v-decorator="[
+                    'buyerEmail',
+                    { initialValue: getUserInfo.userEmail },
+                  ]"
+                  size="large"
+                  readOnly
+                />
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-button size="large" @click="handleGoBack"> 취소 </a-button>
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <a-button type="primary" html-type="submit" size="large">결제</a-button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
