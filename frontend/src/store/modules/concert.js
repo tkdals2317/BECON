@@ -62,7 +62,6 @@ export default {
     },
     GET_CONFIRM_CONCERT(state, payload){
       state.concertConfirm=payload;
-      console.log(state.concertConfirm);
     }
   },
   actions: {
@@ -80,11 +79,9 @@ export default {
           },
         })
         .then(({data}) => {
-          console.log(data);
           commit("GET_CONFIRM_CONCERT", data);
         })
         .catch(() => {
-          console.error();
         });
     },
     requestCategory({ commit }) {
@@ -95,15 +92,12 @@ export default {
           commit("CATEGORY", data);
         })
         .catch(() => {
-          console.error();
         });
     },
     requestConcert({ commit }, category) {
-      console.log(category);
       http
         .get("/api/v2/concert/findByCategory/" + category)
         .then(({ data }) => {
-          console.log(data);
           commit("CONCERT", data);
         })
         .catch(() => {
