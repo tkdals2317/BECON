@@ -70,7 +70,6 @@ export default {
   created() {
     this.findComingConcert();
     this.setTimer();
-    console.log(this.getComingConcert);
   },
 
   destroyed() {
@@ -96,7 +95,6 @@ export default {
           }
         });
 
-        console.log('comming concert update');
       }, 60000);
     },
     concertEnter(concert) {

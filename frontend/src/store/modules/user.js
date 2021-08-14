@@ -70,7 +70,6 @@ export default {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then(() => {
-          console.log(formData);
           alert('회원가입되었습니다.')
           router.push('/');
         })
@@ -82,7 +81,6 @@ export default {
       http
         .get(`/api/v1/users/`+userId)
         .then((res) => {
-          console.log(res);
           alert(res.data.message);
           commit("USERID", true);
         })
@@ -100,7 +98,6 @@ export default {
           headers: {"Authorization": 'Bearer '+ CSRF_TOKEN }
         })
         .then(({ data })=>{
-          console.log(data);
           commit("USERINFO", data);
         })
         .catch(() => {
