@@ -181,7 +181,6 @@ public class ConcertController {
 		List<Concert> concertList = null;
 		try {
 			concertList = concertService.findComingConcerts();
-			System.out.println("오늘의 공연 : " + concertList.size());
 		} catch (Exception e) {
 			return ResponseEntity.status(403).body(BaseResponseBody.of(403, "잘못된 접근입니다."));
 		}

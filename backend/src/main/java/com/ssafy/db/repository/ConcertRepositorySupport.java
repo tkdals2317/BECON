@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.QConcert;
 import com.ssafy.db.entity.QUserConcert;
@@ -27,15 +28,25 @@ public class ConcertRepositorySupport {
 				.where(qUserConcert.concert.id.eq(concertId)).fetch();
 		return Optional.ofNullable(userConcerts);
 	}
+	
 	public Optional<List<Concert>> getConcertByOwnerId(String ownerId) {
 		List<Concert> userConcerts = jpaQueryFactory.select(qConcert).from(qConcert)
 				.where(qConcert.user.userId.eq(ownerId)).fetch();
 		return Optional.ofNullable(userConcerts);
 	}
 	
+	@Transactional
 	public void deleteConcertByOwnerId(String ownerId) {
 		jpaQueryFactory.delete(qConcert)
 		.where(qConcert.user.userId.eq(ownerId)).execute();
+	}
+	
+	@Transactional
+	public void updateConcertActive(Long concertId, Integer active) {
+		jpaQueryFactory.update(qConcert) 
+				.where(qConcert.id.eq(concertId))
+				.set(qConcert.isActive, active) 
+				.execute(); 
 	}
 	
 	public Concert findConcertById(Long Id) {

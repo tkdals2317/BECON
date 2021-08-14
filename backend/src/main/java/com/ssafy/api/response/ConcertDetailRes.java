@@ -38,7 +38,7 @@ public class ConcertDetailRes{
 	@ApiModelProperty(name="Decription")
 	String decription;
 	@ApiModelProperty(name="IsActive")
-	Boolean isActive;
+	Integer isActive;
 	@ApiModelProperty(name="IsMinAge")
 	Integer minAge;
 	@ApiModelProperty(name="Users")

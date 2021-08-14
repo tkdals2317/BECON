@@ -31,6 +31,6 @@ export default {
         },
         selectTicket({ commit }, ticketInfo) {
           commit('SET_TICKET', ticketInfo);
-        }
+        },
     },
   };
