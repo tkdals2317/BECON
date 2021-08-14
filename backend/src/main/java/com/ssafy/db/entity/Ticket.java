@@ -11,9 +11,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Ticket extends BaseEntity {
-	@ManyToOne(fetch =FetchType.LAZY)
+	@ManyToOne(fetch =FetchType.EAGER)
 	private User user;
-	@ManyToOne(fetch =FetchType.LAZY)
+	@ManyToOne(fetch =FetchType.EAGER)
 	private Concert concert;
 	
 	private String code;
