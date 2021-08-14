@@ -14,10 +14,13 @@ import ConcertDetail from "../views/concertDetail.vue";
 import ConcertSchedule from "../views/concertSchedule.vue";
 import Faqs from "../views/faqs.vue";
 import Register from "../views/register.vue";
-import NotFound from "../views/not-found.vue";
 import Ticketing from "../views/ticketing.vue";
 import Myconcert from "../views/myconcert.vue";
 import ConcertConfirm from "../views/concertConfirm.vue";
+import QA from "../views/qa.vue";
+import Singer from "../views/singer.vue";
+import Payment from "../views/payment.vue";
+import Result from "../views/result.vue";
 
 Vue.use(VueRouter);
 
@@ -82,7 +85,6 @@ const routes = [
     name: "ConcertConfirm",
     component: ConcertConfirm,
     props: true,
-    // component: ConcertConfirm,
   },
   {
     path: "/service",
@@ -96,11 +98,6 @@ const routes = [
     
   },
   {
-    path: "/notfound",
-    name: "NotFound",
-    component: NotFound,
-  },
-  {
     path: "/ticketing",
     name: "Ticketing",
     component: Ticketing,
@@ -110,6 +107,26 @@ const routes = [
     name: "Myconcert",
     component:Myconcert,
   },
+  {
+    path: "/qa",
+    name: "QA",
+    component:QA,
+  },
+  {
+    path: "/singer",
+    name: "Singer",
+    component:Singer,
+  },
+  {
+    path: "/payment",
+    name: "Payment",
+    component: Payment,
+  },
+  {
+    path: "/result",
+    name: "Result",
+    component: Result,
+  },
 ];
 
 const router = new VueRouter({
@@ -117,5 +134,6 @@ const router = new VueRouter({
   base: "",
   routes,
 });
+
 
 export default router;

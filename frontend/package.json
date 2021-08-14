@@ -9,12 +9,15 @@
   },
   "dependencies": {
     "accordion": "^3.0.2",
+    "ant-design-vue": "^1.7.7",
     "axios": "^0.21.1",
     "carousel": "0.0.3",
     "core-js": "^3.6.5",
     "glightbox": "^3.0.9",
     "kurento-client": "^6.16.0",
     "kurento-utils": "^6.16.0",
+    "less": "^2.7.2",
+    "less-loader": "^5.0.0",
     "mixitup": "^3.3.1",
     "sockjs-client": "^1.5.1",
     "v-owl-carousel": "^1.0.8",
@@ -41,7 +44,9 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^4.14.1",
     "prettier": "^2.2.1",
+    "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.11"
   }
 }

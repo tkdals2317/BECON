@@ -43,12 +43,16 @@
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
                     <li @click="concertEnter"><a>Concert Enter</a></li>
                     <li @click="concertSchedule"><a>Concert Schedule</a></li>
+                    <li><router-link to="/singer">Concert Singer</router-link></li>
+                    <li><router-link to="/ticketing">Ticketing</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#">Services</a>
                   <ul>
                     <li><router-link to="/faqs">FAQs</router-link></li>
+                    <li><router-link to="/qa">Q&A</router-link>
+                  </li>
                   </ul>
                 </li>
               </ul>
@@ -100,14 +104,14 @@
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
                     <li><router-link to="/EX">Concert EX</router-link></li>
                     <li @click="concertSchedule"><a>Concert Schedule</a></li>
-                    <li><router-link to="/notfound">Concert Search</router-link></li>
+                    <li><router-link to="/signer">Concert signer</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#">Services</a>
                   <ul>
                     <li><router-link to="/services">FAQs</router-link></li>
-                    <li><router-link to="/web-development">Q&A</router-link>
+                    <li><router-link to="/qa">Q&A</router-link>
                   </li>
                   </ul>
                 </li>

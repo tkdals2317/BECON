@@ -21,7 +21,7 @@
                   <li><strong>Concert</strong> <br><br>{{ getDetail.title }}</li>
                   <li><strong>Category</strong> <br><br>{{ getDetail.category }}</li>
                   <li><strong>Date</strong> <br><br>{{ getDetail.startTime }}</li>
-                  <li><strong>관람등급</strong> <br><br>연령 정보</li>
+                  <li><strong>관람등급</strong> <br><br>만 {{ getDetail.minAge }}세 이상 관람가</li>
                   <button class="theme-btn btn-style-one">
                     <i class="btn-curve"></i>
                     <span class="btn-title" type="button" @click="goTicketing(getDetail)">Ticket!</span>
@@ -41,7 +41,7 @@
 <script>
 import GLightbox from "glightbox";
 import { mapActions, mapGetters } from "vuex";
-// import "compass/css3";
+
   export default {
     name: "ConcertDetail",
     props: {
@@ -51,12 +51,9 @@ import { mapActions, mapGetters } from "vuex";
       ...mapGetters("concert", ["getDetail"]),
     },
     methods: {
-      ...mapActions("concert", ["getConcertDetail"]),
-      init() {
-        this.getConcertDetail();
-      },
-      goTicketing(concertId) {
-        this.$router.push({name: 'Ticketing', params:{ concertId: concertId } })
+      ...mapActions("concert", ["findConcertDetail"]),
+      goTicketing(concert) {
+        this.$router.push({name: 'Ticketing', params:{ concert: concert } })
       },
     },
     create(){
@@ -70,10 +67,9 @@ import { mapActions, mapGetters } from "vuex";
       new GLightbox({
         selector: '.portfolio-gallery',
       });
-      this.init();
     },
     created() {
-      this.getConcertDetail(this.concertId);
+      this.findConcertDetail(this.concertId);
     }
   }
 </script>

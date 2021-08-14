@@ -2,7 +2,7 @@
   <section class="get-quote-three">
     <div class="auto-container">
       <div class="sec-title centered">
-        <h2>FAQ<span class="dot">.</span></h2>
+        <h2>문의사항<span class="dot">.</span></h2>
       </div>
       <div class="form-box">
         <div class="default-form">
@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  name: "QuoteSectionThree",
+  name: "QA",
   data() {
     return {
       user: {

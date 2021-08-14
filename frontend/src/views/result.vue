@@ -1,8 +1,8 @@
-<tem  late>
+<template>
   <div>
     <Nav />
-    <PageHeader title="Register" />
-    <Register />
+    <PageHeader title="결제" />
+    <PayResult />
     <Footer />
   </div>
 </template>
@@ -10,18 +10,18 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import Register from "../components/user/Register";
+import PayResult from "../components/pay/PayResult";
 
 export default {
   components: {
-    Register,
+    PayResult,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "BeCon | SignUp",
+      title: "BeCon | Login",
     };
   },
 };

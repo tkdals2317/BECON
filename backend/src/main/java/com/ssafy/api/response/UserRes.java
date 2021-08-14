@@ -24,6 +24,8 @@ public class UserRes extends BaseResponseBody{
 	String userEmail;
 	@ApiModelProperty(name="User Phone")
 	String userPhone;
+	@ApiModelProperty(name="User Carrier")
+	String carrier;
 	@ApiModelProperty(name="User Profile")
 	UserProfile userProfile;
 	
@@ -33,6 +35,7 @@ public class UserRes extends BaseResponseBody{
 		res.setUserName(user.getName());
 		res.setUserEmail(user.getEmail());
 		res.setUserPhone(user.getPhone());
+		res.setCarrier(user.getCarrier());
 		res.setUserProfile(user.getUserProfile());
 		return res;
 	}

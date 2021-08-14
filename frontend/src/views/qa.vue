@@ -1,27 +1,31 @@
-<tem  late>
+<template>
   <div>
     <Nav />
-    <PageHeader title="Register" />
-    <Register />
+    <PageHeader title="Q&A" />
+    <QA />
+    <CallToActionThree />
     <Footer />
-  </div>
+  </div>  
 </template>
 <script>
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
+import QA from "../components/user/QA";
 import Footer from "../components/layout/Footer";
-import Register from "../components/user/Register";
+import CallToActionThree from "../components/unused/CallToActionThree";
+
 
 export default {
   components: {
-    Register,
+    QA,
+    CallToActionThree,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "BeCon | SignUp",
+      title: "Be-con | QA ",
     };
   },
 };

@@ -1,8 +1,8 @@
-<tem  late>
+<template>
   <div>
     <Nav />
-    <PageHeader title="Register" />
-    <Register />
+    <PageHeader title="Singer" />
+    <Singer />
     <Footer />
   </div>
 </template>
@@ -10,18 +10,18 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import Register from "../components/user/Register";
+import Singer from "../components/user/Singer";
 
 export default {
   components: {
-    Register,
     Footer,
     PageHeader,
     Nav,
+    Singer,
   },
   head() {
     return {
-      title: "BeCon | SignUp",
+      title: "Linoor | Singer",
     };
   },
 };
