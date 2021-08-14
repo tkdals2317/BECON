@@ -4,16 +4,23 @@ import http from '@/common/lib/http';
 export default {
     namespaced: true,
     state: {
+      total: 0,
       ticketInfo: {},
     },
     getters: {
       getTicketInfo(state) {
         return state.ticketInfo;
+      },
+      getTotalTicket(state) {
+        return state.total;
       }
     },
     mutations: {
       SET_TICKET(state, payload) {
         state.ticketInfo = payload;
+      },
+      SET_TOTAL_TICKET(state, payload) {
+        state.total = payload;
       }
     },
     actions: {
@@ -32,5 +39,15 @@ export default {
         selectTicket({ commit }, ticketInfo) {
           commit('SET_TICKET', ticketInfo);
         },
+        findTotalTicket({ commit }) {
+          http
+            .get(`/api/v2/ticket/total`)
+            .then(({ data }) => {
+              commit("SET_TOTAL_TICKET", data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
     },
   };

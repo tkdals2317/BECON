@@ -16,4 +16,5 @@ public interface UserService {
 	User getUserByUserId(String userId);	
 	Optional<User> deleteUser(String userId);
 	Long modifyUser(String userId, UserModifyPostReq request);
+	long getTotalUser();
 }

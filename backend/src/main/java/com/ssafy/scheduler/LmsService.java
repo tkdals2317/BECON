@@ -37,10 +37,16 @@ public class LmsService {
 	@Autowired
 	TicketRepository ticketRepository;
 	
+	public void concertStart() {
+		concertRepository.updateStartConcert();
+	}
+	
+	public void concertEnd() {
+		concertRepository.updateEndConcert();
+	}
 	
 	public void findConcerts() {
 		List<Concert> list = concertRepository.findComingSoonConcert();
-		System.out.println(list.size());
 		for (Concert concert : list) {
 			sendLMS(concert.getId());
 			concertRepositorySupport.updateConcertActive(concert.getId(), 1);

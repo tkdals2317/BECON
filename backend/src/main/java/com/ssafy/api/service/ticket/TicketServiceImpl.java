@@ -65,4 +65,10 @@ public class TicketServiceImpl implements TicketService{
 	public Optional<List<Ticket>> findTicketBuy(User user) {
 		return ticketRepository.findByUserId(user.getId());
 	}
+	
+	@Override
+	public long getTotalTicket() {
+		long total = ticketRepositorySupport.findCountTicket();
+		return total;
+	}
 }

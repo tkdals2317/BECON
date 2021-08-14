@@ -13,4 +13,14 @@ public class LmsScheduler {
     public void LMS() { 
 		lmsService.findConcerts();
     }
+	
+	@Scheduled(cron = "0 */1 * * * *")
+    public void updateStart() { 
+		lmsService.concertStart();
+    }
+	
+	@Scheduled(cron = "0 */1 * * * *")
+    public void updateEnd() { 
+		lmsService.concertEnd();
+    }
 }
