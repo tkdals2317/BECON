@@ -76,6 +76,12 @@
                 <div v-if="!errors.checkEndTime" style="color:red;">공연 시간을 확인해주세요.</div>
               </div>
             </div>
+            <!-- <div class="form-group col-lg-6">
+              
+            </div>
+            <div class="form-group col-lg-6">
+              
+            </div> -->
             <div class="form-group col-lg-4 col-md-12 col-sm-12">
               <div class="field-inner">
                 <input
@@ -153,7 +159,7 @@
               <div v-if="!errors.requireCtegory" style="color:red;">카테고리를 선택해주세요.</div>
             </div>
             <div class="form-group col-lg-12 col-md-12 col-sm-12">
-              <button class="theme-btn btn-style-one" @click="clickRegistConcert()" :disabled="isActive">
+              <button class="theme-btn btn-style-one" @click="clickRegistConcert()">
                 <i class="btn-curve"></i>
                 <span
                   class="btn-title"
@@ -191,19 +197,18 @@ export default {
         startClock: "",
         endClock: "",
       },
-       errors: {
-            requireTitle:true,
-            requireDiscripion:true,
-            checkEndTime:true,
-            requireVPrice:true,
-            requireSPrice:true,
-            requireAge:true,
-            checkVPrice:true,
-            checkSPrice:true,
-            requireFile:true,
-            requireCtegory:true,
-
-          },
+      errors: {
+          requireTitle:true,
+          requireDiscripion:true,
+          checkEndTime:true,
+          requireVPrice:true,
+          requireSPrice:true,
+          requireAge:true,
+          checkVPrice:true,
+          checkSPrice:true,
+          requireFile:true,
+          requireCtegory:true,
+      },
       Stimearr:[],
       Etimearr:[],
       minDay : new Date().toISOString().substring(0, 10),
@@ -224,6 +229,12 @@ export default {
       this.concert.startTime = this.time.startDay + " " + this.time.startClock;
       this.concert.endTime = this.time.startDay + " " + this.time.endClock;
       this.concert.files = this.$refs.picture.files[0];
+      for (var item in this.concert) {
+        if(this.concert[item]==""){
+          alert("신청서를 다시 확인해주세요.");
+          return;
+        }
+      }
       this.requestRegistConcert(this.concert);
       this.$router.push({
         name: "ConcertConfirm"
@@ -246,7 +257,6 @@ export default {
     checkEndTime(){
       this.Stimearr=this.time.startClock.split(":");
       this.Etimearr=this.time.endClock.split(":");
-      console.log(Number(this.Stimearr[0])+" "+Number(this.Etimearr[0]));
       if(Number(this.Stimearr[0])>Number(this.Etimearr[0])){
         this.errors.checkEndTime=false;
       }else if(Number(this.Stimearr[0])==Number(this.Etimearr[0])&&Number(this.Stimearr[1])>Number(this.Etimearr[1])){
@@ -280,7 +290,6 @@ export default {
       }return;
     },
     checkAge(){
-      console.log(this.concert.minAge);
       if(this.concert.minAge==""){
         this.errors.requireAge=false;
       }else{
@@ -295,7 +304,6 @@ export default {
       }return;
     },
     checkCategory(){
-      console.log(this.concert.categoryName);
       if(this.concert.categoryName==""){
         this.errors.requireCtegory=false;
       }else{
@@ -310,8 +318,5 @@ export default {
 <style scoped>
 .form-group input {
   padding: 14px 20px !important;
-}
-.btn-style-one:disabled {
-  -webkit-filter: grayscale(100%);
 }
 </style>

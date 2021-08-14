@@ -8,7 +8,7 @@ export default {
     registConcertList: {},
     concertDetail: [],
     comingConcerts: [],
-    concertConfirm:[],
+    concertConfirm:'',
   },
 
   getters: {

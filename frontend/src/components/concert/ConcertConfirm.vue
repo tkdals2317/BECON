@@ -176,10 +176,11 @@ export default {
     transition: all 300ms ease;
 }
 .thumbnail_tag{
+    display: block;
     margin: 0 auto;
-    overflow: hidden;
-    width:500px;
-    height:500px;
+    width:300px;
+    height:400px;
+    background-size: cover;
 }
 .profile_image{
     display: block;
@@ -187,6 +188,5 @@ export default {
     width:100px;
     height:100px;
     object-fit: cover;
-
 }
 </style>
