@@ -81,9 +81,9 @@
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                <button class="theme-btn btn-style-one" :disabled="isDisabled" @click="clickRegister()">
+                <button class="theme-btn btn-style-one" @click="clickRegister()">
                   <i class="btn-curve"></i>
-                  <span class="btn-title">Register</span>
+                  <span class="btn-title">회원가입</span>
                 </button>
               </div>
             </div>
@@ -140,6 +140,16 @@ export default {
     ...mapActions('user', ["requestRegister", "requestDuplicate"]),
     clickRegister: function () {
         this.user.profile = this.$refs.picture.files[0];
+        for (var item in this.user) {
+          if(this.user[item]==""){
+            alert("정보를 다시 확인해주세요.");
+            return;
+          }
+        }
+        if(this.getAvaliableId==false){
+          alert("아이디를 다시 확인해주세요.");
+          return;
+        }
         this.requestRegister(this.user);
     },
     clickDuplicate: function (){
@@ -246,7 +256,4 @@ export default {
 };
 </script>
 <style scoped>
-.btn-style-one:disabled {
-  -webkit-filter: grayscale(100%);
-}
 </style>
