@@ -26,6 +26,7 @@
     "vue-observe-visibility": "^1.0.0",
     "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.2.0",
+    "vue-simple-alert": "^1.1.1",
     "vue-truncate-filter": "^1.1.7",
     "vuex": "^3.4.0",
     "vuex-persistedstate": "^4.0.0",

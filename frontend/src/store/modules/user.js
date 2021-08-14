@@ -7,7 +7,7 @@ export default {
     total: 0,
     userId: "",
     userName: "",
-    accessToken: null,
+    accessToken: "",
     userInfo: null,
     availableId:true,
   },
