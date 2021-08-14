@@ -10,4 +10,5 @@ import com.ssafy.db.entity.Ticket;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long>{
 	Optional<List<Ticket>> findByUserId(Long usreId);
+	Optional<List<Ticket>> findByConcertId(Long concertId);
 }

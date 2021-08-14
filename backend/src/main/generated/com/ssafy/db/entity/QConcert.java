@@ -33,7 +33,7 @@ public class QConcert extends EntityPathBase<Concert> {
     //inherited
     public final NumberPath<Long> id = _super.id;
 
-    public final BooleanPath isActive = createBoolean("isActive");
+    public final NumberPath<Integer> isActive = createNumber("isActive", Integer.class);
 
     public final NumberPath<Integer> minAge = createNumber("minAge", Integer.class);
 

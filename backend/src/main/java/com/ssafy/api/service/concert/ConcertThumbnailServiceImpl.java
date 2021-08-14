@@ -3,11 +3,8 @@ package com.ssafy.api.service.concert;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.swing.filechooser.FileSystemView;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.api.request.ConcertThumbnailPostReq;
-import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.common.util.MD5Generator;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.repository.ConcertThumbnailRepository;

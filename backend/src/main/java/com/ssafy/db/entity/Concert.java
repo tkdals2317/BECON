@@ -34,6 +34,6 @@ public class Concert extends BaseEntity {
 	private String description;
 	private Integer priceVip;
 	private Integer priceStand;
-	private Boolean isActive;
+	private Integer isActive;
 	private Integer minAge;
 }

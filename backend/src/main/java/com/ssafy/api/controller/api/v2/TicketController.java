@@ -96,6 +96,5 @@ public class TicketController {
 
 		return ResponseEntity.status(201).body(ticketList);	
 	}
-	
 }
 

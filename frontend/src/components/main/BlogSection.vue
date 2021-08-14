@@ -89,13 +89,6 @@ export default {
       this.timer = setInterval(function() {
         app.findComingConcert();
 
-        app.getComingConcert.forEach(element => {
-          element.minute -= 1;
-          if (element.minute < 0) {
-            element.minute = 0;
-          }
-        });
-
         console.log('comming concert update');
       }, 60000);
     },
