@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import store from "../store/modules/user.js"
 
 import Home from "../views/index.vue";
 import Contact from "../views/contact.vue";
@@ -28,7 +27,7 @@ Vue.use(VueRouter);
 Vue.use(VueSimpleAlert, { reverseButtons: true });
 
 const requireAuth = () => (to, from, next) => {
-  if (store.state.accessToken != "") {
+  if (localStorage.getItem('accessToken') != "") {
     return next();
   }
   VueSimpleAlert.fire({
@@ -99,10 +98,9 @@ const routes = [
     component: Regist,
   },
   {
-    path: "/concertRegist/confirm",
+    path: "/concertConfirm",
     name: "ConcertConfirm",
     component: ConcertConfirm,
-    beforeEnter: requireAuth()
   },
   {
     path: "/service",

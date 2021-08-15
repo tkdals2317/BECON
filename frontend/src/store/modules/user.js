@@ -150,7 +150,7 @@ export default {
     },
     findTotalUser({ commit }) {
       http
-        .get(`/api/v1/users/total`)
+        .get(`/api/v1/users/count/total`)
         .then(({ data }) => {
           console.log('여기');
           console.log(data);

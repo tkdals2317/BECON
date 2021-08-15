@@ -236,9 +236,7 @@ export default {
         }
       }
       this.requestRegistConcert(this.concert);
-      this.$router.push({
-        name: "ConcertConfirm"
-      });
+      this.$router.push("/concertConfirm");
     },
     checkTitle(){
       if(!this.concert.title){
