@@ -152,6 +152,8 @@ export default {
       http
         .get(`/api/v1/users/total`)
         .then(({ data }) => {
+          console.log('여기');
+          console.log(data);
           commit("SET_TOTAL_USER", data);
         })
         .catch((err) => {
