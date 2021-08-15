@@ -18,6 +18,7 @@ import Ticketing from "../views/ticketing.vue";
 import Myconcert from "../views/myconcert.vue";
 import ConcertConfirm from "../views/concertConfirm.vue";
 import QA from "../views/qa.vue";
+import QnA from "../views/qnaresult.vue";
 import Singer from "../views/singer.vue";
 import Payment from "../views/payment.vue";
 import Result from "../views/result.vue";
@@ -128,6 +129,11 @@ const routes = [
     path: "/qa",
     name: "QA",
     component:QA,
+  },
+  {
+    path: "/qnaresult",
+    name: "QnA",
+    component:QnA,
   },
   {
     path: "/singer",
