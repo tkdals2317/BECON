@@ -4,7 +4,7 @@
       <div class="inner clearfix">
         <h2>Are You Ready? <br />& make your dreams come true</h2>
         <div class="link-box">
-          <a class="theme-btn btn-style-two" href="contact">
+          <a class="theme-btn btn-style-two" href="concertSchedule  ">
             <i class="btn-curve"></i>
             <span class="btn-title">start</span>
           </a>

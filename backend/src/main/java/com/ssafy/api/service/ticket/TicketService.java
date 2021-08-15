@@ -11,4 +11,5 @@ public interface TicketService {
 	Ticket buyTicket(TicketPostReq ticketInfo, User user);
 	String createCode();
 	Optional<List<Ticket>> findTicketBuy(User user);
+	long getTotalTicket();
 }

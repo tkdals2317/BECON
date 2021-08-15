@@ -1,15 +1,16 @@
-FROM node:lts-alpine as build-stage
+FROM node as build-stage
+
 WORKDIR /frontend
 COPY package*.json ./
-
 RUN npm install
 COPY . .
 RUN npm run build
 
+# production stage
 FROM nginx:stable-alpine as production-stage
-RUN rm /etc/nginx/conf.d/default.conf
-COPY ./nginx/frontend.conf /etc/nginx/conf.d/frontend.conf
-
-COPY --from=build-stage ./dist/ /usr/share/nginx/html/
+# RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
+RUN ls
+COPY --from=build-stage /frontend/dist/ /usr/share/nginx/html/frontend
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

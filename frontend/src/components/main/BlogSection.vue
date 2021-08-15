@@ -17,7 +17,7 @@
               <div class="inner-box">
                 <div class="image-box">
                   <a @click="concertEnter(concertInfo)"
-                    ><img src="@/common/images/resource/news-1.jpg" alt=""
+                    ><img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${concertInfo.thumbnail.originName}`" alt=""
                   /></a>
                 </div>
                 <div class="lower-box">
@@ -70,7 +70,6 @@ export default {
   created() {
     this.findComingConcert();
     this.setTimer();
-    console.log(this.getComingConcert);
   },
 
   destroyed() {
@@ -96,11 +95,10 @@ export default {
           }
         });
 
-        console.log('comming concert update');
       }, 60000);
     },
     concertEnter(concert) {
-      let num = prompt('방 번호를 입력해주세요');
+      var num = prompt('방 번호를 입력해주세요');
 
       if (concert.id == num) {
         this.setEnterConcert(concert);

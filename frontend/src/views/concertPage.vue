@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="공연이름" />
+    <PageHeader :title="getConcert.title" />
     <ConcertRoom />
     <Footer />
   </div>
@@ -11,6 +11,7 @@ import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
 import ConcertRoom from "../components/concert/ConcertRoom";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -24,5 +25,8 @@ export default {
       title: "Be-con | Ex",
     };
   },
+  computed: {
+    ...mapGetters("room", ["getConcert"]),
+  }
 };
 </script>

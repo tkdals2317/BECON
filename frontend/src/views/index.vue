@@ -9,6 +9,7 @@
     <TrustedSection />
     <CallToAction />
     <Footer />
+    
   </div>
 </template>
 
@@ -34,6 +35,7 @@ export default {
     GallerySection,
     BannerThree,
     Nav,
+    
   },
 };
 </script>

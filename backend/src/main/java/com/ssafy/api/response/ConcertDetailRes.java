@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import com.ssafy.db.entity.Concert;
+import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.UserConcert;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -27,8 +28,8 @@ public class ConcertDetailRes{
 	String startTime;
 	@ApiModelProperty(name="EndTime")
 	String endTime;
-	@ApiModelProperty(name="ThumbnailUrl")
-	String thumbnailUrl;
+	@ApiModelProperty(name="Thumbnail")
+	ConcertThumbnail thumbnail;
 	@ApiModelProperty(name="Title")
 	String title;
 	@ApiModelProperty(name="PriceStand")
@@ -38,7 +39,9 @@ public class ConcertDetailRes{
 	@ApiModelProperty(name="Decription")
 	String decription;
 	@ApiModelProperty(name="IsActive")
-	Boolean isActive;
+	Integer isActive;
+	@ApiModelProperty(name="IsMinAge")
+	Integer minAge;
 	@ApiModelProperty(name="Users")
 	List<ConcertUserDetailRes> users;
 
@@ -50,12 +53,13 @@ public class ConcertDetailRes{
 		res.setOwner(concert.get().getUser().getName());
 		res.setStartTime(concert.get().getStartTime());
 		res.setEndTime(concert.get().getEndTime());
-		res.setThumbnailUrl(concert.get().getThumbnail().getPath());
+		res.setThumbnail(concert.get().getThumbnail());
 		res.setTitle(concert.get().getTitle());
 		res.setPriceStand(concert.get().getPriceStand());
 		res.setPriceVip(concert.get().getPriceVip());
 		res.setDecription(concert.get().getDescription());
 		res.setIsActive(concert.get().getIsActive());
+		res.setMinAge(concert.get().getMinAge());
 		res.setUsers(userResList);
 		return res;
 	}

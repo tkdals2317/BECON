@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="my concert" />
-    <Mycon />
+    <PageHeader title="본인인증" />
+    <Certification />
     <Footer />
   </div>
 </template>
@@ -10,18 +10,18 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import Mycon from "../components/user/Mycon";
+import Certification from "../components/pay/Certification";
 
 export default {
   components: {
+    Certification,
     Footer,
     PageHeader,
     Nav,
-    Mycon,
   },
   head() {
     return {
-      title: "Linoor | 404 Error",
+      title: "BeCon | Login",
     };
   },
 };

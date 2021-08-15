@@ -116,7 +116,7 @@
   padding: 0px;
   border: none;
   outline: none;
-  font-size: 80%;
+  font-size: 103%;
   line-height: 2;
 }
 
@@ -134,6 +134,10 @@
   --thm-base-rgb: 255, 170, 23;
   --thm-black: #222429;
   --thm-text: #686a6f;
+}
+
+#app {
+  overflow: hidden;
 }
 
 body {
@@ -242,6 +246,10 @@ p {
 
 ::-ms-input-placeholder {
   color: inherit;
+}
+
+.app {
+  overflow: hidden;
 }
 
 .page-wrapper {
@@ -3984,7 +3992,7 @@ img.lazy-image.loaded {
 
 .trusted-section .col-header .header-inner {
   position: relative;
-  padding: 75px 50px 20px;
+  padding: 10px 50px 20px;
   min-height: 240px;
   background: var(--thm-base);
   font-weight: 400;
@@ -6698,7 +6706,7 @@ img.lazy-image.loaded {
   font-size: 40px;
   font-weight: 400;
   text-transform: uppercase;
-  margin-bottom: 25px;
+  margin-bottom: -20px;
 }
 
 .get-quote-section .form-box h4 span {
@@ -8263,7 +8271,7 @@ img.lazy-image.loaded {
 
 .contact-section {
   position: relative;
-  padding: 120px 0px 100px;
+  padding: 50px 0px 100px;
   background: #ffffff;
 }
 
@@ -8965,7 +8973,6 @@ img.lazy-image.loaded {
   position: relative;
   display: block;
   padding: 28px 0px 0px;
-  border-top: 1px solid #e9ebee;
   font-size: 20px;
   line-height: 30px;
   font-weight: 300;
@@ -9330,7 +9337,8 @@ img.lazy-image.loaded {
 
 .project-single .image-box img {
   display: block;
-  width: 100%;
+  width: 1170px;
+  height: 580px;
   -webkit-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -moz-filter: grayscale(100%);

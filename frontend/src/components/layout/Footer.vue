@@ -22,18 +22,18 @@
                   </div>
                   <ul class="social-links clearfix">
                     <li>
-                      <a href="#"
+                      <a href="service"
                         ><span class="fab fa-facebook-square"></span
                       ></a>
                     </li>
                     <li>
-                      <a href="#"><span class="fab fa-twitter"></span></a>
+                      <a href="service"><span class="fab fa-twitter"></span></a>
                     </li>
                     <li>
-                      <a href="#"><span class="fab fa-instagram"></span></a>
+                      <a href="service"><span class="fab fa-instagram"></span></a>
                     </li>
                     <li>
-                      <a href="#"><span class="fab fa-pinterest-p"></span></a>
+                      <a href="service"><span class="fab fa-pinterest-p"></span></a>
                     </li>
                   </ul>
                 </div>
@@ -48,15 +48,15 @@
                   <div class="row clearfix">
                     <div class="col-md-12 col-sm-12">
                       <ul>
-                        <li><a href="#">Concert</a></li>
-                        <li><a href="#">Service</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="concertRegist">Con Regist</a></li>
+                        <li><a href="waiting">Con Enter</a></li>
+                        
                       </ul>
                     </div>
                     <!-- <div class="col-md-6 col-sm-12">
                       <ul>
-                        <li><a href="#">Con Schedule</a></li>
-                        <li><a href="#">Con Search</a></li>
+                        <li><a href="concertSchedule">Con Schedule</a></li>
+                        <li><a href="singer">Con Singer</a></li>
                       </ul>
                     </div>-->
                   </div>
@@ -72,8 +72,8 @@
                   <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
                       <ul>
-                        <li><a href="#">FAQS</a></li>
-                        <li><a href="#">Q&A</a></li>
+                        <li><a href="faqs">FAQS</a></li>
+                        <li><a href="qa">Q&A</a></li>
                         
                       </ul>
                     </div> 

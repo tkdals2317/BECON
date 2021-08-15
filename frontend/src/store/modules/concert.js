@@ -3,11 +3,14 @@ import http from "@/common/lib/http";
 export default {
   namespaced: true,
   state: {
+    total: 0,
+    playing: 0,
     categories: [],
     concertInfos: [],
     registConcertList: {},
     concertDetail: [],
     comingConcerts: [],
+    concertConfirm:'',
   },
 
   getters: {
@@ -29,6 +32,15 @@ export default {
     getComingConcert(state) {
       return state.comingConcerts;
     },
+    getConfrimConcert(state) {
+      return state.concertConfirm;
+    },
+    getTotalConcert(state) {
+      return state.total;
+    },
+    getIngConcert(state) {
+      return state.playing;
+    }
   },
 
   mutations: {
@@ -56,9 +68,18 @@ export default {
       });
       state.comingConcerts = payload;
     },
+    GET_CONFIRM_CONCERT(state, payload){
+      state.concertConfirm=payload;
+    },
+    SET_TOTAL_CONCERT(state, payload) {
+      state.total = payload;
+    },
+    SET_TOTAL_PLAYING(state, payload) {
+      state.playing = payload;
+    }
   },
   actions: {
-    requestRegistConcert(commit, concert) {
+    requestRegistConcert({commit}, concert) {
       var formData = new FormData();
       const CSRF_TOKEN = localStorage.getItem("accessToken");
       for (var variable in concert) {
@@ -71,12 +92,26 @@ export default {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then(() => {
-          // alert("공연 신청이 완료되었습니다.");
+        .then(({data}) => {
+          commit("GET_CONFIRM_CONCERT", data);
         })
-        .catch((err) => {
-          alert(err.response.data.message);
-          console.error();
+        .catch((error) => {
+          if (error.response) {
+            // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+          else if (error.request) {
+            // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+            // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+            // Node.js의 http.ClientRequest 인스턴스입니다.
+            console.log(error.request);
+          }
+          else {
+            // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+            console.log('Error', error.message);
+          }
         });
     },
     requestCategory({ commit }) {
@@ -87,15 +122,12 @@ export default {
           commit("CATEGORY", data);
         })
         .catch(() => {
-          console.error();
         });
     },
     requestConcert({ commit }, category) {
-      console.log(category);
       http
         .get("/api/v2/concert/findByCategory/" + category)
         .then(({ data }) => {
-          console.log(data);
           commit("CONCERT", data);
         })
         .catch(() => {
@@ -115,7 +147,7 @@ export default {
           console.error();
         });
     },
-    getConcertDetail({ commit }, concertId) {
+    findConcertDetail({ commit }, concertId) {
       const CSRF_TOKEN = localStorage.getItem("accessToken");
       http
         .get(`/api/v2/concert/${concertId}`, {
@@ -138,5 +170,25 @@ export default {
           console.log(err);
         });
     },
+    findTotalConcert({ commit }) {
+      http
+        .get(`/api/v2/concert/total`)
+        .then(({ data }) => {
+          commit("SET_TOTAL_CONCERT", data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    findIngConcert({ commit }) {
+      http
+        .get(`/api/v2/concert/playing`)
+        .then(({ data }) => {
+          commit("SET_TOTAL_PLAYING", data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   },
 };

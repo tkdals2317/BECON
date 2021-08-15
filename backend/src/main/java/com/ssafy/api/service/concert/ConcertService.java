@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.ssafy.api.request.ConcertRegisterPostReq;
-import com.ssafy.api.response.ConcertDetailRes;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
 import com.ssafy.db.entity.ConcertThumbnail;
@@ -20,4 +19,6 @@ public interface ConcertService {
 	Optional<List<UserConcert>> getUserConcertByConcerId(Long concertId);
 	Optional<List<Concert>> getConcertByOwnerId(String ownerId);
 	void deleteConcertByOwnerId(String ownerId);
+	long getTotalConcert();
+	long getIngConcert();
 }
