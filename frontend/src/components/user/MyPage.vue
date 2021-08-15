@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group col-lg-12 col-md-12 col-sm-12">
                         <div class="field-inner">
-                        <input v-bind:disabled="!isClick" type="text" v-model="getUserInfo.userEmail" name="email" value="">
+                        <input readonly type="text" v-model="getUserInfo.userEmail" name="email" value="">
                         </div>
                     </div>
                 </div>
