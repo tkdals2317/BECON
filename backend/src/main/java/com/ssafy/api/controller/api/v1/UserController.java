@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,6 +52,7 @@ public class UserController {
 	@ApiOperation(value = "회원 가입", notes = "<strong>아이디와  패스워드</strong>를 통해 회원가입 한다.") 
     @ApiResponses({
         @ApiResponse(code = 201, message = "성공"),
+        @ApiResponse(code = 409, message = "실패")
     })
 	public ResponseEntity<? extends BaseResponseBody> register(
 			@ApiParam(value="회원가입 정보", required = true) UserRegisterPostReq registerInfo, 
@@ -102,6 +102,7 @@ public class UserController {
 	@ApiOperation(value = "회원 본인 정보 조회", notes = "로그인한 회원 본인의 정보를 응답한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 409, message = "실패")
     })
 	public ResponseEntity<UserRes> getUserInfo(
 			@ApiIgnore Authentication authentication) {
@@ -116,6 +117,7 @@ public class UserController {
 	@ApiOperation(value = "회원 정보 수정", notes = "로그인한 회원 본인의 정보를 수정한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 409, message = "실패")
     })
 	public ResponseEntity<? extends BaseResponseBody> modify(
 			@ApiIgnore Authentication authentication,
@@ -153,6 +155,7 @@ public class UserController {
 	@ApiOperation(value = "회원 정보 삭제", notes = "로그인한 회원 본인의 정보를 삭제한다.") 
     @ApiResponses({
         @ApiResponse(code = 204, message = "성공"),
+        @ApiResponse(code = 409, message = "실패")
     })
 	public ResponseEntity<? extends BaseResponseBody> delete(
 			@ApiIgnore Authentication authentication,
@@ -181,12 +184,13 @@ public class UserController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Fail"));
 	}
 	
-	@GetMapping("/count/total")
+	@GetMapping("/total")
 	@ApiOperation(value = "전체 회원 수 조회", notes = "전체 회원 수를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 409, message = "실패")
     })
-	public ResponseEntity<Long> getTotalUser() {
+	public ResponseEntity<?> getTotalUser() {
 		Long total = userService.getTotalUser();
 		return ResponseEntity.status(200).body(total);
 	}

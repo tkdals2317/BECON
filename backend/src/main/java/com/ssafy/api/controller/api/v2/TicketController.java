@@ -45,6 +45,7 @@ public class TicketController {
 	@ApiOperation(value = "티켓 구매", notes = "티켓을 구매하는 Controller") 
 	@ApiResponses({
 		@ApiResponse(code = 201, message = "성공"),
+		@ApiResponse(code = 409, message = "실패")
 	})
 	public ResponseEntity<? extends BaseResponseBody> register(
 			@ApiIgnore Authentication authentication,
@@ -97,12 +98,12 @@ public class TicketController {
 		return ResponseEntity.status(201).body(ticketList);	
 	}
 	
-	@GetMapping("/count/total")
+	@GetMapping("/total")
 	@ApiOperation(value = "전체 티켓 수 조회", notes = "전체 티켓 수를 조회한다.") 
     @ApiResponses({
-        @ApiResponse(code = 200, message = "성공"),
+        @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 210, message = "구매 정보 없음")
     })
-	public ResponseEntity<Long> getTotalUser() {	 
+	public ResponseEntity<?> getTotalUser() {	 
 		Long total = ticketService.getTotalTicket();
 		return ResponseEntity.status(200).body(total);
 	}
