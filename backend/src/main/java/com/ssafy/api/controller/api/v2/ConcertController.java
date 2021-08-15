@@ -187,7 +187,7 @@ public class ConcertController {
 		return ResponseEntity.status(201).body(concertList);
 	}
 
-	@GetMapping("/total")
+	@GetMapping("/count/total")
 	@ApiOperation(value = "전체 콘서트 수 조회", notes = "전체 콘서트 수를 조회한다.")
 	@ApiResponses({ @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 210, message = "공연 정보 없음")})
 	public ResponseEntity<?> getTotalConcert() {
@@ -195,7 +195,7 @@ public class ConcertController {
 		return ResponseEntity.status(200).body(total);
 	}
 
-	@GetMapping("/playing")
+	@GetMapping("/count/playing")
 	@ApiOperation(value = "진행중인 콘서트 수 조회", notes = "현재 진행중인 콘서트 수를 조회한다.")
 	@ApiResponses({ @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 210, message = "공연 정보 없음")})
 	public ResponseEntity<?> getIngConcert() {

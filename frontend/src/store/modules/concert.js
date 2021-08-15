@@ -172,7 +172,7 @@ export default {
     },
     findTotalConcert({ commit }) {
       http
-        .get(`/api/v2/concert/total`)
+        .get(`/api/v2/concert/count/total`)
         .then(({ data }) => {
           commit("SET_TOTAL_CONCERT", data);
         })
@@ -182,7 +182,7 @@ export default {
     },
     findIngConcert({ commit }) {
       http
-        .get(`/api/v2/concert/playing`)
+        .get(`/api/v2/concert/count/playing`)
         .then(({ data }) => {
           commit("SET_TOTAL_PLAYING", data);
         })

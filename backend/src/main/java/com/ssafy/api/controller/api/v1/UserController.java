@@ -184,7 +184,7 @@ public class UserController {
 		return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Fail"));
 	}
 	
-	@GetMapping("/total")
+	@GetMapping("/count/total")
 	@ApiOperation(value = "전체 회원 수 조회", notes = "전체 회원 수를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"),

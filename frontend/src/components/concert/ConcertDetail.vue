@@ -2,7 +2,7 @@
   <div>
     <section class="project-single style-two">
       <div class="auto-container">
-        <figure class="image-box">
+        <figure class="image-box" v-if="getDetail">
           <img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${getDetail.thumbnail.originName}`" alt="">
         </figure>
         <div class="text-content">

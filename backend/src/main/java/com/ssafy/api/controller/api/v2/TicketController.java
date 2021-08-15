@@ -98,7 +98,7 @@ public class TicketController {
 		return ResponseEntity.status(201).body(ticketList);	
 	}
 	
-	@GetMapping("/total")
+	@GetMapping("/count/total")
 	@ApiOperation(value = "전체 티켓 수 조회", notes = "전체 티켓 수를 조회한다.") 
     @ApiResponses({
         @ApiResponse(code = 200, message = "성공"), @ApiResponse(code = 210, message = "구매 정보 없음")
