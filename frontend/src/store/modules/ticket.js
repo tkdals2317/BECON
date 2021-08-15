@@ -41,7 +41,7 @@ export default {
         },
         findTotalTicket({ commit }) {
           http
-            .get(`/api/v2/ticket/count/total`)
+            .get(`/api/v2/ticket/total`)
             .then(({ data }) => {
               commit("SET_TOTAL_TICKET", data);
             })
