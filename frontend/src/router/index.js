@@ -28,7 +28,7 @@ Vue.use(VueRouter);
 Vue.use(VueSimpleAlert, { reverseButtons: true });
 
 const requireAuth = () => (to, from, next) => {
-  if (store.state.accessToken != "") {
+  if (localStorage.getItem('accessToken') != "") {
     return next();
   }
   VueSimpleAlert.fire({

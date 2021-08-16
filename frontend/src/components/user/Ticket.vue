@@ -9,18 +9,18 @@
           <div class="ticket ticket-1">
             <div class="date">
               <span class="month-and-time"
-                >{{ concert.startTime }}<br /><span class="small">{{ concert.endTime }}</span></span
+                >{{ getTicketInfo.startTime }}<br /><span class="small">{{ getTicketInfo.endTime }}</span></span
               >
             </div>
             <div class="artist">
               <span class="name">STAND</span>
               <br />
-              <span class="small">{{ concert.priceStand }}</span>
+              <span class="small">{{ getTicketInfo.priceStand }}</span>
             </div>
             <div class="location">
-              <span>{{ concert.title }}</span>
+              <span>{{ getTicketInfo.title }}</span>
               <br />
-              <span class="small"><span>{{ concert.owner }}</span></span>
+              <span class="small"><span>{{ getTicketInfo.owner }}</span></span>
             </div>
             <div class="rip"></div>
             <div class="cta">
@@ -31,18 +31,18 @@
           <div class="ticket ticket-2">
             <div class="date">
               <span class="month-and-time"
-                >{{ concert.startTime }}<br /><span class="small">{{ concert.endTime }}</span></span
+                >{{ getTicketInfo.startTime }}<br /><span class="small">{{ getTicketInfo.endTime }}</span></span
               >
             </div>
             <div class="artist">
               <span class="name">VIP</span>
               <br />
-              <span class="small">{{ concert.priceVip }}</span>
+              <span class="small">{{ getTicketInfo.priceVip }}</span>
             </div>
             <div class="location">
-              <span>{{ concert.title }}</span>
+              <span>{{ getTicketInfo.title }}</span>
               <br />
-              <span class="small"><span>{{ concert.owner }}</span></span>
+              <span class="small"><span>{{ getTicketInfo.owner }}</span></span>
             </div>
             <div class="rip"></div>
             <div class="cta">
@@ -110,7 +110,7 @@
       </a-form-item>
       <a-form-item label="허용최소연령">
         <a-input
-          v-decorator="['minAge', { initialValue: concert.minAge }]"
+          v-decorator="['minAge', { initialValue: getTicketInfo.minAge }]"
           type="number"
           size="large"
         />
@@ -137,15 +137,13 @@ export default {
       initialMerchantUid: `mid_${new Date().getTime()}`,
     };
   },
-  props: {
-    concert: Object,
-  },
   created() {
     window.scrollTo(0, 0);
     this.requestUserInfo();
   },
   computed :{
     ...mapGetters('user',['getUserInfo']),
+    ...mapGetters('ticket', ['getTicketInfo']),
   },
   methods:{
     ...mapActions('user', ['requestUserInfo']),
