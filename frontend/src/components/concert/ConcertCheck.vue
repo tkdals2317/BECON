@@ -12,15 +12,15 @@
           <div class="tabs-content">
             <div class="tabs" v-for="concert in getRegistConcertList" :key="concert.id">
               <!--Tab-->
-              <input type="radio" name="tabs" :id="concert.id">
-              <label :for="concert.id" name="title" class="tab-btn">{{concert.title}}</label>
+              <input type="radio" name="tabs" :id="concert.id" @click="show=!show">
+              <label :for="concert.id" name="title" class="tab-btn" v-show="show">{{concert.title}}</label>
               <div class="tab">
                 <div class="tab active-tab">
                   <div class="row clearfix">
                     <div class="image-col col-lg-5 col-md-6 col-sm-12">
                       <div class="inner">
                         <div class="image">
-                          <!-- <img :src="'@/common/images/resource/thumbnail/'+concert.thumbnail.originName" alt="" /> -->
+                          <img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${concert.thumbnail.originName}`" alt="" />
                           <!-- <img src="/images/resource/thumbnail/BeConImg.jpg" alt=""> -->
                         </div>
                       </div>
@@ -35,6 +35,7 @@
                               <li>VIP 석 : {{concert.priceVip}}</li>
                               <li>Standard 석 : {{concert.priceVip}}</li>
                               <li>공연 분류 : {{concert.category.name}}</li>
+                              <li>관람등급 : {{ concert.minAge }}세 관람가</li>
                             </ul>
                           </div>
                         </div>
@@ -67,6 +68,7 @@ import {mapActions, mapGetters} from 'vuex';
           priceStand:'',
           priceVip:'',
           category:'',
+          show: true,
         }
       },
       created(){

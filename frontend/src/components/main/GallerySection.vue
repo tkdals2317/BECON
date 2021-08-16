@@ -24,10 +24,10 @@
           <no-ssr>
             <carousel :perPage="4">
               <slide v-for="concertInfo in getConcertInfos"
-                :key="concertInfo.id">
+                :key="concertInfo.id" v-model="concertInfo.id">
               <!-- Gallery Item -->
               <div class="gallery-item mx-3">
-                <div class="inner-box" @click="goDetail(concertInfo.id)">
+                <div class="inner-box" @click="goDetail(concertInfo)">
                   <figure class="image">
                     <img
                       :src="`https://i5d102.p.ssafy.io/thumbnailImg/${concertInfo.thumbnail.originName}`"
@@ -80,6 +80,9 @@ export default {
   data() {
     return {
       mixer: null,
+      concertInfo: {
+        id: '',
+      },
     };
   },
 
@@ -104,14 +107,14 @@ export default {
   },
 
   methods: {
-    ...mapActions("concert", ["requestCategory", "requestConcert"]),
+    ...mapActions("concert", ["requestCategory", "requestConcert", "findConcertDetail"]),
     click(data) {
       this.requestConcert(data);
     },
-    goDetail(concertId) {
+    goDetail(concertInfo) {
+      this.findConcertDetail(concertInfo)
       this.$router.push({
         name: "ConcertDetail",
-        params: { concertId: concertId },
       });
     },
   },

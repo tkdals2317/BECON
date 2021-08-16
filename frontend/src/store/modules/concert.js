@@ -147,18 +147,8 @@ export default {
           console.error();
         });
     },
-    findConcertDetail({ commit }, concertId) {
-      const CSRF_TOKEN = localStorage.getItem("accessToken");
-      http
-        .get(`/api/v2/concert/${concertId}`, {
-          headers: { Authorization: "Bearer " + CSRF_TOKEN },
-        })
-        .then(({ data }) => {
-          commit("DETAIL", data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    findConcertDetail({ commit }, concert) {
+      commit("DETAIL", concert);
     },
     findComingConcert({ commit }) {
       http
