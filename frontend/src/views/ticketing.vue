@@ -1,14 +1,14 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="티켓팅" />
+    <PageHeader2 title="티켓팅" />
     <Ticket :concertId="$route.params.concertId" />
     <Footer />
   </div>
 </template>
 <script>
 import Nav from "../components/layout/Nav";
-import PageHeader from "../components/layout/PageHeader";
+import PageHeader2 from "../components/layout/PageHeader2";
 import Footer from "../components/layout/Footer";
 import Ticket from "../components/user/Ticket";
 
@@ -16,7 +16,7 @@ export default {
   components: {
     Ticket,
     Footer,
-    PageHeader,
+    PageHeader2,
     Nav,
   },
   head() {

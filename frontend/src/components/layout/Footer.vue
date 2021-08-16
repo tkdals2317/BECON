@@ -10,7 +10,7 @@
               <div class="footer-widget logo-widget">
                 <div class="widget-content">
                   <div class="logo">
-                    <router-link to="/"
+                    <router-link to="/service"
                       ><img
                         id="fLogo"
                         src="@/common/images/be-con.jpg"
@@ -22,15 +22,10 @@
                   </div>
                   <ul class="social-links clearfix">
                     <li>
-                      <a href="service"
-                        ><span class="fab fa-facebook-square"></span
-                      ></a>
+                      <a href="https://ko-kr.facebook.com/login/web/"><span class="fab fa-facebook-square"></span></a>
                     </li>
                     <li>
-                      <a href="service"><span class="fab fa-twitter"></span></a>
-                    </li>
-                    <li>
-                      <a href="service"><span class="fab fa-instagram"></span></a>
+                      <a href="https://www.instagram.com/accounts/login/  "><span class="fab fa-instagram"></span></a>
                     </li>
                     <li>
                       <a href="service"><span class="fab fa-pinterest-p"></span></a>

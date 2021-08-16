@@ -1,21 +1,21 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="Singer" />
+    <PageHeader2 title="Singer" />
     <Singer />
     <Footer />
   </div>
 </template>
 <script>
 import Nav from "../components/layout/Nav";
-import PageHeader from "../components/layout/PageHeader";
+import PageHeader2 from "../components/layout/PageHeader2";
 import Footer from "../components/layout/Footer";
 import Singer from "../components/user/Singer";
 
 export default {
   components: {
     Footer,
-    PageHeader,
+    PageHeader2,
     Nav,
     Singer,
   },
