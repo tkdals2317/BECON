@@ -12,9 +12,9 @@
           <div class="tabs-content">
             <div class="tabs" v-for="concert in getRegistConcertList" :key="concert.id">
               <!--Tab-->
-              <input type="radio" name="tabs" :id="concert.id" @click="show=!show">
-              <label :for="concert.id" name="title" class="tab-btn" v-show="show">{{concert.title}}</label>
-              <div class="tab">
+              <input type="radio" name="tabs" :id="concert.id">
+              <label :for="concert.id" name="title" class="tab-btn" @click="toggleShow">{{concert.title}}</label>
+              <div class="tab" v-if="show">
                 <div class="tab active-tab">
                   <div class="row clearfix">
                     <div class="image-col col-lg-5 col-md-6 col-sm-12">
@@ -68,7 +68,7 @@ import {mapActions, mapGetters} from 'vuex';
           priceStand:'',
           priceVip:'',
           category:'',
-          show: true,
+          show: false,
         }
       },
       created(){
@@ -83,6 +83,9 @@ import {mapActions, mapGetters} from 'vuex';
       },
       methods:{
         ...mapActions('concert', ['requestCheckConcert']),
+        toggleShow() {
+          this.show = !this.show;
+        },
         // init(){
         //   this.requestCheckConcert();
         // }
@@ -95,6 +98,7 @@ import {mapActions, mapGetters} from 'vuex';
   .tabs {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
   .tabs label {
     order: 1;
@@ -108,6 +112,7 @@ import {mapActions, mapGetters} from 'vuex';
     font-size: 22px;
     text-transform: uppercase;
     color: #222;
+    width: 480px;
   }
   .tabs .tab {
     order: 99;
@@ -120,9 +125,9 @@ import {mapActions, mapGetters} from 'vuex';
   .tabs input[type="radio"] {
     display: none;
   }
-  .tabs input[type="radio"]:checked + label {
+  /* .tabs input[type="radio"]:checked + label {
     background: #F4F5F8;
-  }
+  } */
   .tabs input[type="radio"]:checked + label + .tab {
     display: block;
   }
@@ -138,5 +143,4 @@ import {mapActions, mapGetters} from 'vuex';
       margin-top: 0.2rem;
     }
   }
-
 </style>
