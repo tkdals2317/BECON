@@ -10,9 +10,9 @@
           <!--Filter-->
           <div class="filters clearfix">
             <ul class="filter-tabs filter-btns clearfix">
-              <li class="filter" @click="click('All')">All<sup></sup></li>
+              <li class="filter mixitup-control-active" data-role="button" data-filter="all" @click="click('All')">All<sup></sup></li>
               <span v-for="category in getCategories" :key="category.id">
-                <li class="filter" @click="click(category.name)">
+                <li class="filter" data-role="button" :data-filter="category.id" @click="click(category.name)">
                   {{ category.name }}<sup></sup>
                 </li>
               </span>
@@ -121,4 +121,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.gallery-item {
+  height: 400px;
+}
+</style>
