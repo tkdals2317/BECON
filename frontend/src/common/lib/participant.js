@@ -17,9 +17,6 @@
  *
  */
 
-const PARTICIPANT_MAIN_CLASS = 'participant main';
-const PARTICIPANT_CLASS = 'participant';
-
 /**
  * Creates a video element for a new participant
  *
@@ -29,33 +26,21 @@ const PARTICIPANT_CLASS = 'participant';
  * @return
  */
 
-function Participant(name, sendMessage) {
+function Participant(name, sendMessage, concert) {
 	this.name = name;
 	var container = document.createElement('div');
 	container.id = name;
 	
 	if (document.getElementById('participants')) {
-		container.className = isPresentMainParticipant() ? PARTICIPANT_CLASS : PARTICIPANT_MAIN_CLASS;
-		var div = document.createElement('div');
-		var video = document.createElement('video');
 		var rtcPeer;
-
-		container.appendChild(video);
-		container.appendChild(div);
-		container.onclick = switchContainerClass;
-		document.getElementById('participants').appendChild(container);
-
-		div.appendChild(document.createTextNode(name));
-
-		video.id = 'video-' + name;
-		video.autoplay = true;
-		video.controls = false;
 	}
 	if (document.getElementById('participants-img')) {
 		container.classList.add('image', 'col');
 		var img = document.createElement('img');
-		img.setAttribute('src',  require("../images/resource/author-1.jpg"));
+		img.setAttribute('src',  `https://i5d102.p.ssafy.io/profileImg/${name}.png`);
 		img.style.borderRadius = '50%';
+		img.style.width = '73px';
+		img.style.height = '73px';
 		container.appendChild(img);
 		
 		document.getElementById('participants-img').appendChild(container);
@@ -63,27 +48,6 @@ function Participant(name, sendMessage) {
 
 	this.getElement = function() {
 		return container;
-	}
-
-	this.getVideoElement = function() {
-		return video;
-	}
-
-	function switchContainerClass() {
-		if (container.className === PARTICIPANT_CLASS) {
-			var elements = Array.prototype.slice.call(document.getElementsByClassName(PARTICIPANT_MAIN_CLASS));
-			elements.forEach(function(item) {
-					item.className = PARTICIPANT_CLASS;
-				});
-
-				container.className = PARTICIPANT_MAIN_CLASS;
-			} else {
-			container.className = PARTICIPANT_CLASS;
-		}
-	}
-
-	function isPresentMainParticipant() {
-		return ((document.getElementsByClassName(PARTICIPANT_MAIN_CLASS)).length != 0);
 	}
 
 	this.offerToReceiveVideo = function(error, offerSdp, wp){
@@ -98,8 +62,6 @@ function Participant(name, sendMessage) {
 
 
 	this.onIceCandidate = function (candidate, wp) {
-		//   console.log("Local candidate" + JSON.stringify(candidate));
-		  
 		  var message = {
 		    id: 'onIceCandidate',
 		    candidate: candidate,
@@ -111,9 +73,8 @@ function Participant(name, sendMessage) {
 	Object.defineProperty(this, 'rtcPeer', { writable: true});
 
 	this.dispose = function() {
-		console.log('Disposing participant ' + this.name);
 		if (this.rtcPeer) this.rtcPeer.dispose();
-		container.parentNode.removeChild(container);
+		// container.parentNode.removeChild(container);
 	};
 }
 
