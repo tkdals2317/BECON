@@ -14,13 +14,14 @@
               <!--Tab-->
               <input type="radio" name="tabs" :id="concert.id" @click="show=!show">
               <label :for="concert.id" name="title" class="tab-btn" v-show="show">{{concert.title}}</label>
+              
               <div class="tab">
                 <div class="tab active-tab">
                   <div class="row clearfix">
                     <div class="image-col col-lg-5 col-md-6 col-sm-12">
                       <div class="inner">
                         <div class="image">
-                          <img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${concert.thumbnail.originName}`" alt="" />
+                          <img :src="`https://i5d102.p.ssafy.io/posterImg/${concert.poster.originName}`" alt="" />
                           <!-- <img src="/images/resource/thumbnail/BeConImg.jpg" alt=""> -->
                         </div>
                       </div>

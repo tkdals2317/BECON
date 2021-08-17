@@ -8,7 +8,7 @@
               <div class="default-form">
                 <h4>신청 내역<span>.</span></h4>
                 <div class="thumbnail_tag" v-if="getConfrimConcert">
-                    <img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${getConfrimConcert.concertThumbnail.originName}`" class="프로필">
+                    <img :src="`https://i5d102.p.ssafy.io/posterImg/${getConfrimConcert.concertPoster.originName}`" class="프로필">
                   </div>
                 <div class="row clearfix">
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
