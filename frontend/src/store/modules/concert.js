@@ -37,7 +37,7 @@ export default {
     getComingConcert(state) {
       return state.comingConcerts;
     },
-    getConfrimConcert(state) {
+    getConfirmConcert(state) {
       return state.concertConfirm;
     },
     getTotalConcert(state) {
