@@ -8,11 +8,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.ssafy.api.request.UserModifyPostReq;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.QConcert;
 import com.ssafy.db.entity.QUserConcert;
-import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserConcert;
 
 
