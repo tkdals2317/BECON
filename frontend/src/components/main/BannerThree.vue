@@ -38,7 +38,7 @@
                   <div class="link-box">
                     <router-link class="theme-btn btn-style-two" to="/concertSchedule">
                       <i class="btn-curve"></i>
-                      <span class="btn-title">Discover More</span>
+                      <span class="btn-title">Line Up</span>
                     </router-link>
                   </div>
                 </div>

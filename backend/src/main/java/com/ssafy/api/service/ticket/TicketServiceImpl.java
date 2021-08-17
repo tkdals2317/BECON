@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.api.request.TicketPostReq;
-import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.Ticket;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.repository.ConcertRepository;
@@ -67,4 +66,9 @@ public class TicketServiceImpl implements TicketService{
 		return ticketRepository.findByUserId(user.getId());
 	}
 	
+	@Override
+	public long getTotalTicket() {
+		long total = ticketRepositorySupport.findCountTicket();
+		return total;
+	}
 }

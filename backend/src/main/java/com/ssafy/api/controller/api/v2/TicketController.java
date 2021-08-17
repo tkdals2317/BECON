@@ -97,5 +97,14 @@ public class TicketController {
 		return ResponseEntity.status(201).body(ticketList);	
 	}
 	
+	@GetMapping("/count/total")
+	@ApiOperation(value = "전체 티켓 수 조회", notes = "전체 티켓 수를 조회한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+    })
+	public ResponseEntity<Long> getTotalUser() {	 
+		Long total = ticketService.getTotalTicket();
+		return ResponseEntity.status(200).body(total);
+	}
 }
 

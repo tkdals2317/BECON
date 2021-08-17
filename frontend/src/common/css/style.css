@@ -116,7 +116,7 @@
   padding: 0px;
   border: none;
   outline: none;
-  font-size: 80%;
+  font-size: 103%;
   line-height: 2;
 }
 
@@ -134,6 +134,10 @@
   --thm-base-rgb: 255, 170, 23;
   --thm-black: #222429;
   --thm-text: #686a6f;
+}
+
+#app {
+  overflow: hidden;
 }
 
 body {
@@ -242,6 +246,10 @@ p {
 
 ::-ms-input-placeholder {
   color: inherit;
+}
+
+.app {
+  overflow: hidden;
 }
 
 .page-wrapper {
@@ -3724,8 +3732,9 @@ img.lazy-image.loaded {
 
 .gallery-item .inner-box .image img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 400px;
+  object-fit: fill;
   -webkit-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
@@ -6698,7 +6707,7 @@ img.lazy-image.loaded {
   font-size: 40px;
   font-weight: 400;
   text-transform: uppercase;
-  margin-bottom: 25px;
+  margin-bottom: -20px;
 }
 
 .get-quote-section .form-box h4 span {
@@ -7194,7 +7203,7 @@ img.lazy-image.loaded {
 
 .we-work-section {
   position: relative;
-  padding: 120px 0 80px;
+  padding: 100px 0 80px;
 }
 
 .work-tabs {
@@ -7290,7 +7299,9 @@ img.lazy-image.loaded {
 
 .work-tabs .tabs-content .image img {
   display: block;
-  width: 100%;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
   -webkit-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
@@ -8263,7 +8274,7 @@ img.lazy-image.loaded {
 
 .contact-section {
   position: relative;
-  padding: 120px 0px 100px;
+  padding: 50px 0px 100px;
   background: #ffffff;
 }
 
@@ -8965,7 +8976,6 @@ img.lazy-image.loaded {
   position: relative;
   display: block;
   padding: 28px 0px 0px;
-  border-top: 1px solid #e9ebee;
   font-size: 20px;
   line-height: 30px;
   font-weight: 300;
@@ -9330,7 +9340,9 @@ img.lazy-image.loaded {
 
 .project-single .image-box img {
   display: block;
-  width: 100%;
+  width: 1170px;
+  height: 580px;
+  object-fit: scale-down;
   -webkit-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -moz-filter: grayscale(100%);

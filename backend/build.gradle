@@ -34,7 +34,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'eclipse'
 apply plugin: 'com.github.node-gradle.node'
 //이클립스인 경우를 위한 QueryDSL 플러그인. IntelliJ는 불필요.
-apply plugin: 'com.ewerk.gradle.plugins.querydsl'
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
 
 
 repositories {
@@ -189,6 +189,13 @@ dependencies {
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile('org.springframework.boot:spring-boot-starter-data-redis')
+    
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	//이메일
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	
+	implementation 'com.querydsl:querydsl-jpa'
+	implementation 'com.querydsl:querydsl-apt'
 }
 
 test {

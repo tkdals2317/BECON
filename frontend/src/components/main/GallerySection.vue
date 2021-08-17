@@ -10,9 +10,9 @@
           <!--Filter-->
           <div class="filters clearfix">
             <ul class="filter-tabs filter-btns clearfix">
-              <li class="filter" @click="click('All')">All<sup></sup></li>
+              <li class="filter mixitup-control-active" data-role="button" data-filter="all" @click="click('All')">All<sup></sup></li>
               <span v-for="category in getCategories" :key="category.id">
-                <li class="filter" @click="click(category.name)">
+                <li class="filter" data-role="button" :data-filter="category.id" @click="click(category.name)">
                   {{ category.name }}<sup></sup>
                 </li>
               </span>
@@ -24,10 +24,10 @@
           <no-ssr>
             <carousel :perPage="4">
               <slide v-for="concertInfo in getConcertInfos"
-                :key="concertInfo.id">
+                :key="concertInfo.id" v-model="concertInfo.id">
               <!-- Gallery Item -->
               <div class="gallery-item mx-3">
-                <div class="inner-box" @click="goDetail(concertInfo.id)">
+                <div class="inner-box" @click="goDetail(concertInfo)">
                   <figure class="image">
                     <img
                       :src="`https://i5d102.p.ssafy.io/thumbnailImg/${concertInfo.thumbnail.originName}`"
@@ -80,6 +80,9 @@ export default {
   data() {
     return {
       mixer: null,
+      concertInfo: {
+        id: '',
+      },
     };
   },
 
@@ -104,18 +107,22 @@ export default {
   },
 
   methods: {
-    ...mapActions("concert", ["requestCategory", "requestConcert"]),
+    ...mapActions("concert", ["requestCategory", "requestConcert", "findConcertDetail"]),
     click(data) {
       this.requestConcert(data);
     },
-    goDetail(concertId) {
+    goDetail(concertInfo) {
+      this.findConcertDetail(concertInfo)
       this.$router.push({
         name: "ConcertDetail",
-        params: { concertId: concertId },
       });
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.gallery-item {
+  height: 400px;
+}
+</style>

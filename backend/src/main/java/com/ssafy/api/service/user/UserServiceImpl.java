@@ -44,9 +44,10 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(request.getEmail());
 		user.setPhone(request.getPhone());
 		user.setUserProfile(fileId);
+		user.setCarrier(request.getCarrier());
+		
 		return userRepository.save(user);
 	}
-
 	
 	@Override
 	public Boolean duplicateUserId(String userId) {
@@ -60,10 +61,15 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUserByUserId(String userId) {
-		System.out.println(userId);
 		// 디비에 유저 정보 조회 (userId 를 통한 조회).
 		User user = userRepositorySupport.findUserByUserId(userId).get();
 		return user;
+	}
+	
+	@Override
+	public long getTotalUser() {
+		long total = userRepositorySupport.findCountUser();
+		return total;
 	}
 	
 	@Transactional

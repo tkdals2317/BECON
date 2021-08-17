@@ -5,7 +5,7 @@
         <div class="row clearfix">
           <!--Service Block-->
           <div class="service-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
-            <div class="inner-box">
+            <div class="inner-box" @click="moveMyPage">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-vector"></span></div>
               <h5><div @click="moveMyPage">My Info!</div></h5>
@@ -16,7 +16,7 @@
 
           <!--Service Block-->
           <div class="service-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 300ms; animation-name: fadeInUp;">
-            <div class="inner-box">
+            <div class="inner-box" @click="moveConcertCK">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-digital"></span></div>
               <h5><div @click="moveConcertCK">CONCERT</div></h5>
@@ -27,23 +27,23 @@
 
           <!--Service Block-->
           <div class="service-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 600ms; animation-name: fadeInUp;">
-            <div class="inner-box">
+            <div class="inner-box" @click="moveMyRegistConcert">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-instant-camera"></span></div>
-              <h5><a href="#">my 콘서트</a></h5>
+              <h5><div @click="moveMyRegistConcert">my 콘서트</div></h5>
               <div class="text">예매한 콘서트를 한눈에!</div>
-              <div class="link-box"><a href="/myconcert"><span class="fa fa-angle-right"></span></a></div>
+              <div class="link-box"><div @click="moveMyRegistConcert"><span class="fa fa-angle-right"></span></div></div>
             </div>
           </div>
 
           <!--Service Block-->
           <div class="service-block-two col-xl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp animated" data-wow-delay="900ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 900ms; animation-name: fadeInUp;">
-            <div class="inner-box">
+            <div class="inner-box" @click="moveQA">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-monitor"></span></div>
-              <h5><a href="#">Q&A</a></h5>
+              <h5><div @click="moveQA">Q&A</div></h5>
               <div class="text">문의사항이 있다면 여기로!</div>
-              <div class="link-box"><a href="/qa"><span class="fa fa-angle-right"></span></a></div>
+              <div class="link-box"><div @click="moveQA"><span class="fa fa-angle-right"></span></div></div>
             </div>
           </div>
 
@@ -65,6 +65,12 @@
       },
       moveConcertCK() {
         this.$router.push("concertCK");        
+      },
+      moveMyRegistConcert() {
+        this.$router.push("myconcert");
+      },
+      moveQA() {
+        this.$router.push("qa");
       },
     }
   }
