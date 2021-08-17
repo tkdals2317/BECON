@@ -177,7 +177,7 @@ export default {
 }
 .thumbnail_tag{
     display: block;
-    margin: 0 auto;
+    margin: 20px auto;
     width:300px;
     height:400px;
     background-size: cover;
