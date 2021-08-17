@@ -6,6 +6,7 @@ export default {
     state: {
       total: 0,
       ticketInfo: {},
+      myTicketInfo: [],
     },
     getters: {
       getTicketInfo(state) {
@@ -13,6 +14,9 @@ export default {
       },
       getTotalTicket(state) {
         return state.total;
+      },
+      getMyConcertTicket(state) {
+        return state.myTicketInfo;
       }
     },
     mutations: {
@@ -21,6 +25,9 @@ export default {
       },
       SET_TOTAL_TICKET(state, payload) {
         state.total = payload;
+      },
+      SET_MY_CONCERT_TICKET(state, payload) {
+        state.myTicketInfo = payload;
       }
     },
     actions: {
@@ -48,6 +55,16 @@ export default {
             .catch((err) => {
               console.log(err);
             });
-        }
+        },
+        findMyTicket({ commit }, userId) {
+          http
+            .get(`/api/v2/ticket/${userId}`)
+            .then(({ data }) => {
+              commit("SET_MY_CONCERT_TICKET", data);
+            })
+            .catch(() => {
+              console.error();
+            });
+        },
     },
   };
