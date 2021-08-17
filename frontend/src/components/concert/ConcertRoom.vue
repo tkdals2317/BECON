@@ -336,7 +336,9 @@ export default {
         name: this.userId,
         room: this.roomId,
       };
-      this.sendMessageRTC(message);
+      this.wss.onopen = () => {
+        this.sendMessageRTC(message);
+      }
     },
     onNewParticipant(request) {
       this.receiveVideo(request.name);
@@ -452,10 +454,8 @@ export default {
       this.participants.delete(request.name);
     },
     sendMessageRTC(message) {
-      this.wss.onopen = () => {
         var jsonMessage = JSON.stringify(message);
         this.wss.send(jsonMessage);
-      }
     },
   },
 };
