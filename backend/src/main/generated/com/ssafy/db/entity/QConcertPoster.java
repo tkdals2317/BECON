@@ -10,12 +10,12 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QConcertThumbnail is a Querydsl query type for ConcertThumbnail
+ * QConcertPoster is a Querydsl query type for ConcertPoster
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QConcertPoster extends EntityPathBase<ConcertPoster> {
 
-    private static final long serialVersionUID = -1360803672L;
+    private static final long serialVersionUID = 464060177L;
 
     public static final QConcertPoster concertPoster = new QConcertPoster("concertPoster");
 

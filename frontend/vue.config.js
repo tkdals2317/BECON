@@ -1,5 +1,5 @@
-//const URL = "3.36.67.58:8443";
-const URL = "localhost:8080";
+const URL = "3.36.67.58:8443";
+//const URL = "localhost:8080";
 
 module.exports = {
     devServer: {
