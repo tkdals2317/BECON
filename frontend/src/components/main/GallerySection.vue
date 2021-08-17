@@ -28,12 +28,14 @@
               <!-- Gallery Item -->
               <div class="gallery-item mx-3">
                 <div class="inner-box" @click="goDetail(concertInfo)">
+                  <div class="image-box">
                   <figure class="image">
                     <img
                       :src="`https://i5d102.p.ssafy.io/posterImg/${concertInfo.poster.originName}`"
                       alt=""
                     />
                   </figure>
+                  </div>
                   <a
                     class="lightbox-image overlay-box"
                     data-fancybox="gallery"

@@ -1,14 +1,14 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="문의사항" />
+    <PageHeader3 title="Q&A" />
     <QA />
     <Footer />
   </div>  
 </template>
 <script>
 import Nav from "../components/layout/Nav";
-import PageHeader from "../components/layout/PageHeader";
+import PageHeader3 from "../components/layout/PageHeader3";
 import QA from "../components/user/QA";
 import Footer from "../components/layout/Footer";
 
@@ -16,7 +16,7 @@ export default {
   components: {
     QA,
     Footer,
-    PageHeader,
+    PageHeader3,
     Nav,
   },
   head() {

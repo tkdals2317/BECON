@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="FAQS" />
+    <PageHeader3 title="FAQS" />
     <FAQS />
     <CallToActionThree />
     <Footer />
@@ -9,7 +9,7 @@
 </template>
 <script>
 import Nav from "../components/layout/Nav";
-import PageHeader from "../components/layout/PageHeader";
+import PageHeader3 from "../components/layout/PageHeader3";
 import Footer from "../components/layout/Footer";
 import FAQS from "../components/user/FAQS";
 import CallToActionThree from "../components/unused/CallToActionThree";
@@ -19,7 +19,7 @@ export default {
     CallToActionThree,
     FAQS,
     Footer,
-    PageHeader,
+    PageHeader3,
     Nav,
   },
   head() {

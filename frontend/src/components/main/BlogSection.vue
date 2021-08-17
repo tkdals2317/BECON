@@ -70,6 +70,7 @@ export default {
   created() {
     this.findComingConcert();
     this.setTimer();
+    console.log(this.getComingConcert);
   },
 
   destroyed() {
@@ -95,10 +96,11 @@ export default {
           }
         });
 
+        console.log('comming concert update');
       }, 60000);
     },
     concertEnter(concert) {
-      var num = prompt('방 번호를 입력해주세요');
+      let num = prompt('방 번호를 입력해주세요');
 
       if (concert.id == num) {
         this.setEnterConcert(concert);
