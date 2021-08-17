@@ -18,9 +18,9 @@
                 </div>
               </div>
               <div class="form-group col-lg-3 col-md-12 col-sm-12">
-                <button class="theme-btn btn-style-one">
+                <button class="theme-btn btn-style-one" tag="button" @click="clickDuplicate()">
                   <i class="btn-curve"></i>
-                  <span class="btn-title" @click="clickDuplicate()">Check</span>
+                  <span class="btn-title">확인</span>
                 </button>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
@@ -63,12 +63,35 @@
                   <div v-if="!errors.matchPhone" style="color:red;">전화번호 형식이 맞지 않습니다.</div>
                 </div>
               </div>
-              <div class="form-group col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group col-lg-9 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.email" name="email" value="" placeholder="becon@becon.com" required="" @blur="checkEmail()" autocomplete="off">>
+                  <input type="text" v-model="user.email" name="email" value="" placeholder="becon@becon.com" required="" @blur="checkEmail()" autocomplete="off">
                   <div v-if="!errors.requireEmail" style="color:red;">필수 입력 항목입니다.</div>
                   <div v-if="!errors.matchEmail" style="color:red;">이메일 형식이 맞지 않습니다.</div>
                 </div>
+              </div>
+              <div class="form-group col-lg-3 col-md-12 col-sm-12">
+                <button class="theme-btn btn-style-one" tag="button" :disabled="isCheck" @click="clickEmailAuth()">
+                  <i class="btn-curve"></i>
+                  <span class="btn-title">인증</span>
+                </button>
+              </div>
+              <div class="form-group col-lg-2 col-md-12 col-sm-12" v-if="isShow">
+                <div class="field-inner" style="margin-top:23px; font-size:15px;">
+                  *인증 코드
+                </div>
+              </div>
+              <div class="form-group col-lg-7 col-md-12 col-sm-12" v-if="isShow">
+                <div class="field-inner">
+                  <input type="text" v-model="code" name="email" value="" placeholder="becon@becon.com" required="" @blur="checkCode()" autocomplete="off">
+                  <div v-if="!errors.requireCode" style="color:red;">필수 입력 항목입니다.</div>
+                </div>
+              </div>
+              <div class="form-group col-lg-3 col-md-12 col-sm-12" v-if="isShow">
+                <button class="theme-btn btn-style-one" tag="button" :disabled="isActive" @click="clickAuthCheck()">
+                  <i class="btn-curve"></i>
+                  <span class="btn-title">확인</span>
+                </button>
               </div>
               <div class="form-group col-lg-2 col-md-12 col-sm-12">
                 <div class="field-inner" style="margin-top:23px; font-size:15px;">
@@ -95,7 +118,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-
+import http from '@/common/lib/http';
 export default {
   name: "Register",
   data() {
@@ -123,7 +146,13 @@ export default {
             matchPhone:true,
             requireEmail:true,
             matchEmail:true,
+            checkEmail:false,
+            requireCode:false,
           },
+          code:'',
+          isCheck:false,
+          isShow:false,
+          isActive:false,
           isDisabled:true
       }
   },
@@ -138,19 +167,79 @@ export default {
   },
   methods: {
     ...mapActions('user', ["requestRegister", "requestDuplicate"]),
+    ...mapActions('email', ["requestEmail", "requestEmailCheck"]),
     clickRegister: function () {
-        this.user.profile = this.$refs.picture.files[0];
-        for (var item in this.user) {
-          if(this.user[item]==""){
-            alert("정보를 다시 확인해주세요.");
-            return;
-          }
-        }
-        if(this.getAvaliableId==false){
-          alert("아이디를 다시 확인해주세요.");
+      this.user.profile = this.$refs.picture.files[0];
+      if(this.getAvaliableId==false){
+        this.$alert("아이디를 다시 확인해주세요.");
+        return;
+      }
+      for (var item in this.user) {
+        if(this.user[item]==""){
+          this.$alert("정보를 다시 확인해주세요.");
           return;
         }
-        this.requestRegister(this.user);
+      }
+      if(this.isCheck==false){
+        this.$alert("이메일 인증을 해주세요.");
+        return;
+      }
+      if(this.isCheck==true&&this.isActive==false){
+        this.$alert("인증코드를 확인해주세요.");
+        return;
+      }
+      this.requestRegister(this.user);
+    },
+    clickAuthCheck: function(){
+      var check={
+        userId:this.user.userId,
+        code:this.code
+      }
+      http.post('https://i5d102.p.ssafy.io/api/v3/email/check', check) 
+      .then(() => {
+        this.$fire({
+                title:"인증 결과",
+                text: "인증이 확인되었습니다.",
+                type: "success",
+        });
+        this.isActive=true;
+      }) 
+      .catch(() => {
+        this.$fire({
+                title:"인증 결과",
+                text: "인증이 실패되었습니다. 코드를 다시 확인해주세요!",
+                type: "error",
+        });
+      })
+    },
+    clickEmailAuth: function(){
+      if(this.getAvaliableId==false){
+          this.$alert("아이디를 다시 확인해주세요.");
+          return;
+      }
+      if(this.user.name==""){
+        this.$alert("이름을 입력해주세요.");
+        return;
+      }
+      if(this.user.email==""){
+        this.$alert("이메일을 입력해주세요.");
+        return;
+      }
+      let emailAuth={
+        name:this.user.name,
+        userId:this.user.userId,
+        email:this.user.email,
+      }
+      this.isCheck=true;
+      this.isShow=true;
+      this.checkEmail=true;
+      this.requestEmail(emailAuth);
+      this.$fire({
+                title:"이메일을 확인해주세요",
+                text: "메일이 전송되었습니다.(약 1분 정도 소요됩니다.)",
+                type: "success",
+        }
+      );
     },
     clickDuplicate: function (){
       this.requestDuplicate(this.user.userId);
@@ -167,6 +256,15 @@ export default {
         this.errors.maxID=true;
       }
       return;
+    },
+    checkCode(){
+      if(this.code==''){
+        this.errors.requireCode=false;
+        return;
+      }else{
+        this.errors.requireCode=true;
+        return; 
+      }
     },
     checkPass(){
       if(this.user.password==''){
@@ -256,4 +354,7 @@ export default {
 };
 </script>
 <style scoped>
+.btn-style-one:disabled {
+  -webkit-filter: grayscale(100%);
+}
 </style>

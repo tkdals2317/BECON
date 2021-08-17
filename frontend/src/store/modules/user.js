@@ -1,6 +1,6 @@
 import http from '@/common/lib/http';
 import router from "@/router/index";
-
+import VueSimpleAlert from "vue-simple-alert";
 export default {
   namespaced: true,
   state: {
@@ -52,12 +52,13 @@ export default {
       http
         .post(`/api/v1/auth/login`, user)
         .then(({ data }) => {
+          console.log(data);
           commit("LOGIN", {payload: data, user: user});
           // alert('로그인되었습니다.');
           router.push('/');
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          VueSimpleAlert.alert(err.response.data.message);
           console.error();
         });
     },
@@ -77,7 +78,7 @@ export default {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then(() => {
-          alert('회원가입되었습니다.')
+          VueSimpleAlert.alert('회원가입되었습니다.')
           router.push('/');
         })
         .catch(() => {
@@ -88,7 +89,7 @@ export default {
       http
         .get(`/api/v1/users/`+userId)
         .then((res) => {
-          alert(res.data.message);
+          VueSimpleAlert.alert(res.data.message);
           commit("USERID", true);
         })
         .catch((error) => {
@@ -126,7 +127,7 @@ export default {
         })
         .then(({ data })=>{
           commit("USERINFO", data);
-          alert('회원정보가 수정 되었습니다.')
+          VueSimpleAlert.alert('회원정보가 수정 되었습니다.')
           window.location.reload();
           this.requestUserInfo();
         })
@@ -141,7 +142,7 @@ export default {
           headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
         })
         .then(()=>{
-          alert('회원탈퇴가 완료 되었습니다.')
+          VueSimpleAlert.alert('회원탈퇴가 완료 되었습니다.')
         })
         .catch(() => {
           alert();
@@ -152,8 +153,6 @@ export default {
       http
         .get(`/api/v1/users/count/total`)
         .then(({ data }) => {
-          console.log('여기');
-          console.log(data);
           commit("SET_TOTAL_USER", data);
         })
         .catch((err) => {

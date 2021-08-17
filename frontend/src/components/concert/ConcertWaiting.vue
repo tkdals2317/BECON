@@ -23,7 +23,7 @@
         <div class="link-box">
           <router-link class="theme-btn btn-style-one"
             to="ConcertPage" tag="button" :disabled="isActive" 
-          > <!-- isActive -> false -->
+          >
             <i class="btn-curve"></i>
             <span class="btn-title">입장하기</span>
           </router-link>
@@ -54,14 +54,11 @@ export default {
   },
   
   created() {
-    // window.scrollTo(0, 0);
     this.setTimer();
 
     this.userId = this.getUserId;
     this.roomId = this.getRoomId;
 
-    console.log('아이디:'+this.userId);
-    console.log('방번호:'+this.roomId+'x');
     this.connection();
     this.register();
   },
@@ -108,14 +105,11 @@ export default {
     },
     connection() {
       this.ws = webSocket();
-      console.info("message: ");
       this.ws.onmessage = (message) => {
         var parsedMessage = JSON.parse(message.data);
-        console.info("Received message: "+parsedMessage);
 
         switch (parsedMessage.id) {
           case "existingParticipants":
-            console.log(parsedMessage);
             this.onExistingParticipants(parsedMessage);
             break;
           case "newParticipantArrived":
@@ -161,7 +155,6 @@ export default {
         this.ws.close();
     },
     onExistingParticipants(response) {
-      console.log(this.userId + " registered in room " + this.roomId);
       for (var name in response.data) {
         var person = new Participant(response.data[name], this.sendMessageRTC);
         this.participants[response.data[name]] = person;
@@ -174,7 +167,6 @@ export default {
       this.participants[sender] = participant;
     },
     onParticipantLeft(request) {
-      console.log("Participant " + request.name + " left");
       var participant = this.participants[request.name];
       participant.dispose();
       delete this.participants[request.name];

@@ -2,7 +2,7 @@
   <div>
     <Nav />
     <PageHeader title="Concert Confirm" />
-    <ConcertConfirm :concert="$route.params.concert"/>
+    <ConcertConfirm />
     <Footer />
   </div>
 </template>

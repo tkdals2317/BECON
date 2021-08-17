@@ -7,6 +7,7 @@ export default {
     playing: 0,
     categories: [],
     concertInfos: [],
+    concertSchedule:[],
     registConcertList: {},
     concertDetail: [],
     comingConcerts: [],
@@ -23,6 +24,10 @@ export default {
     getConcertInfos(state) {
       return state.concertInfos;
     },
+    getConcertSchedule(state) {
+      console.log(state);
+      return state.concertSchedule;
+    },
     getRegistConcertList(state) {
       return state.registConcertList;
     },
@@ -32,7 +37,7 @@ export default {
     getComingConcert(state) {
       return state.comingConcerts;
     },
-    getConfrimConcert(state) {
+    getConfirmConcert(state) {
       return state.concertConfirm;
     },
     getTotalConcert(state) {
@@ -49,6 +54,10 @@ export default {
     },
     CONCERT(state, payload) {
       state.concertInfos = payload;
+    },
+    CONCERTSCHEDULE(state, payload) {
+      console.log(payload);
+      state.concertSchedule = payload;
     },
     REGISTCONCERT(state, payload) {
       state.registConcertList = payload;
@@ -96,22 +105,7 @@ export default {
           commit("GET_CONFIRM_CONCERT", data);
         })
         .catch((error) => {
-          if (error.response) {
-            // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
-          else if (error.request) {
-            // 요청이 이루어 졌으나 응답을 받지 못했습니다.
-            // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
-            // Node.js의 http.ClientRequest 인스턴스입니다.
-            console.log(error.request);
-          }
-          else {
-            // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
-            console.log('Error', error.message);
-          }
+          console.log(error);
         });
     },
     requestCategory({ commit }) {
@@ -125,7 +119,19 @@ export default {
         });
     },
     requestConcert({ commit }, category) {
-      http
+      if(category=="All"){
+        http
+        .get("/api/v2/concert/findByCategory/" + category)
+        .then(({ data }) => {
+          console.log(data);
+          commit("CONCERTSCHEDULE", data);
+          commit("CONCERT", data);
+        })
+        .catch(() => {
+          console.error();
+        });
+      }else{
+        http
         .get("/api/v2/concert/findByCategory/" + category)
         .then(({ data }) => {
           commit("CONCERT", data);
@@ -133,6 +139,8 @@ export default {
         .catch(() => {
           console.error();
         });
+      }
+      
     },
     requestCheckConcert({ commit }) {
       const CSRF_TOKEN = localStorage.getItem("accessToken");
@@ -147,18 +155,8 @@ export default {
           console.error();
         });
     },
-    findConcertDetail({ commit }, concertId) {
-      const CSRF_TOKEN = localStorage.getItem("accessToken");
-      http
-        .get(`/api/v2/concert/${concertId}`, {
-          headers: { Authorization: "Bearer " + CSRF_TOKEN },
-        })
-        .then(({ data }) => {
-          commit("DETAIL", data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    findConcertDetail({ commit }, concert) {
+      commit("DETAIL", concert);
     },
     findComingConcert({ commit }) {
       http

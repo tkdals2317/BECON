@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.api.request.ConcertRegisterPostReq;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
+import com.ssafy.db.entity.ConcertPoster;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserConcert;
@@ -25,7 +27,7 @@ public class ConcertServiceImpl implements ConcertService {
 
 	@Transactional
 	@Override
-	public Concert createConcert(ConcertRegisterPostReq request, ConcertThumbnail fileId, User userId,
+	public Concert createConcert(ConcertRegisterPostReq request, ConcertPoster posterId, ConcertThumbnail thumbnailId, User userId,
 			ConcertCategory categoryId) {
 		Concert concert = new Concert();
 		concert.setTitle(request.getTitle());
@@ -35,11 +37,12 @@ public class ConcertServiceImpl implements ConcertService {
 		concert.setPriceStand(request.getPriceStand());
 		concert.setPriceVip(request.getPriceVip());
 		concert.setIsActive(0);
-		concert.setThumbnail(fileId);
+		concert.setPoster(posterId);
+		concert.setThumbnail(thumbnailId);
 		concert.setUser(userId);
 		concert.setCategory(categoryId);
 		concert.setMinAge(request.getMinAge());
-
+		System.out.println(concert.getPoster().getOriginName());
 		Concert temp = concertRepository.save(concert);
 
 		return temp;
@@ -47,12 +50,13 @@ public class ConcertServiceImpl implements ConcertService {
 
 	@Override
 	public List<Concert> findByCategory(Long category) {
-		return concertRepository.findByCategoryId(category);
+		List<Concert> concert=concertRepository.findByCategoryId(category);
+		return concert;
 	}
 
 	@Override
 	public List<Concert> findConcerts() {
-		return concertRepository.findAll();
+		return concertRepository.findAll(Sort.by(Sort.Direction.ASC, "startTime"));
 	}
 
 	@Override

@@ -47,11 +47,4 @@ public class ConcertThumbnailServiceImpl implements ConcertThumbnailService {
 
 		return concertThumbnailInfo;
 	}
-	
-//	public static void main(String[] args) throws IOException {
-//		System.out.println(System.getProperty("user.dir"));
-//		System.out.println(System.getProperty("user.home").concat("/S05P12D102/frontend/dist/img"));
-//		File file = new File("../frontend/dist/img");
-//		System.out.println(file.getCanonicalPath());
-//	}
 }

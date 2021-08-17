@@ -3732,8 +3732,9 @@ img.lazy-image.loaded {
 
 .gallery-item .inner-box .image img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 400px;
+  object-fit: fill;
   -webkit-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
@@ -7202,7 +7203,7 @@ img.lazy-image.loaded {
 
 .we-work-section {
   position: relative;
-  padding: 120px 0 80px;
+  padding: 100px 0 80px;
 }
 
 .work-tabs {
@@ -7298,7 +7299,9 @@ img.lazy-image.loaded {
 
 .work-tabs .tabs-content .image img {
   display: block;
-  width: 100%;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
   -webkit-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
@@ -9339,6 +9342,7 @@ img.lazy-image.loaded {
   display: block;
   width: 1170px;
   height: 580px;
+  object-fit: scale-down;
   -webkit-filter: grayscale(100%);
   -ms-filter: grayscale(100%);
   -moz-filter: grayscale(100%);

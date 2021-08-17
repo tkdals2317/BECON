@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import com.ssafy.db.entity.Concert;
+import com.ssafy.db.entity.ConcertPoster;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.UserConcert;
 import io.swagger.annotations.ApiModel;
@@ -28,6 +29,8 @@ public class ConcertDetailRes{
 	String startTime;
 	@ApiModelProperty(name="EndTime")
 	String endTime;
+	@ApiModelProperty(name="Poster")
+	ConcertPoster poster;
 	@ApiModelProperty(name="Thumbnail")
 	ConcertThumbnail thumbnail;
 	@ApiModelProperty(name="Title")
@@ -53,6 +56,7 @@ public class ConcertDetailRes{
 		res.setOwner(concert.get().getUser().getName());
 		res.setStartTime(concert.get().getStartTime());
 		res.setEndTime(concert.get().getEndTime());
+		res.setPoster(concert.get().getPoster());
 		res.setThumbnail(concert.get().getThumbnail());
 		res.setTitle(concert.get().getTitle());
 		res.setPriceStand(concert.get().getPriceStand());

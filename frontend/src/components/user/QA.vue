@@ -2,40 +2,32 @@
   <section class="get-quote-three">
     <div class="auto-container">
       <div class="sec-title centered">
-        <h2>문의사항<span class="dot">.</span></h2>
+        <h2>Q&A<span class="dot">.</span></h2>
       </div>
       <div class="form-box">
         <div class="default-form">
-          <form method="post" action="#" id="contact-form">
             <div class="row clearfix">
-              <div class="form-group col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group col-lg-6 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.name" name="username" value="" placeholder="이름" required="" @blur="checkName()">
+                  <input type="text" v-model="getUserInfo.userName" name="name" value="" readonly>
                   <div v-if="!errors.requireName" style="color:red;" >필수 입력 항목입니다.</div>
                 </div>
               </div>
               <div class="form-group col-lg-6 col-md-6 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.email" name="email" value="" placeholder="becon@becon.com" required="" @blur="[checkEmail(),matchEmail()]">
+                  <input type="text" v-model="getUserInfo.userEmail" name="email" value="" readonly>
                   <div v-if="!errors.requireEmail" style="color:red;">필수 입력 항목입니다.</div>
                   <div v-if="!errors.matchEmail" style="color:red;">이메일 형식이 맞지 않습니다.</div>
                 </div>
               </div>
-              <div class="form-group col-lg-6 col-md-6 col-sm-12">
+              <div class="form-group col-lg-12 col-md-6 col-sm-12">
                 <div class="field-inner">
-                  <input type="text" v-model="user.phone" name="phone" value="" placeholder="010-1234-5678" required="" @blur="[checkPhone(), matchPhone()]">
-                  <div v-if="!errors.requirePhone" style="color:red;">필수 입력 항목입니다.</div>
-                  <div v-if="!errors.matchPhone" style="color:red;">전화번호 형식이 맞지 않습니다.</div>
-                </div>
-              </div>
-              <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                <div class="field-inner">
-                  <input type="text" name="subject" value="" placeholder="Subject" required="">
+                  <input type="text" v-model="title" name="subject" value="" placeholder="Subject" required="">
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
                 <div class="field-inner">
-                  <textarea name="message" placeholder="Write Message" required=""></textarea>
+                  <textarea name="contents" v-model="contents" placeholder="Write Contents" required=""></textarea>
                 </div>
               </div>
               <div class="form-group col-lg-12 col-md-12 col-sm-12">
@@ -45,7 +37,6 @@
                 </button>
               </div>
             </div>
-          </form>
         </div>
       </div>
     </div>
@@ -53,15 +44,15 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex';
 export default {
   name: "QA",
   data() {
     return {
-      user: {
-          name: '',
-          phone: '',
-          email: '',
-      },
+      name: '',
+      email: '',
+      title:'',
+      contents:'',
       errors: {
         requireName:true,
         requirePhone:true,
@@ -71,10 +62,33 @@ export default {
       }
     }
   },
+  computed :{
+    ...mapGetters('user',['getUserInfo']),
+  },
+  created(){
+    window.scrollTo(0, 0);
+    this.init();
+  },
   methods: {
+    ...mapActions('user',['requestUserInfo']),
+    ...mapActions('email',['requestQnA']),
+    init(){
+      this.requestUserInfo();
+    },
     clickMessage() {
-      alert('문의 접수가 완료되었습니다.')
-      this.$router.push('/')
+      var qna={
+        email:this.getUserInfo.userEmail,
+        name:this.getUserInfo.userName,
+        title:this.title,
+        content:this.contents,
+      }
+      this.requestQnA(qna);
+      this.$fire({
+          title:"문의 완료",
+          text: "문의사항이 담당자에게 전달되었습니다!",
+          type: "success",
+      });
+      this.$router.push("/qnaresult");
     },
     checkName(){
       if(!this.user.name){

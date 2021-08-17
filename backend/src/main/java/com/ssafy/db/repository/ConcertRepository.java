@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.db.entity.Concert;
 
+import io.lettuce.core.dynamic.annotation.Param;
+import retrofit2.http.DELETE;
+
 @Repository
 public interface ConcertRepository extends JpaRepository<Concert, Long> {
 	List<Concert> findByCategoryId(Long category);
@@ -20,7 +23,7 @@ public interface ConcertRepository extends JpaRepository<Concert, Long> {
 	
 	@Query("SELECT c " + 
 			"FROM Concert c " + 
-			"WHERE TIME_TO_SEC(TIMEDIFF(c.startTime, NOW())) BETWEEN -1800 AND 3600 " +
+			"WHERE c.isActive in (1, 2) " +
 			"ORDER BY c.startTime")
 	List<Concert> findComingConcert();
 	
@@ -45,4 +48,10 @@ public interface ConcertRepository extends JpaRepository<Concert, Long> {
 			"WHERE TIME_TO_SEC(TIMEDIFF(c.endTime, NOW())) BETWEEN -60 AND 0 " +
 			"AND c.isActive = 2")
 	void updateEndConcert();
+	
+//	@Transactional
+//    @Modifying
+//    @Query("Delete from Concert c WHERE c.ownerId in :ids")
+//	void deleteConcertByOwnerId(@Param("ids") String ids);
+	
 }

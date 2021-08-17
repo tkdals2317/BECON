@@ -2,17 +2,17 @@
   <section class="banner-section banner-three">
     <div class="left-based-text">
       <div class="base-inner">
-        <div class="hours">
+        <!-- <div class="hours">
           <ul class="clearfix">
             <li><span>mon - fri</span></li>
             <li><span>9am - 7pm</span></li>
           </ul>
-        </div>
+        </div> -->
         <div class="social-links">
           <ul class="clearfix">
-            <li><a href="#"><span>Twitter</span></a></li>
-            <li><a href="#"><span>Facebook</span></a></li>
-            <li><a href="#"><span>Youtube</span></a></li>
+            <li><a href="https://www.instagram.com/accounts/login/"><span>instagram</span></a></li>
+            <li><a href="https://ko-kr.facebook.com/login/web/"><span>Facebook</span></a></li>
+            <li><a href="https://www.youtube.com/results?search_query=becon"><span>Youtube</span></a></li>
           </ul>
         </div>
       </div>
@@ -36,9 +36,9 @@
                   <h1>TOP <br>ONE <br>MUSICAIN</h1>
                   <div class="text">best of best music</div>
                   <div class="link-box">
-                    <router-link class="theme-btn btn-style-two" to="/about">
+                    <router-link class="theme-btn btn-style-two" to="/concertSchedule">
                       <i class="btn-curve"></i>
-                      <span class="btn-title">Discover More</span>
+                      <span class="btn-title">Line Up</span>
                     </router-link>
                   </div>
                 </div>
@@ -62,7 +62,7 @@
                   <h1>TOP <br>TWO <br>MUSICAIN</h1>
                 <div class="text">best of best music</div>
                 <div class="link-box">
-                  <router-link class="theme-btn btn-style-two" to="/about">
+                  <router-link class="theme-btn btn-style-two" to="/concertSchedule">
                     <i class="btn-curve"></i>
                     <span class="btn-title">Discover More</span>
                   </router-link>
@@ -88,7 +88,7 @@
                   <h1>TOP <br>THREE <br>MUSICAIN</h1>
                 <div class="text">best of best music</div>
                 <div class="link-box">
-                  <router-link class="theme-btn btn-style-two" to="/about">
+                  <router-link class="theme-btn btn-style-two" to="/concertSchedule">
                     <i class="btn-curve"></i>
                     <span class="btn-title">Discover More</span>
                   </router-link>

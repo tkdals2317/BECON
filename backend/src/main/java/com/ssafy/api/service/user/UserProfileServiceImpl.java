@@ -26,14 +26,14 @@ public class UserProfileServiceImpl implements UserProfileService {
 	
 	@Transactional
 	@Override
-	public UserProfilePostReq setFile(MultipartFile files) throws NoSuchAlgorithmException, IllegalStateException, IOException {
+	public UserProfilePostReq setFile(MultipartFile files, String userId) throws NoSuchAlgorithmException, IllegalStateException, IOException {
 		UserProfilePostReq userProfileInfo = null;
 		String basePath = "/images/profile";
 
 		if(files!=null) {
 			String origFilename = files.getOriginalFilename();
-	        String filename = new MD5Generator(origFilename).toString();
-			String filePath = basePath + "/" + origFilename;
+	        String filename = new MD5Generator(userId).toString();
+			String filePath = basePath + "/" + userId + ".png";
             files.transferTo(new File(filePath));
             
             userProfileInfo=new UserProfilePostReq();

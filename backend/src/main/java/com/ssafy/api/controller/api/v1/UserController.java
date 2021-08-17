@@ -29,6 +29,7 @@ import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserProfile;
+import com.ssafy.db.repository.ConcertRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -60,7 +61,7 @@ public class UserController {
 		
 		User user;
 		try{
-            UserProfile fileId = userProfileService.saveFile(userProfileService.setFile(files));
+            UserProfile fileId = userProfileService.saveFile(userProfileService.setFile(files, registerInfo.getUserId()));
 			user = userService.createUser(registerInfo, fileId);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
@@ -158,10 +159,10 @@ public class UserController {
         @ApiResponse(code = 409, message = "실패")
     })
 	public ResponseEntity<? extends BaseResponseBody> delete(
-			@ApiIgnore Authentication authentication,
+//			@ApiIgnore Authentication authentication,
 			@PathVariable("userId") @ApiParam(value="회원 아이디", required = true) String userId) {
-		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
-		String existId = userDetails.getUsername();
+//		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		String existId = "test";
 		Optional<User> rows;
 		try{
 			System.out.println(userId);
