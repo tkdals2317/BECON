@@ -126,7 +126,6 @@ public class Room implements Closeable {
   }
 
   public void sendParticipantNames(UserSession user) throws IOException {
-
     final JsonArray participantsArray = new JsonArray();
     for (final UserSession participant : this.getParticipants()) {
       if (!participant.equals(user)) {

@@ -20,7 +20,7 @@ public interface ConcertRepository extends JpaRepository<Concert, Long> {
 	
 	@Query("SELECT c " + 
 			"FROM Concert c " + 
-			"WHERE TIME_TO_SEC(TIMEDIFF(c.startTime, NOW())) BETWEEN -1800 AND 3600 " +
+			"WHERE c.isActive in (1, 2) " +
 			"ORDER BY c.startTime")
 	List<Concert> findComingConcert();
 	

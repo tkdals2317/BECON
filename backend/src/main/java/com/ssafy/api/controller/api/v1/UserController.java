@@ -60,7 +60,7 @@ public class UserController {
 		
 		User user;
 		try{
-            UserProfile fileId = userProfileService.saveFile(userProfileService.setFile(files));
+            UserProfile fileId = userProfileService.saveFile(userProfileService.setFile(files, registerInfo.getUserId()));
 			user = userService.createUser(registerInfo, fileId);
 		}catch(SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
