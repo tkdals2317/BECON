@@ -3,7 +3,7 @@
     <section class="project-single style-two">
       <div class="auto-container">
         <figure class="image-box">
-          <img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${getDetail.thumbnail.originName}`" alt="">
+          <img :src="`https://i5d102.p.ssafy.io/posterImg/${getDetail.poster.originName}`" alt="">
         </figure>
         <div class="text-content">
           <div class="row clearfix">

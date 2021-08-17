@@ -125,18 +125,29 @@
               <div v-if="!errors.requireAge" style="color:red;">공연관람 등급을 선택해주세요.</div>
             </div>
            
-            <div class="form-group col-lg-3 col-md-12 col-sm-12">
-              <div class="field-inner" style="margin-top:20px; font-size:18px;">
-                *공연 포스터
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner" style="margin:20px -5px 0px 0px; font-size:17px;">
+                *Poster
               </div>
             </div>
-            <div class="form-group col-lg-5 col-md-12 col-sm-12">
+            <div class="form-group col-lg-4 col-md-12 col-sm-12">
               <div class="field-inner">
-                <input accept=".jpg, .png" type="file" ref="picture" name="files" required="" @blur="checkFile()"/>
+                <input accept=".jpg, .png" type="file" ref="picture1" name="files1" required="" @blur="checkPoster()"/>
               </div>
-              <div v-if="!errors.requireFile" style="color:red;">필수 입력 항목입니다.</div>
+              <div v-if="!errors.requirePoster" style="color:red;">필수 입력 항목입니다.</div>
             </div>
-             <div class="form-group col-lg-4 col-md-12 col-sm-12">
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <div class="field-inner" style="margin:20px -5px 0px 0px; font-size:17px;">
+                *Thumbnail
+              </div>
+            </div>
+            <div class="form-group col-lg-4 col-md-12 col-sm-12">
+              <div class="field-inner">
+                <input accept=".jpg, .png" type="file" ref="picture2" name="files2" required="" @blur="checkThumbnail()"/>
+              </div>
+              <div v-if="!errors.requireThumbnail" style="color:red;">필수 입력 항목입니다.</div>
+            </div>
+            <div class="form-group col-lg-12 col-md-12 col-sm-12">
               <div class="field-inner">
                 <select
                   v-model="concert.categoryName"
@@ -190,7 +201,8 @@ export default {
         priceStand: "",
         minAge: "",
         categoryName: "",
-        files: null,
+        files1: null,
+        files2: null,
       },
       time: {
         startDay: "",
@@ -206,7 +218,8 @@ export default {
           requireAge:true,
           checkVPrice:true,
           checkSPrice:true,
-          requireFile:true,
+          requirePoster:true,
+          requireThumbnail:true,
           requireCtegory:true,
       },
       Stimearr:[],
@@ -228,7 +241,8 @@ export default {
     clickRegistConcert: function () {
       this.concert.startTime = this.time.startDay + " " + this.time.startClock;
       this.concert.endTime = this.time.startDay + " " + this.time.endClock;
-      this.concert.files = this.$refs.picture.files[0];
+      this.concert.files1 = this.$refs.picture1.files1[0];
+      this.concert.files2 = this.$refs.picture2.files2[0];
       for (var item in this.concert) {
         if(this.concert[item]==""){
           alert("신청서를 다시 확인해주세요.");
@@ -294,11 +308,18 @@ export default {
         this.errors.requireAge=true;
       }
     },
-    checkFile(){
-      if(!this.$refs.picture.files[0]){
-        this.errors.requireFile=false;
+    checkPoster(){
+      if(!this.$refs.picture1.files1[0]){
+        this.errors.requirePoster=false;
       }else{
-        this.errors.requireFile=true;
+        this.errors.requirePoster=true;
+      }return;
+    },
+    checkThumbnail(){
+      if(!this.$refs.picture2.files2[0]){
+        this.errors.requireThumbnail=false;
+      }else{
+        this.errors.requireThumbnail=true;
       }return;
     },
     checkCategory(){

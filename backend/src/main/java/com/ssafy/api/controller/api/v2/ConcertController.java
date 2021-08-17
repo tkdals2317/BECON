@@ -1,5 +1,6 @@
 package com.ssafy.api.controller.api.v2;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ import com.ssafy.api.request.ConcertRegisterPostReq;
 import com.ssafy.api.response.ConcertDetailRes;
 import com.ssafy.api.response.ConcertRes;
 import com.ssafy.api.service.concert.ConcertCategoryService;
+import com.ssafy.api.service.concert.ConcertPosterService;
 import com.ssafy.api.service.concert.ConcertService;
 import com.ssafy.api.service.concert.ConcertThumbnailService;
 import com.ssafy.api.service.user.UserService;
@@ -30,6 +32,7 @@ import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
+import com.ssafy.db.entity.ConcertPoster;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserConcert;
@@ -52,6 +55,8 @@ public class ConcertController {
 	@Autowired
 	ConcertThumbnailService concertThumbnailService;
 	@Autowired
+	ConcertPosterService concertPosterService;
+	@Autowired
 	ConcertCategoryService concertCategoryService;
 
 	@GetMapping("/concert-categories")
@@ -66,17 +71,20 @@ public class ConcertController {
 	@PostMapping("/regist")
 	@ApiOperation(value = "공연 신청", notes = "공연을 신청을 한다.")
 	@ApiResponses({ @ApiResponse(code = 201, message = "성공"), })
-	public ResponseEntity<? extends BaseResponseBody> regist(@ApiIgnore Authentication authentication,
+	public ResponseEntity<? extends BaseResponseBody> regist(
+			@ApiIgnore Authentication authentication,
 			@ApiParam(value = "공연 신청 정보", required = true) ConcertRegisterPostReq registerInfo,
-			@ApiParam(value = "공연 포스터", required = true) MultipartFile files) {
+			@ApiParam(value = "공연 포스터", required = true) MultipartFile files1,
+			@ApiParam(value = "공연 포스터", required = true) MultipartFile files2) {
 		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
-		String userId = userDetails.getUsername();
+		String userId = "alswn8972";
 		Concert concert = new Concert();
 		try {
-			ConcertThumbnail fileId = concertThumbnailService.saveFile(concertThumbnailService.setFile(files));
+			ConcertPoster posterId = concertPosterService.saveFile(concertPosterService.setFile(files1));
+			ConcertThumbnail thumbNailId = concertThumbnailService.saveFile(concertThumbnailService.setFile(files2));
 			User user = userService.getUserByUserId(userId);
 			ConcertCategory category = concertCategoryService.getCategoryByCategoryId(registerInfo.getCategoryName());
-			concert = concertService.createConcert(registerInfo, fileId, user, category);
+			concert = concertService.createConcert(registerInfo, posterId, thumbNailId, user, category);
 		} catch (SignatureVerificationException | JWTDecodeException e) {
 			return ResponseEntity.status(401).body(BaseResponseBody.of(401, "세션이 유효하지 않습니다."));
 		} catch (TokenExpiredException e) {
@@ -99,8 +107,8 @@ public class ConcertController {
 		List<Concert> concertList = null;
 		try {
 			if (category.equals("All")) {
-				System.out.println("category");
 				concertList = concertService.findConcerts();
+
 			} else {
 				ConcertCategory categoryId = concertCategoryService.getCategoryByCategoryId(category);
 				System.out.println(category + " " + categoryId.getId());

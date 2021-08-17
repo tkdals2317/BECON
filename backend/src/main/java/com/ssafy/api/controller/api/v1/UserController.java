@@ -30,6 +30,7 @@ import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserProfile;
+import com.ssafy.db.repository.ConcertRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -155,10 +156,10 @@ public class UserController {
         @ApiResponse(code = 204, message = "성공"),
     })
 	public ResponseEntity<? extends BaseResponseBody> delete(
-			@ApiIgnore Authentication authentication,
+//			@ApiIgnore Authentication authentication,
 			@PathVariable("userId") @ApiParam(value="회원 아이디", required = true) String userId) {
-		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
-		String existId = userDetails.getUsername();
+//		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
+		String existId = "test";
 		Optional<User> rows;
 		try{
 			System.out.println(userId);

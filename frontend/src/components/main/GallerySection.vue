@@ -30,7 +30,7 @@
                 <div class="inner-box" @click="goDetail(concertInfo)">
                   <figure class="image">
                     <img
-                      :src="`https://i5d102.p.ssafy.io/thumbnailImg/${concertInfo.thumbnail.originName}`"
+                      :src="`https://i5d102.p.ssafy.io/posterImg/${getDetail.poster.originName}`"
                       alt=""
                     />
                   </figure>

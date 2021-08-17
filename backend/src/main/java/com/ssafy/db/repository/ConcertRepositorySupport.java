@@ -37,6 +37,7 @@ public class ConcertRepositorySupport {
 	
 	@Transactional
 	public void deleteConcertByOwnerId(String ownerId) {
+		System.out.println(ownerId);
 		jpaQueryFactory.delete(qConcert)
 		.where(qConcert.user.userId.eq(ownerId)).execute();
 	}

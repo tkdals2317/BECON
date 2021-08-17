@@ -44,6 +44,8 @@ public class QConcert extends EntityPathBase<Concert> {
     public final StringPath startTime = createString("startTime");
 
     public final QConcertThumbnail thumbnail;
+    
+    public final QConcertPoster poster;
 
     public final StringPath title = createString("title");
 
@@ -71,6 +73,7 @@ public class QConcert extends EntityPathBase<Concert> {
         super(type, metadata, inits);
         this.category = inits.isInitialized("category") ? new QConcertCategory(forProperty("category")) : null;
         this.thumbnail = inits.isInitialized("thumbnail") ? new QConcertThumbnail(forProperty("thumbnail")) : null;
+        this.poster = inits.isInitialized("poster") ? new QConcertPoster(forProperty("poster")) : null;        
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user"), inits.get("user")) : null;
     }
 
