@@ -25,7 +25,7 @@
                       <a href="https://ko-kr.facebook.com/login/web/"><span class="fab fa-facebook-square"></span></a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/accounts/login/  "><span class="fab fa-instagram"></span></a>
+                      <a href="https://www.instagram.com/accounts/login/"><span class="fab fa-instagram"></span></a>
                     </li>
                     <li>
                       <a href="service"><span class="fab fa-pinterest-p"></span></a>

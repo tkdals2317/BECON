@@ -2,12 +2,12 @@
   <section class="banner-section banner-three">
     <div class="left-based-text">
       <div class="base-inner">
-        <div class="hours">
+        <!-- <div class="hours">
           <ul class="clearfix">
             <li><span>mon - fri</span></li>
             <li><span>9am - 7pm</span></li>
           </ul>
-        </div>
+        </div> -->
         <div class="social-links">
           <ul class="clearfix">
             <li><a href="https://www.instagram.com/accounts/login/"><span>instagram</span></a></li>

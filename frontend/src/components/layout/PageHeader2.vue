@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .image-layer {
-  background-image: url('../../common/images/banner1.jpg');
+  background-image: url('../../common/images/banner2.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
