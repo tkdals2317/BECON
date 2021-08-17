@@ -42,7 +42,7 @@ public class ConcertServiceImpl implements ConcertService {
 		concert.setUser(userId);
 		concert.setCategory(categoryId);
 		concert.setMinAge(request.getMinAge());
-
+		System.out.println(concert.getPoster().getOriginName());
 		Concert temp = concertRepository.save(concert);
 
 		return temp;

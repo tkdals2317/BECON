@@ -11,5 +11,5 @@ import com.ssafy.db.entity.ConcertPoster;
 
 public interface ConcertPosterService {
 	ConcertPosterPostReq setFile(MultipartFile files) throws UnsupportedEncodingException, NoSuchAlgorithmException, IllegalStateException, IOException;
-	ConcertPoster saveFile(ConcertPosterPostReq concertTumbnailInfo);
+	ConcertPoster saveFile(ConcertPosterPostReq concertPosterInfo);
 }

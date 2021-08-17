@@ -38,7 +38,7 @@ public class ConcertRes extends BaseResponseBody{
 	@ApiModelProperty(name="공연 섬네일 이미지", example="jpg")
 	ConcertThumbnail concertThumbnail;
 	@ApiModelProperty(name="공연 포스터 이미지", example="jpg")
-	ConcertPoster concertposter;
+	ConcertPoster concertPoster;
 	public static ConcertRes of(Concert concert) {
 		ConcertRes res=new ConcertRes();
 		res.setTitle(concert.getTitle());
@@ -51,7 +51,7 @@ public class ConcertRes extends BaseResponseBody{
 		res.setCategory(concert.getCategory());
 		res.setMinAge(concert.getMinAge());
 		res.setConcertThumbnail(concert.getThumbnail());
-		res.setConcertposter(concert.getPoster());
+		res.setConcertPoster(concert.getPoster());
 		return res;
 	}
 }
