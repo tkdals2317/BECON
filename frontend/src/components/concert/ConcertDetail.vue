@@ -3,7 +3,7 @@
     <section class="project-single style-two">
       <div class="auto-container">
         <figure class="image-box">
-          <img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${getDetail.thumbnail.originName}`" alt="">
+          <img :src="`https://i5d102.p.ssafy.io/posterImg/${getDetail.poster.originName}`" alt="">
         </figure>
         <div class="text-content">
           <div class="row clearfix">
@@ -11,7 +11,7 @@
             <div class="text-col col-lg-8 col-md-12 col-sm-12">
               <div class="inner">
                 <h5>Concert description</h5>
-                <p>{{ getDetail.decription }}</p>
+                <p>{{ getDetail.description }}</p>
               </div>
             </div>
             <!-- Text COl -->
@@ -19,9 +19,10 @@
               <div class="inner">
                 <ul class="info">
                   <li><strong>Concert</strong> <br><br>{{ getDetail.title }}</li>
-                  <li><strong>Category</strong> <br><br>{{ getDetail.category }}</li>
+                  <li><strong>Category</strong> <br><br>{{ getDetail.category.name }}</li>
                   <li><strong>Date</strong> <br><br>{{ getDetail.startTime }}</li>
-                  <li><strong>관람등급</strong> <br><br>만 {{ getDetail.minAge }}세 이상 관람가</li>
+                  <li><strong>관람등급</strong> <br><br>{{ getDetail.minAge }}세 관람가</li>
+
                   <button class="theme-btn btn-style-one">
                     <i class="btn-curve"></i>
                     <span class="btn-title" type="button" @click="goTicketing(getDetail)">Ticket!</span>
@@ -44,16 +45,15 @@ import { mapActions, mapGetters } from "vuex";
 
   export default {
     name: "ConcertDetail",
-    props: {
-      concertId: Number,
-    },
     computed: {
       ...mapGetters("concert", ["getDetail"]),
     },
     methods: {
       ...mapActions("concert", ["findConcertDetail"]),
+      ...mapActions("ticket", ["selectTicket"]),
       goTicketing(concert) {
-        this.$router.push({name: 'Ticketing', params:{ concert: concert } })
+        this.selectTicket(concert)
+        this.$router.push({name: 'Ticketing'})
       },
     },
     create(){
@@ -69,7 +69,7 @@ import { mapActions, mapGetters } from "vuex";
       });
     },
     created() {
-      this.findConcertDetail(this.concertId);
+      window.scrollTo(0, 0);
     }
   }
 </script>

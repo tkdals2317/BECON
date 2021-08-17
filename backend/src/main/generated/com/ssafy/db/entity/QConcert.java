@@ -37,6 +37,8 @@ public class QConcert extends EntityPathBase<Concert> {
 
     public final NumberPath<Integer> minAge = createNumber("minAge", Integer.class);
 
+    public final QConcertPoster poster;
+
     public final NumberPath<Integer> priceStand = createNumber("priceStand", Integer.class);
 
     public final NumberPath<Integer> priceVip = createNumber("priceVip", Integer.class);
@@ -70,6 +72,7 @@ public class QConcert extends EntityPathBase<Concert> {
     public QConcert(Class<? extends Concert> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.category = inits.isInitialized("category") ? new QConcertCategory(forProperty("category")) : null;
+        this.poster = inits.isInitialized("poster") ? new QConcertPoster(forProperty("poster")) : null;
         this.thumbnail = inits.isInitialized("thumbnail") ? new QConcertThumbnail(forProperty("thumbnail")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user"), inits.get("user")) : null;
     }

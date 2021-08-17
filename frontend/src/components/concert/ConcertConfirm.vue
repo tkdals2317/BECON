@@ -7,8 +7,8 @@
             <div class="form-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
               <div class="default-form">
                 <h4>신청 내역<span>.</span></h4>
-                <div class="thumbnail_tag" v-if="getConfrimConcert">
-                    <img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${getConfrimConcert.concertThumbnail.originName}`" class="프로필">
+                <div class="thumbnail_tag" v-if="getConfirmConcert">
+                    <img :src="`https://i5d102.p.ssafy.io/posterImg/${getConfirmConcert.concertposter.originName}`" class="프로필">
                   </div>
                 <div class="row clearfix">
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -18,7 +18,7 @@
                   </div>
                   <div class="form-group col-lg-10 col-md-12 col-sm-12">
                     <div class="field-inner">
-                      <input readonly type="text" v-model="getConfrimConcert.title" required/>
+                      <input readonly type="text" v-model="getConfirmConcert.title" required/>
                     </div>
                   </div>
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -28,7 +28,7 @@
                   </div>
                   <div class="form-group col-lg-10 col-md-12 col-sm-12">
                     <div class="field-inner">
-                      <input readonly type="text" v-model="getConfrimConcert.description" required/>
+                      <input readonly type="text" v-model="getConfirmConcert.description" required/>
                     </div>
                   </div>
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -38,7 +38,7 @@
                   </div>
                   <div class="form-group col-lg-4 col-md-12 col-sm-12">
                     <div class="field-inner">
-                      <input readonly type="text" v-model="getConfrimConcert.startTime" required/>
+                      <input readonly type="text" v-model="getConfirmConcert.startTime" required/>
                     </div>
                   </div>
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -48,7 +48,7 @@
                   </div>
                   <div class="form-group col-lg-4 col-md-12 col-sm-12">
                     <div class="field-inner">
-                      <input readonly type="text" v-model="getConfrimConcert.endTime" required/>
+                      <input readonly type="text" v-model="getConfirmConcert.endTime" required/>
                     </div>
                   </div>
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -58,7 +58,7 @@
                   </div>
                   <div class="form-group col-lg-4 col-md-12 col-sm-12">
                     <div class="field-inner">
-                      <input readonly type="text" v-model="getConfrimConcert.priceVip" required/>
+                      <input readonly type="text" v-model="getConfirmConcert.priceVip" required/>
                     </div>
                   </div>
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -68,7 +68,7 @@
                   </div>
                   <div class="form-group col-lg-4 col-md-12 col-sm-12">
                     <div class="field-inner">
-                      <input readonly type="text" v-model="getConfrimConcert.priceStand" required/>
+                      <input readonly type="text" v-model="getConfirmConcert.priceStand" required/>
                     </div>
                   </div>
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -78,7 +78,7 @@
                   </div>
                   <div class="form-group col-lg-4 col-md-12 col-sm-12">
                     <div class="field-inner">
-                      <input readonly type="text" v-model="getConfrimConcert.category.name" required/>
+                      <input readonly type="text" v-model="getConfirmConcert.category.name" required/>
                     </div>
                   </div>
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -88,7 +88,7 @@
                   </div>
                   <div class="form-group col-lg-4 col-md-12 col-sm-12">
                     <div class="field-inner">
-                      <input readonly type="text" v-model="getConfrimConcert.minAge" required/>
+                      <input readonly type="text" v-model="getConfirmConcert.minAge" required/>
                     </div>
                   </div>           
                   <div class="form-group" style="margin-top:25px">
@@ -114,30 +114,27 @@ export default {
     name: "ConcertConfirm",
     data:function(){
       return{
-        title:'',
-        discription:'',
-        startTime:'',
-        endTime:'',
-        priceVip:'',
-        priceStand:'',
-        name:'',
-        originName:''
+        title:this.getConfirmConcert.title,
+        discription:this.getConfirmConcert.discription,
+        startTime:this.getConfirmConcert.startTime,
+        endTime:this.getConfirmConcert.endTime,
+        priceVip:this.getConfirmConcert.priceVip,
+        priceStand:this.getConfirmConcert.priceStand,
+        name:this.getConfirmConcert.name,
+        originName:this.getConfirmConcert.concertposter.originName
       }
     },
     created(){
       window.scrollTo(0, 0);
-      console.log(this.getConfrimConcert);
+      console.log(this.getConfirmConcert);
     },
     methods:{
       clickHome(){
         this.$router.push('/');
       }
     },
-    create:{
-      
-    },
     computed: {
-    ...mapGetters("concert", ["getConfrimConcert"]),
+    ...mapGetters("concert", ["getConfirmConcert"]),
     },
    }
 </script>

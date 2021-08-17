@@ -1,27 +1,27 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="문의사항" />
-    <QA />
+    <PageHeader title="결제" />
+    <QnAResult />
     <Footer />
-  </div>  
+  </div>
 </template>
 <script>
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
-import QA from "../components/user/QA";
 import Footer from "../components/layout/Footer";
+import QnAResult from "../components/user/QnAResult";
 
 export default {
   components: {
-    QA,
+    QnAResult,
     Footer,
     PageHeader,
     Nav,
   },
   head() {
     return {
-      title: "Be-con | QA ",
+      title: "BeCon | SUCCESS",
     };
   },
 };

@@ -5,6 +5,7 @@ import java.util.Locale.Category;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
+import com.ssafy.db.entity.ConcertPoster;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.User;
 
@@ -34,9 +35,10 @@ public class ConcertRes extends BaseResponseBody{
 	ConcertCategory category;
 	@ApiModelProperty(name="공연 연령제한", example="19")
 	Integer minAge;
-	@ApiModelProperty(name="공연 포스터 이미지", example="jpg")
+	@ApiModelProperty(name="공연 섬네일 이미지", example="jpg")
 	ConcertThumbnail concertThumbnail;
-	
+	@ApiModelProperty(name="공연 포스터 이미지", example="jpg")
+	ConcertPoster concertPoster;
 	public static ConcertRes of(Concert concert) {
 		ConcertRes res=new ConcertRes();
 		res.setTitle(concert.getTitle());
@@ -49,6 +51,7 @@ public class ConcertRes extends BaseResponseBody{
 		res.setCategory(concert.getCategory());
 		res.setMinAge(concert.getMinAge());
 		res.setConcertThumbnail(concert.getThumbnail());
+		res.setConcertPoster(concert.getPoster());
 		return res;
 	}
 }
