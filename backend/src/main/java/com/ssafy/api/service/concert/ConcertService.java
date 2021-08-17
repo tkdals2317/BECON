@@ -6,12 +6,13 @@ import java.util.Optional;
 import com.ssafy.api.request.ConcertRegisterPostReq;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
+import com.ssafy.db.entity.ConcertPoster;
 import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserConcert;
 
 public interface ConcertService {
-	Concert createConcert(ConcertRegisterPostReq registerInfo, ConcertThumbnail fileId, User userId, ConcertCategory categoryId);
+	Concert createConcert(ConcertRegisterPostReq registerInfo, ConcertPoster posterId, ConcertThumbnail thumbnailId, User userId, ConcertCategory categoryId);
 	List<Concert> findByCategory(Long category);
 	List<Concert> findConcerts();
 	List<Concert> findComingConcerts();

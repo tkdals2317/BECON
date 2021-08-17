@@ -20,6 +20,8 @@ import lombok.Setter;
 public class Concert extends BaseEntity {
 	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	private ConcertThumbnail thumbnail;
+	@OneToOne(fetch =FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
+	private ConcertPoster poster;
 	@ManyToOne(fetch =FetchType.LAZY, cascade=CascadeType.ALL)
 	private ConcertCategory category;
 	@ManyToOne(fetch =FetchType.LAZY, cascade=CascadeType.ALL)
