@@ -10,11 +10,11 @@
 import Nav from "../components/layout/Nav";
 import PageHeader2 from "../components/layout/PageHeader2";
 import Footer from "../components/layout/Footer";
-import ConcertRegist from "../components/concert/ConcertRegist";
+import ConcertRegistPage from "../components/concert/ConcertRegistPage";
 
 export default {
   components: {
-    ConcertRegist,
+    ConcertRegistPage,
     Footer,
     PageHeader2,
     Nav,
