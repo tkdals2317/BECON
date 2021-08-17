@@ -116,4 +116,8 @@ export default {
 .news-block {
   max-width: none !important;
 }
+.image-box img {
+  width: 360px;
+  height: 270px;
+}
 </style>
