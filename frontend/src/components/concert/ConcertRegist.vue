@@ -241,14 +241,15 @@ export default {
     clickRegistConcert: function () {
       this.concert.startTime = this.time.startDay + " " + this.time.startClock;
       this.concert.endTime = this.time.startDay + " " + this.time.endClock;
-      this.concert.files1 = this.$refs.picture1.files1[0];
-      this.concert.files2 = this.$refs.picture2.files2[0];
+      this.concert.files1 = this.$refs.picture1.files[0];
+      this.concert.files2 = this.$refs.picture2.files[0];
       for (var item in this.concert) {
         if(this.concert[item]==""){
           alert("신청서를 다시 확인해주세요.");
           return;
         }
       }
+      console.log(this.concert);
       this.requestRegistConcert(this.concert);
       this.$router.push("/concertConfirm");
     },
@@ -309,14 +310,14 @@ export default {
       }
     },
     checkPoster(){
-      if(!this.$refs.picture1.files1[0]){
+      if(!this.$refs.picture1.files[0]){
         this.errors.requirePoster=false;
       }else{
         this.errors.requirePoster=true;
       }return;
     },
     checkThumbnail(){
-      if(!this.$refs.picture2.files2[0]){
+      if(!this.$refs.picture2.files[0]){
         this.errors.requireThumbnail=false;
       }else{
         this.errors.requireThumbnail=true;

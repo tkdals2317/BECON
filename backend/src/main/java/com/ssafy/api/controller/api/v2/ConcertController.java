@@ -77,7 +77,10 @@ public class ConcertController {
 			@ApiParam(value = "공연 포스터", required = true) MultipartFile files1,
 			@ApiParam(value = "공연 포스터", required = true) MultipartFile files2) {
 		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
-		String userId = "alswn8972";
+		String userId = userDetails.getUsername();
+		System.out.println(registerInfo);
+		System.out.println(files1);
+		System.out.println(files2);
 		Concert concert = new Concert();
 		try {
 			ConcertPoster posterId = concertPosterService.saveFile(concertPosterService.setFile(files1));
