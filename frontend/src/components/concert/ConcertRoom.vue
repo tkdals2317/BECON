@@ -172,9 +172,6 @@ export default {
     this.userId = this.getUserId;
     this.roomId = this.getConcert.id;
 
-    console.log(this.getConcert);
-
-    // this.findBuyTicket();
     this.connect();
     this.connection();
     this.register();
@@ -236,7 +233,7 @@ export default {
         }
         
         if (endMinute - app.minute <= 1) {
-          console.log(60-app.second);
+          // console.log(60-app.second);
           if (endMinute - app.minute == 0 && app.second == 0) {
             VueSimpleAlert.alert("콘서트가 종료됩니다.");
             setTimeout(function() {
@@ -598,7 +595,8 @@ figure img {
 }
 .ownerProfile img {
   border-radius: 50%;
-  margin-left: 40px;
+  max-width: 100px;
+  height: auto;
 }
 .info-row {
   clear: both;

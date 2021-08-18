@@ -249,7 +249,6 @@ export default {
           return;
         }
       }
-      console.log(this.concert);
       this.requestRegistConcert(this.concert);
       this.$alert("콘서트 등록이 완료되었습니다!");
       this.$router.push("/concertConfirm");
@@ -338,6 +337,6 @@ export default {
 
 <style scoped>
 .form-group input {
-  padding: 14px 20px !important;
+  padding: 14px 17px !important;
 }
 </style>

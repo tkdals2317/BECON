@@ -54,6 +54,7 @@ export default {
   },
   
   created() {
+    window.scrollTo(0, 0);
     this.setTimer();
 
     this.userId = this.getUserId;
@@ -174,7 +175,6 @@ export default {
     sendMessageRTC(message) {
       this.ws.onopen = () => {
         var jsonMessage = JSON.stringify(message);
-        console.log("Sending message: " + jsonMessage);
         this.ws.send(jsonMessage);
       }
     },

@@ -55,6 +55,7 @@ export default {
     };
   },
   created() {
+    window.scrollTo(0, 0);
     if (this.success) {
       this.getNow();
       let ticket = {
