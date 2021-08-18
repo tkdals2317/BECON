@@ -32,5 +32,15 @@ export default {
             console.error();
         });
     },
+    requestEmailCheck(commit, emailCheck){
+      http
+        .post(`/api/v3/email/check`, emailCheck)
+        .then(({ data }) => {
+            console.log(data);
+        })
+        .catch(() => {
+            console.error();
+        });
+    }
   },
 };
