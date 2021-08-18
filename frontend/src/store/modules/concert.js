@@ -12,6 +12,7 @@ export default {
     concertDetail: [],
     comingConcerts: [],
     concertConfirm:'',
+    weekly: {},
   },
 
   getters: {
@@ -25,7 +26,6 @@ export default {
       return state.concertInfos;
     },
     getConcertSchedule(state) {
-      console.log(state);
       return state.concertSchedule;
     },
     getRegistConcertList(state) {
@@ -45,6 +45,9 @@ export default {
     },
     getIngConcert(state) {
       return state.playing;
+    },
+    getWeeklyConcert(state) {
+      return state.weekly;
     }
   },
 
@@ -56,7 +59,6 @@ export default {
       state.concertInfos = payload;
     },
     CONCERTSCHEDULE(state, payload) {
-      console.log(payload);
       state.concertSchedule = payload;
     },
     REGISTCONCERT(state, payload) {
@@ -85,6 +87,9 @@ export default {
     },
     SET_TOTAL_PLAYING(state, payload) {
       state.playing = payload;
+    },
+    SET_WEEKLY_CONCERT(state, payload) {
+      state.weekly = payload;
     }
   },
   actions: {
@@ -183,6 +188,16 @@ export default {
         .get(`/api/v2/concert/count/playing`)
         .then(({ data }) => {
           commit("SET_TOTAL_PLAYING", data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    findWeeklyConcert({ commit }, start, end) {
+      http
+        .get(`/api/v2/concert/weekly/${start}/${end}`)
+        .then(({ data }) => {
+          commit("SET_WEEKLY_CONCERT", data.map);
         })
         .catch((err) => {
           console.log(err);
