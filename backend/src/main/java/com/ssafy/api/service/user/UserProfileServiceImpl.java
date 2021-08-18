@@ -2,7 +2,6 @@ package com.ssafy.api.service.user;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 import javax.transaction.Transactional;

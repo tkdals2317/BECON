@@ -1,7 +1,5 @@
 package com.ssafy.api.service.user;
 
-import java.util.Optional;
-
 import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;

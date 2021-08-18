@@ -1,25 +1,19 @@
 package com.ssafy.api.service.user;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.api.request.UserModifyPostReq;
-import com.ssafy.api.request.UserProfilePostReq;
 import com.ssafy.api.request.UserRegisterPostReq;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserProfile;
-import com.ssafy.db.repository.ConcertRepository;
 import com.ssafy.db.repository.ConcertRepositorySupport;
-import com.ssafy.db.repository.UserProfileRepository;
 import com.ssafy.db.repository.UserRepository;
 import com.ssafy.db.repository.UserRepositorySupport;
-
-import io.swagger.annotations.ApiModelProperty;
-
-import java.util.Optional;
 /**
  *	유저 관련 비즈니스 로직 처리를 위한 서비스 구현 정의.
  */

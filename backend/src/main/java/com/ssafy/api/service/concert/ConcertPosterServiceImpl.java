@@ -12,12 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.api.request.ConcertPosterPostReq;
-import com.ssafy.api.request.ConcertThumbnailPostReq;
 import com.ssafy.common.util.MD5Generator;
 import com.ssafy.db.entity.ConcertPoster;
-import com.ssafy.db.entity.ConcertThumbnail;
 import com.ssafy.db.repository.ConcertPosterRepository;
-import com.ssafy.db.repository.ConcertThumbnailRepository;
 
 @Service("concertPosterService")
 public class ConcertPosterServiceImpl implements ConcertPosterService {
