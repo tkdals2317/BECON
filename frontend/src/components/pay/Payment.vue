@@ -4,15 +4,8 @@
       <div class="form-box">
         <div class="default-form">
           <div class="row clearfix" >
-            <a-form
-            class="form"
-              :form="form"
-              :colon="false"
-              @submit="check"
-            >
             <div class="form-group col-lg-2 col-md-12 col-sm-12">
               <div class="field-inner">
-                
                 <div class="field-inner" style="margin-top:18px; font-size:20px;">
                   PG사
                 </div>
@@ -21,7 +14,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12">
               <div class="field-inner">
                 <select
-                  v-decorator="['pg', { initialValue: 'html5_inicis' }]"
+                  v-model="form.pg"
                   size="large"
                   @change="handlePg"
                 >
@@ -43,7 +36,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12">
               <div class="field-inner">
                 <select
-                  v-decorator="['payMethod', { initialValue: 'card' }]"
+                  v-model="form.payMethod"
                   size="large"
                   @change="handleMethod"
                 >
@@ -65,7 +58,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12"  v-if="quotaVisible">
               <div class="field-inner">
                 <select
-                  v-decorator="['quota', { initialValue: '0' }]"
+                  v-model="form.quota"
                   size="large"
                 >
                   <option
@@ -92,17 +85,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12"  v-if="vbankDueVisible">
               <div class="field-inner">
                 <input
-                v-decorator="[
-                'vbankDue',
-                {
-                  rules: [
-                    {
-                      required: true,
-                      message: '가상계좌 입금기한은 필수입력입니다',
-                    },
-                  ],
-                },
-              ]"
+                v-model="form.vbankDue"
               placeholder="YYYYMMDDhhmm"
               size="large"
               type="number"
@@ -118,11 +101,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12">
               <div class="field-inner">
                  <input
-                    v-model="initialMerchantUid"
-                    v-decorator="[
-                      'merchantUid',
-                      { initialValue: initialMerchantUid },
-                    ]"
+                    v-model="form.merchantUid"
                     type="text"
                     readOnly
                   />
@@ -136,11 +115,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12">
               <div class="field-inner">
                 <input
-                  :value="getTicketInfo.title+' '+getTicketInfo.type" 
-                  v-decorator="[
-                    'name',
-                    { initialValue: getTicketInfo.title + ' ' + getTicketInfo.type },
-                  ]"
+                  v-model="form.name"
                   type="text"
                   readOnly
                 />
@@ -154,8 +129,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12">
               <div class="field-inner">
                 <input
-                  :value="getTicketInfo.price"
-                  v-decorator="['amount', { initialValue: getTicketInfo.price}]"
+                  v-model="form.amount"
                   size="large"
                   type="number"
                   readOnly
@@ -170,8 +144,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12">
               <div class="field-inner">
                 <input
-                  v-model="getUserInfo.userName"
-                  v-decorator="['buyerName', { initialValue: getUserInfo.userName }]"
+                  v-model="form.buyerName"
                   type="text"
                   readOnly
                 />
@@ -185,8 +158,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12">
               <div class="field-inner">
                 <input
-                  v-model="getUserInfo.userPhone"
-                  v-decorator="['buyerTel', { initialValue: getUserInfo.userPhone.replace(/\-/g,'') }]"
+                  v-model="form.buyerTel"
                   type="text"
                   readOnly
                 />
@@ -200,11 +172,7 @@
             <div class="form-group col-lg-10 col-md-12 col-sm-12">
               <div class="field-inner">
                 <input
-                  v-model="getUserInfo.userEmail"
-                  v-decorator="[
-                    'buyerEmail',
-                    { initialValue: getUserInfo.userEmail },
-                  ]"
+                  v-model="form.buyerEmail"
                   type="text"
                   readOnly
                 />
@@ -222,7 +190,7 @@
             </div>
             <div class="form-group col-lg-6 col-md-12 col-sm-12">
               <div class="field-inner">
-                <button class="theme-btn btn-style-one" type="primary" html-type="submit" size="large">
+                <button class="theme-btn btn-style-one" type="primary" size="large" @click="handleSubmit">
                   <i class="btn-curve"></i>
                   <span
                   class="btn-title"
@@ -230,7 +198,6 @@
                   >결제</span></button>
               </div>
             </div>
-            </a-form>
           </div>
         </div>
       </div>
@@ -247,8 +214,31 @@ export default {
   data() {
     return {
       formLayout: "horizontal",
-      form: this.$form.createForm(this, { name: "payment" }),
-      initialMerchantUid: `${new Date().getTime()}`,
+      // form: this.$form.createForm(this, { name: "payment" }),
+      form: {
+        pg: 'html5_inicis',
+        payMethod: 'card',
+        quota: '0',
+        vbankDue: {
+          rules: [
+            {
+              required: true,
+              message: '가상계좌 입금기한은 필수입력입니다',
+            },
+          ],
+        },
+        bizNum: {
+          rules: [
+            { required: true, message: '사업자번호는 필수입력입니다' }
+          ]
+        },
+        merchantUid: `${new Date().getTime()}`,
+        name: '',
+        amount: '',
+        buyerName: '',
+        buyerTel: '',
+        buyerEmail: '',
+      },
       pgs: PGS,
       methods: Utils.getMethodsByPg(),
       quotas: Utils.getQuotaByPg(),
@@ -258,81 +248,66 @@ export default {
       quotaVisible: true,
     };
   },
+  created() {
+    this.form.name = this.getTicketInfo.title + ' ' + this.getTicketInfo.type;
+    this.form.amount = this.getTicketInfo.price;
+    this.form.buyerName = this.getUserInfo.userName;
+    this.form.buyerTel = this.getUserInfo.userPhone.replace('-','');
+    this.form.buyerEmail = this.getUserInfo.userEmail;
+  },
   computed :{
     ...mapGetters('user',['getUserInfo']),
     ...mapGetters('ticket',['getTicketInfo']),
+    checkVal() {
+      return true;
+    }
   },
   methods: {
-    check(e) {
-      e.preventDefault();
-      console.log(this.form);
-    },
-    handleSubmit(e) {
-      e.preventDefault();
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          const {
-            pg,
-            payMethod,
-            escrow,
-            vbankDue,
-            bizNum,
-            quota,
-            merchantUid,
-            name,
-            amount,
-            buyerName,
-            buyerTel,
-            buyerEmail,
-            buyerAddr,
-            buyerPostcode,
-          } = values;
-          const { IMP } = window;
-          IMP.init(Utils.getUserCodeByPg(pg));
-          const data = {
-            pg,
-            pay_method: payMethod,
-            escrow,
-            merchant_uid: merchantUid,
-            name,
-            amount,
-            buyer_name: buyerName,
-            buyer_tel: buyerTel,
-            buyer_email: buyerEmail,
-            buyer_addr: buyerAddr,
-            buyer_postcode: buyerPostcode,
-            niceMobileV2: true,
-          };
+    handleSubmit() {
+      if (this.checkVal) {
+        const { IMP } = window;
+        IMP.init(Utils.getUserCodeByPg(this.form.pg));
+        const data = {
+          pg: this.form.pg,
+          pay_method: this.form.payMethod,
+          escrow: 'checked',
+          merchant_uid: this.form.merchantUid,
+          name: this.form.name,
+          amount: this.form.amount,
+          buyer_name: this.form.buyerName,
+          buyer_tel: this.form.buyerTel,
+          buyer_email: this.form.buyerEmail,
+          buyer_addr: '서울시 강남구 신사동 661-16',
+          buyer_postcode: '06010',
+          niceMobileV2: true,
+        };
 
-          if (payMethod === "vbank") {
-            data.vbank_due = vbankDue;
-            if (pg === "danal_tpay") {
-              data.biz_num = bizNum;
-            }
+        if (this.form.payMethod === "vbank") {
+          data.vbank_due = this.form.vbankDue;
+          if (this.form.pg === "danal_tpay") {
+            data.biz_num = this.form.bizNum;
           }
-          if (payMethod === "card") {
-            data.display = {
-              card_quota: quota,
-            };
-          }
-          IMP.request_pay(data, this.callback);
         }
-      });
+        if (this.form.payMethod === "card") {
+          data.display = {
+            card_quota: this.form.quota,
+          };
+        }
+        IMP.request_pay(data, this.callback);
+      }
     },
-    handlePg(pg) {
-      const newMethods = Utils.getMethodsByPg(pg);
+    handlePg() {
+      const newMethods = Utils.getMethodsByPg(this.form.pg);
       const [{ value }] = newMethods;
 
-      this.methods = Utils.getMethodsByPg(pg);
-      this.form.setFieldsValue({
-        payMethod: value,
-      });
+      this.methods = Utils.getMethodsByPg(this.form.pg);
+      this.form.payMethod = value;
 
-      this.setVisible(pg, value);
+      this.setVisible(this.form.pg, value);
     },
-    handleMethod(method) {
-      const pg = this.form.getFieldValue("pg");
-      this.setVisible(pg, method);
+    handleMethod() {
+      const pg = this.form.pg;
+      this.setVisible(pg, this.form.payMethod);
     },
     setVisible(pg, method) {
       // 가상계좌 입금기한 렌더링 여부
