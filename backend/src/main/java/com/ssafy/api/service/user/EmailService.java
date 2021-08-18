@@ -32,7 +32,7 @@ public class EmailService {
 	@Autowired
     JavaMailSender mailSender;
 	
-    private static final String FROM_ADDRESS = "cherrykang97@gmail.com";
+    private static final String FROM_ADDRESS = "beconManager@gmail.com";
 
     public EmailDto createMailAndCode(EmailAuthPostReq emailInfo){
         String str = getTempPassword();
