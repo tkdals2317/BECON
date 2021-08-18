@@ -71,6 +71,7 @@ export default {
       formData.append("phone", user.phone);
       formData.append("email", user.email);
       formData.append("files", user.profile);
+      formData.append("carrier", user.carrier);
 
       console.log(formData.get("files"));
       http

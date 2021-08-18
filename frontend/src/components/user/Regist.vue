@@ -163,6 +163,19 @@ export default {
   },
   computed:{
     ...mapGetters('user', ["getAvaliableId"]),
+    ...mapGetters('email', ["getIsTrue"]),
+  },
+  watch: {
+    getIsTrue(val) {
+      if (val === true) {
+        this.$fire({
+                title:"인증 결과",
+                text: "인증이 확인되었습니다.",
+                type: "success",
+        });
+        this.isActive=true;
+      }
+    }
   },
   methods: {
     ...mapActions('user', ["requestRegister", "requestDuplicate"]),
@@ -195,12 +208,7 @@ export default {
         code:this.code
       }
       this.requestEmailCheck(check);
-      this.$fire({
-                title:"인증 결과",
-                text: "인증이 확인되었습니다.",
-                type: "success",
-        });
-      this.isActive=true;
+      
     },
     clickEmailAuth: function(){
       if(this.getAvaliableId==false){
