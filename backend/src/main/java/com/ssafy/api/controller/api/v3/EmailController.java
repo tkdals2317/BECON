@@ -22,7 +22,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 
-@CrossOrigin(origins = "*")
 @Api(value = "이메일 API", tags = {"Email"})
 @RestController
 @RequestMapping("/api/v3/email")
