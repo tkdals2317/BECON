@@ -8,7 +8,7 @@
               <div class="default-form">
                 <h4>신청 내역<span>.</span></h4>
                 <div class="thumbnail_tag" v-if="getConfirmConcert">
-                    <img :src="`https://i5d102.p.ssafy.io/posterImg/${getConfirmConcert.concertposter.originName}`" class="프로필">
+                    <img :src="`https://i5d102.p.ssafy.io/posterImg/${getConfirmConcert.concertPoster.originName}`" class="프로필">
                   </div>
                 <div class="row clearfix">
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
@@ -112,21 +112,8 @@
 import { mapGetters } from "vuex";
 export default {
     name: "ConcertConfirm",
-    data:function(){
-      return{
-        title:this.getConfirmConcert.title,
-        discription:this.getConfirmConcert.discription,
-        startTime:this.getConfirmConcert.startTime,
-        endTime:this.getConfirmConcert.endTime,
-        priceVip:this.getConfirmConcert.priceVip,
-        priceStand:this.getConfirmConcert.priceStand,
-        name:this.getConfirmConcert.name,
-        originName:this.getConfirmConcert.concertposter.originName
-      }
-    },
     created(){
       window.scrollTo(0, 0);
-      console.log(this.getConfirmConcert);
     },
     methods:{
       clickHome(){
@@ -178,6 +165,10 @@ export default {
     width:300px;
     height:400px;
     background-size: cover;
+}
+.thumbnail_tag img {
+  width: 100%;
+  height: 100%;
 }
 .profile_image{
     display: block;

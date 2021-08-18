@@ -249,6 +249,7 @@ export default {
     };
   },
   created() {
+    window.scrollTo(0, 0);
     this.form.name = this.getTicketInfo.title + ' ' + this.getTicketInfo.type;
     this.form.amount = this.getTicketInfo.price;
     this.form.buyerName = this.getUserInfo.userName;
