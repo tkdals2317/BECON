@@ -83,7 +83,7 @@
               </div>
               <div class="form-group col-lg-7 col-md-12 col-sm-12" v-if="isShow">
                 <div class="field-inner">
-                  <input type="text" v-model="code" name="email" value="" placeholder="becon@becon.com" required="" @blur="checkCode()" autocomplete="off">
+                  <input type="text" v-model="code" name="email" value="" placeholder="XSQEID" required="" @blur="checkCode()" autocomplete="off">
                   <div v-if="!errors.requireCode" style="color:red;">필수 입력 항목입니다.</div>
                 </div>
               </div>
