@@ -32,7 +32,7 @@
             <span>{{ errorMessage }}.</span>
           </li>
         </ul>
-        <div style="margin-top: 30px;">
+        <div class="btns" style="margin-top: 30px;">
           <a-button v-if="!success" size="large" @click="handleGoBack"> 뒤로가기 </a-button>
           <a-button size="large" @click="goMain"> 메인으로 </a-button>
         </div>
@@ -110,5 +110,9 @@ export default {
 <style scoped>
 ul li span {
   font-size: 20px;
+}
+.btns button {
+  width: 100px;
+  height: 50px;
 }
 </style>
