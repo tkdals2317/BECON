@@ -90,7 +90,6 @@ import NoSsr from "vue-no-ssr";
       this.init();
     },
     mounted () {
-    
       window.scrollTo(0, 0);
       new GLightbox({
         selector: '.lightbox-image',
@@ -129,7 +128,6 @@ import NoSsr from "vue-no-ssr";
       },
       init(){
         console.log(this.getConcertSchedule);
-        
         
         this.getDate();
         this.concertDays.concert=new Array(7);
