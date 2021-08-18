@@ -29,7 +29,6 @@ import com.ssafy.common.auth.SsafyUserDetails;
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.User;
 import com.ssafy.db.entity.UserProfile;
-import com.ssafy.db.repository.ConcertRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

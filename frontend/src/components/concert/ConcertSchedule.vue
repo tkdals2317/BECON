@@ -34,7 +34,6 @@
                         <div></div>
                       </div>
                     </label> 
-                    
                     <div v-show="concertDays.isShow[`${index}`].get(concert.id)">
                       <div class="ac-a accordion__content row clearfix">
                         <div class="ac-q col-lg-5 col-md-12 col-sm-12">
@@ -45,23 +44,12 @@
                       </div> 
                     </div>
                   </div>
-                   
                   </div>
-           
-                  
-
-                
-
-
                 </div>
-              </div>
-
-
-        
+              </div>  
             </slide>
           </carousel>
         </no-ssr>
-        
       </div>
     </div>
   </section>
@@ -78,9 +66,6 @@ import NoSsr from "vue-no-ssr";
     name: "ConcertSchedule",
 
     data:function(){
-
-
-
       return{
         show:true,
         start:[],
@@ -101,6 +86,23 @@ import NoSsr from "vue-no-ssr";
 
       }
     },
+    created(){
+      this.init();
+    },
+    mounted () {
+    
+      window.scrollTo(0, 0);
+      new GLightbox({
+        selector: '.lightbox-image',
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true
+      });
+      
+    },
+    // created: function () {
+    //   this.requestConcert("All");
+    // },
     components: {
       NoSsr,
       Carousel,
@@ -226,23 +228,6 @@ import NoSsr from "vue-no-ssr";
         }
       }
     },
-    created(){
-      this.init();
-    },
-    mounted () {
-    
-      window.scrollTo(0, 0);
-      new GLightbox({
-        selector: '.lightbox-image',
-        touchNavigation: true,
-        loop: true,
-        autoplayVideos: true
-      });
-      
-    },
-    // created: function () {
-    //   this.requestConcert("All");
-    // },
   }
 </script>
 

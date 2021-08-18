@@ -32,19 +32,13 @@
                   <a href="/">Home</a>
                   <ul>
                     <li><router-link to="/">Home</router-link></li>
-                    <!-- <li><router-link to="/contact">Page1</router-link></li>
-                    <li><router-link to="/faqs">Page2</router-link></li>
-                    <li><router-link to="/notfound">Page3</router-link></li> -->
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#">Concert</a>
                   <ul>
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
-                    <li @click="concertEnter"><a>Concert Enter</a></li>
                     <li @click="concertSchedule"><a>Concert Schedule</a></li>
-                    <li><router-link to="/singer">Concert Singer</router-link></li>
-                    <li><router-link to="/ticketing">Ticketing</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -81,8 +75,6 @@
     <!--End Header Upper-->
 
     <nav class="mobile-nav__container">
-      <!-- content is loading via js -->
-
       <div
         :class="`collapse navbar-collapse ${
           mobileToggle ? 'show' : ''
@@ -93,18 +85,13 @@
                   <a href="/">Home</a>
                   <ul>
                     <li><router-link to="/">Home</router-link></li>
-                    <!-- <li><router-link to="/contact">Page1</router-link></li>
-                    <li><router-link to="/faqs">Page2</router-link></li>
-                    <li><router-link to="/notfound">Page3</router-link></li> -->
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#">Concert</a>
                   <ul>
                     <li><router-link to="/concertRegist">Concert Regist</router-link></li>
-                    <li><router-link to="/EX">Concert EX</router-link></li>
                     <li @click="concertSchedule"><a>Concert Schedule</a></li>
-                    <li><router-link to="/signer">Concert signer</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -122,7 +109,6 @@
 </template>
 
 <script>
-import {mapState, mapActions, mapGetters} from 'vuex';
 export default {
   name: "Nav",
   data() {
@@ -150,12 +136,7 @@ export default {
       });
     }
   },
-  computed:{
-    ...mapGetters('user',["getAccessToken"], 'concert', ["getConcertInfos"]),
-    ...mapState('user',["accessToken"])
-  },
   methods: {
-    ...mapActions('room', ["setRoomId"]),
     handleScroll() {
       if (window.scrollY > 70) {
         this.sticky = true;
@@ -167,14 +148,8 @@ export default {
       localStorage.clear();
       location.href = "/";
     },
-    concertEnter() {
-      let num = prompt('방 번호를 입력해주세요');
-      console.log(num);
-      this.setRoomId(num);
-      this.$router.push('/waiting');
-    },
     concertSchedule() {
-      this.$router.push({ name: 'ConcertSchedule', params: { getConcertInfos: this.getConcertInfos }})  
+      this.$router.push('/concertSchedule')  
     }
   },
 };
