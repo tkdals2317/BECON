@@ -1,13 +1,11 @@
 package com.ssafy.api.controller.api.v3;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.api.dto.EmailDto;
@@ -24,8 +22,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 
-
-
+@CrossOrigin(origins = "*")
 @Api(value = "이메일 API", tags = {"Email"})
 @RestController
 @RequestMapping("/api/v3/email")

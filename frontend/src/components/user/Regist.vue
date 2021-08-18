@@ -196,7 +196,8 @@ export default {
         code:this.code
       }
       http.post('https://i5d102.p.ssafy.io/api/v3/email/check', check) 
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         this.$fire({
                 title:"인증 결과",
                 text: "인증이 확인되었습니다.",
@@ -204,7 +205,8 @@ export default {
         });
         this.isActive=true;
       }) 
-      .catch(() => {
+      .catch((response) => {
+        console.log(response);
         this.$fire({
                 title:"인증 결과",
                 text: "인증이 실패되었습니다. 코드를 다시 확인해주세요!",
