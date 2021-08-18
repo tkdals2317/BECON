@@ -1,5 +1,6 @@
 package com.ssafy.api.service.concert;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,5 +96,10 @@ public class ConcertServiceImpl implements ConcertService {
 	public long getIngConcert() {
 		long total = concertRepositorySupport.findIngConcert();
 		return total;
+	}
+	
+	@Override
+	public List<Concert> findWeeklyConcert(String start, String end) {
+		return concertRepository.findByStartTimeBetween(start, end);
 	}
 }

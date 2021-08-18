@@ -1,5 +1,6 @@
 package com.ssafy.api.service.concert;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ public interface ConcertService {
 	Concert createConcert(ConcertRegisterPostReq registerInfo, ConcertPoster posterId, ConcertThumbnail thumbnailId, User userId, ConcertCategory categoryId);
 	List<Concert> findByCategory(Long category);
 	List<Concert> findConcerts();
+	List<Concert> findWeeklyConcert(String start, String end);
 	List<Concert> findComingConcerts();
 	Optional<Concert> getConcertByConcertId(Long concertId);
 	Optional<List<UserConcert>> getUserConcertByConcerId(Long concertId);
