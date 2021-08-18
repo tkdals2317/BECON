@@ -3,17 +3,16 @@
     <div class="imp-container">
       <div class="form-box">
         <div class="default-form">
-          <div class="row clearfix">
+          <div class="row clearfix" >
+            <a-form
+            class="form"
+              :form="form"
+              :colon="false"
+              @submit="check"
+            >
             <div class="form-group col-lg-2 col-md-12 col-sm-12">
               <div class="field-inner">
-                <!-- <a-form
-                  :form="form"
-                  :label-col="{ span: 6 }"
-                  :wrapper-col="{ span: 18 }"
-                  :colon="false"
-                  labelAlign="left"
-                  @submit="handleSubmit"
-                /> -->
+                
                 <div class="field-inner" style="margin-top:18px; font-size:20px;">
                   PG사
                 </div>
@@ -223,7 +222,7 @@
             </div>
             <div class="form-group col-lg-6 col-md-12 col-sm-12">
               <div class="field-inner">
-                <button @click="handleSubmit" class="theme-btn btn-style-one" type="primary" html-type="submit" size="large">
+                <button class="theme-btn btn-style-one" type="primary" html-type="submit" size="large">
                   <i class="btn-curve"></i>
                   <span
                   class="btn-title"
@@ -231,6 +230,7 @@
                   >결제</span></button>
               </div>
             </div>
+            </a-form>
           </div>
         </div>
       </div>
@@ -263,6 +263,10 @@ export default {
     ...mapGetters('ticket',['getTicketInfo']),
   },
   methods: {
+    check(e) {
+      e.preventDefault();
+      console.log(this.form);
+    },
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {

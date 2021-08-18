@@ -1,6 +1,5 @@
 package com.ssafy.api.controller.api.v2;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +22,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.ConcertRegisterPostReq;
 import com.ssafy.api.response.ConcertDetailRes;
 import com.ssafy.api.response.ConcertRes;
+import com.ssafy.api.response.ConcertWeeklyRes;
 import com.ssafy.api.service.concert.ConcertCategoryService;
 import com.ssafy.api.service.concert.ConcertPosterService;
 import com.ssafy.api.service.concert.ConcertService;
@@ -64,7 +64,6 @@ public class ConcertController {
 	@ApiResponses({ @ApiResponse(code = 201, message = "성공"), })
 	public ResponseEntity<?> getConcertCategory() {
 		Optional<List<ConcertCategory>> categories = concertCategoryService.getConcertCategory();
-		System.out.println(categories);
 		return ResponseEntity.status(201).body(categories.get());
 	}
 
@@ -103,7 +102,6 @@ public class ConcertController {
 	public ResponseEntity<?> findByCategory(
 			/* @ApiIgnore Authentication authentication, */
 			@PathVariable String category) {
-		System.out.println(category);
 		List<Concert> concertList = null;
 		try {
 			if (category.equals("All")) {
@@ -111,7 +109,6 @@ public class ConcertController {
 
 			} else {
 				ConcertCategory categoryId = concertCategoryService.getCategoryByCategoryId(category);
-				System.out.println(category + " " + categoryId.getId());
 				concertList = concertService.findByCategory(categoryId.getId());
 			}
 			if (concertList.size() == 0) {
@@ -131,7 +128,6 @@ public class ConcertController {
 		SsafyUserDetails userDetails = (SsafyUserDetails) authentication.getDetails();
 		String userId = userDetails.getUsername();
 		Optional<List<Concert>> concertList = null;
-		System.out.println(userId);
 		try {
 			concertList = concertService.getConcertByOwnerId(userId);
 			System.out.println();
@@ -209,5 +205,17 @@ public class ConcertController {
 	public ResponseEntity<?> getIngConcert() {
 		Long total = concertService.getIngConcert();
 		return ResponseEntity.status(200).body(total);
+	}
+	
+	@GetMapping("/weekly/{start}/{end}")
+	@ApiOperation(value = "주간 콘서트 조회", notes = "주간 콘서트를 조회한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+    })
+	public ResponseEntity<ConcertWeeklyRes> getWeeklyConcert(@PathVariable String start, @PathVariable String end) {	 
+		List<Concert> concertList = null;
+		concertList = concertService.findWeeklyConcert(start, end);
+		
+		return ResponseEntity.status(200).body(ConcertWeeklyRes.of(concertList));
 	}
 }

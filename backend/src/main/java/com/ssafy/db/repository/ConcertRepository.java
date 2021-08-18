@@ -1,5 +1,6 @@
 package com.ssafy.db.repository;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,9 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.db.entity.Concert;
-
-import io.lettuce.core.dynamic.annotation.Param;
-import retrofit2.http.DELETE;
 
 @Repository
 public interface ConcertRepository extends JpaRepository<Concert, Long> {
@@ -53,5 +51,5 @@ public interface ConcertRepository extends JpaRepository<Concert, Long> {
 //    @Modifying
 //    @Query("Delete from Concert c WHERE c.ownerId in :ids")
 //	void deleteConcertByOwnerId(@Param("ids") String ids);
-	
+	List<Concert> findByStartTimeBetween(String start, String end);
 }

@@ -1,7 +1,5 @@
 package com.ssafy.api.response;
 
-import java.util.Locale.Category;
-
 import com.ssafy.common.model.response.BaseResponseBody;
 import com.ssafy.db.entity.Concert;
 import com.ssafy.db.entity.ConcertCategory;
@@ -39,6 +37,7 @@ public class ConcertRes extends BaseResponseBody{
 	ConcertThumbnail concertThumbnail;
 	@ApiModelProperty(name="공연 포스터 이미지", example="jpg")
 	ConcertPoster concertPoster;
+	
 	public static ConcertRes of(Concert concert) {
 		ConcertRes res=new ConcertRes();
 		res.setTitle(concert.getTitle());

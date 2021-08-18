@@ -78,7 +78,7 @@
       </a-form-item>
       <a-form-item label="통신사">
         <a-select
-          v-decorator="['carrier', { initialValue: getUserInfo.userCarrier }]"
+          v-decorator="['carrier', { initialValue: getUserInfo.carrier }]"
           size="large"
         >
           <a-select-option value="SKT">
@@ -140,10 +140,12 @@ export default {
   created() {
     window.scrollTo(0, 0);
     this.requestUserInfo();
+    console.log(this.getDetail);
   },
   computed :{
     ...mapGetters('user',['getUserInfo']),
     ...mapGetters('ticket', ['getTicketInfo']),
+    ...mapGetters("concert", ["getDetail"]),
   },
   methods:{
     ...mapActions('user', ['requestUserInfo']),
@@ -215,10 +217,10 @@ export default {
       }
 
       this.selectTicket({
-        concertId: this.concert.id,
-        title: this.concert.title,
+        concertId: this.getDetail.id,
+        title: this.getDetail.title,
         type: 'STAND',
-        price: this.concert.priceStand,
+        price: this.getDetail.priceStand,
       });
 
       this.$router.push('/payment');
@@ -231,10 +233,10 @@ export default {
       }
 
       this.selectTicket({
-        concertId: this.concert.id,
-        title: this.concert.title,
+        concertId: this.getDetail.id,
+        title: this.getDetail.title,
         type: 'VIP',
-        price: this.concert.priceVip,
+        price: this.getDetail.priceVip,
       });
 
       this.$router.push('/payment');

@@ -73,7 +73,6 @@ export default {
       formData.append("files", user.profile);
       formData.append("carrier", user.carrier);
 
-      console.log(formData.get("files"));
       http
         .post(`/api/v1/users/regist`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
