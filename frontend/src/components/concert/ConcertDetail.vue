@@ -68,7 +68,7 @@ import { mapActions, mapGetters } from "vuex";
         }
       },
     },
-    create(){
+    created(){
       window.scrollTo(0, 0);
     },
     mounted() {
