@@ -20,14 +20,15 @@ import QA from "../views/qa.vue";
 import QnA from "../views/qnaresult.vue";
 import Payment from "../views/payment.vue";
 import Result from "../views/result.vue";
+import VueSimpleAlert from "vue-simple-alert";
 
 Vue.use(VueRouter);
 
 const requireAuth = () => (to, from, next) => {
-  if (localStorage.getItem('accessToken') != "") {
+  if (localStorage.getItem('accessToken')) {
     return next();
   }
-  this.$fire({
+  VueSimpleAlert.fire({
     title:"서비스 권한 없음",
     text:"로그인이 필요한 서비스입니다.",
     type:"error",
@@ -124,12 +125,13 @@ const routes = [
   {
     path: "/qa",
     name: "QA",
-    component:QA,
+    component: QA,
+    beforeEnter: requireAuth()
   },
   {
     path: "/qnaresult",
     name: "QnA",
-    component:QnA,
+    component: QnA,
   },
   {
     path: "/payment",

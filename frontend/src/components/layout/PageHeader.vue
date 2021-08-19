@@ -36,6 +36,9 @@ export default {
   background-repeat: no-repeat;
   opacity: 1 !important;
 }
+.page-banner .bread-crumb li {
+  line-height: unset;
+}
 h1 {
   color: black;
 }

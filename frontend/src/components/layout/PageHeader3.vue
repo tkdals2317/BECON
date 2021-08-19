@@ -36,6 +36,12 @@ export default {
   background-repeat: no-repeat;
   opacity: 1 !important;
 }
+.page-banner .bread-crumb li {
+  line-height: unset;
+}
+.page-banner .bread-crumb li a {
+  color: black;
+}
 h1 {
   color: black;
   text-shadow: 1px 0 antiquewhite, 0 1px antiquewhite, 1px 0 antiquewhite, 0 1px antiquewhite;
