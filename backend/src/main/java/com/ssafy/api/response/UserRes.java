@@ -16,6 +16,8 @@ import lombok.Setter;
 @Setter
 @ApiModel("UserResponse")
 public class UserRes extends BaseResponseBody{
+	@ApiModelProperty(name="User Num")
+	Long id;
 	@ApiModelProperty(name="User ID")
 	String userId;
 	@ApiModelProperty(name="User Name")
@@ -31,6 +33,7 @@ public class UserRes extends BaseResponseBody{
 	
 	public static UserRes of(User user) {
 		UserRes res = new UserRes();
+		res.setId(user.getId());
 		res.setUserId(user.getUserId());
 		res.setUserName(user.getName());
 		res.setUserEmail(user.getEmail());

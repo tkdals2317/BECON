@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="Register" />
+    <PageHeader title="회원가입" />
     <Regist />
     <Footer />
   </div>

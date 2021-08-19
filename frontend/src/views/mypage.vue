@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="My Info" />
+    <PageHeader title="내 정보" />
     <MyPage />
     <Footer />
   </div>

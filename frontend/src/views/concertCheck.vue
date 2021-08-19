@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="Concert Check" />
+    <PageHeader title="공연 신청 내역" />
     <ConcertCheck />
     <Footer />
   </div>
@@ -10,7 +10,7 @@
 import Nav from "../components/layout/Nav";
 import PageHeader from "../components/layout/PageHeader";
 import Footer from "../components/layout/Footer";
-import ConcertCheck from "../components/concert/ConcertCheck";
+import ConcertCheck from "../components/user/ConcertCheck";
 
 export default {
   components: {

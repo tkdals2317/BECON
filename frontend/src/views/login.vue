@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="Login" />
+    <PageHeader title="로그인" />
     <LoginPage />
     <Footer />
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="Concert Confirm" />
+    <PageHeader title="공연 신청 확인" />
     <ConcertConfirm />
     <Footer />
   </div>

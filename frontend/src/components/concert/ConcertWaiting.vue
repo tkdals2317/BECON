@@ -21,12 +21,12 @@
           <div id="participants-img" class="row"></div>
         </div>
         <div class="link-box">
-          <router-link class="theme-btn btn-style-one"
-            to="ConcertPage" tag="button" :disabled="isActive" 
+          <button class="theme-btn btn-style-one"
+            @click="enterConcert" :disabled="isActive" 
           >
             <i class="btn-curve"></i>
             <span class="btn-title">입장하기</span>
-          </router-link>
+          </button>
         </div>
       </div>
     </div>
@@ -74,6 +74,9 @@ export default {
   },
 
   methods: {
+    enterConcert() {
+      this.$router.push('/concertPage');
+    },
     setTimer() {
       this.startTime = new Date(this.getStartTime);
       var now = new Date();
