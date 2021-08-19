@@ -56,7 +56,8 @@ import { mapActions, mapGetters } from "vuex";
       goTicketing(concert) {
         var startTime = new Date(this.getDetail.startTime);
         var now = new Date();
-        var diff = (startTime.getTime() - 3600000 ) - now.getTime();
+        // var diff = (startTime.getTime() - 3600000 ) - now.getTime();
+        var diff = startTime.getTime() - now.getTime();
         
         if (diff > 0) {
           this.selectTicket(concert)
@@ -100,6 +101,11 @@ p {
 .info {
   margin-top: 30px;
   padding-left: 100px;
+}
+.image-box img {
+  object-fit: unset;
+  width: 470px;
+  height: 580px;
 }
 .project-single .text-content .info li {
   font-size: 24px;
