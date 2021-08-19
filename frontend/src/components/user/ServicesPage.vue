@@ -8,7 +8,7 @@
             <div class="inner-box" @click="moveMyPage">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-vector"></span></div>
-              <h5><div @click="moveMyPage">My Info!</div></h5>
+              <h5><div @click="moveMyPage">내 정보</div></h5>
               <div class="text">내 정보 확인 및 <br>수정</div>
               <div class="link-box"><div @click="moveMyPage"><span class="fa fa-angle-right"></span></div></div>
             </div>
@@ -19,7 +19,7 @@
             <div class="inner-box" @click="moveConcertCK">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-digital"></span></div>
-              <h5><div @click="moveConcertCK">CONCERT</div></h5>
+              <h5><div @click="moveConcertCK">신청 내역</div></h5>
               <div class="text">신청한 콘서트 실시간 확인</div>
               <div class="link-box"><div @click="moveConcertCK"><span class="fa fa-angle-right"></span></div></div>
             </div>
@@ -30,7 +30,7 @@
             <div class="inner-box" @click="moveMyConcert(getUserId)">
               <div class="bottom-curve"></div>
               <div class="icon-box"><span class="flaticon-instant-camera"></span></div>
-              <h5><div @click="moveMyConcert(getUserId)">my 콘서트</div></h5>
+              <h5><div @click="moveMyConcert(getUserId)">예매 내역</div></h5>
               <div class="text">예매한 콘서트를 한눈에!</div>
               <div class="link-box"><div @click="moveMyConcert(getUserId)"><span class="fa fa-angle-right"></span></div></div>
             </div>
