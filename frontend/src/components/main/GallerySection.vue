@@ -115,9 +115,7 @@ export default {
     },
     goDetail(concertInfo) {
       this.findConcertDetail(concertInfo)
-      this.$router.push({
-        name: "ConcertDetail",
-      });
+      this.$router.push("concertDetail");
     },
   },
 };

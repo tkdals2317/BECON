@@ -246,7 +246,9 @@ export default {
     leaveConcert() {
       VueSimpleAlert.confirm("콘서트에서 퇴장하시겠습니까?").then(() => {
         this.$router.push('/');
-      });
+      }).catch(err => {
+        if (err) console.log(err);
+      });;
     },
     // WebSocket
     sendMessage() {

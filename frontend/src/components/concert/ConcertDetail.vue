@@ -12,6 +12,7 @@
               <div class="inner">
                 <h5>title</h5>
                 <p>{{ getDetail.title }}</p>
+                <br>
                 <h5>description</h5>
                 <p>{{ getDetail.description }}</p>
               </div>
@@ -107,7 +108,6 @@ p {
 }
 .project-single .text-content .info li {
   font-size: 24px;
-  margin-bottom: 20px;
 }
 .project-single .text-content .info li strong {
   font-size: 36px;

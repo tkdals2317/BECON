@@ -4,7 +4,11 @@
       <div class="sec-title centered">
         <h2>Coming Up<span class="dot">.</span></h2>
       </div>
-      <div class="row clearfix">
+      <div class="sec-title centered" v-if ="getComingConcert.length == 0">
+        <img src="@/common/images/sleepy.png" width="200" height="200">
+        <div style="font-size: 36px; color: black;">진행중인 공연이 없습니다. </div>
+      </div>
+      <div class="row clearfix" v-if ="getComingConcert.length != 0">
         <no-ssr>
           <carousel :perPage="3">
             <!--News Block-->
