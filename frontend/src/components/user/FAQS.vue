@@ -8,17 +8,23 @@
         <div class="faq-block col-lg-6 col-md-12 col-sm-12">
           <div class="accordion-container-one">
             <div class="ac">
-              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active1()">공연을 자주보고싶어요!</h2>
+              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active1()">공연을 시청하는데 앱을 다운받아야 하나요?</h2>
               <div class="ac-a accordion__content" v-show="question1">
-                <p class="accordion__content-desc">저희가 신청하는 것이아니라 도움을 드릴수없습니다.
+                <p class="accordion__content-desc">
+                  BE-CON은 데스크탑 웹(web)을 지원합니다. 별도의 앱을 다운로드 받으실 필요 없이, <br>
+                  이벤트 시작 시각에 웹브라우저를 통해서 서비스에 접속하시면 이벤트를 관람하실 수 있습니다. <br>
+                  Chrome 웹브라우저를 사용하시기를 권장합니다.
                 </p>
               </div>
             </div>
 
             <div class="ac accordion__content">
-              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active2()">VIP 티켓을 샀는데 STAND로 바꾸고싶어요</h2>
+              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active2()">티켓을 구입했습니다. 어떻게 시청하나요?</h2>
               <div class="ac-a" v-show="question2">
-                <p class="accordion__content-desc">VIP 티켓을 환불하신뒤 다시 STAND 티켓을 구매하시면됩니다.
+                <p class="accordion__content-desc"> 
+                  BE-CON 서비스는 온라인 생방송 콘서트 플랫폼입니다. <br>
+                  콘서트가 시작되기 약 30분 - 1시간 전부터  티켓을 구입하신 분들에 한해서 시작안내 문자가 발송됩니다. <br>
+                  구매하신 티켓으로 감상할 수 있는 이벤트 페이지는 [MY SERVICE] - [예매 내역] 메뉴에서 확인하실 수 있습니다. <br>
                 </p>
               </div>
             </div>
@@ -26,7 +32,9 @@
             <div class="ac">
               <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active3()">공연중에 아티스트가 저희를 볼수있나요?</h2>
               <div class="ac-a accordion__content" v-show="question3">
-                <p class="accordion__content-desc">네. 물론입니다. 같이 즐기는 Be-Con 입니다.
+                <p class="accordion__content-desc">
+                  VIP 티켓을 구매하시면, 아티스트에게 팬 여러분의 화면이 송출됩니다. <br>
+                  VIP 티켓을 통해 아티스트와 소통하는 경험을 만끽해보시기 바랍니다.
                 </p>
               </div>
             </div>
@@ -37,25 +45,34 @@
         <div class="faq-block col-lg-6 col-md-12 col-sm-12">
           <div class="accordion-container-two">
             <div class="ac">
-              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active4()">아티스트에게 후원하고싶어요!</h2>
+              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active4()">웹사이트가 정상적으로 동작하지 않습니다.</h2>
               <div class="ac-a accordion__content" v-show="question4">
-                <p class="accordion__content-desc">따로 후원기능은 포함하고있지않습니다.
+                <p class="accordion__content-desc">
+                  BE-CON 서비스의 원활한 이용을 위하여 구글 크롬(Google Chrome) 브라우저를 사용하시기를 권장드립니다.
                 </p>
               </div>
             </div>
 
             <div class="ac accordion__content">
-              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active5()">다시 돌려볼수있나요?</h2>
+              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active5()">브라우저 캐시와 쿠키 삭제하기</h2>
               <div class="ac-a" v-show="question5">
-                <p class="accordion__content-desc">다시보기를 사용해 관람했던 공연을 다시 돌려볼수있습니다.
+                <p class="accordion__content-desc">
+                  BE-CON 서비스는 보다 좋은 서비스의 제공을 위해 지속적으로 업데이트를 진행합니다. <br>
+                  종종 고객님의 브라우저에 이전 버전의 서비스와 관련된 캐시나 쿠키가 남아있어서 서비스의 오동작을 야기하는 경우가 있습니다. <br>
+                  이전에 잘 동작하던 서비스가 오동작 할 경우, 브라우저 캐시와 쿠키를 삭제하는 것이 도움을 줄 수 있습니다. <br>
+                  브라우저 캐시와 쿠키를 삭제하는 방법은 다음의 링크를 참고하시기 바랍니다.
+                  크롬 브라우저 <br>
+                  https://support.google.com/accounts/answer/32050
                 </p>
               </div>
             </div>
 
             <div class="ac">
-              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active6()">티켓 가격이 너무 비싸요!</h2>
+              <h2 class="ac-q accordion__title-text" tabIndex="0" @click="active6()">회원 탈퇴 방법</h2>
               <div class="ac-a accordion__content" v-show="question6">
-                <p class="accordion__content-desc">가격은 아티스트가 제시하는 것이기때문에 조정이 불가능합니다.
+                <p class="accordion__content-desc">
+                  아이디와 비밀번호를 입력하여 회원가입을 한 경우 <br>
+                  고객센터를 통해서 회원탈퇴 의향을 밝혀주시고, 가입하신 아이디를 알려주시기 바랍니다.
                 </p>
               </div>
             </div>
