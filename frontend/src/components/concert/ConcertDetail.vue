@@ -104,8 +104,9 @@ p {
 }
 .image-box img {
   object-fit: unset;
-  width: 470px;
+  width: 420px;
   height: 580px;
+  margin: 0 auto;
 }
 .project-single .text-content .info li {
   font-size: 24px;
