@@ -15,7 +15,7 @@
 
             <div class="image-col col-lg-6 col-md-12 col-sm-12">
               <div class="inner"> 
-                <figure class="image-box" @click="goDetail(myTicket.concert)">
+                <figure class="image-box" @click="concertEnter(myTicket.concert)">
                   <img :src="`https://i5d102.p.ssafy.io/thumbnailImg/${myTicket.concert.thumbnail.originName}`" class="image">
                 </figure>
               </div>
@@ -27,10 +27,11 @@
                   <h5>{{ myTicket.concert.title }}</h5>
                   <ul class="info">
                     <!-- <li><strong>가수:</strong> <br>{{ myTicket.concert.title }}</li> -->
-                    <li><strong>Ticket</strong> <br>{{ myTicket.type }}</li>
+                    <li><strong>Ticket:</strong> <br>{{ myTicket.type }}</li>
+                    <li><strong>Ticket Code:</strong> <br>{{ myTicket.code }}</li>
                     <li><strong>price:</strong> <br>{{ myTicket.price }} 원</li>
                     <li><strong>Category:</strong> <br>{{ myTicket.concert.category.name }}</li>
-                    <li><strong>Date:</strong> <br>{{ myTicket.concert.startTime }}</li>
+                    <li><strong>StartTime:</strong> <br>{{ myTicket.concert.startTime }}</li>
                   </ul>
                 </div>
               </div>
@@ -51,17 +52,15 @@ import { mapGetters, mapActions } from 'vuex';
       },
       computed: {
         ...mapGetters("user",["getUserInfo"]),
-        ...mapGetters("ticket", ["getMyConcertTicket"])
+        ...mapGetters("ticket", ["getMyConcertTicket"]),
       },
       methods: {
         ...mapActions("user", ["requestUserInfo"]),
         ...mapActions("ticket", ["findMyTicket"]),
-        ...mapActions("concert", ["findConcertDetail"]),
-        goDetail(concertInfo) {
-          this.findConcertDetail(concertInfo)
-          this.$router.push({
-            name: "ConcertDetail",
-          });
+        ...mapActions('room', ["setEnterConcert"]),
+        concertEnter(concert) {
+          this.setEnterConcert(concert);
+          this.$router.push('/waiting');
         },
       }
     }
@@ -71,5 +70,9 @@ import { mapGetters, mapActions } from 'vuex';
 .image {
   width: 770px !important;
   height: 466px !important;
+}
+.project-single {
+  position: relative;
+  padding: 0px 10px 10px 80px;
 }
 </style>
