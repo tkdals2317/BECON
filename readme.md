@@ -16,13 +16,6 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 
 ---
 
-## 🔎Progress
-> BackEnd  70%
-
-> FrontEnd 50%
-
----
-
 ## 📜Subject
 > 코로나 사태가 심화되면서 공연 문화가 죽고있다. (모든 아티스트들이 울고있음😭)
 - 온라인 화상 비대면 공연 플랫폼
@@ -70,11 +63,11 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 ### 배포 환경
 
 - __URL__ : 
-✔️ http://3.36.67.58:8080/
-✔️ http://i5d102.p.ssafy.io:8080/
+✔️ http://3.36.67.58/
+✔️ http://i5d102.p.ssafy.io/
 - __배포 여부__ : ⭕️
 - __접속 가능__ : ⭕️
-- __HTTPS 적용__ : ❌
+- __HTTPS 적용__ : ⭕️
   <br>
 
 ### 개발 환경
@@ -84,7 +77,7 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 
 - Framework : Vue.js
 - 지원 환경 : Web / Mobile / Web App / Native App
-- 담당자 : 강민주, 권준엽, 안진흥, 이상민, 황배근
+- 담당자 : 강민주, 권준엽, 안진흥, 황배근
 
 > Back-end
 <br>
@@ -93,7 +86,7 @@ BECON은 공연을 즐기는 사람들을 위해 시작된 화상 공연 플랫�
 
 - Framework : Spring boot / Node.js / Docker 
 - Database : MySQL 
-- 담당자 : 강민주, 안진흥, 이상민
+- 담당자 : 강민주, 안진흥
 
 
 > Design Resources
