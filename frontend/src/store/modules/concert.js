@@ -195,9 +195,9 @@ export default {
           console.log(err);
         });
     },
-    findWeeklyConcert({ commit }, start, end) {
+    findWeeklyConcert({ commit }, request) {
       http
-        .get(`/api/v2/concert/weekly/${start}/${end}`)
+        .get(`/api/v2/concert/weekly/${request.start}/${request.end}`)
         .then(({ data }) => {
           commit("SET_WEEKLY_CONCERT", data.map);
         })

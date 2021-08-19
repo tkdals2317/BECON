@@ -123,13 +123,16 @@ export default {
       date: [],
       add: 0,
       Days: "",
-      plusDays: "",
+      plus7Days: "",
     };
   },
   created() {
     window.scrollTo(0, 0);
     this.getDate();
-    this.findWeeklyConcert(this.Days, this.plusDays);
+    console.log(this.Days);
+    console.log(this.plus7Days);
+    this.findWeeklyConcert({start: this.Days, end: this.plus7Days});
+    console.log(this.getWeeklyConcert);
   },
   mounted() {
     new GLightbox({
@@ -147,12 +150,12 @@ export default {
     preWeek() {
       this.add -= 7;
       this.getDate();
-      this.findWeeklyConcert(this.Days, this.plusDays);
+      this.findWeeklyConcert(this.Days, this.plus7Days);
     },
     nextWeek() {
       this.add += 7;
       this.getDate();
-      this.findWeeklyConcert(this.Days, this.plusDays);
+      this.findWeeklyConcert(this.Days, this.plus7Days);
     },
     moveDetail(concert) {
       this.findConcertDetail(concert)
@@ -167,56 +170,56 @@ export default {
         this.Days = now.format("YYYY-MM-DD");
         this.plus7Days = now.add(6, "days").format("YYYY-MM-DD");
         for (let i = 0; i < 7; i++) {
-          this.date[i] = now
-            .add(i, "days")
+          this.date[i] = moment()
+            .add(this.add + i, "days")
             .format("YYYY-MM-DD");
         }
       } else if (today == 2) {
-        this.Days = now.subtract(1, "days").format("YYYY-MM-DD");
-        this.plus7Days = now.add(5, "days").format("YYYY-MM-DD");
+        this.Days = moment().add(this.add, 'days').subtract(1, "days").format("YYYY-MM-DD");
+        this.plus7Days = moment().add(this.add, 'days').add(5, "days").format("YYYY-MM-DD");
         for (let i = -1; i < 6; i++) {
-          this.date[i + 1] = now
-            .add(i, "days")
+          this.date[i + 1] = moment()
+            .add(this.add + i, "days")
             .format("YYYY-MM-DD");
         }
       } else if (today == 3) {
-        this.Days = now.subtract(2, "days").format("YYYY-MM-DD");
-        this.plus7Days = now.add(4, "days").format("YYYY-MM-DD");
+        this.Days = moment().add(this.add, 'days').subtract(2, "days").format("YYYY-MM-DD");
+        this.plus7Days = moment().add(this.add, 'days').add(4, "days").format("YYYY-MM-DD");
         for (let i = -2; i < 5; i++) {
-          this.date[i + 2] = now
-            .add(i, "days")
+          this.date[i + 2] = moment()
+            .add(this.add + i, "days")
             .format("YYYY-MM-DD");
         }
       } else if (today == 4) {
-        this.Days = now.subtract(3, "days").format("YYYY-MM-DD");
-        this.plus7Days = now.add(3, "days").format("YYYY-MM-DD");
+        this.Days = moment().add(this.add, 'days').subtract(3, "days").format("YYYY-MM-DD");
+        this.plus7Days = moment().add(this.add, 'days').add(3, "days").format("YYYY-MM-DD");
         for (let i = -3; i < 4; i++) {
-          this.date[i + 3] = now
-            .add(i, "days")
+          this.date[i + 3] = moment()
+            .add(this.add + i, "days")
             .format("YYYY-MM-DD");
         }
       } else if (today == 5) {
-        this.Days = now.subtract(4, "days").format("YYYY-MM-DD");
-        this.plus7Days = now.add(2, "days").format("YYYY-MM-DD");
+        this.Days = moment().add(this.add, 'days').subtract(4, "days").format("YYYY-MM-DD");
+        this.plus7Days = moment().add(this.add, 'days').add(2, "days").format("YYYY-MM-DD");
         for (let i = -4; i < 3; i++) {
-          this.date[i + 4] = now
-            .add(i, "days")
+          this.date[i + 4] = moment()
+            .add(this.add + i, "days")
             .format("YYYY-MM-DD");
         }
       } else if (today == 6) {
-        this.Days = now.subtract(5, "days").format("YYYY-MM-DD");
-        this.plus7Days = now.add(1, "days").format("YYYY-MM-DD");
+        this.Days = moment().add(this.add, 'days').subtract(5, "days").format("YYYY-MM-DD");
+        this.plus7Days = moment().add(this.add, 'days').add(1, "days").format("YYYY-MM-DD");
         for (let i = -5; i < 2; i++) {
-          this.date[i + 5] = now
-            .add(i, "days")
+          this.date[i + 5] = moment()
+            .add(this.add + i, "days")
             .format("YYYY-MM-DD");
         }
       } else {
-        this.Days = now.add(1, "days").format("YYYY-MM-DD");
-        this.plus7Days = now.add(7, "days").format("YYYY-MM-DD");
+        this.Days = moment().add(this.add, 'days').add(1, "days").format("YYYY-MM-DD");
+        this.plus7Days = moment().add(this.add, 'days').add(7, "days").format("YYYY-MM-DD");
         for (let i = -6; i < 1; i++) {
-          this.date[i + 6] = now
-            .add(i, "days")
+          this.date[i + 6] = moment()
+            .add(this.add + i, "days")
             .format("YYYY-MM-DD");
         }
       }

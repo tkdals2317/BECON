@@ -60,8 +60,8 @@
                   <div class="row clearfix">
                     <div class="col-md-6 col-sm-12">
                       <ul>
-                        <li><a href="faqs">FAQS</a></li>
-                        <li><a href="qa">Q&A</a></li>
+                        <li><router-link to="/concertRegist">FAQS</router-link></li>
+                        <li><router-link to="/concertRegist">Q&A</router-link></li>
                       </ul>
                     </div> 
                   </div>
@@ -84,7 +84,7 @@
                     </li>
                     <li>
                       <span class="icon flaticon-email-2"></span
-                      >cherrykang97@becon.com
+                      >beconManager@gmail.com
                     </li>
                   </ul>
                 </div>
