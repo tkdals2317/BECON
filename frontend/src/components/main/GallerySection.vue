@@ -21,42 +21,48 @@
         </div>
 
         <div class="filter-list row">
-          <no-ssr>
-            <carousel :perPage="4">
-              <slide v-for="concertInfo in getConcertInfos"
-                :key="concertInfo.id" v-model="concertInfo.id">
-              <!-- Gallery Item -->
-              <div class="gallery-item mx-3">
-                <div class="inner-box" @click="goDetail(concertInfo)">
-                  <div class="image-box">
-                  <figure class="image">
-                    <img
-                      :src="`https://i5d102.p.ssafy.io/posterImg/${concertInfo.poster.originName}`"
-                      alt=""
-                    />
-                  </figure>
-                  </div>
-                  <a
-                    class="lightbox-image overlay-box"
-                    data-fancybox="gallery"
-                  ></a>
-                  <div class="cap-box">
-                    <div class="cap-inner">
-                      <div class="cat">
-                        <span>{{ concertInfo.title }}</span>
-                      </div>
-                      <div class="title">
-                        <h5>
-                          <a>{{ concertInfo.description | truncate(20) }}</a>
-                        </h5>
+          <div class="sec-title centered" v-if ="getConcertInfos.length == 0">
+            <img src="@/common/images/sleepy.png" width="200" height="200">
+            <div style="font-size: 36px; color: black;">진행중인 공연이 없습니다. </div>
+          </div>
+          <div class="row clearfix" v-if ="getConcertInfos.length != 0">
+            <no-ssr>
+              <carousel :perPage="4">
+                <slide v-for="concertInfo in getConcertInfos"
+                  :key="concertInfo.id" v-model="concertInfo.id">
+                <!-- Gallery Item -->
+                <div class="gallery-item mx-3">
+                  <div class="inner-box" @click="goDetail(concertInfo)">
+                    <div class="image-box">
+                    <figure class="image">
+                      <img
+                        :src="`https://i5d102.p.ssafy.io/posterImg/${concertInfo.poster.originName}`"
+                        alt=""
+                      />
+                    </figure>
+                    </div>
+                    <a
+                      class="lightbox-image overlay-box"
+                      data-fancybox="gallery"
+                    ></a>
+                    <div class="cap-box">
+                      <div class="cap-inner">
+                        <div class="cat">
+                          <span>{{ concertInfo.title }}</span>
+                        </div>
+                        <div class="title">
+                          <h5>
+                            <a>{{ concertInfo.description | truncate(20) }}</a>
+                          </h5>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              </slide>
-            </carousel>
-          </no-ssr>
+                </slide>
+              </carousel>
+            </no-ssr>
+          </div>
         </div>
       </div>
     </div>
