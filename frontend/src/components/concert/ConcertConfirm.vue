@@ -5,11 +5,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="inner">
             <div class="form-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-              <div class="default-form">
+              <div class="default-form" v-if="getConfirmConcert">
                 <h4>신청 내역<span>.</span></h4>
-                <div class="thumbnail_tag" v-if="getConfirmConcert">
-                    <img :src="`https://i5d102.p.ssafy.io/posterImg/${getConfirmConcert.concertPoster.originName}`" class="프로필">
-                  </div>
+                <div class="thumbnail_tag">
+                  <img :src="`https://i5d102.p.ssafy.io/posterImg/${getConfirmConcert.concertPoster.originName}`" class="프로필">
+                </div>
                 <div class="row clearfix">
                   <div class="form-group col-lg-2 col-md-12 col-sm-12">
                     <div class="field-inner">

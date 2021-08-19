@@ -36,7 +36,7 @@
                               <li>Standard 석 : {{concert.priceVip}} 원</li>
                               <li>공연 분류 : {{concert.category.name}}</li>
                               <li>관람등급 : {{ concert.minAge }}세 관람가</li>
-                              <li v-if="concert.isActive !== 0"><button class="enter-btn" @click="enterConcert(concert)">공연 입장</button></li>
+                              <li v-if="concert.isActive !== 3"><button class="enter-btn" @click="enterConcert(concert)">공연 입장</button></li>
                             </ul>
                           </div>
                         </div>
@@ -90,6 +90,9 @@ import {mapActions, mapGetters} from 'vuex';
 </script>
 
 <style>
+.tab-btn {
+  width: 680px !important;
+}
   .enter-btn {
     background-color: tomato;
     padding: 0px 10px;

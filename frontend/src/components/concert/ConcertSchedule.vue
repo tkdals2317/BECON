@@ -83,10 +83,13 @@
                             :src="`https://i5d102.p.ssafy.io/posterImg/${item.concert.poster.originName}`"
                           />
                         </div>
-                        <div class="ac-q col-lg-7 col-md-12 col-sm-12">
+                        <div class="ac-q col-lg-7 col-md-12 col-sm-12 mt-4">
                           <h2 class="ac-q accordion__title-text_right">
                             {{ item.concert.description }}
                           </h2>
+                          <div class="detail-btn" @click="moveDetail(item.concert)">
+                            <button>상세보기</button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -140,7 +143,7 @@ export default {
     ...mapGetters("concert", ['getWeeklyConcert']),
   },
   methods: {
-    ...mapActions('concert', ['findWeeklyConcert']),
+    ...mapActions('concert', ['findWeeklyConcert', 'findConcertDetail']),
     preWeek() {
       this.add -= 7;
       this.getDate();
@@ -150,6 +153,10 @@ export default {
       this.add += 7;
       this.getDate();
       this.findWeeklyConcert(this.Days, this.plusDays);
+    },
+    moveDetail(concert) {
+      this.findConcertDetail(concert)
+      this.$router.push("concertDetail");
     },
     getDate() {
       var moment = require("moment");
@@ -219,6 +226,14 @@ export default {
 </script>
 
 <style scoped>
+.detail-btn {
+  font-size: 16px;
+  margin-top: 30px;
+}
+.detail-btn button {
+  width: 90px;
+  height: 30px;
+}
 .btn-nav button {
   width: 100px;
   height: 50px;
