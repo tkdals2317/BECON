@@ -129,10 +129,7 @@ export default {
   created() {
     window.scrollTo(0, 0);
     this.getDate();
-    console.log(this.Days);
-    console.log(this.plus7Days);
     this.findWeeklyConcert({start: this.Days, end: this.plus7Days});
-    console.log(this.getWeeklyConcert);
   },
   mounted() {
     new GLightbox({
@@ -150,12 +147,12 @@ export default {
     preWeek() {
       this.add -= 7;
       this.getDate();
-      this.findWeeklyConcert(this.Days, this.plus7Days);
+      this.findWeeklyConcert({start: this.Days, end: this.plus7Days});
     },
     nextWeek() {
       this.add += 7;
       this.getDate();
-      this.findWeeklyConcert(this.Days, this.plus7Days);
+      this.findWeeklyConcert({start: this.Days, end: this.plus7Days});
     },
     moveDetail(concert) {
       this.findConcertDetail(concert)
