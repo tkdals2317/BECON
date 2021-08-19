@@ -458,7 +458,10 @@ export default {
     },
     onParticipantLeft(request) {
       var participant = this.participants.get(request.name);
-      participant.dispose();
+      
+      if (participant) {
+        participant.dispose();
+      }
       
       this.slides = this.slides.filter((element) => element !== request.name);
       this.participants.delete(request.name);
@@ -569,8 +572,10 @@ figure {
   margin-top: 0.8em;
   margin-bottom: 0.8em;
 }
-figure img {
+.post-thumb img {
   -webkit-filter: none !important;
+  height: 40px !important;
+  width: 40px !important;
 }
 .post > div {
   overflow-wrap: anywhere;
@@ -608,8 +613,8 @@ figure img {
 }
 .ownerProfile img {
   border-radius: 50%;
-  max-width: 100px;
-  height: auto;
+  width: 100px;
+  height: 100px;
 }
 .info-row {
   clear: both;
