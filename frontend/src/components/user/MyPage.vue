@@ -7,7 +7,7 @@
         </div>
         <div style="margin-bottom: 25px;">
           <div class="profile_tag" v-if="getUserInfo">
-            <img :src="`https://i5d102.p.ssafy.io/profileImg/${getUserInfo.userProfile.originName}`" class="프로필">
+            <img :src="`https://i5d102.p.ssafy.io/profileImg/${getUserInfo.userId}.png`" class="프로필">
           </div>
           <div class="filebox" v-if="isClick">
             <label for="ex_file">프로필 수정</label>
@@ -49,10 +49,6 @@
                   <button v-if="isClick" class="theme-btn btn-style-one" @click="modifyUser">
                     <i class="btn-curve"></i>
                     <span class="btn-title" >확인</span>
-                  </button>
-                  <button class="theme-btn btn-style-one" @click="deleteUser">
-                    <i class="btn-curve"></i>
-                    <span class="btn-title" >탈퇴</span>
                   </button>
                 </div>
             </div>
@@ -109,12 +105,6 @@ export default {
       }
       this.click();
       this.requestModify(modifyed);
-    },
-
-    deleteUser(){
-      this.requestDelete(this.getUserInfo.userId);
-      localStorage.removeItem('accessToken');
-      location.href = "/";
     },
   }
 };

@@ -127,7 +127,7 @@
            
             <div class="form-group col-lg-2 col-md-12 col-sm-12">
               <div class="field-inner" style="margin:20px -5px 0px 0px; font-size:17px;">
-                *Poster
+                * 포스터
               </div>
             </div>
             <div class="form-group col-lg-4 col-md-12 col-sm-12">
@@ -138,7 +138,7 @@
             </div>
             <div class="form-group col-lg-2 col-md-12 col-sm-12">
               <div class="field-inner" style="margin:20px -5px 0px 0px; font-size:17px;">
-                *Thumbnail
+                * 썸네일
               </div>
             </div>
             <div class="form-group col-lg-4 col-md-12 col-sm-12">

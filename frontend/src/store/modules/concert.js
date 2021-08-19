@@ -128,7 +128,6 @@ export default {
         http
         .get("/api/v2/concert/findByCategory/" + category)
         .then(({ data }) => {
-          console.log(data);
           commit("CONCERTSCHEDULE", data);
           commit("CONCERT", data);
         })

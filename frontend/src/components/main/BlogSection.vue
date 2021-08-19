@@ -111,8 +111,6 @@ export default {
             element.minute = 0;
           }
         });
-
-        console.log('comming concert update');
       }, 60000);
     },
     concertEnter(concert) {

@@ -38,5 +38,6 @@ export default {
 }
 h1 {
   color: black;
+  text-shadow: 1px 0 antiquewhite, 0 1px antiquewhite, 1px 0 antiquewhite, 0 1px antiquewhite;
 }
 </style>

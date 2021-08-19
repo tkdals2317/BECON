@@ -67,17 +67,17 @@ import { mapGetters, mapActions } from "vuex";
       ...mapActions("user", ["requestUserInfo"]),
       ...mapActions("ticket", ["findMyTicket"]),
       moveMyPage() {
-        this.$router.push("mypage");
+        this.$router.push("/mypage");
       },
       moveConcertCK() {
-        this.$router.push("concertCK");        
+        this.$router.push("/concertCK");        
       },
       moveMyConcert(userId) {
         this.findMyTicket(userId);
-        this.$router.push("myconcert");
+        this.$router.push("/myconcert");
       },
       moveQA() {
-        this.$router.push("qa");
+        this.$router.push("/qa");
       },
     }
   }

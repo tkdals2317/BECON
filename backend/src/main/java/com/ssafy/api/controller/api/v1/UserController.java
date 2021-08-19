@@ -122,14 +122,14 @@ public class UserController {
 			@ApiParam(value="imgUrlBase", required = true) MultipartFile files,
 			@ApiParam(value="회원 정보 수정", required = false) UserModifyPostReq request) {
 		 SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
-		 String existId = userDetails.getUsername(); System.out.println(existId);
+		 String existId = userDetails.getUsername();
 
 		long rows = 0;
 		User user = userService.getUserByUserId(userId);
 		try{
 			if(files!=null) {
 	            Long userPID=user.getUserProfile().getId();
-	            userProfileService.changeFile(userPID, files);
+	            userProfileService.changeFile(userPID, userId, files);
 	        }
 			rows = userService.modifyUser(userId, request);
 		}catch(SignatureVerificationException | JWTDecodeException e) {

@@ -28,11 +28,12 @@
                       <div class="inner">
                         <div class="content">
                           <div class="text">
-                            <p>공연 내용 : {{concert.description}}</p>
-                            <p class="theme_color">공연 시간 : {{concert.startTime}} ~ {{concert.endTime}}</p>
+                            <p>공연 설명 : {{concert.description}}</p>
+                            <p class="theme_color">공연 날짜 : {{concert.startTime.split(" ")[0]}}</p>
+                            <p class="theme_color">공연 시간 : {{concert.startTime.split(" ")[1]}} ~ {{concert.endTime.split(" ")[1]}}</p>
                             <ul>
-                              <li>VIP 석 : {{concert.priceVip}}</li>
-                              <li>Standard 석 : {{concert.priceVip}}</li>
+                              <li>VIP 석 : {{concert.priceVip}} 원</li>
+                              <li>Standard 석 : {{concert.priceVip}} 원</li>
                               <li>공연 분류 : {{concert.category.name}}</li>
                               <li>관람등급 : {{ concert.minAge }}세 관람가</li>
                               <li v-if="concert.isActive !== 0"><button class="enter-btn" @click="enterConcert(concert)">공연 입장</button></li>

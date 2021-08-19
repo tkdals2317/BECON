@@ -35,14 +35,14 @@
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a href="#">Concert</a>
+                  <a>Concert</a>
                   <ul>
-                    <li><router-link to="/concertRegist">Concert Regist</router-link></li>
-                    <li @click="concertSchedule"><a>Concert Schedule</a></li>
+                    <li><router-link to="/concertRegist">공연 신청</router-link></li>
+                    <li @click="concertSchedule"><a>공연 스케줄</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a href="#">Services</a>
+                  <a>Services</a>
                   <ul>
                     <li><router-link to="/faqs">FAQs</router-link></li>
                     <li><router-link to="/qa">Q&A</router-link>
@@ -63,7 +63,7 @@
                   <span class="funBtn"><router-link to="/login" class="nav1">Login</router-link></span>
                 </div>
                 <div v-if="isLogin">
-                  <span class="funBtn"><router-link to="/service" class="nav1">MyService</router-link></span>
+                  <span class="funBtn"><router-link to="/service" class="nav1">My Service</router-link></span>
                   <span class="funBtn" @click="clickLogout">Logout</span>
                 </div>
               </a>
@@ -90,8 +90,8 @@
                 <li class="dropdown">
                   <a href="#">Concert</a>
                   <ul>
-                    <li><router-link to="/concertRegist">Concert Regist</router-link></li>
-                    <li @click="concertSchedule"><a>Concert Schedule</a></li>
+                    <li><router-link to="/concertRegist">공연 신청</router-link></li>
+                    <li @click="concertSchedule"><a>공연 스케줄</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
