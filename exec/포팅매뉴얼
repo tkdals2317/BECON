@@ -11,6 +11,7 @@
         - Backend
             - openjdk - 1.8.0_192
             - Eclipse - 2020.06
+
     2) 빌드 시 사용되는 환경 변수 등의 주요 내용 상세 기재
         - frontend & backend & mySQL & kurento
             - gradle clean build
@@ -19,6 +20,7 @@
             - docker pull redis:alpine
             - docker network create redis-net
             - docker run —name my-redis -p 6379:6379 —network redis-net -d redis:alpine redis-server —appendonly yes
+            
     3) 데이터베이스 접속 정보 등 프로젝트(ERD)에 활용되는 주요 계정 및 프로퍼티가 정의된 파일 목록
         - DB 계정- root/root
         - DB Port - 32000:3306
