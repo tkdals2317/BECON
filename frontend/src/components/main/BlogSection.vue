@@ -40,7 +40,7 @@
                     >
                   </h5>
                   <div class="text">
-                    {{concertInfo.description}}
+                    {{concertInfo.description | truncate(30)}}
                   </div>
                   <div class="link-box">
                     <a class="theme-btn" @click="concertEnter(concertInfo)"
