@@ -171,7 +171,7 @@ export default {
     window.scrollTo(0, 0);
     this.userId = this.getUserId;
     this.roomId = this.getConcert.id;
-
+    this.findUsersType(this.getConcert.id);
     this.connect();
     this.connection();
     this.register();
@@ -191,7 +191,7 @@ export default {
   computed: {
     ...mapGetters('user', ['getUserId']),
     ...mapGetters('room', ['getConcert']),
-    ...mapGetters('ticket', ['getBuyTicket']),
+    ...mapGetters('ticket', ['getBuyTicket', 'getUsersType']),
   },
 
   watch: {
@@ -204,7 +204,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('ticket', ['findBuyTicket']),
+    ...mapActions('ticket', ['findUsersType']),
     setTimer() {
       var startTime = new Date(this.getConcert.startTime);
       var endTime = new Date(this.getConcert.endTime);
@@ -227,7 +227,7 @@ export default {
             VueSimpleAlert.alert("콘서트가 종료되기까지 5분 남았습니다.");
           }
           else if (endMinute - app.minute == 1) {
-            VueSimpleAlert.alert("콘서트가 종료되기까지 1분 남았습니다.");
+            VueSimpleAlert.alert("1분 후 콘서트가 종료됩니다.");
           }
           app.second = 0;
         }
@@ -356,6 +356,14 @@ export default {
       }
     },
     onExistingParticipants: function (msg) {
+      var participant = new Participant(this.userId, this.sendMessageRTC, this.getConcert);
+      this.participants.set(this.userId, participant);
+
+      if (this.getConcert.user.userId !== this.userId && this.getUsersType[this.userId] === 'STAND') {
+        msg.data.forEach(this.receiveVideo);
+        return;
+      }
+
       var constraints = {
         audio: true,
         video: {
@@ -365,11 +373,10 @@ export default {
           },
         },
       };
-      var participant = new Participant(this.userId, this.sendMessageRTC, this.getConcert);
-      this.participants.set(this.userId, participant);
       
       if (this.getConcert.user.userId !== this.userId) {
         this.slides.push(this.userId);
+        constraints.audio = false;
       }
       
       this.$nextTick(() => {
@@ -405,6 +412,7 @@ export default {
         });
         var participant = this.participants.get(this.userId);
         participant.dispose();
+        
         for ( var key in this.participants) {
           this.participants.delete(key);
         }
@@ -413,6 +421,10 @@ export default {
     receiveVideo(sender) {
       var participant = new Participant(sender, this.sendMessageRTC, this.getConcert);
       this.participants.set(sender, participant);
+
+      if (this.getConcert.user.userId !== sender && this.getUsersType[sender] === 'STAND') {
+        return;
+      }
 
       if (this.getConcert.user.userId !== sender) {
         this.slides.push(sender);
@@ -445,6 +457,7 @@ export default {
     onParticipantLeft(request) {
       var participant = this.participants.get(request.name);
       participant.dispose();
+      
       this.slides = this.slides.filter((element) => element !== request.name);
       this.participants.delete(request.name);
     },

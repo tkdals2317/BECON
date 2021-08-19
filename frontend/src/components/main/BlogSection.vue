@@ -69,8 +69,8 @@ export default {
 
   created() {
     this.findComingConcert();
+    this.requestUserInfo();
     this.setTimer();
-    console.log(this.getComingConcert);
   },
 
   destroyed() {
@@ -78,12 +78,28 @@ export default {
   },
 
   computed: {
-    ...mapGetters("concert", ["getComingConcert"]),
+    ...mapGetters('concert', ["getComingConcert"]),
+    ...mapGetters('ticket', ["getEnterTicket"]),
+    ...mapGetters('user', ["getUserInfo"]),
+  },
+
+  watch: {
+    getEnterTicket(val) {
+      if (val) {
+        this.setEnterConcert(val.concert);
+        this.$router.push('/waiting');
+      } else {
+        alert('티켓이 일치하지 않습니다.');
+      }
+    }
   },
 
   methods: {
-    ...mapActions("concert", ["findComingConcert"]),
+    ...mapActions('concert', ["findComingConcert"]),
     ...mapActions('room', ["setEnterConcert"]),
+    ...mapActions('ticket', ["findBuyTicket"]),
+    ...mapActions('user', ["requestUserInfo"]),
+
     setTimer() {
       var app = this;
       this.timer = setInterval(function() {
@@ -100,15 +116,17 @@ export default {
       }, 60000);
     },
     concertEnter(concert) {
-      let num = prompt('방 번호를 입력해주세요');
-
-      if (concert.id == num) {
-        this.setEnterConcert(concert);
-        this.$router.push('/waiting');
-      }
-      else {
-        alert('티켓이 일치하지 않습니다.');
-      }
+      var app = this;
+      
+      this.$prompt("티켓 번호를 입력해주세요.", '', '콘서트 입장', 'success').then(code => {
+        app.findBuyTicket({
+          userId: app.getUserInfo.id,
+          concertId: concert.id,
+          code: code
+        });
+      }).catch(err => {
+          if (err) console.log(err);
+      });
     },
   }
 };

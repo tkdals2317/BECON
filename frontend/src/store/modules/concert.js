@@ -154,6 +154,9 @@ export default {
           headers: { Authorization: "Bearer " + CSRF_TOKEN },
         })
         .then(({ data }) => {
+          data.forEach(element => {
+            element['isShow'] = false;
+          })
           commit("REGISTCONCERT", data);
         })
         .catch(() => {

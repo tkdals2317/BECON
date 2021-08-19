@@ -5,12 +5,14 @@
         <figure class="image-box">
           <img :src="`https://i5d102.p.ssafy.io/posterImg/${getDetail.poster.originName}`" alt="">
         </figure>
-        <div class="text-content">
+        <div class="text-content mb-5">
           <div class="row clearfix">
             <!-- Text COl -->
             <div class="text-col col-lg-8 col-md-12 col-sm-12">
               <div class="inner">
-                <h5>Concert description</h5>
+                <h5>title</h5>
+                <p>{{ getDetail.title }}</p>
+                <h5>description</h5>
                 <p>{{ getDetail.description }}</p>
               </div>
             </div>
@@ -18,10 +20,10 @@
             <div class="text-col col-lg-4 col-md-12 col-sm-12">
               <div class="inner">
                 <ul class="info">
-                  <li><strong>Concert</strong> <br><br>{{ getDetail.title }}</li>
-                  <li><strong>Category</strong> <br><br>{{ getDetail.category.name }}</li>
-                  <li><strong>Date</strong> <br><br>{{ getDetail.startTime }}</li>
-                  <li><strong>관람등급</strong> <br><br>{{ getDetail.minAge }}세 관람가</li>
+                  <li><strong>Category</strong> <div>{{ getDetail.category.name }}</div></li>
+                  <li><strong>Date</strong> <div>{{ getDetail.startTime.split(" ")[0] }}</div></li>
+                  <li><strong>Time</strong> <div>{{ getDetail.startTime.split(" ")[1] }} ~ {{ getDetail.endTime.split(" ")[1] }}</div></li>
+                  <li><strong>관람등급</strong> <div>{{ getDetail.minAge }}세 관람가</div></li>
 
                   <button class="theme-btn btn-style-one">
                     <i class="btn-curve"></i>
@@ -52,8 +54,16 @@ import { mapActions, mapGetters } from "vuex";
       ...mapActions("concert", ["findConcertDetail"]),
       ...mapActions("ticket", ["selectTicket"]),
       goTicketing(concert) {
-        this.selectTicket(concert)
-        this.$router.push({name: 'Ticketing'})
+        var startTime = new Date(this.getDetail.startTime);
+        var now = new Date();
+        var diff = (startTime.getTime() - 3600000 ) - now.getTime();
+        
+        if (diff > 0) {
+          this.selectTicket(concert)
+          this.$router.push('ticketing')
+        } else {
+          this.$alert('콘서트 시간을 확인해주세요.', '티켓 구매가 마감되었습니다.', 'warning');
+        }
       },
     },
     create(){
@@ -75,6 +85,15 @@ import { mapActions, mapGetters } from "vuex";
 </script>
 
 <style scoped>
+small {
+  font-size: 80% !important;
+}
+.time {
+  font-size: 18px;
+}
+h5 {
+  margin-bottom: 10px;
+}
 p {
   font-size: 24px;
 }

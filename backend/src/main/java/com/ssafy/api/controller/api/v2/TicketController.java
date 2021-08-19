@@ -18,6 +18,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.ssafy.api.request.TicketPostReq;
+import com.ssafy.api.response.UserTypeRes;
 import com.ssafy.api.service.ticket.TicketService;
 import com.ssafy.api.service.user.UserService;
 import com.ssafy.common.auth.SsafyUserDetails;
@@ -48,11 +49,7 @@ public class TicketController {
 	})
 	public ResponseEntity<? extends BaseResponseBody> register(
 			@ApiIgnore Authentication authentication,
-			@ApiParam(value="티켓 정보", required = true) @RequestBody TicketPostReq ticketInfo
-			//@ApiParam(value="공연 아이디", required = true) Long concertId
-			/*@ApiParam(value="유저 아이디", required = true) String userId*/){
-		System.out.println(ticketInfo.getBuyDate());
-		System.out.println(ticketInfo.getBuyDate());
+			@ApiParam(value="티켓 정보", required = true) @RequestBody TicketPostReq ticketInfo){
 		SsafyUserDetails userDetails = (SsafyUserDetails)authentication.getDetails();
 
 		Ticket ticket=null;
@@ -105,6 +102,28 @@ public class TicketController {
 	public ResponseEntity<Long> getTotalUser() {	 
 		Long total = ticketService.getTotalTicket();
 		return ResponseEntity.status(200).body(total);
+	}
+	
+	@GetMapping("/buy/{userId}/{concertId}/{code}")
+	@ApiOperation(value = "구매한 콘서트 티켓 조회", notes = "구매한 티켓을 조회한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+    })
+	public ResponseEntity<Ticket> getConcertBuyTicket(@PathVariable Long userId, @PathVariable Long concertId, @PathVariable String code) {	 
+		Ticket ticket = ticketService.concertBuyTicket(userId, concertId, code);
+		
+		return ResponseEntity.status(200).body(ticket);
+	}
+	
+	@GetMapping("/buy/{concertId}")
+	@ApiOperation(value = "구매한 콘서트 티켓 조회", notes = "구매한 티켓을 조회한다.") 
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "성공"),
+    })
+	public ResponseEntity<UserTypeRes> getConcertBuyTicket(@PathVariable Long concertId) {	 
+		List<Ticket> list = ticketService.findAllType(concertId);
+		UserTypeRes response = UserTypeRes.of(list);
+		return ResponseEntity.status(200).body(response);
 	}
 }
 

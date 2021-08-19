@@ -68,7 +68,18 @@ public class TicketServiceImpl implements TicketService{
 	
 	@Override
 	public long getTotalTicket() {
-		long total = ticketRepositorySupport.findCountTicket();
-		return total;
+		return ticketRepositorySupport.findCountTicket();
 	}
+
+	@Override
+	public Ticket concertBuyTicket(Long userId, Long concertId, String code) {
+		return ticketRepositorySupport.findConcertBuyTicket(userId, concertId, code);
+	}
+
+	@Override
+	public List<Ticket> findAllType(Long concertId) {
+		return ticketRepositorySupport.findTicketByConcert(concertId);
+	}
+	
+	
 }

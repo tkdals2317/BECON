@@ -13,15 +13,14 @@
             <div class="tabs" v-for="concert in getRegistConcertList" :key="concert.id">
               <!--Tab-->
               <input type="radio" name="tabs" :id="concert.id">
-              <label :for="concert.id" name="title" class="tab-btn" @click="toggleShow">{{concert.title}}</label>
-              <div class="tab" v-if="show">
+              <label :for="concert.id" name="title" class="tab-btn">{{concert.title}}</label>
+              <div class="tab">
                 <div class="tab active-tab">
                   <div class="row clearfix">
                     <div class="image-col col-lg-5 col-md-6 col-sm-12">
                       <div class="inner">
                         <div class="image">
                           <img :src="`https://i5d102.p.ssafy.io/posterImg/${concert.poster.originName}`" alt="" />
-                          <!-- <img src="/images/resource/thumbnail/BeConImg.jpg" alt=""> -->
                         </div>
                       </div>
                     </div>
@@ -36,6 +35,7 @@
                               <li>Standard 석 : {{concert.priceVip}}</li>
                               <li>공연 분류 : {{concert.category.name}}</li>
                               <li>관람등급 : {{ concert.minAge }}세 관람가</li>
+                              <li v-if="concert.isActive !== 0"><button class="enter-btn" @click="enterConcert(concert)">공연 입장</button></li>
                             </ul>
                           </div>
                         </div>
@@ -45,7 +45,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -75,26 +74,26 @@ import {mapActions, mapGetters} from 'vuex';
         window.scrollTo(0, 0);
         this.requestCheckConcert();
       },
-      // mounted(){
-      //   this.init();
-      // },
       computed:{
         ...mapGetters('concert', ['getRegistConcertList'])
       },
       methods:{
         ...mapActions('concert', ['requestCheckConcert']),
-        toggleShow() {
-          this.show = !this.show;
-        },
-        // init(){
-        //   this.requestCheckConcert();
-        // }
+        ...mapActions('room', ["setEnterConcert"]),
+        enterConcert(concert) {
+          this.setEnterConcert(concert);
+          this.$router.push('/concertPage');
+        }
       }
     }
 </script>
 
 <style>
-
+  .enter-btn {
+    background-color: tomato;
+    padding: 0px 10px;
+    border-radius: 10%;
+  }
   .tabs {
     display: flex;
     flex-wrap: wrap;
@@ -125,9 +124,6 @@ import {mapActions, mapGetters} from 'vuex';
   .tabs input[type="radio"] {
     display: none;
   }
-  /* .tabs input[type="radio"]:checked + label {
-    background: #F4F5F8;
-  } */
   .tabs input[type="radio"]:checked + label + .tab {
     display: block;
   }

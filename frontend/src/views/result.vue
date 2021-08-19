@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="결제" />
+    <PageHeader title="결제 확인" />
     <PayResult />
     <Footer />
   </div>

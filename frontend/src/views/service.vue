@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="My Services" />
+    <PageHeader title="내 서비스" />
     <ServicesPage />
     <Footer />
   </div>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="MYconcert"/>
-    <Myconcert :concertId="$route.params.concertId"/>
+    <PageHeader title="공연 예매 내역"/>
+    <Myconcert/>
     <Footer />
   </div>
 </template>

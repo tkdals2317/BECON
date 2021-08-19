@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import Home from "../views/index.vue";
-import Contact from "../views/contact.vue";
 import Waiting from "../views/waiting.vue";
 import ConcertPage from "../views/concertPage.vue";
 import Service from "../views/service.vue";
@@ -69,11 +68,6 @@ const routes = [
     path: "/concertDetail",
     name: "ConcertDetail",
     component: ConcertDetail,
-  },
-  {
-    path: "/contact",
-    name: "Contact",
-    component: Contact,
   },
   {
     path: "/login",

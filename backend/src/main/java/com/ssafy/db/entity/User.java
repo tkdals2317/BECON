@@ -28,6 +28,7 @@ public class User extends BaseEntity {
 	@OneToMany(mappedBy="user", fetch =FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<UserConcert> userConcertLsit=new ArrayList<>();
 	
+	private Long id;
 	private String name;
     private String phone;
     private String userId;

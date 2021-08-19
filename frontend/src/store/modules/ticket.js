@@ -1,4 +1,5 @@
 import http from '@/common/lib/http';
+import VueSimpleAlert from "vue-simple-alert";
 //import router from "@/router/index";
 
 export default {
@@ -7,6 +8,8 @@ export default {
       total: 0,
       ticketInfo: {},
       myTicketInfo: [],
+      enterTicket: {},
+      usersType: [],
     },
     getters: {
       getTicketInfo(state) {
@@ -17,6 +20,12 @@ export default {
       },
       getMyConcertTicket(state) {
         return state.myTicketInfo;
+      },
+      getEnterTicket(state) {
+        return state.enterTicket;
+      },
+      getUsersType(state) {
+        return state.usersType;
       }
     },
     mutations: {
@@ -28,6 +37,12 @@ export default {
       },
       SET_MY_CONCERT_TICKET(state, payload) {
         state.myTicketInfo = payload;
+      },
+      SET_BUY_TICKET(state, payload) {
+        state.enterTicket = payload;
+      },
+      SET_USERS_TYPE(state, payload) {
+        state.usersType = payload;
       }
     },
     actions: {
@@ -61,6 +76,35 @@ export default {
             .get(`/api/v2/ticket/${userId}`)
             .then(({ data }) => {
               commit("SET_MY_CONCERT_TICKET", data);
+            })
+            .catch(() => {
+              console.error();
+            });
+        },
+        findBuyTicket({ commit }, request) {
+          http
+            .get(`/api/v2/ticket/buy/${request.userId}/${request.concertId}/${request.code}`)
+            .then(({ data }) => {
+              if (data) {
+                commit("SET_BUY_TICKET", data);
+              } else {
+                VueSimpleAlert.fire({
+                  title: "입장 실패",
+                  text: "티켓을 확인해주세요.",
+                  type: "warning",
+                  timer: 3000
+                });
+              }
+            })
+            .catch(() => {
+              console.error();
+            });
+        },
+        findUsersType({ commit }, concertId) {
+          http
+            .get(`/api/v2/ticket/buy/${concertId}`)
+            .then(({ data }) => {
+              commit("SET_USERS_TYPE", data.type);
             })
             .catch(() => {
               console.error();
