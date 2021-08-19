@@ -43,17 +43,10 @@
                   <div class="row clearfix">
                     <div class="col-md-12 col-sm-12">
                       <ul>
-                        <li><a href="concertRegist">Con Regist</a></li>
-                        <li><a href="waiting">Con Enter</a></li>
-                        
+                        <li><router-link to="/concertRegist">공연 신청</router-link></li>
+                        <li><router-link to="/concertSchedule">공연 스케줄</router-link></li>
                       </ul>
                     </div>
-                    <!-- <div class="col-md-6 col-sm-12">
-                      <ul>
-                        <li><a href="concertSchedule">Con Schedule</a></li>
-                        <li><a href="singer">Con Singer</a></li>
-                      </ul>
-                    </div>-->
                   </div>
                 </div>
               </div>
@@ -69,7 +62,6 @@
                       <ul>
                         <li><a href="faqs">FAQS</a></li>
                         <li><a href="qa">Q&A</a></li>
-                        
                       </ul>
                     </div> 
                   </div>

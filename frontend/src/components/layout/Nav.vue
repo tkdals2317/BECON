@@ -38,7 +38,7 @@
                   <a>Concert</a>
                   <ul>
                     <li><router-link to="/concertRegist">공연 신청</router-link></li>
-                    <li @click="concertSchedule"><a>공연 스케줄</a></li>
+                    <li><router-link to="/concertSchedule">공연 스케줄</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -88,16 +88,16 @@
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a href="#">Concert</a>
+                  <a>Concert</a>
                   <ul>
                     <li><router-link to="/concertRegist">공연 신청</router-link></li>
-                    <li @click="concertSchedule"><a>공연 스케줄</a></li>
+                    <li><router-link to="/concertSchedule">공연 스케줄</router-link></li>
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a href="#">Services</a>
+                  <a>Services</a>
                   <ul>
-                    <li><router-link to="/services">FAQs</router-link></li>
+                    <li><router-link to="/faqs">FAQs</router-link></li>
                     <li><router-link to="/qa">Q&A</router-link>
                   </li>
                   </ul>
@@ -148,9 +148,6 @@ export default {
       localStorage.clear();
       location.href = "/";
     },
-    concertSchedule() {
-      this.$router.push('/concertSchedule')  
-    }
   },
 };
 </script>
