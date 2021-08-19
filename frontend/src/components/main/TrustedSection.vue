@@ -5,10 +5,11 @@
         <div class="row clearfix">
           <div class="left-col col-xl-5 col-lg-6 col-md-12 col-sm-12">
             <div class="inner">
-              <div class="col-header">
+              <div class="col-header mb-5">
                 <div class="header-inner">
                   <span
-                    >We provide performance venues in a quality non-face-to-face environment.</span>
+                    ><span style="font-size: 60px;">비</span>대면<br>
+                    <span style="font-size: 60px;">콘</span>서트</span>
                 </div>
               </div>
               <div class="sec-title">
@@ -67,4 +68,14 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.trusted-section .col-header .header-inner {
+  padding: 60px 50px !important;
+}
+.trusted-section .feature {
+  padding: 45px 0px 45px 90px !important;
+}
+.trusted-section .feature .count {
+  top: unset !important;
+}
+</style>

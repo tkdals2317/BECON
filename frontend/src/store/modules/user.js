@@ -52,9 +52,7 @@ export default {
       http
         .post(`/api/v1/auth/login`, user)
         .then(({ data }) => {
-          console.log(data);
           commit("LOGIN", {payload: data, user: user});
-          // alert('로그인되었습니다.');
           router.push('/');
         })
         .catch((err) => {
@@ -101,6 +99,7 @@ export default {
     },
     requestUserInfo({commit}){
       const CSRF_TOKEN=localStorage.getItem("accessToken");
+      if (!CSRF_TOKEN) return;
       http
         .get(`/api/v1/users/me`, {
           headers: {"Authorization": 'Bearer '+ CSRF_TOKEN }
@@ -109,7 +108,6 @@ export default {
           commit("USERINFO", data);
         })
         .catch(() => {
-          //alert(err.response.message);
           console.error();
         });
     },
@@ -133,20 +131,6 @@ export default {
         })
         .catch(() => {
          console.error();
-        });
-    },
-    requestDelete(commit, data){
-      const CSRF_TOKEN=localStorage.getItem("accessToken");
-      http
-        .delete(`/api/v1/users/`+ data ,{
-          headers: { "Authorization": 'Bearer '+ CSRF_TOKEN},
-        })
-        .then(()=>{
-          VueSimpleAlert.alert('회원탈퇴가 완료 되었습니다.')
-        })
-        .catch(() => {
-          alert();
-            console.error();
         });
     },
     findTotalUser({ commit }) {

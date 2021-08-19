@@ -52,6 +52,7 @@ const routes = [
     path: "/concertPage",
     name: "ConcertPage",
     component: ConcertPage,
+    beforeEnter: requireAuth()
   },
   {
     path: "/concertRegist",
@@ -78,6 +79,7 @@ const routes = [
     path: "/mypage",
     name: "MyPage",
     component: MyPage,
+    beforeEnter: requireAuth()
   },
   {
     path: "/faqs",
@@ -93,17 +95,19 @@ const routes = [
     path: "/concertConfirm",
     name: "ConcertConfirm",
     component: ConcertConfirm,
+    beforeEnter: requireAuth()
   },
   {
     path: "/service",
     name: "Service",
     component: Service,
+    beforeEnter: requireAuth()
   },
   {
     path: "/concertCK",
     name: "ConcertCheck",
     component: ConcertCheck,
-    
+    beforeEnter: requireAuth()
   },
   {
     path: "/ticketing",
@@ -115,6 +119,7 @@ const routes = [
     path: "/myconcert",
     name: "Myconcert",
     component:Myconcert,
+    beforeEnter: requireAuth()
   },
   {
     path: "/qa",
@@ -130,11 +135,13 @@ const routes = [
     path: "/payment",
     name: "Payment",
     component: Payment,
+    beforeEnter: requireAuth()
   },
   {
     path: "/result",
     name: "Result",
     component: Result,
+    beforeEnter: requireAuth()
   },
 ];
 
