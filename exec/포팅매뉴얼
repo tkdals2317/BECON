@@ -1,5 +1,5 @@
 1. gitlab 소스 클론 이후 빌드 및 배포할 수 있는 작업 문서
-    1. 사용한 JVM, 웹서버, WAS 제품 등의 종류와 설정 값, 버전(IDE 버전 포함) 기재
+    1) 사용한 JVM, 웹서버, WAS 제품 등의 종류와 설정 값, 버전(IDE 버전 포함) 기재
         - 웹서버
             - Nginx - 1.18.0
         - WAS
@@ -11,7 +11,7 @@
         - Backend
             - openjdk - 1.8.0_192
             - Eclipse - 2020.06
-    2. 빌드 시 사용되는 환경 변수 등의 주요 내용 상세 기재
+    2) 빌드 시 사용되는 환경 변수 등의 주요 내용 상세 기재
         - frontend & backend & mySQL & kurento
             - gradle clean build
             - sudo docker-compose up -d
@@ -19,33 +19,21 @@
             - docker pull redis:alpine
             - docker network create redis-net
             - docker run —name my-redis -p 6379:6379 —network redis-net -d redis:alpine redis-server —appendonly yes
-    3. 배포 시 특이사항 기재
-        - 
-    4. 데이터베이스 접속 정보 등 프로젝트(ERD)에 활용되는 주요 계정 및 프로퍼티가 정의된 파일 목록
-    DB 계정- root/root
-    DB Port - 32000:3306
-    application.properties
+    3) 데이터베이스 접속 정보 등 프로젝트(ERD)에 활용되는 주요 계정 및 프로퍼티가 정의된 파일 목록
+        - DB 계정- root/root
+        - DB Port - 32000:3306
+        - application.properties
 
 2. 프로젝트에서 사용하는 외부 서비스 정보 문서
-
-: 소셜 인증, 포톤 클라우드, 코드 컴파일 등에 활용된 '외부 서비스' 가입 및 활용에 필요한 정보
-
-- 네이버 클라우드 플랫폼 (LMS)
-    - accessKey - kj27j1drWzMcCrIeDwLZ
-    - secretKey - 8EJJzz6ZtdDat3ov4W49HHqbW8cqLNgP5NmZLvA1
-    - serviceId - ncp:sms:kr:270803685778:be-con
-- 아임포트
-    - 아이디 - [iamport@siot.do](mailto:iamport@siot.do)
-    - 비밀번호 - asdf1234
-- SMTP
-    - 아이디 - [beconManager@gmail.com](mailto:beconManager@gmail.com)
-    - 비밀번호 - qlzhs123!
-    - host - [smtp.gmail.com](http://smtp.gmail.com/)
-    - port - 587
-1. 데이터베이스 덤프 파일 최신본
-    - ㅇㅇ
-2. 시연 시나리오 (스크립트 포함)
-
-: 시연 순서에 따른 site 화면별, 실행별(클릭 위치 등) 상세 설명
-
-- ㅇㅇ
+    - 네이버 클라우드 플랫폼 (LMS)
+        - accessKey - kj27j1drWzMcCrIeDwLZ
+        - secretKey - 8EJJzz6ZtdDat3ov4W49HHqbW8cqLNgP5NmZLvA1
+        - serviceId - ncp:sms:kr:270803685778:be-con
+    - 아임포트
+        - 아이디 - [iamport@siot.do](mailto:iamport@siot.do)
+        - 비밀번호 - asdf1234
+    - SMTP
+        - 아이디 - [beconManager@gmail.com](mailto:beconManager@gmail.com)
+        - 비밀번호 - qlzhs123!
+        - host - [smtp.gmail.com](http://smtp.gmail.com/)
+        - port - 587
