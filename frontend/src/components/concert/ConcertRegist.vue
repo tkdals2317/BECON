@@ -191,6 +191,8 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ConcertRegistPage",
   data: function () {
+    // const tommorow = new Date();
+    // tommorow.setDate(tommorow.getDate()+1);
     return {
       concert: {
         title: "",

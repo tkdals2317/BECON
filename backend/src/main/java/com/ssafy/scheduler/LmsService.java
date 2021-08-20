@@ -37,6 +37,10 @@ public class LmsService {
 	@Autowired
 	TicketRepository ticketRepository;
 	
+	public void concertWait() {
+		concertRepository.updateWaitConcert();
+	}
+	
 	public void concertStart() {
 		concertRepository.updateStartConcert();
 	}
@@ -49,7 +53,6 @@ public class LmsService {
 		List<Concert> list = concertRepository.findComingSoonConcert();
 		for (Concert concert : list) {
 			sendLMS(concert.getId());
-			concertRepositorySupport.updateConcertActive(concert.getId(), 1);
 		}
 	}
 

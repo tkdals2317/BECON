@@ -15,12 +15,9 @@ public class LmsScheduler {
     }
 	
 	@Scheduled(cron = "0 */1 * * * *")
-    public void updateStart() { 
+    public void update() { 
+		lmsService.concertWait();
 		lmsService.concertStart();
-    }
-	
-	@Scheduled(cron = "0 */1 * * * *")
-    public void updateEnd() { 
 		lmsService.concertEnd();
     }
 }

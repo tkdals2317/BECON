@@ -34,8 +34,16 @@ public interface ConcertRepository extends JpaRepository<Concert, Long> {
 	@Transactional
 	@Modifying
 	@Query("UPDATE Concert c " + 
+			"SET c.isActive = 1 " + 
+			"WHERE TIME_TO_SEC(TIMEDIFF(c.startTime, NOW())) BETWEEN 0 AND 3600 " +
+			"AND c.isActive = 0")
+	void updateWaitConcert();
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Concert c " + 
 			"SET c.isActive = 2 " + 
-			"WHERE TIME_TO_SEC(TIMEDIFF(c.startTime, NOW())) BETWEEN -60 AND 0 " +
+			"WHERE c.startTime < NOW() " +
 			"AND c.isActive = 1")
 	void updateStartConcert();
 	
@@ -43,13 +51,9 @@ public interface ConcertRepository extends JpaRepository<Concert, Long> {
 	@Modifying
 	@Query("UPDATE Concert c " + 
 			"SET c.isActive = 3 " + 
-			"WHERE TIME_TO_SEC(TIMEDIFF(c.endTime, NOW())) BETWEEN -60 AND 0 " +
+			"WHERE c.endTime < NOW() " +
 			"AND c.isActive = 2")
 	void updateEndConcert();
 	
-//	@Transactional
-//    @Modifying
-//    @Query("Delete from Concert c WHERE c.ownerId in :ids")
-//	void deleteConcertByOwnerId(@Param("ids") String ids);
 	List<Concert> findByStartTimeBetween(String start, String end);
 }
