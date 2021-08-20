@@ -140,7 +140,6 @@ export default {
   created() {
     window.scrollTo(0, 0);
     this.requestUserInfo();
-    console.log(this.getDetail);
   },
   computed :{
     ...mapGetters('user',['getUserInfo']),

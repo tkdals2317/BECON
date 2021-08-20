@@ -44,8 +44,8 @@
                 <li class="dropdown">
                   <a>Services</a>
                   <ul>
-                    <li><router-link to="/faqs">FAQs</router-link></li>
-                    <li><router-link to="/qa">Q&A</router-link>
+                    <li><router-link to="/faqs">자주 묻는 질문</router-link></li>
+                    <li><router-link to="/qa">고객센터</router-link>
                   </li>
                   </ul>
                 </li>
@@ -97,8 +97,8 @@
                 <li class="dropdown">
                   <a>Services</a>
                   <ul>
-                    <li><router-link to="/faqs">FAQs</router-link></li>
-                    <li><router-link to="/qa">Q&A</router-link>
+                    <li><router-link to="/faqs">자주 묻는 질문</router-link></li>
+                    <li><router-link to="/qa">고객센터</router-link>
                   </li>
                   </ul>
                 </li>

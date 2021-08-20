@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader3 title="Q&A" />
+    <PageHeader3 title="고객센터" />
     <QA />
     <Footer />
   </div>  

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader title="결제" />
+    <PageHeader title="고객센터" />
     <QnAResult />
     <Footer />
   </div>

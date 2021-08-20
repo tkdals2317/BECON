@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav />
-    <PageHeader3 title="FAQS" />
+    <PageHeader3 title="자주 묻는 질문" />
     <FAQS />
     <Footer />
   </div>
