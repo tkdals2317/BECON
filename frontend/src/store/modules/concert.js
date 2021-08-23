@@ -138,6 +138,9 @@ export default {
         http
         .get("/api/v2/concert/findByCategory/" + category)
         .then(({ data }) => {
+          if (data.statusCode === 210) {
+            data = [];
+          }
           commit("CONCERT", data);
         })
         .catch(() => {
