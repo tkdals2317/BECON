@@ -202,6 +202,7 @@ export default {
       http
         .get(`/api/v2/concert/weekly/${request.start}/${request.end}`)
         .then(({ data }) => {
+          console.log(data);
           commit("SET_WEEKLY_CONCERT", data.map);
         })
         .catch((err) => {
